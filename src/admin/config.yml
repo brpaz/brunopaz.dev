@@ -1,0 +1,33 @@
+backend:
+  name: github
+  repo: brpaz/brunopaz.dev
+
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+collections:
+  - label: "Blog"
+    name: "blog"
+    folder: "content/blog"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "date", format: 'Do MMM YY'}
+      - {label: "Path", name: "path", widget: "string"}
+      - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Summary", name: "summary", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Dev.to URL", name: "devto_url", widget: "string"}
+  - label: "Data"
+    name: "Data"
+    files:
+      - label: "Projects"
+        name: "projects"
+        file: "src/data/projects.yml"
+        fields:
+          - label: Project
+            name: data
+            widget: list
+            fields:
+              - {label: Name, name: name, widget: string}
+

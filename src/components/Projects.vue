@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      projects: projectData.sort((a, b) => a.order > b.order )
+      projects: projectData.data.sort((a, b) => a.order > b.order )
     }
   }
 };

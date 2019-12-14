@@ -8,3 +8,6 @@ dist
 .env.*
 !.env.sample
 static/rss.xml
+cypress/screenshots
+cypress/videos
+cypress.env.json

@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'production') postcssPlugins.push(purgecss())
 
 module.exports = {
   siteName: 'Bruno Paz',
-  siteUrl: process.env.GRIDSOME_BASE_URL,
+  siteUrl: baseUrl,
   plugins: [
     {
       use: '@gridsome/source-filesystem',
@@ -62,7 +62,26 @@ module.exports = {
     },
     {
       use: 'gridsome-plugin-modal'
-    }
+    },
+    {
+       use: '@gridsome/plugin-google-analytics',
+       options: {
+         id: process.env.GRIDSOME_GA_ID
+       }
+    },
+    {
+       use: 'gridsome-plugin-sentry',
+         options: {
+           dsn: process.env.GRIDSOME_SENTRY_DSN,
+           attachProps: true // defaults to true
+         }
+    },
+     {
+       use: `gridsome-plugin-netlify-cms`,
+       options: {
+         publicPath: `/admin`
+       }
+     },
   ],
   templates: {
     Tag: '/tag/:id'

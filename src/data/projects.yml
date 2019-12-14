@@ -1,164 +1,165 @@
 
-- id: jumiapay
-  name: Jumia Pay
-  organization: Jumia
-  start_date: Jan 2019
-  url: https://pay.jumia.com.ng
-  end_date: ~
-  summary: Payments platform by Jumia, that allows customers to make an online purchase in just one step.
-  description: >
-    Jumia Pay is a Payments system solution by Jumia, allowing customers to make an online purchase in just one step.
-    On JumiaPay, I worked on the following areas:
-      - Create the base structure for the Business Area application for Jumia Pay merchants, including User and Roles Management and ACL.
-      - Topups management feature
-      - Payment methods creation and management
-      - Withdraws, Payouts, Transfer between wallets
-      - Collaborating on the definition of Delivery pipelines and test automation
-  technologies: ['Golang', 'Java', 'MySQL', 'Postgres', 'Spring', 'Docker', 'Kong', 'GitHub', 'Kubernetes', 'Jenkins', 'Jira']
-  cover_image: "jumiapay-cover.jpg"
-  images: []
-  category: web
-  type: company # or open-source, client
-  order: 1
+data: 
+  - id: jumiapay
+    name: Jumia Pay
+    organization: Jumia
+    start_date: Jan 2019
+    url: https://pay.jumia.com.ng
+    end_date: ~
+    summary: Payments platform by Jumia, that allows customers to make an online purchase in just one step.
+    description: >
+      Jumia Pay is a Payments system solution by Jumia, allowing customers to make an online purchase in just one step.
+      On JumiaPay, I worked on the following areas:
+        - Create the base structure for the Business Area application for Jumia Pay merchants, including User and Roles Management and ACL.
+        - Topups management feature
+        - Payment methods creation and management
+        - Withdraws, Payouts, Transfer between wallets
+        - Collaborating on the definition of Delivery pipelines and test automation
+    technologies: ['Golang', 'Java', 'MySQL', 'Postgres', 'Spring', 'Docker', 'Kong', 'GitHub', 'Kubernetes', 'Jenkins', 'Jira']
+    cover_image: "jumiapay-cover.jpg"
+    images: []
+    category: web
+    type: company # or open-source, client
+    order: 1
 
-- id: jforce
-  name: JForce
-  organization: Jumia
-  start_date: Jun 2018
-  end_date: Dec 2018
-  url: https://jforce.jumia.com.ng/
-  summary: Web Application developed to help the thousands of agents that Jumia has in the field across all Africa, by providing them easy access to their orders, sales, commissions, etc.
-  description: >
-    JForce is a Web Application that aims to help the thousands of agents that Jumia has in the field across all Africa, by providing them access to their orders, sales, commissions and more.
-    On JForce project, I worked on the following areas:
-    - Development of all necessary APIs following a Microservices oriented architecture.
-    - Orders Processing System using Golang concurrency features.
-    - Commissions calculation engine (golang)
-  technologies: ['PHP7', 'Symfony4', 'Golang', 'MySQL', 'REST', 'Microservices', 'Git', 'GitHub', 'Jira', 'Docker', 'Jenkins', 'Kubernetes']
-  cover_image: "jforce-cover.png"
-  images: []
-  category: web
-  type: company # or open-source, client
-  order: 4
+  - id: jforce
+    name: JForce
+    organization: Jumia
+    start_date: Jun 2018
+    end_date: Dec 2018
+    url: https://jforce.jumia.com.ng/
+    summary: Web Application developed to help the thousands of agents that Jumia has in the field across all Africa, by providing them easy access to their orders, sales, commissions, etc.
+    description: >
+      JForce is a Web Application that aims to help the thousands of agents that Jumia has in the field across all Africa, by providing them access to their orders, sales, commissions and more.
+      On JForce project, I worked on the following areas:
+      - Development of all necessary APIs following a Microservices oriented architecture.
+      - Orders Processing System using Golang concurrency features.
+      - Commissions calculation engine (golang)
+    technologies: ['PHP7', 'Symfony4', 'Golang', 'MySQL', 'REST', 'Microservices', 'Git', 'GitHub', 'Jira', 'Docker', 'Jenkins', 'Kubernetes']
+    cover_image: "jforce-cover.png"
+    images: []
+    category: web
+    type: company # or open-source, client
+    order: 4
 
-- id: jflights
-  name: Jumia Flights
-  organization: Jumia
-  start_date: Aug 2017
-  end_date: May 2018
-  url: https://travel.jumia.com/en-gb/flights
-  summary: The biggest flights marketplace for Africa.
-  description: >
-    Jumia Flights is the Flights booking solution of Jumia and aims to be the biggest Flights marketplace ifor Africa.
-    I have worked in this project from the ground up, including:
-    - Define the application architecture following a Microservices oriented approach.
-    - Implement core features such as Search, Booking and Payments, using Java and PHP
-    - Implementation of Rules Engine for Flights Search using Golang.
-    - Orders and Payments State Machines service (PHP)
-    - Integration with well known third party Flights providers like Amadeus and Kiwi
-    - Multi-provider search using WebSockets.
-  technologies: ['PHP7', 'Phalcon', 'Golang', 'Java 8', 'Play Framework', 'MySQL', 'ScyllaDB', 'REST', 'SOAP', 'Microservices', 'Git', 'GitHub', 'Jira', 'Docker', 'Jenkins', 'Kubernetes']
-  cover_image: "jumia-flights-cover.jpg"
-  images: []
-  category: web
-  type: company # or open-source, client
-  order: 5
+  - id: jflights
+    name: Jumia Flights
+    organization: Jumia
+    start_date: Aug 2017
+    end_date: May 2018
+    url: https://travel.jumia.com/en-gb/flights
+    summary: The biggest flights marketplace for Africa.
+    description: >
+      Jumia Flights is the Flights booking solution of Jumia and aims to be the biggest Flights marketplace ifor Africa.
+      I have worked in this project from the ground up, including:
+      - Define the application architecture following a Microservices oriented approach.
+      - Implement core features such as Search, Booking and Payments, using Java and PHP
+      - Implementation of Rules Engine for Flights Search using Golang.
+      - Orders and Payments State Machines service (PHP)
+      - Integration with well known third party Flights providers like Amadeus and Kiwi
+      - Multi-provider search using WebSockets.
+    technologies: ['PHP7', 'Phalcon', 'Golang', 'Java 8', 'Play Framework', 'MySQL', 'ScyllaDB', 'REST', 'SOAP', 'Microservices', 'Git', 'GitHub', 'Jira', 'Docker', 'Jenkins', 'Kubernetes']
+    cover_image: "jumia-flights-cover.jpg"
+    images: []
+    category: web
+    type: company # or open-source, client
+    order: 5
 
-- id: jtravel
-  name: Jumia Travel
-  organization: Jumia
-  start_date: Aug 2014
-  end_date: Jul 2017
-  url: https://travel.jumia.com
-  summary: With over 25,000 hotel listings across 40 African countries and 200,000 hotels across the globe, Jumia Travel is Africa's N°1 hotel booking website.
-  description: >
-    With over 25,000 hotel listings across 40 African countries and 200,000 hotels across the globe, Jumia Travel is Africa's N°1 hotel booking website.
-    I worked across all areas of Jumia Travel, highlighting:
-    - State Machine and Payment Providers integration
-    - Rates availability and search engine
-    - Channel Management and Partners Integration
-    - Extranet web / mobile application for Hotel Owners
-    - API architecture and development
-    - Functional tests architecture
-  technologies: ['PHP 5/7', 'Symfony 2', 'Silex', 'MySQL','ElasticSearch', 'Couchbase', 'Memcached', 'Javascript', 'Polymer', 'Amazon Web Services', 'Git', 'GitHub', 'Jira', 'Docker', 'Jenkins', 'Agile']
-  cover_image: "jtravel-cover.png"
-  images: []
-  category: web
-  type: company # or open-source, client
-  order: 6
+  - id: jtravel
+    name: Jumia Travel
+    organization: Jumia
+    start_date: Aug 2014
+    end_date: Jul 2017
+    url: https://travel.jumia.com
+    summary: With over 25,000 hotel listings across 40 African countries and 200,000 hotels across the globe, Jumia Travel is Africa's N°1 hotel booking website.
+    description: >
+      With over 25,000 hotel listings across 40 African countries and 200,000 hotels across the globe, Jumia Travel is Africa's N°1 hotel booking website.
+      I worked across all areas of Jumia Travel, highlighting:
+      - State Machine and Payment Providers integration
+      - Rates availability and search engine
+      - Channel Management and Partners Integration
+      - Extranet web / mobile application for Hotel Owners
+      - API architecture and development
+      - Functional tests architecture
+    technologies: ['PHP 5/7', 'Symfony 2', 'Silex', 'MySQL','ElasticSearch', 'Couchbase', 'Memcached', 'Javascript', 'Polymer', 'Amazon Web Services', 'Git', 'GitHub', 'Jira', 'Docker', 'Jenkins', 'Agile']
+    cover_image: "jtravel-cover.png"
+    images: []
+    category: web
+    type: company # or open-source, client
+    order: 6
 
-- id: jtravel-extranet
-  name: Hotels Extranet App
-  organization: Jumia
-  start_date: Jul 2015
-  end_date: Dec 2015
-  url: https://play.google.com/store/apps/details?id=com.jovago.extranet.android&hl=pt_PT
-  summary: Android application that provides tools for hotel managers of Jumia Travel to manage all the activity for their hotel, from reservations to rates and availability.
-  description: >
-    The Jovago Extranet app is an Android app for Hotel Managers of Jovago.com platform, that allows then to manage his hotel from the smartphone including:
-    - Manage Reservations
-    - Get notified of reservations and cancellations instantly
-    - Confirm guest check-in or notify us in case the guest did not show up
-    - Manage rates and availability
-    - Get stats on the hotel performance on Jovago (page views, conversion rate, reservations)
-    - Read Hotel reviews
-  technologies: ['PHP 5/7', 'Symfony 2',  'MySQL','ElasticSearch', 'Agile']
-  cover_image: "jovago-extranet-cover.png"
-  images: []
-  category: mobile
-  type: company # or open-source, client
-  order: 7
+  - id: jtravel-extranet
+    name: Hotels Extranet App
+    organization: Jumia
+    start_date: Jul 2015
+    end_date: Dec 2015
+    url: https://play.google.com/store/apps/details?id=com.jovago.extranet.android&hl=pt_PT
+    summary: Android application that provides tools for hotel managers of Jumia Travel to manage all the activity for their hotel, from reservations to rates and availability.
+    description: >
+      The Jovago Extranet app is an Android app for Hotel Managers of Jovago.com platform, that allows then to manage his hotel from the smartphone including:
+      - Manage Reservations
+      - Get notified of reservations and cancellations instantly
+      - Confirm guest check-in or notify us in case the guest did not show up
+      - Manage rates and availability
+      - Get stats on the hotel performance on Jovago (page views, conversion rate, reservations)
+      - Read Hotel reviews
+    technologies: ['PHP 5/7', 'Symfony 2',  'MySQL','ElasticSearch', 'Agile']
+    cover_image: "jovago-extranet-cover.png"
+    images: []
+    category: mobile
+    type: company # or open-source, client
+    order: 7
 
-- id: uebbill
-  name: Uebbill
-  organization: ueb
-  start_date: Jan 2012
-  end_date: Mar 2014
-  url: https://uebbill.com
-  summary: Web application for small business, that allows to manage the entire billing acitivty in a simple and intuitive way. It includes POS function and its fully certified by Portuguese Finance Authority. 
-  description: >
-    uebbill is a web application oriented to small business, that allows to manage the entire billing process of a business in a simple and intuitive way. It includes POS function and its fully certified by Portuguese Finance Authority.
-    It started as a module of the ueb project but later evolved into a separate project.
-  technologies: ['PHP 5', 'Symfony 1.4', 'MySQL', 'Git', 'Bitbucket', 'XML', 'REST']
-  cover_image: "uebbill-cover.png"
-  images: []
-  category: web
-  type: company # or open-source, client
-  order: 8
+  - id: uebbill
+    name: Uebbill
+    organization: ueb
+    start_date: Jan 2012
+    end_date: Mar 2014
+    url: https://uebbill.com
+    summary: Web application for small business, that allows to manage the entire billing acitivty in a simple and intuitive way. It includes POS function and its fully certified by Portuguese Finance Authority. 
+    description: >
+      uebbill is a web application oriented to small business, that allows to manage the entire billing process of a business in a simple and intuitive way. It includes POS function and its fully certified by Portuguese Finance Authority.
+      It started as a module of the ueb project but later evolved into a separate project.
+    technologies: ['PHP 5', 'Symfony 1.4', 'MySQL', 'Git', 'Bitbucket', 'XML', 'REST']
+    cover_image: "uebbill-cover.png"
+    images: []
+    category: web
+    type: company # or open-source, client
+    order: 8
 
 
-- id: github-structure-tests-action
-  name: GitHub Action for Structure Tests
-  organization: ""
-  start_date: ~
-  end_date: ~
-  url:  https://github.com/brpaz/structure-tests-action
-  summary: GitHub Action that leverages Google´s Container Structure test to run unit tests on your container images. 
-  description: >
-    uebbill is a web application oriented to small business, that allows to manage the entire billing process of a business in a simple and intuitive way. It includes POS function and its fully certified by Portuguese Finance Authority.
-    It started as a module of the ueb project but later evolved into a separate project.
-  technologies: ['Bash']
-  cover_image: "githubactions.png"
-  images: []
-  category: utility
-  type: oss # or open-source, client
-  order: 2
+  - id: github-structure-tests-action
+    name: GitHub Action for Structure Tests
+    organization: ""
+    start_date: ~
+    end_date: ~
+    url:  https://github.com/brpaz/structure-tests-action
+    summary: GitHub Action that leverages Google´s Container Structure test to run unit tests on your container images. 
+    description: >
+      uebbill is a web application oriented to small business, that allows to manage the entire billing process of a business in a simple and intuitive way. It includes POS function and its fully certified by Portuguese Finance Authority.
+      It started as a module of the ueb project but later evolved into a separate project.
+    technologies: ['Bash']
+    cover_image: "githubactions.png"
+    images: []
+    category: utility
+    type: oss # or open-source, client
+    order: 2
 
-- id: ulauncher-extensions
-  name: Ulauncher Extensions
-  organization: ""
-  start_date: ~
-  end_date: ~
-  url:  https://github.com/brpaz?utf8=%E2%9C%93&tab=repositories&q=ulauncher&type=&language=
-  summary: Developed of more than 40 extensions for Ulauncher, an application launcher for Linux. 
-  description: >
-    uebbill is a web application oriented to small business, that allows to manage the entire billing process of a business in a simple and intuitive way. It includes POS function and its fully certified by Portuguese Finance Authority.
-    It started as a module of the ueb project but later evolved into a separate project.
-  technologies: ['Python']
-  cover_image: "ulauncher-exts.png"
-  images: []
-  category: utility
-  type: oss # or open-source, client
-  order: 3
+  - id: ulauncher-extensions
+    name: Ulauncher Extensions
+    organization: ""
+    start_date: ~
+    end_date: ~
+    url:  https://github.com/brpaz?utf8=%E2%9C%93&tab=repositories&q=ulauncher&type=&language=
+    summary: Developed of more than 40 extensions for Ulauncher, an application launcher for Linux. 
+    description: >
+      uebbill is a web application oriented to small business, that allows to manage the entire billing process of a business in a simple and intuitive way. It includes POS function and its fully certified by Portuguese Finance Authority.
+      It started as a module of the ueb project but later evolved into a separate project.
+    technologies: ['Python']
+    cover_image: "ulauncher-exts.png"
+    images: []
+    category: utility
+    type: oss # or open-source, client
+    order: 3
 
 

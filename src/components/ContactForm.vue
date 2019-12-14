@@ -29,7 +29,7 @@
         <p class="mb-12">Do you have any questions? Feel free to reach me using the form below:</p>
 
         <div class="text-lg sm:text-lg mb-16">
-          <form name="contact" method="POST" class="mb-12" data-netlify="true" netlify-honeypot="pikachu">
+          <form name="contact" method="POST" class="mb-12" data-netlify="true" netlify-honeypot="pikachu"  @submit.prevent="handleSubmit">
             <div class="flex flex-wrap mb-6 -mx-4">
               <div class="w-full md:w-1/2 mb-6 md:mb-0 px-4">
                 <label class="block mb-2 text-copy-primary" for="name">Name</label>
@@ -88,6 +88,37 @@
   </section>
 </template>
 
-<script>
-export default {};
+<script>  
+import axios from 'axios';
+export default {
+  name: 'ContactForm',
+  methods: {
+    encode (data) {
+      return Object.keys(data)
+        .map(
+          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join("&");
+    },
+    handleSubmit () {
+      const axiosConfig = {
+        header: { "Content-Type": "application/x-www-form-urlencoded" }
+      };
+      axios.post(
+        "/",
+        this.encode({
+          "form-name": "contact",
+          ...this.form
+        }),
+        axiosConfig
+      ).then(() => {
+        alert("Form submited with success");
+      })
+      .catch((e) => {
+        alert("Form submit failed");
+        throw e;
+      })
+    }
+  }
+};
 </script>

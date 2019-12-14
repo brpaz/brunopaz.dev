@@ -27,7 +27,7 @@ The way to do this, will depend of your base image. I always use alpine based im
 Here is the relevant excerpt of the Dockerfile that installs Xdebug:
 
 
-```
+```bash
 ARG WITH_XDEBUG=false
 
 RUN if [ $WITH_XDEBUG = "true" ] ; then \
