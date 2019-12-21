@@ -43,9 +43,8 @@ jobs:
           path: /tmp/app
 
       - name: Run Cypress tests
-        run: |
-          export CYPRESS_baseUrl=https://localhost:9090
-          npx serve /tmp/app -l 9090 &
+        run:
+          npx serve /tmp/app -l 8081 &
           yarn cy:run
 
   lighthouse-check:
