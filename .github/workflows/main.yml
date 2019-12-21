@@ -26,7 +26,7 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: Application Code
-          path: /dist
+          path: dist
 
   # lighthouse-check:
   #   runs-on: ubuntu-18.04

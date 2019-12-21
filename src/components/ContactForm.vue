@@ -73,6 +73,7 @@
 
              <p class="hidden">
                 <label>Don’t fill this out if you're human: <input name="pikachu" /></label>
+                <input type="hidden" name="form-name" value="contact" />
             </p>
             <div class="flex justify-end w-full">
               <input
