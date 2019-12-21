@@ -89,13 +89,13 @@ The first thing you should do is to check your Debug settings. In PHPStorm, go t
 
 Make sure you have the some port that you have configured previously in "XDEBUG_CONFIG" environment variable:
 
-![](http://i.imgur.com/lt8ayc9.png)
+![](https://i.imgur.com/lt8ayc9.png)
 
 Next, we need to configure a server. This is how PHPStorm will map the file paths in your local system to the ones in your container.
 
 Go to File -> Settings -> Languages and Frameworks -> PHP -> Servers
 
-![](http://i.imgur.com/zTF9QFb.png)
+![](https://i.imgur.com/zTF9QFb.png)
 
 Give a name to your server. It should match the value you have defined in your "PHP_IDE_CONFIG" environment variable. We will call it "symfony-demo".
 
@@ -111,13 +111,13 @@ The last part is to configure the remote debugger of your project.
 
 On the top right, click on "edit configurations":
 
-![](http://i.imgur.com/G4r1uoo.png)
+![](https://i.imgur.com/G4r1uoo.png)
 
 Click in the green "plus" sign at the top left and select "PHP Remote Debug" from the list.
 
 Now configure it like this:
 
-![](http://i.imgur.com/hTi2lM6.png)
+![](https://i.imgur.com/hTi2lM6.png)
 
 Make sure you associate it with the previously created "server" definition. Use "PHPSTORM" as idekey.
 
@@ -131,13 +131,13 @@ Your IDE should be now correctly configured. Lets test.
 
 * Then click on "Start Listening for PHP Debug connections" icon on top right corner of PHPStorm.
 
-![](http://i.imgur.com/e6kD7BT.png)
+![](https://i.imgur.com/e6kD7BT.png)
 
 * Open http://localhost:8888?XDEBUG_SESSION_START=PHPSTORM
 
 If everything went well you should see the execution stop at your breakpoint.
 
-![](http://i.imgur.com/UxgccEi.png)
+![](https://i.imgur.com/UxgccEi.png)
 
 
 And thats it. You should now have a fully configured development environment with Docker and Xdebug integrated with PHPStorm IDE.

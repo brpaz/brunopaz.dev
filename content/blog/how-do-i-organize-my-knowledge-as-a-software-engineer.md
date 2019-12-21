@@ -26,7 +26,7 @@ What I really like about Notion, is how simple it is to create new content. You 
 
 Here is my top level pages of my "Development" workspace:
 
-![Image](http://i.imgur.com/kRnuvMV.png)
+![Image](https://i.imgur.com/kRnuvMV.png)
 
 Notion has some nice other features like integrated spreadsheets / databases and Task boards.
 
