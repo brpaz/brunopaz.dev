@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.x'
-      - run: cp env.sample .env
+      - run: cp .env.sample .env
       - run: yarn install
       - run: yarn build
       - uses: actions/upload-artifact@master
