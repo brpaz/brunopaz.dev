@@ -4,6 +4,7 @@
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=for-the-badge)](http://commitizen.github.io/cz-cli/)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2e952374-f8b2-4230-b1de-0a8708c93af3/deploy-status)](https://app.netlify.com/sites/hardcore-williams-d492c4/deploys)
 
 ## Build with:
 
