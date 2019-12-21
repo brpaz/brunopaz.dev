@@ -42,11 +42,10 @@ jobs:
           name: app
           path: /tmp/app
 
-      - name: Serve application
-        run: nohup npx serve /tmp/app -l 8080 &
-
       - name: Run Cypress tests
-        run: CYPRESS_baseUrl=https://localhost:8080  yarn ci:run
+        run: |
+          CYPRESS_baseUrl=https://localhost:9090 npx serve /tmp/app -l 9090 &
+          yarn cy:run
 
   lighthouse-check:
     runs-on: ubuntu-18.04
