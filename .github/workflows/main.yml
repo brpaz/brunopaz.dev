@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: '10.x'
       - run: yarn install
-      - run: gridsome build
+      - run: yarn build
       - uses: actions/upload-artifact@master
         with:
           name: Application Code
