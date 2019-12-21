@@ -20,7 +20,7 @@
       </h2>
 
       <div class="container-inner mx-auto text-xl pb-4 relative">
-        <div class="absolute right-0 top-0 sm:hidden lg:block" style="transform: translate(100%) rotate(180deg)">
+        <div class="absolute right-0 top-0 hidden lg:block" style="transform: translate(100%) rotate(180deg)">
           <svg width="170px" height="170px">
             <use xlink:href="#dots-triangle" />
           </svg>
@@ -73,6 +73,7 @@
 
              <p class="hidden">
                 <label>Don’t fill this out if you're human: <input name="pikachu" /></label>
+                <input type="hidden" name="form-name" value="contact" />
             </p>
             <div class="flex justify-end w-full">
               <input
@@ -88,30 +89,21 @@
   </section>
 </template>
 
-<script>  
+<script>
 import axios from 'axios';
 export default {
   name: 'ContactForm',
   methods: {
-    encode (data) {
-      return Object.keys(data)
-        .map(
-          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-        )
-        .join("&");
-    },
     handleSubmit (e) {
       this.$root.$emit("form-submit");
-      const targetUrl = e.target.action;
+      const formData = new FormData(event.target);
       const axiosConfig = {
         header: { "Content-Type": "application/x-www-form-urlencoded" }
       };
+
       axios.post(
-        targetUrl,
-        this.encode({
-          "form-name": "contact",
-          ...this.form
-        }),
+        event.target.action,
+        formData,
         axiosConfig
       ).then(() => {
          this.$root.$emit("show-flash-message", {

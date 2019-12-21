@@ -1,0 +1,76 @@
+name: CI
+on: [pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - run: yarn install
+      - run: yarn lint
+
+  build:
+    runs-on: ubuntu-18.04
+    needs: lint
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - run: cp .env.sample .env
+      - run: yarn install
+      - run: yarn build
+      - uses: actions/upload-artifact@master
+        with:
+          name: app
+          path: dist
+
+  test:
+    runs-on: ubuntu-18.04
+    needs: build
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - run: yarn install
+      - uses: actions/download-artifact@v1
+        with:
+          name: app
+          path: /tmp/app
+
+      - name: Run Cypress tests
+        run:
+          npx serve /tmp/app -l 8081 &
+          yarn cy:run
+
+  # lighthouse-check:
+  #   runs-on: ubuntu-18.04
+  #   needs: test
+  #   steps:
+  #     - uses: actions/download-artifact@v1
+  #       with:
+  #         name: app
+  #         path: /tmp/app
+
+  #     - name: Serve application
+  #       run: nohup npx serve /tmp/app -l 8080 &
+
+  #     - name: Run Lighthouse
+  #       uses: foo-software/lighthouse-check-action@master
+  #       with:
+  #         accessToken: ${{ secrets.GITHUB_TOKEN }}
+  #         author: ${{ github.actor }}
+  #         branch: ${{ github.ref }}
+  #         outputDirectory: /tmp/artifacts
+  #         urls: 'https://localhost:8080'
+  #         sha: ${{ github.sha }}
+
+  #     - name: Upload artifacts
+  #       uses: actions/upload-artifact@master
+  #       with:
+  #         name: Lighthouse reports
+  #         path: /tmp/artifacts

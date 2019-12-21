@@ -24,7 +24,6 @@ export default {
     };
   }, mounted() {
        this.$root.$on('show-flash-message', data => {
-         console.log(data);
           this.message = data;
           setTimeout(() => this.message=null, 3000);
       });
