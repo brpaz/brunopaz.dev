@@ -25,25 +25,51 @@ jobs:
       - run: yarn build
       - uses: actions/upload-artifact@master
         with:
-          name: Application Code
+          name: app
           path: dist
 
-  # lighthouse-check:
-  #   runs-on: ubuntu-18.04
-  #   steps:
-  #     - uses: actions/checkout@master
-  #     - run: mkdir /tmp/artifacts
-  #     - name: Run Lighthouse
-  #       uses: foo-software/lighthouse-check-action@master
-  #       with:
-  #         accessToken: ${{ secrets.GITHUB_TOKEN }}
-  #         author: ${{ github.actor }}
-  #         branch: ${{ github.ref }}
-  #         outputDirectory: /tmp/artifacts
-  #         urls: 'https://localhost:'
-  #         sha: ${{ github.sha }}
-  #     - name: Upload artifacts
-  #       uses: actions/upload-artifact@master
-  #       with:
-  #         name: Lighthouse reports
-  #         path: /tmp/artifacts
+  test:
+    runs-on: ubuntu-18.04
+    needs: build
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - run: yarn install
+      - uses: actions/download-artifact@v1
+        with:
+          name: app
+          path: /tmp/app
+
+      - name: Serve application
+        run: yarn global add serve && serve /tmp/app -l 8080
+
+      - name: Run Cypress tests
+        run: CYPRESS_baseUrl=https://localhost:8080  yarn ci:run
+
+  lighthouse-check:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/download-artifact@v1
+        with:
+          name: app
+          path: /tmp/app
+      - name: Serve application
+        run: yarn global add serve && serve /tmp/app -l 8080
+
+      - name: Run Lighthouse
+        uses: foo-software/lighthouse-check-action@master
+        with:
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
+          author: ${{ github.actor }}
+          branch: ${{ github.ref }}
+          outputDirectory: /tmp/artifacts
+          urls: 'https://localhost:8080'
+          sha: ${{ github.sha }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: Lighthouse reports
+          path: /tmp/artifacts
