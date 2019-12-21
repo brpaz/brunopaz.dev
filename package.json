@@ -19,7 +19,7 @@
     "@gridsome/vue-remark": "^0.1.6",
     "axios": "^0.19.0",
     "gridsome": "^0.7.7",
-    "gridsome-plugin-modal": "^0.1.1",
+    "gridsome-plugin-modal": "brpaz/gridsome-plugin-modal#add-modal-options",
     "gridsome-plugin-netlify-cms": "^1.0.9",
     "gridsome-plugin-remark-shiki": "^0.3.0",
     "gridsome-plugin-rss": "^1.2.0",

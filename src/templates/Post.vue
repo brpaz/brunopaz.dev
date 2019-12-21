@@ -15,7 +15,7 @@
       <div class="markdown-body mb-8" v-html="$page.post.content" />
       
 
-      <div v-if="$page.post.devto_url" class="mb-8 bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3">
+      <div v-if="$page.post.devto_url" class="mb-8 bg-gray-300 border-t border-b border-gray-500 text-gray-500 px-4 py-3">
         <p class="font-bold">This post was cross posted on <a :href="$page.post.devto_url">dev.to</a></p>
       </div>
       <div class="mb-8 flex justify-end">

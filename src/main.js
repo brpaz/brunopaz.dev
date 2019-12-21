@@ -4,20 +4,26 @@
 import DefaultLayout from '~/layouts/Default.vue';
 import VueScrollTo from 'vue-scrollto';
 import VueDisqus from 'vue-disqus';
-//import VModal from 'vue-js-modal';
 
-export default function (Vue, { router, head, isClient }) {
-  // Set default layout as a global component
-  Vue.component('Layout', DefaultLayout)
+export default function (Vue, { head }) {
+
+  Vue.component('Layout', DefaultLayout);
+
   Vue.use(VueDisqus);
-  //Vue.use(VModal);
+
   Vue.use(VueScrollTo, {
     duration: 500,
     easing: "ease",
-  })
+  });
+
+  head.link.push({
+    rel: 'preconnect',
+    href: 'https://fonts.gstatic.com/',
+    crossorigin: 'crossorigin'
+  });
 
   head.link.push({
     rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap'
+    href: 'https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap',
   });
 }

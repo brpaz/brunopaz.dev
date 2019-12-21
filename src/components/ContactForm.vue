@@ -100,22 +100,30 @@ export default {
         )
         .join("&");
     },
-    handleSubmit () {
+    handleSubmit (e) {
+      this.$root.$emit("form-submit");
+      const targetUrl = e.target.action;
       const axiosConfig = {
         header: { "Content-Type": "application/x-www-form-urlencoded" }
       };
       axios.post(
-        "/",
+        targetUrl,
         this.encode({
           "form-name": "contact",
           ...this.form
         }),
         axiosConfig
       ).then(() => {
-        alert("Form submited with success");
+         this.$root.$emit("show-flash-message", {
+           type: 'success',
+           text: 'Thanks for your contact. I will answer as soon as possible'
+         });
       })
       .catch((e) => {
-        alert("Form submit failed");
+         this.$root.$emit("show-flash-message", {
+           type: 'error',
+           text: 'An error occurred when submiting the contact form. Please try again later'
+         });
         throw e;
       })
     }

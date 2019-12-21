@@ -17,7 +17,7 @@
       </svg>What I do?
     </h2>
 
-    <div class="mt-4 flex mr-16 justify-between flex-col lg:flex-row flex-shrink-0 pt-8 pb-8">
+    <div class="mt-4 flex mr-16 justify-between flex-col lg:flex-row flex-shrink-0 pt-8 pb-12">
       <ActivityCard
         title="Web Development"
         image="development.svg"
@@ -33,14 +33,14 @@
       <ActivityCard
         title="Technical Writing"
         image="systems.svg"
-        description='One of the Top 500 contributors of 2019 on <a href="https://dev.to" target="_blank">dev.to</a> and one time awarded the "weekly must read" badge.'
+        description='One of the Top 500 contributors of 2019 on <a href="https://dev.to" target="_blank" rel="noopener">dev.to</a> and one time awarded the "weekly must read" badge.'
       />
 
 
       <ActivityCard
         title="Open Source"
         image="open-source.svg"
-        description='I have released a couple of small open source projects. You can check my work on my <a href="https://github.com/brpaz" target="_blank">GitHub profile.</a>'
+        description='I have released a couple of small open source projects. You can check my work on my <a href="https://github.com/brpaz" target="_blank" rel="noopener">GitHub profile.</a>'
       />
     </div>
   </section>

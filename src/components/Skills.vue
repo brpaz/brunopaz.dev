@@ -18,7 +18,7 @@
     </h2>
 
     <div
-      class="mt-4 flex mr-16 mx-auto flex-wrap text-center justify-center"
+      class="mt-4 flex mx-auto flex-wrap text-center justify-center"
     >
       <div style="width:190px;" v-for="skillGroup in skills" :key="skillGroup.category">
         <h3 class="text-center">{{ skillGroup.category }}</h3>
@@ -38,7 +38,7 @@ export default {
   name: 'Skills',
   data() {
     return {
-      skills
+      skills: skills.data
     };
   }
 };

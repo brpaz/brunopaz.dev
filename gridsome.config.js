@@ -61,7 +61,11 @@ module.exports = {
       }
     },
     {
-      use: 'gridsome-plugin-modal'
+      use: 'gridsome-plugin-modal',
+      options: {
+        dynamic: true,
+        injectModalsContainer: true
+      }
     },
     {
        use: '@gridsome/plugin-google-analytics',
@@ -71,7 +75,7 @@ module.exports = {
     },
     {
        use: 'gridsome-plugin-sentry',
-         options: {
+       options: {
            dsn: process.env.GRIDSOME_SENTRY_DSN,
            attachProps: true // defaults to true
          }

@@ -1,55 +1,56 @@
 
-- category: Backend
-  items:
-    - Golang
-    - PHP
-    - Symfony
-    - NodeJS
-    - Java
-    - Design Patterns
-    - Microservices
-    - REST APIs
-    - Apache Kafka
-- category: Frontend
-  items:  
-    - HTML / CSS
-    - Javascript (ES2015)
-    - jQuery
-    - VueJS
-    - NuxtJS
-    - Gridsome
-    - Tailwind CSS
+data:
+  - category: Backend
+    items:
+      - Golang
+      - PHP
+      - Symfony
+      - NodeJS
+      - Java
+      - Design Patterns
+      - Microservices
+      - REST APIs
+      - Apache Kafka
+  - category: Frontend
+    items:  
+      - HTML / CSS
+      - Javascript (ES2015)
+      - jQuery
+      - VueJS
+      - NuxtJS
+      - Gridsome
+      - Tailwind CSS
 
-- category: Datastores
-  items:
-    - MySQL
-    - ElasticSearch
-    - Redis
-    - MongoDB
-    - Cloud Firestore
+  - category: Datastores
+    items:
+      - MySQL
+      - ElasticSearch
+      - Redis
+      - MongoDB
+      - Cloud Firestore
 
-- category: Infrastucture
-  items:
-    - Linux
-    - Google Cloud
-    - Amazon Web Services
-    - DigitalOcean
-    - Kubernetes
-    - Terraform
-    - Ansible
+  - category: Infrastucture
+    items:
+      - Linux
+      - Google Cloud
+      - Amazon Web Services
+      - DigitalOcean
+      - Kubernetes
+      - Terraform
+      - Ansible
 
-- category: Tools
-  items:
-    - Git
-    - Docker
-    - GitHub
-    - GitLab
-    - Jira
-    - VS Code
-    - Jetbrains
-- category: Practices
-  items:
-    - Agile
-    - DevOps
-    - Continuous Delivery
-    - TDD
+  - category: Tools
+    items:
+      - Git
+      - Docker
+      - GitHub
+      - GitLab
+      - Jira
+      - VS Code
+      - Jetbrains
+  - category: Practices
+    items:
+      - Agile
+      - DevOps
+      - Continuous Delivery
+      - TDD

@@ -31,3 +31,14 @@ collections:
             fields:
               - {label: Name, name: name, widget: string}
 
+      - label: "Skills"
+        name: "skills"
+        file: "src/data/skills.yml"
+        fields:
+          - label: Skills
+            name: data
+            widget: list
+            fields:
+              - {label: Category, name: category, widget: string}
+              - {label: Items, name: items, widget: list }
+
