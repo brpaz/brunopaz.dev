@@ -101,7 +101,7 @@ export default {
       };
 
       axios.post(
-        '/',
+        event.target.action,
         formData,
         axiosConfig
       ).then(() => {
