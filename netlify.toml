@@ -4,3 +4,14 @@
 
 [build.environment]
   NODE_ENV = "production"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+
+[[redirects]]
+  from = "https://brunopaz.netlify.com/*"
+  to = " https://brunopaz.dev/:splat"
+  status = 301
+  force = true
