@@ -43,7 +43,7 @@ jobs:
           path: /tmp/app
 
       - name: Serve application
-        run: npx serve /tmp/app -l 8080
+        run: nohup npx serve /tmp/app -l 8080 &
 
       - name: Run Cypress tests
         run: CYPRESS_baseUrl=https://localhost:8080  yarn ci:run
@@ -58,7 +58,7 @@ jobs:
           path: /tmp/app
 
       - name: Serve application
-        run: npx serve /tmp/app -l 8080
+        run: nohup npx serve /tmp/app -l 8080 &
 
       - name: Run Lighthouse
         uses: foo-software/lighthouse-check-action@master
