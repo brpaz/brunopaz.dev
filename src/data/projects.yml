@@ -1,11 +1,11 @@
 
-data: 
+data:
   - id: jumiapay
     name: Jumia Pay
     organization: Jumia
     start_date: Jan 2019
     url: https://pay.jumia.com.ng
-    end_date: ~
+    end_date: ""
     summary: Payments platform by Jumia, that allows customers to make an online purchase in just one step.
     description: >
       <p>Jumia Pay is a Payments system solution by Jumia, allowing customers to make an online purchase in just one step.</p>
@@ -109,7 +109,7 @@ data:
     start_date: Jan 2012
     end_date: Mar 2014
     url: https://uebbill.com
-    summary: Web application for small business, that allows to manage the entire billing acitivty in a simple and intuitive way. It includes POS function and its fully certified by Portuguese Finance Authority. 
+    summary: Web application for small business, that allows to manage the entire billing acitivty in a simple and intuitive way. It includes POS function and its fully certified by Portuguese Finance Authority.
     description: >
       <p>uebbill is a web application oriented to small business, that allows to manage the entire billing process of a business in a simple and intuitive way. It includes POS function and its fully certified by Portuguese Finance Authority.</p>
       <p>It started as a module of the ueb platform but later evolved into a separate project.</p>
@@ -123,9 +123,9 @@ data:
     start_date: ~
     end_date: ~
     url:  https://github.com/brpaz/structure-tests-action
-    summary: GitHub Action that leverages Google´s Container Structure test to run unit tests on your container images. 
+    summary: GitHub Action that leverages Google´s Container Structure test to run unit tests on your container images.
     description: >
-      GitHub Action that leverages Google´s Container Structure test to run unit tests on your container images. 
+      GitHub Action that leverages Google´s Container Structure test to run unit tests on your container images.
     technologies: ['Bash']
     cover_image: "githubactions.png"
     order: 2
@@ -136,15 +136,15 @@ data:
     start_date: ~
     end_date: ~
     url:  https://github.com/brpaz?utf8=%E2%9C%93&tab=repositories&q=ulauncher&type=&language=
-    summary: Developed of more than 40 extensions for Ulauncher, an application launcher for Linux. 
+    summary: Developed of more than 40 extensions for Ulauncher, an application launcher for Linux.
     description: >
       <p><a href="https://ulauncher.io" target="_blank">Ulauncher</a> is popular and extensible application launcher for Linux.</p>
       <p>I have built more than 40 extensions for this launcher including:</p>
       <ul>
-        <li><a href="https://ext.ulauncher.io/-/github-brpaz-ulauncher-github" target="_blank">GitHub</a> - Interact with your GitHub account</li>  
+        <li><a href="https://ext.ulauncher.io/-/github-brpaz-ulauncher-github" target="_blank">GitHub</a> - Interact with your GitHub account</li>
         <li><a href="https://ext.ulauncher.io/-/github-brpaz-ulauncher-jetbrains" target="_blank">Jetbrains Recent Projects</a> - Open your recent projects from Jetbrains IDEs.</li>
         <li><a href="https://ext.ulauncher.io/-/github-brpaz-ulauncher-heroku" target="_blank">Heroku extension</a> - Easy access your Heroku projects</li>
-        <li><a href="https://ext.ulauncher.io/-/github-brpaz-ulauncher-digiralocean" target="_blank">DigitalOcean</a> - Ulauncher extension that provides quick access to your DigitalOcean account</li>      
+        <li><a href="https://ext.ulauncher.io/-/github-brpaz-ulauncher-digiralocean" target="_blank">DigitalOcean</a> - Ulauncher extension that provides quick access to your DigitalOcean account</li>
       </ul>
     technologies: ['Python']
     cover_image: "ulauncher-exts.png"
