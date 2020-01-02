@@ -1,5 +1,5 @@
 ---
-title: My Linux Development Environment of 2018
+title: Take control of your Application windows with on Linux Devilspie
 path: /blog/take-control-of-your-application-windows-on-linux-with-devilspie
 date: 2018-11-08
 summary: In this post, I will introduce you to an amazing Linux application, called Devilspie.
