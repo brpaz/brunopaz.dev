@@ -1,0 +1,169 @@
+- id: backend
+  title: Backend Development
+  items:
+    - name: Golang
+      url: http://golang.com
+      description: Golang is my primary language right now and I use it for a bit of everything from Web Applications to Command line tools.
+    - name: Echo framework
+      url: https://echo.labstack.com/
+      description: Echo is an High performance, extensible, minimalist Go web framework
+    - name: Symfony
+      url: https://symfony.com/
+      description: PHP 7 and Symfony provides an amazing combo for building applications quickly.
+    - name: Hasura
+      url: https://hasura.io/
+      description: Hasura is an open source engine that connects to your databases & microservices and flash instantly gives you a production-ready GraphQL API. It can be very useful for building database driven APIs very fast for frontend Applications.
+    - name: Directus CMS
+      url: https://directus.io/
+      description: Open source Headless CMS and API.
+
+- id: frontend
+  title: Frontend
+  items:
+    - name: VueJS
+      url: https://vuejs.org/
+      description: The Progressive JavaScript Framework. I use Vue for building rich web applications.
+    - name: NuxtJS
+      url: https://nuxtjs.org
+      description: A framework on top of Vue, good for when Server side rendering is a must.
+    - name: Gridsome
+      url: https://gridsome.org
+      description: Gridsome makes it easy for developers to build modern websites, apps & PWAs that are fast by default 🚀
+    - name: TailwindCSS
+      url: https://tailwindcss.com
+      description: Tailwind CSS is a highly customizable, low-level CSS framework that gives you all of the building blocks you need to build bespoke designs without any annoying opinionated styles you have to fight to override.
+    - name: Hugo
+      url: https://gohugo.io/
+      description: Build pure static sites with Golang
+
+- id: datastores
+  title: Data stores
+  items:
+    - name: PostgresSQL
+      url: https://postgressql.org/
+      description: PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
+    - name: Redis
+      url: https://redis.io
+      description: Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache and message broker. It supports data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs, geospatial indexes with radius queries and streams
+    - name: ElasticSearch
+      url: https://www.elastic.co/
+      description: Elasticsearch is an open source distributed, RESTful search and analytics engine capable of solving a growing number of use cases.
+    - name: MongoDB
+      url: https://mongodb.com
+      description: MongoDB is a general purpose, document-based, distributed database built for modern application developers and for the cloud era. No database makes you more productive.
+    - name: Firebase
+      url: https://firebase.google.com/
+      description: Firebase gives you functionality like analytics, databases, messaging and crash reporting so you can move quickly and focus on your users.
+
+- id: devops
+  title: DevOps and Infrastucture
+  items:
+    - name: DigitalOcean
+      url: https://digitalocean.com
+      description: DititalOcean make it simple to launch in the cloud and scale up as you grow – with an intuitive control panel, predictable pricing, team accounts, and more.
+    - name: Netlify
+      url: https://netlify.com
+      description: For hosting static websites
+    - name: Google Cloud
+      url: https://cloud.google.com/
+      description: When DigitalOcean is not enough Google Cloud provides everything I need from managed databases, Object Storage, Messaging Queues and more.
+    - name: Namecheap
+      url: https://namecheap.com
+      description: My domain registar of choice
+    - name: Cloudflare
+      url: https://cloudflare.com
+      description: DNS, CDN and DDOS protection
+    - name: Terraform
+      url: https://terraform.io/
+      description: Use Infrastructure as Code to provision and manage any cloud, infrastructure, or service
+    - name: Ansible
+      url: https://ansible.com
+      description: Ansible delivers simple IT automation that ends repetitive tasks and frees up DevOps teams for more strategic work.
+
+- id: devtools
+  title: Development tools
+  items:
+    - name: GitLab
+      url: https://gitlab.com/
+      description: A single application for the entire Development Lifecycle, I use hosted GitLab for private personal projects. Source Code repository, CI Pipeline, Issue boards and integrated Container Registry, GitLab provides everything I need to manage my code projects.
+    - name: Docker and Docker-compose
+      url: https://www.docker.com/
+      description: Docker and Docker-compose allows to build portable applications that can be run everywhere
+    - name: Codacy
+      url: https://www.codacy.com/
+      description: Automatically identify issues through static code review analysis. Get notified on security issues, code coverage, code duplication, and code complexity in every commit and pull request, directly from your current workflow.
+
+- id: editor and terminal
+  title: Editor + Terminal
+  items:
+    - name: Visual Studio Code
+      url: https://code.visualstudio.com/
+      description: Open source code editor developed by Microsoft, VSCode is my all-round code editor of choice.
+    - name: JetBrains IDEs
+      url: https://www.jetbrains.com/
+      description: While VSCode is an awesome editor, it´s still behind the Jetbrains IDEs in features like Autocompletion or Refactoring tools. For more complex projects, PHPStorm, Goland and Webstorm, are essential for me.
+    - name: Tilix
+      url: https://gnunn1.github.io/tilix-web/
+      description: Tilix is an advanced GTK3 tiling terminal emulator for Linux.
+    - name: Z Shell
+      url: http://zsh.sourceforge.net/
+      description: A better alternative to bash.
+    - name: Powerline10k ZSH Theme
+      url: https://github.com/romkatv/powerlevel10k
+      description: Powerlevel10k is a theme for Zsh. It emphasizes speed, flexibility and out-of-the-box experience.
+    - name: Zplug
+      url: https://github.com/zplug/zplug
+      description: A next-generation plugin manager for zsh
+    - name: FZF
+      url: https://github.com/junegunn/fzf
+      description: A command-line fuzzy finder
+    - name: Ripgrep
+      url: https://github.com/BurntSushi/ripgrep
+      description: Ripgrep is a line-oriented search tool that recursively searches your current directory for a regex pattern.
+    - name: Z
+      url: https://github.com/rupa/z
+      description: Easily jump to previous directories
+    - name: TLDR pages
+      url: https://github.com/tldr-pages/tldr
+      description: Simplified and community-driven man pages
+
+- id: productivitytools
+  title: Productivity Tools
+  items:
+    - name: Notion
+      url: https://www.notion.so/
+      description: I use Notion as my entire Knowledge base and personal wiki.
+    - name: Pocket
+      url: https://getpocket.com
+      description: Organize interesting articles to read later.
+    - name: Diigo
+      url: https://www.diigo.com/index
+      description: Collect, annotate and organize information from Web pages
+    - name: LastPass
+      url: https://www.lastpass.com/
+      description: My Password Manager tool
+    - name: TickTick
+      url: https://www.ticktick.com/
+      description: Todo list and reminders App
+    - name: Feedly
+      url: https://feedly.com/
+      description: RSS Reader
+
+- id: hardware
+  title: Hardware
+  items:
+    - name: Asus Zenbook S13
+      url: https://www.asus.com/en/Laptops/ASUS-ZenBook-S13-UX392FN/
+      description: My main laptop, the Asus Zenbook has a 13.9" FHD Display with a 13" form factor, weighting just 1.1KG making it a perfect laptop for Traveling. It comes with a 8th gen Core i7 CPU, 512 GB SSD and 16GB RAM. I have installed Fedora 31 as the OS.
+
+    - name: Acer K222HQL monitor
+      url: https://www.acer.com/ac/en/GB/content/model/UM.WW3EE.001
+      description: Cheap 21.5" monitor, I use it as my main extra monitor at home. It might not be an high end monitor but relation price/quality is awesome.
+
+    - name: One Plus 6 Mobile Phone
+      url: https://www.oneplus.com/pt/oneplus-6
+      description: I only buy Stock Android phones. The Google Pixel was hard to get in Portugal, so I got an OnePlus instead and I am very happy with my choice. It´s almost stock Android and comes with 8GB RAM and 128 GB Storage which is more than enough for the years to come.
+
+    - name: Google Chromecast
+      url: https://store.google.com/pt/product/chromecast
+      description: Google Chromecast is a must have device that allows to turn any TV into a media center. I have one of all TVs allowing me to stream Youtube, Spotify and Netlifx easy from my phone.
