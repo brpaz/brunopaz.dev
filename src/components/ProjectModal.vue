@@ -20,20 +20,14 @@
     </div>
 
     <div>
-      <div
-        style="width:100%;height:200px;"
-        class="flex items-center overflow-hidden mb-4"
-      >
+      <div style="width:100%;height:200px;" class="flex items-center overflow-hidden mb-4">
         <g-image class="mx-auto" :src="getCoverImage()" />
       </div>
       <h3 class="mb-1">{{ project.name }}</h3>
 
-      <div
-        class="text-gray-600 text-sm"
-        v-if="project.start_date || project.end_date"
-      >
-        {{ project.start_date }} -
-        <span v-if="project.end_date">{{ project.end_date }}</span>
+      <div class="text-gray-600 text-sm" v-if="project.start_date || project.end_date">
+        {{ project.start_date}} -
+        <span v-if="project.end_date ">{{project.end_date }}</span>
         <span v-else>Current</span>
       </div>
 
@@ -47,8 +41,7 @@
             class="rounded-lg bg-secondary p-2 mr-2 mb-4 text-xs text-white"
             v-for="(item, index) in project.technologies"
             :key="index"
-            >{{ item }}</span
-          >
+          >{{ item }}</span>
         </div>
       </div>
     </div>

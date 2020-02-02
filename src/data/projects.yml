@@ -1,10 +1,11 @@
+
 data:
   - id: jumiapay
     name: Jumia Pay
     organization: Jumia
     start_date: Jan 2019
     url: https://pay.jumia.com.ng
-    end_date: ''
+    end_date: ""
     summary: Payments platform by Jumia, that allows customers to make an online purchase in just one step.
     description: >
       <p>Jumia Pay is a Payments system solution by Jumia, allowing customers to make an online purchase in just one step.</p>
@@ -16,21 +17,8 @@ data:
          <li>Withdraws, Payouts, Transfer between wallets</li>
          <li>Collaborating on the definition of Delivery pipelines and test automation</li>
       </ul>
-    technologies:
-      [
-        'Golang',
-        'Java',
-        'MySQL',
-        'Postgres',
-        'Spring',
-        'Docker',
-        'Kong',
-        'GitHub',
-        'Kubernetes',
-        'Jenkins',
-        'Jira',
-      ]
-    cover_image: 'jumiapay-cover.jpg'
+    technologies: ['Golang', 'Java', 'MySQL', 'Postgres', 'Spring', 'Docker', 'Kong', 'GitHub', 'Kubernetes', 'Jenkins', 'Jira']
+    cover_image: "jumiapay-cover.jpg"
     order: 1
 
   - id: jforce
@@ -48,22 +36,8 @@ data:
         <li>Orders Processing System using Golang concurrency features.</li>
         <li>Commissions calculation engine (golang)</li>
       </ul>
-    technologies:
-      [
-        'PHP7',
-        'Symfony4',
-        'Golang',
-        'MySQL',
-        'REST',
-        'Microservices',
-        'Git',
-        'GitHub',
-        'Jira',
-        'Docker',
-        'Jenkins',
-        'Kubernetes',
-      ]
-    cover_image: 'jforce-cover.png'
+    technologies: ['PHP7', 'Symfony4', 'Golang', 'MySQL', 'REST', 'Microservices', 'Git', 'GitHub', 'Jira', 'Docker', 'Jenkins', 'Kubernetes']
+    cover_image: "jforce-cover.png"
     order: 4
 
   - id: jflights
@@ -83,26 +57,8 @@ data:
       <li>Orders and Payments State Machines service (PHP)</li>
       <li>Integration with well known third party Flights providers like Amadeus and Kiwi</li>
       <li>Multi-provider search using WebSockets.</li>
-    technologies:
-      [
-        'PHP7',
-        'Phalcon',
-        'Golang',
-        'Java 8',
-        'Play Framework',
-        'MySQL',
-        'ScyllaDB',
-        'REST',
-        'SOAP',
-        'Microservices',
-        'Git',
-        'GitHub',
-        'Jira',
-        'Docker',
-        'Jenkins',
-        'Kubernetes',
-      ]
-    cover_image: 'jumia-flights-cover.jpg'
+    technologies: ['PHP7', 'Phalcon', 'Golang', 'Java 8', 'Play Framework', 'MySQL', 'ScyllaDB', 'REST', 'SOAP', 'Microservices', 'Git', 'GitHub', 'Jira', 'Docker', 'Jenkins', 'Kubernetes']
+    cover_image: "jumia-flights-cover.jpg"
     order: 5
 
   - id: jtravel
@@ -123,26 +79,8 @@ data:
         <li>API architecture and development/li>
         <li>Functional tests architecture</li>
       </ul>
-    technologies:
-      [
-        'PHP 5/7',
-        'Symfony 2',
-        'Silex',
-        'MySQL',
-        'ElasticSearch',
-        'Couchbase',
-        'Memcached',
-        'Javascript',
-        'Polymer',
-        'Amazon Web Services',
-        'Git',
-        'GitHub',
-        'Jira',
-        'Docker',
-        'Jenkins',
-        'Agile',
-      ]
-    cover_image: 'jtravel-cover.png'
+    technologies: ['PHP 5/7', 'Symfony 2', 'Silex', 'MySQL','ElasticSearch', 'Couchbase', 'Memcached', 'Javascript', 'Polymer', 'Amazon Web Services', 'Git', 'GitHub', 'Jira', 'Docker', 'Jenkins', 'Agile']
+    cover_image: "jtravel-cover.png"
     order: 6
 
   - id: jtravel-extranet
@@ -161,8 +99,8 @@ data:
       <li>Manage rates and availability</li>
       <li>Get stats on the hotel performance on Jovago (page views, conversion rate, reservations)</li>
       <li>Read Hotel reviews</li>
-    technologies: ['PHP 5/7', 'Symfony 2', 'MySQL', 'ElasticSearch', 'Agile']
-    cover_image: 'jovago-extranet-cover.png'
+    technologies: ['PHP 5/7', 'Symfony 2',  'MySQL','ElasticSearch', 'Agile']
+    cover_image: "jovago-extranet-cover.png"
     order: 7
 
   - id: uebbill
@@ -175,7 +113,41 @@ data:
     description: >
       <p>uebbill is a web application oriented to small business, that allows to manage the entire billing process of a business in a simple and intuitive way. It includes POS function and its fully certified by Portuguese Finance Authority.</p>
       <p>It started as a module of the ueb platform but later evolved into a separate project.</p>
-    technologies:
-      ['PHP 5', 'Symfony 1.4', 'MySQL', 'Git', 'Bitbucket', 'XML', 'REST']
-    cover_image: 'uebbill-cover.png'
+    technologies: ['PHP 5', 'Symfony 1.4', 'MySQL', 'Git', 'Bitbucket', 'XML', 'REST']
+    cover_image: "uebbill-cover.png"
     order: 8
+
+  - id: github-structure-tests-action
+    name: GitHub Action for Structure Tests
+    organization: ""
+    start_date: ~
+    end_date: ~
+    url:  https://github.com/brpaz/structure-tests-action
+    summary: GitHub Action that leverages Google´s Container Structure test to run unit tests on your container images.
+    description: >
+      GitHub Action that leverages Google´s Container Structure test to run unit tests on your container images.
+    technologies: ['Bash']
+    cover_image: "githubactions.png"
+    order: 2
+
+  - id: ulauncher-extensions
+    name: Ulauncher Extensions
+    organization: ""
+    start_date: ~
+    end_date: ~
+    url:  https://github.com/brpaz?utf8=%E2%9C%93&tab=repositories&q=ulauncher&type=&language=
+    summary: Developed of more than 40 extensions for Ulauncher, an application launcher for Linux.
+    description: >
+      <p><a href="https://ulauncher.io" target="_blank">Ulauncher</a> is popular and extensible application launcher for Linux.</p>
+      <p>I have built more than 40 extensions for this launcher including:</p>
+      <ul>
+        <li><a href="https://ext.ulauncher.io/-/github-brpaz-ulauncher-github" target="_blank">GitHub</a> - Interact with your GitHub account</li>
+        <li><a href="https://ext.ulauncher.io/-/github-brpaz-ulauncher-jetbrains" target="_blank">Jetbrains Recent Projects</a> - Open your recent projects from Jetbrains IDEs.</li>
+        <li><a href="https://ext.ulauncher.io/-/github-brpaz-ulauncher-heroku" target="_blank">Heroku extension</a> - Easy access your Heroku projects</li>
+        <li><a href="https://ext.ulauncher.io/-/github-brpaz-ulauncher-digiralocean" target="_blank">DigitalOcean</a> - Ulauncher extension that provides quick access to your DigitalOcean account</li>
+      </ul>
+    technologies: ['Python']
+    cover_image: "ulauncher-exts.png"
+    order: 3
+
+

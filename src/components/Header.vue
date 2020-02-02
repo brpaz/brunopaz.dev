@@ -47,6 +47,21 @@
         <li class="mr-8 mb-6 lg:mb-0" @click="onMenuItemClick">
           <a
             v-if="$route.path === '/'"
+            href="/#whatido"
+            v-scroll-to="'#whatido'"
+            class="text-copy-primary hover:text-gray-600"
+            >What I do?</a
+          >
+          <g-link
+            v-else
+            to="/#contact"
+            class="text-copy-primary hover:text-gray-600"
+            >What I do?</g-link
+          >
+        </li>
+        <li class="mr-8 mb-6 lg:mb-0" @click="onMenuItemClick">
+          <a
+            v-if="$route.path === '/'"
             href="/#projects"
             v-scroll-to="'#projects'"
             class="text-copy-primary hover:text-gray-600"

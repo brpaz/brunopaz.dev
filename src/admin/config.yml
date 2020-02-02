@@ -2,94 +2,62 @@ backend:
   name: github
   repo: brpaz/brunopaz.dev
 
-media_folder: 'static/uploads'
-public_folder: '/uploads'
+media_folder: "static/uploads"
+public_folder: "/uploads"
 
 collections:
-  - label: 'Blog'
-    name: 'blog'
-    folder: 'content/blog'
+  - label: "Blog"
+    name: "blog"
+    folder: "content/blog"
     create: true
     fields:
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - {
-          label: 'Publish Date',
-          name: 'date',
-          widget: 'date',
-          format: 'Do MMM YY',
-        }
-      - { label: 'Path', name: 'path', widget: 'string' }
-      - { label: 'Tags', name: 'tags', widget: 'list' }
-      - { label: 'Summary', name: 'summary', widget: 'text' }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
-      - { label: 'Dev.to URL', name: 'devto_url', widget: 'string' }
-  - label: 'Content'
-    name: 'Content'
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "date", format: 'Do MMM YY'}
+      - {label: "Path", name: "path", widget: "string"}
+      - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Summary", name: "summary", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Dev.to URL", name: "devto_url", widget: "string"}
+  - label: "Content"
+    name: "Content"
     files:
-      - label: 'Projects'
-        name: 'projects'
-        file: 'src/data/projects.yml'
+      - label: "Projects"
+        name: "projects"
+        file: "src/data/projects.yml"
         fields:
           - label: Project
             name: data
             widget: list
             fields:
-              - { label: Id, name: id, widget: string }
-              - { label: Name, name: name, widget: string }
-              - { label: Summary, name: summary, widget: text }
-              - { label: Description, name: description, widget: text }
-              - { label: Organization, name: organization, widget: string }
-              - { label: Url, name: url, widget: string }
-              - {
-                  label: Start Date,
-                  name: start_date,
-                  widget: datetime,
-                  dateFormat: 'MMM YYYY',
-                  format: 'MMM YYYY',
-                  default: '',
-                }
-              - {
-                  label: End Date,
-                  name: end_date,
-                  widget: datetime,
-                  default: '',
-                  dateFormat: 'MMM YYYY',
-                  format: 'MMM YYYY',
-                }
-              - { label: Technologies, name: technologies, widget: list }
-              - { label: Order, name: order, widget: number, valueType: 'int' }
-              - { label: Cover Image, name: cover_image, widget: image }
-      - label: 'Open Source'
-        name: 'Open source'
-        file: 'src/data/oss.yml'
-        fields:
-          - label: Project
-            name: data
-            widget: list
-            fields:
-              - { label: Id, name: id, widget: string }
-              - { label: Name, name: name, widget: string }
-              - { label: Description, name: description, widget: text }
-              - { label: Language, name: language, widget: text }
-              - { label: Url, name: url, widget: string }
-              - { label: Stars, name: stars, widget: number, valueType: 'int' }
-      - label: 'Skills'
-        name: 'skills'
-        file: 'src/data/skills.yml'
-        fields:
-          - label: Skills
-            name: data
-            widget: list
-            fields:
-              - { label: Category, name: category, widget: string }
-              - { label: Items, name: items, widget: list }
+              - {label: Id, name: id, widget: string}
+              - {label: Name, name: name, widget: string }
+              - {label: Summary, name: summary, widget: text }
+              - {label: Description, name: description, widget: text }
+              - {label: Organization, name: organization, widget: string }
+              - {label: Url, name: url, widget: string }
+              - {label: Start Date, name: start_date, widget: datetime, dateFormat: 'MMM YYYY', format: 'MMM YYYY', default: '' }
+              - {label: End Date, name: end_date, widget: datetime, default: '', dateFormat: 'MMM YYYY', format: 'MMM YYYY' }
+              - {label: Technologies, name: technologies, widget: list}
+              - {label: Order, name: order, widget: number, valueType: 'int'}
+              - {label: Cover Image, name: cover_image, widget: image}
 
-      - label: 'Meta'
-        name: 'meta'
-        file: 'src/data/meta.yml'
+      - label: "Skills"
+        name: "skills"
+        file: "src/data/skills.yml"
         fields:
-          - { label: Title, name: title, widget: string }
-          - { label: Author, name: author, widget: string }
-          - { label: Description, name: description, widget: string }
-          - { label: Keywords, name: keywords, widget: string }
-          - { label: Twitter Handler, name: twitter_handler, widget: string }
+            - label: Skills
+              name: data
+              widget: list
+              fields:
+                - {label: Category, name: category, widget: string}
+                - {label: Items, name: items, widget: list }
+
+      - label: "Meta"
+        name: "meta"
+        file: "src/data/meta.yml"
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Author, name: author, widget: string }
+          - {label: Description, name: description, widget: string }
+          - {label: Keywords, name: keywords, widget: string }
+          - {label: Twitter Handler, name: twitter_handler, widget: string }
