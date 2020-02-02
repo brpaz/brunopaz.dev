@@ -1,10 +1,11 @@
 <template>
   <Layout>
-    <About/>
+    <About />
     <WhatIdo />
-    <Skills/>
-    <Projects/>
-    <ContactForm/>
+    <Skills />
+    <Projects />
+    <OpenSource />
+    <ContactForm />
   </Layout>
 </template>
 
@@ -15,6 +16,7 @@ import ContactForm from '~/components/ContactForm';
 
 import Skills from '~/components/Skills';
 import Projects from '~/components/Projects';
+import OpenSource from '~/components/OpenSource';
 
 export default {
   components: {
@@ -22,7 +24,8 @@ export default {
     WhatIdo,
     Skills,
     Projects,
-    ContactForm
+    ContactForm,
+    OpenSource
   }
-}
+};
 </script>

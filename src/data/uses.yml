@@ -92,6 +92,24 @@
     - name: Codacy
       url: https://www.codacy.com/
       description: Automatically identify issues through static code review analysis. Get notified on security issues, code coverage, code duplication, and code complexity in every commit and pull request, directly from your current workflow.
+    - name: Postman
+      url: https://www.getpostman.com/
+      description: The Collaboration Platform for API Development
+    - name: Cacher
+      url: https://www.cacher.io/
+      description: My code snippet manager
+    - name: Repl.it
+      url: https://repl.it/
+      description: Repl.it gives you an instant IDE to learn, build, collaborate, and host all in one place.
+    - name: AppDevTools
+      url: https://www.appdevtools.com/
+      description: Application that groups tons of useful online tools like JSON Editor, Lorem Ipsum generator, Encoders, etc
+    - name: GitKraken
+      url: https://www.gitkraken.com/
+      description: Git client
+    - name: Minikube
+      url: https://github.com/kubernetes/minikube
+      description: Run Kubernetes locally
 
 - id: editor and terminal
   title: Editor + Terminal
@@ -126,6 +144,18 @@
     - name: TLDR pages
       url: https://github.com/tldr-pages/tldr
       description: Simplified and community-driven man pages
+    - name: fd
+      url: https://github.com/sharkdp/fd
+      description: A simple, fast and user-friendly alternative to 'find'
+    - name: pet
+      url: https://github.com/knqyf263/pet
+      desccription: Simple command-line snippet manager, written in Go.
+    - name: lazydocker
+      url: https://github.com/jesseduffield/lazydocker
+      description: The lazier way to manage everything docker
+    - name: hub
+      url: https://github.com/github/hub
+      description: A command-line tool that makes git easier to use with GitHub.
 
 - id: productivitytools
   title: Productivity Tools
@@ -148,6 +178,57 @@
     - name: Feedly
       url: https://feedly.com/
       description: RSS Reader
+    - name: Ulauncher
+      url: https://ulauncher.io/
+      description: Application launcher for Linux
+
+- id: webbrowsers
+  title: Web Browsers
+  items:
+    - name: Firefox
+      url: https://www.mozilla.org/pt-PT/firefox/new/
+      description: My primary web browser
+    - name: Google Chrome
+      url: https://www.google.com/intl/pt-PT/chrome/
+      description: My secondary web browser
+
+- id: communication
+  title: Communication Tools
+  items:
+    - name: Slack
+      url: https://slack.com
+      description: Keep conversations organized in Slack, the smart alternative to email.
+    - name: Mailspring
+      url: https://getmailspring.com/
+      description: Boost your productivity and send better email with Mailspring, the best mail client for Mac, Linux, and Windows.
+    - name: Discord
+      url: https://discordapp.com/
+      description: All-in-one voice and text chat for gamers that's free, secure, and works on both your desktop and phone.
+
+- id: multimedia
+  title: Multimedia
+  items:
+    - name: Spotify
+      url: https://www.spotify.com
+      description: Music for everyone
+    - name: Kazam
+      url: https://launchpad.net/kazam
+      description: Screen recorder tool
+    - name: Peek
+      url: https://github.com/phw/peek
+      description: Simple animated GIF screen recorder with an easy to use interface
+    - name: Flameshot
+      url: https://flameshot.js.org/#/
+      description: Powerful yet simple to use screenshot software.
+    - name: Gimp
+      url: https://www.gimp.org/
+      description: The Free & Open Source Image Editor
+    - name: Obs
+      url: https://obsproject.com/
+      description: Free and open source software for video recording and live streaming.
+    - name: Gnome Podcasts
+      url: https://wiki.gnome.org/Apps/Podcasts
+      description: Listen to your favorite podcasts
 
 - id: hardware
   title: Hardware
