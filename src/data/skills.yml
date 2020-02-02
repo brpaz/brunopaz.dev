@@ -1,4 +1,3 @@
-
 data:
   - category: Backend
     items:
@@ -12,9 +11,9 @@ data:
       - REST APIs
       - Apache Kafka
   - category: Frontend
-    items:  
-      - HTML / CSS
-      - Javascript (ES2015)
+    items:
+      - HTML and CSS
+      - Javascript
       - jQuery
       - VueJS
       - NuxtJS
