@@ -20,7 +20,7 @@
     "axios": "^0.19.2",
     "graphql": "^15.1.0",
     "gridsome": "^0.7.17",
-    "gridsome-plugin-modal": "0.1.1",
+    "gridsome-plugin-modal": "sergeyfilimonov/gridsome-plugin-modal#master",
     "gridsome-plugin-netlify-cms": "^1.0.9",
     "gridsome-plugin-remark-shiki": "^0.3.1",
     "gridsome-plugin-rss": "^1.2.0",
