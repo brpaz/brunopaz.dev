@@ -10,9 +10,9 @@
     - name: Symfony
       url: https://symfony.com/
       description: PHP 7 and Symfony provides an amazing combo for building applications quickly.
-    - name: Hasura
-      url: https://hasura.io/
-      description: Hasura is an open source engine that connects to your databases & microservices and flash instantly gives you a production-ready GraphQL API. It can be very useful for building database driven APIs very fast for frontend Applications.
+    - name: NestJS
+      url: https://nestjs.com/
+      description: A progressive Node.js framework for building efficient, reliable and scalable server-side applications.
     - name: Directus CMS
       url: https://directus.io/
       description: Open source Headless CMS and API.
@@ -51,9 +51,9 @@
     - name: MongoDB
       url: https://mongodb.com
       description: MongoDB is a general purpose, document-based, distributed database built for modern application developers and for the cloud era. No database makes you more productive.
-    - name: Firebase
-      url: https://firebase.google.com/
-      description: Firebase gives you functionality like analytics, databases, messaging and crash reporting so you can move quickly and focus on your users.
+    - name: FaunaDB
+      url: https://fauna.com/
+      description: FaunaDB is a global serverless database that gives you ubiquitous, low latency access to app data, without sacrificing data correctness and scale. It eliminates layers of app code for manually handling data anomalies, security, and scale, creating a friendlier dev experience for you and better app experience for your users.
 
 - id: devops
   title: DevOps and Infrastucture
@@ -73,12 +73,9 @@
     - name: Cloudflare
       url: https://cloudflare.com
       description: DNS, CDN and DDOS protection
-    - name: Terraform
-      url: https://terraform.io/
-      description: Use Infrastructure as Code to provision and manage any cloud, infrastructure, or service
-    - name: Ansible
-      url: https://ansible.com
-      description: Ansible delivers simple IT automation that ends repetitive tasks and frees up DevOps teams for more strategic work.
+    - name: Pulumi
+      url: https://www.pulumi.com/
+      description: Modern Infrastructure as Code.
 
 - id: devtools
   title: Development tools
