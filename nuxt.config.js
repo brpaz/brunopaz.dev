@@ -15,7 +15,14 @@ export default {
           'Web Engineer from Porto, Portugal. Specialized in PHP, Symfony and Golang with some professional Java experience. Strong focus on code quality and engineering practices. Fast learner and look for choosing the best technology for the job. Defender of Compassionate coding and put tech at the service of people.',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href:
+          '"https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;600;900&display=swap',
+      },
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -25,7 +32,7 @@ export default {
   plugins: [],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: true,
+  components: false,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
@@ -43,6 +50,7 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    '@nuxtjs/svg',
   ],
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
