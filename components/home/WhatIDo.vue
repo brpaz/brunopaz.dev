@@ -4,7 +4,7 @@
       What I do?
     </h2>
 
-    <div class="flex justify-between flex-wrap text-blue-gray-800">
+    <div class="flex justify-between flex-wrap">
       <div
         class="flex flex-col text-center md:w-1/2 sm:w-full lg:w-1/4 mb-8 p-4"
       >
@@ -74,12 +74,7 @@
         <p>I enjoy writing and sharing my discoveries and knowledge.</p>
         <p>
           One of the Top 500 contributors of 2019 on
-          <a
-            class="font-bold text-blue-600 hover:text-blue-900"
-            href="https://dev.to/brpaz"
-            target="_blank"
-            >dev.to</a
-          >
+          <a href="https://dev.to/brpaz" target="_blank">dev.to</a>
           and one time awarded the "weekly must read" badge.
         </p>
       </div>
@@ -107,10 +102,7 @@
         </p>
         <p>
           You can check my work on my
-          <a
-            class="font-bold text-blue-600 hover:text-blue-900"
-            href="https://github.com/brpaz/repositories"
-            target="_blank"
+          <a href="https://github.com/brpaz/repositories" target="_blank"
             >GitHub</a
           >
           profile.

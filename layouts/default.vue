@@ -27,5 +27,10 @@ export default {
 html {
   font-family: 'Inter', Roboto, sans-serif;
   font-size: 16px;
+  @apply text-primary-600;
+}
+
+a {
+  @apply text-primary-600 hover:text-primary-800;
 }
 </style>

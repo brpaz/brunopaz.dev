@@ -8,6 +8,9 @@ module.exports = {
       colors: {
         'blue-gray': colors.blueGray,
         primary: colors.blue,
+        'text-primary': colors.blueGray,
+        secondary: colors.blueGray,
+        header: colors.blue,
       },
     },
   },

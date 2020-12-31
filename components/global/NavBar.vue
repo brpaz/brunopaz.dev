@@ -88,4 +88,8 @@ export default {
 .main-nav a {
   @apply mr-8 font-medium text-xl text-blue-gray-500 hover:text-gray-700;
 }
+
+.main-nav a.nuxt-link-exact-active {
+  @apply text-primary-600;
+}
 </style>
