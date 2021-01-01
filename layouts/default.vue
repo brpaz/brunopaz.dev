@@ -23,11 +23,11 @@ export default {
 }
 </script>
 
-<style>
-html {
+<style lang="postcss">
+html,
+body {
   font-family: 'Inter', Roboto, sans-serif;
-  font-size: 16px;
-  @apply text-primary-600;
+  font-size: 18px;
 }
 
 a {

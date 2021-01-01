@@ -1,6 +1,5 @@
 ---
 title: How to start a software project with a quality mindset
-path: /blog/how-to-start-a-software-project-with-a-quality-mindset
 date: 2018-10-28
 summary:  Building quality software is not an easy task and requires a lot of practice and experience. In this post, I talk about some topics that I consider essential to implement from day 1 of your project, in order to build a quality driven and sustainable software project. 
 tags: ['development', 'quality']

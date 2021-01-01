@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import PostsList from '~/components/blog/PostsList.vue'
-import Pagination from '~/components/blog/Pagination.vue'
+import PostsList from '~/components/blog/PostsList'
+import Pagination from '~/components/blog/Pagination'
 import PageHeader from '~/components/global/PageHeader'
 
 const POSTS_PER_PAGE = 6

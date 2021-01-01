@@ -1,6 +1,5 @@
 ---
 title: My Linux Development Environment of 2018
-path: /blog/my-linux-development-envrionment-2018
 date: 2018-03-24
 summary: In this blog post I will talk a bit about the setup and software of my personal laptop, powered by Linux.
 tags: ['development','productivity','linux']

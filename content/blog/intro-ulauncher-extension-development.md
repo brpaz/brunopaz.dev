@@ -1,6 +1,5 @@
 ---
 title: An introduction to Ulauncher Extension Development
-path: /blog/an-introduction-to-ulauncher-extension-development
 date: 2018-10-28
 summary: Ulauncher is an Extensible and modern Application Launcher for Linux. In this post I will do a quick introduction to Ulauncher and then demonstrate how to build a simple Currency Conversion extension.
 tags: ['development', 'python', 'ulauncher']

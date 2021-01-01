@@ -1,6 +1,5 @@
 ---
 title: My Favorite PHP books
-path: /blog/my-favorite-php-books
 date: 2018-09-23
 summary: In this post, I share some of my favorite PHP books that I consider a must read for any PHP developer.
 tags: ['development','php']

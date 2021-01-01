@@ -1,6 +1,5 @@
 ---
 title: Docker, PHPStorm and Xdebug, The definitive guide
-path: /blog/docker-phpstorm-and-xdebug-the-definitive-guide
 date: 2018-09-06
 summary: In this article I will walk through the process of correctly configuring XDebug with PHPStorm and Docker in a Symfony 4 project.
 tags: ['development','docker','php', 'xdebug']

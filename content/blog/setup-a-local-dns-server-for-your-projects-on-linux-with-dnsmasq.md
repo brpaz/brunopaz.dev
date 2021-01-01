@@ -1,6 +1,5 @@
 ---
 title: Setup a local DNS server for your projects on Linux with Dnsmasq
-path: /blog/setup-a-local-dns-server-for-your-projects-on-linux-with-dnsmasq
 date: 2019-08-16
 summary: In this article, I will explain how to setup a local DNS server on Linux. I will use Dnsmasq, a lightweight DNS server which comes pre-installed in Operating Systems like Ubuntu or Fedora.
 tags: ['linux']

@@ -1,6 +1,5 @@
 ---
 title: How I organize my knowledge as a Software Engineer 
-path: /blog/how-do-i-organize-my-knowledge-as-a-software-engineer
 date: 2018-10-28
 summary: Software Development and Technology in general are areas that evolve at a very fast pace and continuous learning is essential.
 tags: ['productivity']

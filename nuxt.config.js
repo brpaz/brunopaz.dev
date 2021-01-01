@@ -1,3 +1,8 @@
+const md = require('markdown-it')()
+
+// Defines the application Base URL.
+const baseUrl = process.env.BASE_URL || 'http://localhost:3000'
+
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
@@ -20,7 +25,7 @@ export default {
       {
         rel: 'stylesheet',
         href:
-          '"https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;600;900&display=swap',
+          'https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swap',
       },
     ],
   },
@@ -50,6 +55,8 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    '@nuxtjs/feed',
+    '@nuxtjs/sitemap',
     '@nuxtjs/svg',
     '@nuxt/image',
     'vue-social-sharing/nuxt',
@@ -71,7 +78,61 @@ export default {
     color: 'blue',
   },
 
+  feed: [
+    {
+      path: '/rss.xml',
+      async create(feed) {
+        feed.options = {
+          title: 'Bruno Paz Tech Blog',
+          description: 'Tech Writings from Bruno Paz',
+          link: `${baseUrl}/rss.xml`,
+        }
+
+        // eslint-disable-next-line global-require
+        const { $content } = require('@nuxt/content')
+
+        // get all the posts we have
+        const posts = await $content('blog').fetch()
+
+        posts.forEach((post) => {
+          // the url of the post is set first
+          const url = `https://${baseUrl}/blog/${post.slug}`
+          feed.addItem({
+            title: post.title,
+            id: url,
+            link: url,
+            description: post.summary,
+            content: post.bodyText,
+          })
+        })
+      },
+      cacheTime: 1000 * 60 * 15,
+      type: 'rss2',
+    },
+  ],
+
+  sitemap: {
+    hostname: baseUrl,
+    gzip: true,
+    routes: async () => {
+      const { $content } = require('@nuxt/content')
+
+      // eslint-disable-next-line global-require
+      const posts = await $content('blog').only(['path']).fetch()
+
+      return posts.map((p) => p.path)
+    },
+  },
+
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    baseUrl,
+  },
+
+  hooks: {
+    'content:file:beforeInsert': (document) => {
+      if (document.extension === '.md') {
+        document.bodyText = md.render(document.text)
+      }
+    },
   },
 }

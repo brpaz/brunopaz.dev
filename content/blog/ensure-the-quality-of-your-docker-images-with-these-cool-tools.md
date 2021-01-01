@@ -1,6 +1,5 @@
 ---
 title: Ensure the quality of your Docker Images with these cool tools 
-path: /blog/ensure-the-quality-of-your-docker-images-with-these-cool-tools
 date: 2019-07-01
 summary: In this article, I will present some cool tools that can be used to test and ensure the quality of your Docker image.
 tags: ['development','docker','php', 'xdebug']

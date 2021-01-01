@@ -1,6 +1,5 @@
 ---
 title: My experience and learnings from working in a microservices oriented project
-path: /blog/my-experience-and-learnings-from-working-in-a-microservices-oriented-project
 date: 2018-12-01
 summary: In this post I will talk about my experience and learnings from working in a Flights Booking application, following a microservices oriented architecture.
 tags: ['microservices', 'development']

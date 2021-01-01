@@ -1,6 +1,5 @@
 ---
 title: An introduction to Symfony | The foundation of modern PHP applications 
-path: /blog/an-introduction-to-symfony--the-foundation-of-modern-php-applications
 date: 2018-12-24
 summary: In this post I will give a brief introduction to Symfony and how you can use it to build modern and performant PHP applications.
 tags: ['development','php', 'symfony']

@@ -1,6 +1,5 @@
 ---
 title: My 2019 Personal Tech stack for Web Development 
-path: /blog/my-2019-personal-tech-stack-for-web-development
 date: 2019-12-01
 summary:  In this article, I will talk a bit about my personal favorite tech stack and related tools for Web Development. 
 tags: ['development']

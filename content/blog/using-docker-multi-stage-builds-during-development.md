@@ -1,6 +1,5 @@
 ---
 title: Using Docker Multi-stage builds during development
-path: /blog/using-docker-multi-stage-builds-during-development
 date: 2018-10-20
 summary: Docker Multi-stage builds is a great way to build smaller Docker images optimized for production use without having things like build tools in the final image. But what about development? You might need these build tools. In this article I will show you how you can have the best of both worlds with the same Dockerfile and Multi-stage builds.
 tags: ['development','docker']
