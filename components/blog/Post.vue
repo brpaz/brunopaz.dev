@@ -6,9 +6,11 @@
       class="flex mx-auto w-full mb-8"
       style="object-fit: cover; height: 450px"
     />
+
     <h1 class="font-bold text-4xl text-secondary-600 mb-8">
       {{ post.title }}
     </h1>
+
     <nuxt-content :document="post" />
 
     <social-share :post="post" />
@@ -49,7 +51,7 @@ export default {
 }
 
 .nuxt-content img {
-  @apply my-8 mx-auto;
+  @apply my-4 mx-auto;
 }
 
 .nuxt-content ul {

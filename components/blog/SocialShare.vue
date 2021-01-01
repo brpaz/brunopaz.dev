@@ -43,7 +43,7 @@
 <script>
 import TwitterShareButton from '~/assets/icons/twitter-share-button.svg?inline'
 import FacebookShareButton from '~/assets/icons/facebook-share-button.svg?inline'
-import LinkedinShareButton from '~/assets/icons/linkedin-share-button.svg?inline'
+import LinkedinShareButton from '~/assets/icons/twitter-share-button.svg?inline'
 export default {
   components: { TwitterShareButton, FacebookShareButton, LinkedinShareButton },
   props: {

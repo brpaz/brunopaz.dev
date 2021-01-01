@@ -23,7 +23,7 @@
             overflow: hidden;
           "
         >
-          <nuxt-link :to="{ path: `/blog/${post.slug}` }">
+          <nuxt-link :to="{ name: 'blog-slug', params: { slug: post.slug } }">
             {{ post.title }}
           </nuxt-link>
         </h2>

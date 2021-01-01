@@ -1,12 +1,12 @@
 <template>
-  <div><post :post="post" /></div>
+  <div><post-detail :post="post" /></div>
 </template>
 
 <script>
-import Post from '~/components/blog/Post'
+import PostDetail from '~/components/blog/Post'
 import blogPost from '~/mixins/blogPost'
 export default {
-  components: { Post },
+  components: { PostDetail },
   mixins: [blogPost],
   async asyncData({ $content, params }) {
     const post = await $content('blog', params.slug).fetch()
