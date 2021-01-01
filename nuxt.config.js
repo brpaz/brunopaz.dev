@@ -52,15 +52,26 @@ export default {
     '@nuxt/content',
     '@nuxtjs/svg',
     '@nuxt/image',
+    'vue-social-sharing/nuxt',
   ],
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
-  content: {},
+  content: {
+    markdown: {
+      prism: {
+        theme: 'prism-themes/themes/prism-material-oceanic.css',
+      },
+    },
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
 
   loading: {
     color: 'blue',
+  },
+
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
   },
 }

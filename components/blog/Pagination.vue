@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="total > 1">
     <nav
       class="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0 w-1/2 mx-auto"
     >
@@ -28,7 +28,7 @@
       </div>
 
       <div class="hidden md:-mt-px md:flex">
-        <div v-for="item in pageRange" :key="item">
+        <div v-for="(item, index) in pageRange" :key="`page-range-${index}`">
           <nuxt-link
             :v-if="item !== '...'"
             :to="{ path: '/blog', query: { page: item } }"

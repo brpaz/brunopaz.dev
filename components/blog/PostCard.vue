@@ -6,22 +6,37 @@
       <div class="p-1" style="height: 250px; overflow: hidden">
         <nuxt-image
           :placeholder="true"
-          :src="getCoverImage(post)"
+          :src="getCoverImage(post, false)"
           class="block"
-          style="object-fit: cover"
           aria-hidden="true"
           alt="Post cover image"
         />
       </div>
 
       <header class="flex flex-col h-52 p-4 flex-grow">
-        <h2 class="text-lg mb-4">
+        <h2
+          class="text-lg md:h-14 mb-4"
+          style="
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          "
+        >
           <nuxt-link :to="{ path: `/blog/${post.slug}` }">
             {{ post.title }}
           </nuxt-link>
         </h2>
 
-        <p class="text-sm leading-6 overflow-hidden overflow-ellipsis nowrap">
+        <p
+          class="text-sm leading-6"
+          style="
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          "
+        >
           {{ post.summary }}
         </p>
       </header>
@@ -36,27 +51,13 @@
 </template>
 
 <script>
+import blogPost from '~/mixins/blogPost'
 export default {
+  mixins: [blogPost],
   props: {
     post: {
       type: Object,
       required: true,
-    },
-  },
-  methods: {
-    formatDate(post) {
-      const dt = new Date(post.date)
-
-      return dt.toLocaleDateString(undefined, {
-        month: 'short',
-        year: 'numeric',
-      })
-    },
-    getCoverImage(post) {
-      if (post.cover) {
-        return `/blog/${post.cover}`
-      }
-      return '/blog/cover-default.jpg'
     },
   },
 }

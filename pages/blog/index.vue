@@ -1,8 +1,6 @@
 <template>
   <div>
-    <h1 class="font-bold text-4xl text-center text-secondary-600 mb-12">
-      My Blog
-    </h1>
+    <page-header text="My Blog" />
 
     <div class="mb-4">
       <posts-list :posts="posts" />
@@ -15,11 +13,12 @@
 <script>
 import PostsList from '~/components/blog/PostsList.vue'
 import Pagination from '~/components/blog/Pagination.vue'
+import PageHeader from '~/components/global/PageHeader'
 
 const POSTS_PER_PAGE = 6
 
 export default {
-  components: { PostsList, Pagination },
+  components: { PostsList, Pagination, PageHeader },
   data() {
     return {
       posts: [],

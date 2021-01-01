@@ -13,13 +13,11 @@ In this post I will introduce you to [Ulauncher](https://ulauncher.io/) and demo
 
 We will build a "Currency Conversion" extension that will look like this:
 
-![](https://prod-ulauncher-ext-images.s3.amazonaws.com/github%7C184563/2018-08-18T10:36:08.309173.png)
+![Ulauncher Extension example](/blog/2018-08-18T10:36:08.309173.png)
 
 Stay tuned.
 
 ## What is Ulauncher?
-
-![Imgur](https://i.imgur.com/lY9L2WI.png)
 
 [Ulauncher](https://ulauncher.io/) its an Open source Application Launcher for Linux. It is written in Python 2 and have a lot of nice features like Shortcuts, Extensions and Custom themes.
 
@@ -93,7 +91,7 @@ ulauncher -v |& grep -A 5 "ulauncher-currency"
 
 If you type "dm" on Ulauncher window, you should see the demo extension working.
 
-![demo](https://i.imgur.com/caQZHxN.png)
+![demo](/blog/caQZHxN.png)
 
 **Note: After a code change in your extension, just "Ctrl-C" in your terminal to stop Ulauncher and launch it again using "ulauncher -v".**
 

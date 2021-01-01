@@ -36,7 +36,7 @@ Nowadays, the term full-stack developer is also very subjective as there are man
 
 I like this definition by Adam Wathan:
 
-{% twitter 1186388252745457665 %}
+<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">Being full stack doesn’t mean you know every single thing about every technology you could possibly use to create software for the web. It means you can create and deploy a web application by yourself. Rails + jQuery + Heroku is “full stack” by my definition.</p>&mdash; Adam Wathan (@adamwathan) <a href="https://twitter.com/adamwathan/status/1186388252745457665?ref_src=twsrc%5Etfw">October 21, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
 And this is the kind of full-stack I want to be.
 
@@ -238,4 +238,4 @@ Always have some "boring" mature tools in your stack, which allow you to keep bu
 
 In the end, people are what matters, so focus on building useful things that improve people´s lives, independent of the stack!
 
-![Alt Text](https://thepracticaldev.s3.amazonaws.com/i/xx4bopxyr3vhyv468qm8.jpg)
+![No Innovation maters more than which saves lives](/blog/xx4bopxyr3vhyv468qm8.jpg)
