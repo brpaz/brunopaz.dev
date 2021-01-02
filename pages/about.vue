@@ -1,6 +1,7 @@
 <template>
   <div class="mx-auto leading-8 w-2/3">
     <section id="profile">
+      <page-header text="About me" />
       <HelloIcon
         class="mb-8 mt-8 mx-auto"
         width="128px"
@@ -155,10 +156,11 @@
 </template>
 
 <script>
+import PageHeader from '~/components/global/PageHeader'
 import HelloIcon from '~/assets/icons/wave.svg?inline'
 import HobbiesIcon from '~/assets/icons/party.svg?inline'
 import WorkIcon from '~/assets/icons/briefcase.svg?inline'
 export default {
-  components: { HelloIcon, HobbiesIcon, WorkIcon },
+  components: { PageHeader, HelloIcon, HobbiesIcon, WorkIcon },
 }
 </script>

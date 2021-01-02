@@ -1,5 +1,6 @@
 <template>
   <div class="text-center w-2/3 mx-auto">
+    <page-header text="Contact" />
     <ContactIcon
       class="m4-8 mt-4 mx-auto"
       width="128px"
@@ -112,9 +113,10 @@
 </template>
 
 <script>
+import PageHeader from '~/components/global/PageHeader'
 import ContactIcon from '~/assets/icons/email.svg?inline'
 export default {
-  components: { ContactIcon },
+  components: { PageHeader, ContactIcon },
   data() {
     return {
       loading: false,
