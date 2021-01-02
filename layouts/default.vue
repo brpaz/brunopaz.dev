@@ -15,22 +15,5 @@ import NavBar from '~/components/global/NavBar'
 import Footer from '~/components/Footer'
 export default {
   components: { NavBar, Footer },
-  data() {
-    return {
-      showMobileMenu: false,
-    }
-  },
 }
 </script>
-
-<style lang="postcss">
-html,
-body {
-  font-family: 'Inter', Roboto, sans-serif;
-  font-size: 18px;
-}
-
-a {
-  @apply text-primary-600 hover:text-primary-800;
-}
-</style>

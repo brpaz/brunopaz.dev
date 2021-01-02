@@ -10,8 +10,8 @@
           />
         </div>
       </div>
-      <div class="text-center text-xl text-gray-600 mb-24">
-        <h1 class="font-extrabold text-gray-700 text-6xl mb-8">Bruno Paz</h1>
+      <div class="text-center text-xl text-gray-600 mb-16">
+        <h1 class="font-extrabold text-gray-700 text-6xl mb-6">Bruno Paz</h1>
         <p class="text-2xl mb-2">
           Web Engineer, specialized in <b>PHP/Symfony</b> and <b>Golang</b>.
         </p>

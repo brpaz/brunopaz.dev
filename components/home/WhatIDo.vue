@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col mx-auto">
-    <h2 class="font-bold text-blue-600 text-4xl mb-16 text-center">
+    <h2 class="font-bold text-secondary-600 text-4xl mb-12 text-center">
       What I do?
     </h2>
 

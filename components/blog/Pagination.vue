@@ -6,7 +6,7 @@
       <div class="-mt-px w-0 flex-1 flex">
         <nuxt-link
           v-if="page > 1"
-          :to="{ path: '/blog', query: { page: `${page - 1}` } }"
+          :to="{ name: 'blog-page-id', params: { page: `${page - 1}` } }"
           class="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
         >
           <!-- Heroicon name: arrow-narrow-left -->
@@ -31,7 +31,7 @@
         <div v-for="(item, index) in pageRange" :key="`page-range-${index}`">
           <nuxt-link
             :v-if="item !== '...'"
-            :to="{ path: '/blog', query: { page: item } }"
+            :to="{ name: 'blog-page-id', params: { page: item } }"
             class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
             :class="{ 'text-blue-600 font-bold': page == item }"
           >
@@ -42,7 +42,7 @@
       <div class="-mt-px w-0 flex-1 flex justify-end">
         <nuxt-link
           v-if="hasNext"
-          :to="{ path: '/blog', query: { page: `${page + 1}` } }"
+          :to="{ name: 'blog-page-id', params: { page: `${page + 1}` } }"
           class="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
         >
           Next

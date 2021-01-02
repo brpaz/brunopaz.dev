@@ -27,16 +27,16 @@
     >
       <ul>
         <li class="block mb-2">
-          <nuxt-link to="/about">About</nuxt-link>
+          <nuxt-link to="about">About</nuxt-link>
         </li>
         <li class="block mb-2">
-          <nuxt-link to="/work"> Work </nuxt-link>
+          <nuxt-link to="work">Work</nuxt-link>
         </li>
         <li class="block mb-2">
-          <nuxt-link to="/blog"> Blog </nuxt-link>
+          <nuxt-link to="blog">Blog</nuxt-link>
         </li>
         <li class="block mb-2">
-          <nuxt-link to="/contact"> Contact </nuxt-link>
+          <nuxt-link to="contact">Contact</nuxt-link>
         </li>
       </ul>
     </nav>

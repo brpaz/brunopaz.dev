@@ -11,6 +11,10 @@
       {{ post.title }}
     </h1>
 
+    <div v-if="post.devto_url" class="mb-4 text-xs">
+      This post was cross posted on <a :href="post.devto_url">Dev.to</a>
+    </div>
+
     <nuxt-content :document="post" />
 
     <social-share :post="post" />

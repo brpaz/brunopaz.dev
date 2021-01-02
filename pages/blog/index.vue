@@ -23,7 +23,7 @@ const POSTS_PER_PAGE = 6
 
 export default {
   components: { PostsList, Pagination, PageHeader },
-
+  scrollToTop: true,
   async fetch() {
     await this.fetchPosts()
   },
@@ -36,24 +36,9 @@ export default {
       },
     }
   },
-
-  watch: {
-    '$route.query': 'fetchPosts',
-  },
-
   methods: {
     async fetchPosts() {
-      let currentPage = 1
-      if (this.$isServer) {
-        // const req = this.$nuxt.context.ssrContext.req
-        // TODO
-        /* currentPage =
-          new url.URL('http://localhost:3000/blog?page=2').searchParams.page ||
-          1 */
-      } else {
-        currentPage = parseInt(this.$route.query.page) || 1
-      }
-
+      const currentPage = parseInt(this.$route.params.page) || 1
       const allPosts = await this.$content('blog')
         .sortBy('date', 'desc')
         .fetch()

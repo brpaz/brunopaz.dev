@@ -71,6 +71,19 @@ export default {
     },
   },
 
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'blog-page-id',
+        path: '/blog/page/:page',
+        component: resolve(__dirname, 'pages/blog/index.vue'),
+      })
+    },
+  },
+
+  generate: {
+    fallback: '404.html',
+  },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
 
