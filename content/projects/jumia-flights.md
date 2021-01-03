@@ -8,32 +8,31 @@ url: https://travel.jumia.com
 technologies:
   - PHP
   - Phalcon
-  - Golang
-  - Java 8
+  - Go
+  - Java
   - Play Framework
   - MySQL
   - ScyllaDB
-  - REST
-  - Soap
-  - Microservices
+  - Websockets
   - Git
-  - GitHub
   - Docker
-  - Jira
   - Kubernetes
   - Jenkins
+  - GitHub
+  - Jira
 cover: jflights/cover.jpg
 images: []
 position: 3
 ---
 
-Jumia Flights is the Flights booking solution of Jumia and it was built with the goal to be the biggest online Flights booking marketplace im Africa.
+<b>Jumia Flights</b> is the Flights booking solution of Jumia and it was built with the goal to be the biggest online Flights booking marketplace im Africa.
 <!--more-->
 I have worked in this project from the ground up, including:
 
-* Define the application architecture following a Microservices oriented approach.
-* Implement core features such as Search, Booking and Payments, using Java and PHP
+* Define the application architecture following a Microservices oriented architecture.
+* Implement core services such as Search, Booking and Payments, using Java and PHP.
 * Implementation of Rules Engine for Flights Search using Golang.
-* Orders and Payments State Machines service (PHP)
-* Integration with well known third party Flights providers like Amadeus and Kiwi
+* Orders and Payments State Machines service.
+* Search results caching using ScyllaDB.
+* Integration with third party providers like Amadeus and Kiwi.
 * Multi-provider search using WebSockets.

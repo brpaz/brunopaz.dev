@@ -5,19 +5,20 @@ end_date: Dec 2018
 type: company
 category: application
 url: https://jforce.jumia.com.ng/
-technologies: ['Golang', 'Java', 'PHP', 'Laravel', 'Postgres', 'Memchached', 'Docker', 'Kong', 'GitHub', 'Jenkins', 'Jira']
+technologies: ['Go', 'PHP', 'Symfony', 'MySQL', 'Docker', 'GitHub', 'Jenkins', 'Jira']
 cover: jforce/cover.jpg
 images:
-  - jpay/jpay01.png
-  - jpay/jpay02.png
+  - jforce/jforce01.png
+  - jforce/jforce02.png
 position: 2
 ---
 
-JForce is a Web Application that aims to help the thousands of agents that Jumia has in the field across all Africa, by providing them access to their orders, sales, commissions and more.
+<b>JForce</b> is an internal Jumia Application to help the thousands of agents that Jumia has in the field across all Africa, by providing them access to their orders, sales, commissions and more.
 <!--more-->
-On JForce project, I worked on the following areas:
+The team were I was, developed the first version of the application from the ground up:
 
-* Development of all necessary APIs following a Microservices oriented architecture.
-* Orders Processing System using Golang concurrency features.
-* Commissions calculation engine (golang)
+* Development of all necessary APIs using Golang for the VueJS frontend to consume.
+* Backend CRUD application to manage everything related with agents like levels, bonuses and more, built with Symfony 4.
+* Daily Orders import System using Golang concurrency features.
+* Commissions calculation rules engine
 

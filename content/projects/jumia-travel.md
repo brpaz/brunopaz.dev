@@ -12,28 +12,29 @@ technologies:
   - ElasticSearch
   - Couchbase
   - Memcached
+  - HTML5
+  - Sass
   - Javascript
   - Polymer
-  - Amazon Web Services
+  - AWS
   - Git
   - GitHub
   - Jira
-  - Docker
   - Jenkins
 cover: jtravel/cover.png
 images:
-  - jtravel/jtravel01.png
+  - jtravel/jtravel01.jpg
 position: 4
 ---
 
 With over 25,000 hotel listings across 40 African countries and 200,000 hotels across the globe, Jumia Travel is Africa's N°1 hotel booking website.
 <!--more-->
-I worked across all areas of Jumia Travel, highlighting:
+I worked across multiple areas of Jumia Travel, highlighting:
 
 * State Machine and Payment Providers integration
 * Rates availability and search engine
 * Channel Management and Partners Integration
 * Extranet web / mobile application for Hotel Owners
-* API architecture and development/li>
+* API architecture and development
 * Functional tests architecture
 

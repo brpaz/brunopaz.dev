@@ -76,6 +76,11 @@ export default {
       showMobileMenu: false,
     }
   },
+  watch: {
+    $route() {
+      this.showMobileMenu = false
+    },
+  },
   methods: {
     toggleMobileMenu() {
       this.showMobileMenu = !this.showMobileMenu

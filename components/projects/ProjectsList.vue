@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap w-full">
+  <div class="flex flex-wrap w-full justify-center">
     <project-card
       v-for="project in projects"
       :key="project.slug"

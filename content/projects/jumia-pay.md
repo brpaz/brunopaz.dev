@@ -5,7 +5,7 @@ end_date: null
 type: company
 category: application
 url: https://pay.jumia.com.ng
-technologies: ['Golang', 'Java', 'PHP', 'Laravel', 'Postgres', 'Memchached', 'Docker', 'Kong', 'GitHub', 'Jenkins', 'Jira']
+technologies: ['Go', 'Java', 'PHP', 'Laravel', 'MySQL', 'Postgres', 'Memcached', 'Apache Kafka', 'Docker', 'Kong', 'GitHub', 'Jenkins', 'Jira']
 cover: jpay/cover.jpg
 images:
   - jpay/jpay01.png
@@ -13,11 +13,17 @@ images:
 position: 1
 ---
 
-JumiaPay is a Payments system solution by Jumia, allowing customers to make an online purchase in just one step.
+<b>JumiaPay</b> is a free online payment service that enables you to make payments online securely, instantly and cost-effectively.</p>
 <!--more-->
-On JumiaPay, I worked on the following areas:
+On this project, I worked mostly on the following areas:
 
-* Create the base structure for the Business Area application for Jumia Pay merchants, including User and Roles Management and ACL.
-* Topups management feature
-* Payment methods creation and management
-* Withdraws, Payouts, Transfer between wallets
+* Defined the architechure for the new Business Area application for JumiaPay merchants and integrate with the existing JumiaPay services.
+* Implemented features on Business Area application, including:
+  * User and Roles management  
+  * Top-ups management feature
+  * Payment methods creation and management
+  * Wallet related features: Payment Methods configuration, Balance, Transactions List, Withdraws.
+  * Integration with "Seller center" Jumia application for seller Payouts
+  * Purchases and Refunds List
+  * Settlements 
+* Improvments and bug fixes on the core of JumiaPay app.
