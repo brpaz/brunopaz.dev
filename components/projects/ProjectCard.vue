@@ -1,5 +1,5 @@
 <template>
-  <div class="flex md:w-1/2 sm:w-full lg:w-1/3">
+  <div class="project-card flex md:w-1/2 sm:w-full lg:w-1/3">
     <div class="flex flex-col rounded-lg shadow-lg mb-8 p-1 mr-4 bg-blue-200">
       <div class="flex items-center bg-white h-60 mb-2 overflow-hidden">
         <nuxt-link

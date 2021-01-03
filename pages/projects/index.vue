@@ -4,11 +4,11 @@
 
     <p class="text-center mb-8">This is a list of some projects I worked</p>
 
-    <div class="mb-8">
+    <section id="projects-list" class="mb-8">
       <projects-list :projects="projects" />
-    </div>
+    </section>
 
-    <div>
+    <section id="open-source">
       <page-header text="Open Source" />
 
       <div class="text-center mb-8">
@@ -27,7 +27,7 @@
       </div>
 
       <gitHub-projects-list :projects="gitHubProjects" />
-    </div>
+    </section>
   </div>
 </template>
 
