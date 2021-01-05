@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import PageHeader from '~/components/global/PageHeader'
+import PageHeader from '~/components/shared/PageHeader'
 import ProjectsList from '~/components/projects/ProjectsList'
 import GitHubProjectsList from '~/components/projects/GitHubProjectsList'
 export default {

@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import NavBar from '~/components/global/NavBar'
-import Footer from '~/components/Footer'
+import NavBar from '~/components/shared/NavBar'
+import Footer from '~/components/shared/Footer'
 export default {
   components: { NavBar, Footer },
 }

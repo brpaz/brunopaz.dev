@@ -1,0 +1,17 @@
+[build]
+command = "npm run generate"
+publish = "dist/"
+
+[build.environment]
+NODE_ENV = "production"
+
+[[headers]]
+for = "/*"
+[headers.values]
+Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+
+[[redirects]]
+force = true
+from = "https://brunopaz.netlify.com/*"
+status = 301
+to = " https://brunopaz.dev/:splat"

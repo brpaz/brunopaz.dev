@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import PageHeader from '~/components/global/PageHeader'
+import PageHeader from '~/components/shared/PageHeader'
 import ContactIcon from '~/assets/icons/email.svg?inline'
 export default {
   components: { PageHeader, ContactIcon },

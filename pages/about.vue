@@ -156,7 +156,7 @@
 </template>
 
 <script>
-import PageHeader from '~/components/global/PageHeader'
+import PageHeader from '~/components/shared/PageHeader'
 import HelloIcon from '~/assets/icons/wave.svg?inline'
 import HobbiesIcon from '~/assets/icons/party.svg?inline'
 import WorkIcon from '~/assets/icons/briefcase.svg?inline'

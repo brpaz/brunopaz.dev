@@ -17,7 +17,7 @@
 <script>
 import PostsList from '~/components/blog/PostsList'
 import Pagination from '~/components/blog/Pagination'
-import PageHeader from '~/components/global/PageHeader'
+import PageHeader from '~/components/shared/PageHeader'
 
 const POSTS_PER_PAGE = 6
 
