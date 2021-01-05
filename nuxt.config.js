@@ -27,6 +27,12 @@ export default {
         href:
           'https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swap',
       },
+      {
+        rel: 'alternate',
+        type: 'application/rss+xml',
+        href: `${baseUrl}/feed.xml`,
+        title: 'Bruno Paz - Web Engineer',
+      },
     ],
   },
 
@@ -47,6 +53,7 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/google-analytics',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -60,6 +67,7 @@ export default {
     '@nuxtjs/svg',
     '@nuxt/image',
     'vue-social-sharing/nuxt',
+    '@nuxtjs/sentry',
   ],
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
@@ -91,6 +99,10 @@ export default {
     color: 'blue',
   },
 
+  /**
+   * RSS Feed configuration
+   * https://github.com/nuxt-community/feed-module
+   */
   feed: [
     {
       path: '/rss.xml',
@@ -124,6 +136,10 @@ export default {
     },
   ],
 
+  /**
+   * Sitemap configuration
+   * https://sitemap.nuxtjs.org/
+   */
   sitemap: {
     hostname: baseUrl,
     gzip: true,
@@ -135,6 +151,31 @@ export default {
 
       return posts.map((p) => p.path)
     },
+  },
+
+  /**
+   * Sentry module configuration
+   * https://sentry.nuxtjs.org/guide/setup/
+   */
+  sentry: {
+    dsn: process.env.SENTRY_DSN || '',
+    dev: process.env.NODE_ENV !== 'production',
+  },
+
+  /**
+   * Google Analytics Configuration
+   * see https://google-analytics.nuxtjs.org/
+   */
+  googleAnalytics: {
+    id: process.env.GA_ID || '',
+  },
+
+  /**
+   * Enable image optimization during build
+   * https://github.com/juliomrqz/nuxt-optimized-images
+   */
+  optimizedImages: {
+    optimizeImages: false,
   },
 
   env: {

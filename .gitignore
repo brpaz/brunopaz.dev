@@ -91,3 +91,5 @@ sw.*
 
 cypress/videos
 cypress/screenshots
+
+.env

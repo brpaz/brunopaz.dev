@@ -6,12 +6,6 @@ describe('About Page', () => {
     cy.get('h1').contains('About me')
     cy.get('.main-nav')
       .find("a[href*='/about']")
-      .should('have.class', 'nuxt-link-exact-active')
-  })
-
-  it('Renders projects cards', () => {
-    cy.get('.main-nav')
-      .find("a[href*='/about']")
-      .should('have.class', 'nuxt-link-exact-active')
+      .should('have.class', 'nuxt-link-active')
   })
 })

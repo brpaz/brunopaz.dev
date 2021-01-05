@@ -28,7 +28,7 @@ describe('About Page', () => {
         // eslint-disable-next-line cypress/no-unnecessary-waiting
         cy.get($el)
           .click()
-          .wait(500)
+          .wait(200)
           .get('h1')
           .then((header) => header.text().trim())
           .should('equal', projectName)

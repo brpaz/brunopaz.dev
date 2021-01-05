@@ -6,6 +6,6 @@ describe('Contact Page', () => {
     cy.get('h1').contains('Blog')
     cy.get('.main-nav')
       .find("a[href*='/contact']")
-      .should('have.class', 'nuxt-link-exact-active')
+      .should('have.class', 'nuxt-link-active')
   })
 })
