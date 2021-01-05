@@ -58,6 +58,7 @@
     "imagemin-svgo": "^8.0.0",
     "lint-staged": "^10.4.0",
     "markdown-it": "^12.0.4",
+    "netlify-plugin-cypress": "^1.4.1",
     "postcss": "^7",
     "prettier": "^2.1.2",
     "stylelint": "^13.7.2",
