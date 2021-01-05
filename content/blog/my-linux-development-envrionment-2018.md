@@ -4,7 +4,6 @@ date: 2018-03-24
 summary: In this blog post I will talk a bit about the setup and software of my personal laptop, powered by Linux.
 tags: ['development','productivity','linux']
 devto_url: https://dev.to/brpaz/my-linux-development-environment-of-2018-ch7
-cover: Hohj9oogaoWi.webp
 ---
 
 In this blog post I will talk a bit about the setup and software of my personal laptop, powered by Linux. This is somewhat inspired by [this post](https://dev.to/mrkaran/my-development-setup-on-a-macbook), but for a Linux based setup.

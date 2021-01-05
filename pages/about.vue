@@ -162,5 +162,10 @@ import HobbiesIcon from '~/assets/icons/party.svg?inline'
 import WorkIcon from '~/assets/icons/briefcase.svg?inline'
 export default {
   components: { PageHeader, HelloIcon, HobbiesIcon, WorkIcon },
+  head() {
+    return {
+      title: 'About | Bruno Paz',
+    }
+  },
 }
 </script>

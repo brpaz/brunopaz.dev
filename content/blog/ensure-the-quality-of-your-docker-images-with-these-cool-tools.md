@@ -4,7 +4,6 @@ date: 2019-07-01
 summary: In this article, I will present some cool tools that can be used to test and ensure the quality of your Docker image.
 tags: ['development','docker','php', 'xdebug']
 devto_url: https://dev.to/brpaz/ensure-the-quality-of-your-docker-images-with-these-cool-tools-1bh7
-cover: aiPu0Gee6jeo.webp
 ---
 
 When we talk about software testing, most of the time it's about testing the application code in order to guarantee it safeties our defined code quality metrics and functional/business requirements. 

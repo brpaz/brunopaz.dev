@@ -1,16 +1,8 @@
 <template>
-  <article>
-    <nuxt-image
-      :placeholder="true"
-      :src="getCoverImage(post)"
-      class="flex mx-auto w-full mb-8"
-      style="object-fit: cover; height: 450px"
-    />
+  <article class="w-2/3 mx-auto">
+    <page-header :text="post.title" />
 
-    <h1 class="font-bold text-4xl text-secondary-600 mb-8">
-      {{ post.title }}
-    </h1>
-
+    <div class="text-xs md:text-right mb-2">{{ formatDate(post) }}</div>
     <div v-if="post.devto_url" class="mb-4 text-xs">
       This post was cross posted on <a :href="post.devto_url">Dev.to</a>
     </div>
@@ -22,10 +14,11 @@
 </template>
 
 <script>
+import PageHeader from '~/components/shared/PageHeader'
 import SocialShare from '~/components/blog/SocialShare'
 import blogPostMixin from '~/mixins/blogPost'
 export default {
-  components: { SocialShare },
+  components: { SocialShare, PageHeader },
   mixins: [blogPostMixin],
   props: {
     post: {

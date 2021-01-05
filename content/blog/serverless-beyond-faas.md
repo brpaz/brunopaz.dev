@@ -4,7 +4,6 @@ summary: Serverless is for some time, the new hype in the infrastructure world. 
 date: 2020-07-07
 description: Serverless is more than FaaS.
 tags: serverless,devops
-cover: aeghahZ1.png
 devto_url: https://dev.to/brpaz/serverless-beyond-faas-5fo
 ---
 

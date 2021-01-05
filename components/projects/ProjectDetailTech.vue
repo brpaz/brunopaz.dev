@@ -21,7 +21,7 @@
 export default {
   props: {
     technologies: {
-      type: Object,
+      type: Array,
       required: true,
     },
   },

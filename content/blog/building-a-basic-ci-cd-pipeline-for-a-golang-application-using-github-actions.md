@@ -4,7 +4,6 @@ date: 2019-08-19
 summary: GitHub has announced last week exciting new features for GitHub Actions, including built-in support for CI/CD pipelines. It this post I will show the capabilities of the new GitHub Actions for CI/CD by creating a simple pipeline for a Golang application.
 tags: ['development','ci/cd', 'github']
 devto_url: https://dev.to/brpaz/building-a-basic-ci-cd-pipeline-for-a-golang-application-using-github-actions-icj
-cover: mu6tiazai9Oo.webp
 ---
 
 

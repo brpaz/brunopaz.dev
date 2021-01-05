@@ -53,5 +53,10 @@ export default {
       gitHubProjects,
     }
   },
+  head() {
+    return {
+      title: 'Projects | Bruno Paz',
+    }
+  },
 }
 </script>

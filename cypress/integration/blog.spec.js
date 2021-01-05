@@ -6,7 +6,7 @@ describe('Blog Page', () => {
     cy.get('h1').contains('My Blog')
     cy.get('.main-nav')
       .find("a[href*='/blog']")
-      .should('have.class', 'nuxt-link-exact-active')
+      .should('have.class', 'nuxt-link-active')
 
     cy.get('#pagination').find("a[class*='current-page']").contains('1')
   })

@@ -15,6 +15,7 @@ export default {
   },
   head() {
     return {
+      title: `${this.post.title} | Bruno Paz`,
       meta: [
         {
           hid: 'description',

@@ -1,6 +1,11 @@
 <template>
-  <div class="flex flex-wrap w-full">
-    <PostCard v-for="post in posts" :key="post.slug" :post="post" />
+  <div class="flex flex-col mx-auto w-2/3">
+    <PostCard
+      v-for="post in posts"
+      :key="post.slug"
+      :post="post"
+      class="mb-12"
+    />
   </div>
 </template>
 

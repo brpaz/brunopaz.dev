@@ -4,7 +4,6 @@ date: 2018-10-28
 summary:  Building quality software is not an easy task and requires a lot of practice and experience. In this post, I talk about some topics that I consider essential to implement from day 1 of your project, in order to build a quality driven and sustainable software project. 
 tags: ['development', 'quality']
 devto_url: https://dev.to/brpaz/how-to-start-a-software-project-with-a-quality-mindset-3e7i
-cover: iel2iY9vo1mu.webp
 ---
 
 Building quality software is not an easy task and requires a lot of practice and experience.

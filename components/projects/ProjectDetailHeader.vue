@@ -32,5 +32,11 @@ export default {
       required: true,
     },
   },
+  filters: {
+    capitalize(value) {
+      value.toLowerCase().split(' ')
+      return value.charAt(0).toUpperCase() + value.slice(1)
+    },
+  },
 }
 </script>

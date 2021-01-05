@@ -4,7 +4,6 @@ date: 2018-12-01
 summary: In this post I will talk about my experience and learnings from working in a Flights Booking application, following a microservices oriented architecture.
 tags: ['microservices', 'development']
 devto_url: https://dev.to/brpaz/my-experience-and-learnings-from-working-in-a-microservices-oriented-project-li5
-cover: doc9Alode0ai.webp
 ---
 
 In the past few years, Microservices have become a very hot topic in our industry and seen as the recommended way to build more decoupled, scalable and easy to maintain applications.

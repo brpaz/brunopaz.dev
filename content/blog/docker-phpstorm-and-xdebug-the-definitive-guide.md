@@ -4,7 +4,6 @@ date: 2018-09-06
 summary: In this article I will walk through the process of correctly configuring XDebug with PHPStorm and Docker in a Symfony 4 project.
 tags: ['development','docker','php', 'xdebug']
 devto_url: https://dev.to/brpaz/docker-phpstorm-and-xdebug-the-definitive-guide-14og
-cover: pi8tieJeeF6a.png
 ---
 
 Docker has changed dramatically the way we develop applications. Thanks to it, it  is really easy for everyone to run a complex application with a single command, without having to worry about the inner details like dependencies. These advantages are even greater when working on a team or enterprise context. I still remember being like the first 3 days when I joined my current company, configuring the project and all the related libraries and tools. Docker make it such much easier, faster and consistent.

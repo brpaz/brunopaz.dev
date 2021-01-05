@@ -4,7 +4,6 @@ date: 2018-12-24
 summary: In this post I will give a brief introduction to Symfony and how you can use it to build modern and performant PHP applications.
 tags: ['development','php', 'symfony']
 devto_url: https://dev.to/brpaz/an-introduction-to-symfony--the-foundation-of-modern-php-applications-ehj
-cover: savi9Zohghoo.jpg
 ---
 
 In this post I will give a brief introduction to [Symfony](https://symfony.com/) and demonstrate how you can use it to build modern and performant PHP applications. 

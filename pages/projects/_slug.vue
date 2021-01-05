@@ -35,6 +35,11 @@ export default {
 
     return { project }
   },
+  head() {
+    return {
+      title: `${this.project.name} | Bruno Paz`,
+    }
+  },
 }
 </script>
 

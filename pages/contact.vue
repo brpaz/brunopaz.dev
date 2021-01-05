@@ -151,5 +151,10 @@ export default {
       }
     },
   },
+  head() {
+    return {
+      title: 'Contact | Bruno Paz',
+    }
+  },
 }
 </script>

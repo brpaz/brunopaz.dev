@@ -4,7 +4,6 @@ date: 2018-10-28
 summary: Software Development and Technology in general are areas that evolve at a very fast pace and continuous learning is essential.
 tags: ['productivity']
 devto_url: https://dev.to/brpaz/how-do-i-organize-my-knowledge-as-a-software-engineer-4387
-cover: ShiuZiw8quah.webp
 ---
 
 Software Development and Technology in general are areas that evolve at a very fast pace and continuous learning is essential.

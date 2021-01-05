@@ -19,7 +19,7 @@ import PostsList from '~/components/blog/PostsList'
 import Pagination from '~/components/blog/Pagination'
 import PageHeader from '~/components/shared/PageHeader'
 
-const POSTS_PER_PAGE = 6
+const POSTS_PER_PAGE = 5
 
 export default {
   components: { PostsList, Pagination, PageHeader },
@@ -27,7 +27,6 @@ export default {
   async fetch() {
     await this.fetchPosts()
   },
-
   data() {
     return {
       posts: [],
@@ -57,6 +56,11 @@ export default {
         total: totalPages,
       }
     },
+  },
+  head() {
+    return {
+      title: 'Blog | Bruno Paz',
+    }
   },
 }
 </script>

@@ -4,7 +4,6 @@ date: 2019-12-01
 summary:  In this article, I will talk a bit about my personal favorite tech stack and related tools for Web Development. 
 tags: ['development']
 devto_url: https://dev.to/brpaz/my-2019-personal-tech-stack-for-web-development-2d5j
-cover: ohshae5zohPe.webp
 ---
 
 In this article, I will talk a bit about my personal tech stack and related tools for Web Development.

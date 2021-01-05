@@ -4,7 +4,6 @@ date: 2018-09-23
 summary: In this post, I share some of my favorite PHP books that I consider a must read for any PHP developer.
 tags: ['development','php']
 devto_url: https://dev.to/brpaz/my-favorite-php-books-30l7
-cover: uagh1GahReig.jpg
 ---
 
 Hello.

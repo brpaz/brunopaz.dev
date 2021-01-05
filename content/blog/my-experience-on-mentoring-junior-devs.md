@@ -4,7 +4,6 @@ date: 2019-03-21
 summary: The ability to proper onboard and coach Junior Devs is essential for any successful company. I have been working closely with Junior Devs almost since the beginning of my career and its something I really enjoy. In this post, I will share my experiences and give some tips about how to be a great mentor.
 tags: ['leadership']
 devto_url: https://dev.to/brpaz/my-experience-on-mentoring-junior-devs-4hh3
-cover: oPoo3Ga0Ee0N.webp
 ---
 
 The ability to proper onboard and coach Junior Devs is essential for any successful company.

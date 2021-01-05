@@ -3,9 +3,16 @@ const md = require('markdown-it')()
 // Defines the application Base URL.
 const baseUrl = process.env.BASE_URL || 'http://localhost:3000'
 
+const siteDescription =
+  'Web Engineer from Porto, Portugal. Specialized in PHP, Symfony and Golang with some professional Java experience. Strong focus on code quality and engineering practices. Fast learner and look for choosing the best technology for the job. Defender of Compassionate coding and put tech at the service of people.'
+
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
+
+  publicRuntimeConfig: {
+    baseURL: baseUrl,
+  },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -16,12 +23,20 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content:
-          'Web Engineer from Porto, Portugal. Specialized in PHP, Symfony and Golang with some professional Java experience. Strong focus on code quality and engineering practices. Fast learner and look for choosing the best technology for the job. Defender of Compassionate coding and put tech at the service of people.',
+        content: siteDescription,
+      },
+      {
+        name: 'og:description',
+        content: siteDescription,
+      },
+      {
+        hid: 'monetization',
+        name: 'monetization',
+        content: process.env.MONETIZATION_POINTER || '',
       },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
       {
         rel: 'stylesheet',
         href:
@@ -30,14 +45,14 @@ export default {
       {
         rel: 'alternate',
         type: 'application/rss+xml',
-        href: `${baseUrl}/feed.xml`,
+        href: `${baseUrl}/blog/rss.xml`,
         title: 'Bruno Paz - Web Engineer',
       },
     ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [],
+  css: ['@/assets/css/styles.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [{ src: './plugins/vue-carousel.js', mode: 'client' }],
@@ -96,7 +111,8 @@ export default {
   build: {},
 
   loading: {
-    color: 'blue',
+    color: '#2463EB',
+    throttle: 0,
   },
 
   /**
@@ -105,12 +121,12 @@ export default {
    */
   feed: [
     {
-      path: '/rss.xml',
+      path: '/blog/rss.xml',
       async create(feed) {
         feed.options = {
           title: 'Bruno Paz Tech Blog',
           description: 'Tech Writings from Bruno Paz',
-          link: `${baseUrl}/rss.xml`,
+          link: `${baseUrl}/blog/rss.xml`,
         }
 
         // eslint-disable-next-line global-require
@@ -154,6 +170,18 @@ export default {
   },
 
   /**
+   * PWA Module configuration
+   */
+  pwa: {
+    manifest: {
+      name: 'Bruno Paz | Web Engineer',
+    },
+    meta: {
+      theme_color: '#2463EB',
+    },
+  },
+
+  /**
    * Sentry module configuration
    * https://sentry.nuxtjs.org/guide/setup/
    */
@@ -176,10 +204,6 @@ export default {
    */
   optimizedImages: {
     optimizeImages: false,
-  },
-
-  env: {
-    baseUrl,
   },
 
   hooks: {

@@ -4,7 +4,6 @@ date: 2020-04-27
 summary: In this article, I demonstrate how to create a JSON Schema, to provide auto-completion to Hadolint configuration files on VS Code editor.
 tags: vscode,json-schema,productivity
 devto_url: https://dev.to/brpaz/how-to-create-your-own-auto-completion-for-json-and-yaml-files-on-vs-code-with-the-help-of-json-schema-k1i
-cover: kihooS9a.png
 ---
 
 [Visual Studio Code](https://code.visualstudio.com/) has the ability to display autocomplete suggestions for popular configuration files in JSON and YAML format out of the box.

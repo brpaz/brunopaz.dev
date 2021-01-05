@@ -3,15 +3,3 @@
 @tailwind components;
 
 @tailwind utilities;
-
-
-html,
-body {
-  font-family: 'Inter', Roboto, sans-serif;
-  font-size: 18px;
-    @apply antialiased;
-}
-
-a {
-  @apply text-primary-600 hover:text-primary-800;
-}
