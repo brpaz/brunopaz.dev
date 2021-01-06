@@ -1,5 +1,5 @@
 <template>
-  <article class="w-2/3 mx-auto">
+  <article class="w-4/5 lg:w-2/3 mx-auto">
     <page-header :text="post.title" />
 
     <div class="text-xs md:text-right mb-2">{{ formatDate(post) }}</div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto leading-8 w-2/3">
+  <div class="mx-auto leading-8 w-4/5 lg:w-2/3">
     <section id="profile">
       <page-header text="About me" />
       <HelloIcon

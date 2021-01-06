@@ -4,6 +4,7 @@ export default {
       const dt = new Date(post.date)
 
       return dt.toLocaleDateString(undefined, {
+        day: 'numeric',
         month: 'short',
         year: 'numeric',
       })

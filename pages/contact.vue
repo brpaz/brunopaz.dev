@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center w-2/3 mx-auto">
+  <div class="text-center w-4/5 lg:w-2/3 mx-auto">
     <page-header text="Contact" />
     <ContactIcon
       class="m4-8 mt-4 mx-auto"

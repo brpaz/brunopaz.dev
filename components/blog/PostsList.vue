@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col mx-auto w-2/3">
+  <div class="flex flex-col mx-auto w-4/5 lg:w-2/3">
     <PostCard
       v-for="post in posts"
       :key="post.slug"
