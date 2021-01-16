@@ -133,19 +133,27 @@ export default {
   },
 
   methods: {
+    encode(data) {
+      return Object.keys(data)
+        .map(
+          (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+        )
+        .join('&')
+    },
     async handleSubmit(e) {
       this.hasErrors = false
       this.submitSuccess = false
       this.loading = true
 
-      const formData = new FormData(event.target)
-
-      const response = await fetch(event.target.action, {
+      const response = await fetch('/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: formData,
+        body: this.encode({
+          'form-name': event.target.getAttribute('name'),
+          ...name,
+        }),
       })
 
       this.loading = false

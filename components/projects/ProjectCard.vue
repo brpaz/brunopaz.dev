@@ -8,7 +8,7 @@
           :title="`Image for ${project.name}`"
         >
           <nuxt-image
-            :placeholder="true"
+            :placeholder="false"
             :src="coverImage(project)"
             class="block w-full"
             aria-hidden="true"
