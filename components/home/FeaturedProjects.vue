@@ -19,7 +19,7 @@
         class="inline-flex p-4 items-center bg-primary-800 hover:bg-primary-700 text-white hover:text-white rounded-md"
         to="projects"
       >
-        See more</nuxt-link
+        See more projects</nuxt-link
       >
     </div>
   </div>

@@ -16,7 +16,7 @@
       name="contact"
       method="POST"
       data-netlify="true"
-      netlify-honeypot="eegee3EB"
+      data-netlify-honeypot="eegee3EB"
       class="w-full max-w-lg mx-auto"
       @submit.prevent="handleSubmit"
     >

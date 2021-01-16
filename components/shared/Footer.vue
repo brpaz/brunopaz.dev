@@ -4,6 +4,7 @@
       <div class="mt-8 flex justify-center space-x-6">
         <a
           :href="meta.social.twitter"
+          rel="noopener"
           class="text-gray-500 hover:text-gray-700"
           title="Twitter"
         >
@@ -23,6 +24,7 @@
         <a
           :href="meta.social.github"
           target="_blank"
+          rel="noopener"
           class="text-gray-500 hover:text-gray-700"
           title="GitHub"
         >
@@ -44,6 +46,7 @@
         <a
           :href="meta.social.linkedin"
           target="_blank"
+          rel="noopener"
           class="text-gray-500 hover:text-gray-700"
           title="Linkedin"
         >
@@ -67,6 +70,8 @@
           :href="meta.social.devto"
           class="text-gray-500 hover:text-gray-700"
           title="Dev.to"
+          target="_blank"
+          rel="noopener"
         >
           <span class="sr-only">Dev.to</span>
           <svg

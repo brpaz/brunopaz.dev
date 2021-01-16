@@ -103,7 +103,10 @@
         <p>
           From Ulauncher and VSCode Extensions to small libraries, you can check
           my work on
-          <a href="https://github.com/brpaz/repositories" target="_blank"
+          <a
+            href="https://github.com/brpaz/repositories"
+            target="_blank"
+            rel="noopener"
             >GitHub</a
           >
         </p>

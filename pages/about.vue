@@ -28,6 +28,7 @@
         <a
           href="https://medium.com/quick-code/what-it-is-a-t-shaped-developer-and-why-you-should-be-one-e87293e4bb84"
           target="_blank"
+          rel="noopener"
           >T-Shaped Developer</a
         >
         mindset, and I direct my learnings for that. My goal is to be able to
@@ -69,11 +70,17 @@
       <p class="mb-4">
         This was the year I also start working at my first company, <b>ueb</b>,
         a small startup, developing Web solutions for small busineses (ex:
-        <a href="https://www.uebbill.pt/" target="_blank">uebbill</a>) and a
-        customer satisfaction platform for the Automobile area, as well as
-        websites for specific clients, like
-        <a href="https://sosconsultoria.pt/" target="_blank">SOS Consultoria</a>
-        or <a href="https://sporjovem.pt/" target="_blank">Sporjovem</a>.
+        <a href="https://www.uebbill.pt/" target="_blank" rel="noopener"
+          >uebbill</a
+        >) and a customer satisfaction platform for the Automobile area, as well
+        as websites for specific clients, like
+        <a href="https://sosconsultoria.pt/" target="_blank" rel="noopener"
+          >SOS Consultoria</a
+        >
+        or
+        <a href="https://sporjovem.pt/" target="_blank" rel="noopener"
+          >Sporjovem</a
+        >.
       </p>
 
       <p class="mb-4">
@@ -86,8 +93,10 @@
       <p>
         In 2014, it was time for a new challenge and I joined
         <b
-          ><a href="https://group.jumia.com/" target="_blank">Jumia</a> Porto
-          Tech Center.</b
+          ><a href="https://group.jumia.com/" target="_blank" rel="noopener"
+            >Jumia</a
+          >
+          Porto Tech Center.</b
         >
       </p>
 

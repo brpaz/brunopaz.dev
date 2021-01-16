@@ -15,7 +15,9 @@
     </div>
     <div v-if="project.url" class="flex mb-4 mr-6">
       <GlobeIcon with="24" height="24" class="text-blue-600 mr-2" />
-      <a :href="project.url" target="_blank">{{ project.url }}</a>
+      <a :href="project.url" target="_blank" rel="noopener">{{
+        project.url
+      }}</a>
     </div>
   </div>
 </template>
