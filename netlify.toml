@@ -1,9 +1,11 @@
 [build]
-command = "npm run generate"
+command = "yarn generate"
+ignore = "git log -1 --pretty=%B | grep dependabot"
 publish = "dist/"
 
 [build.environment]
 NODE_ENV = "production"
+NODE_VERSION = "14"
 
 # cache Cypress binary in local "node_modules" folder
 # so Netlify caches it
