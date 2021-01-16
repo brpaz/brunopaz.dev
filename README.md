@@ -2,6 +2,8 @@
 
 > Sources for my personal website, [brunopaz.dev](https://brunopaz.dev)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2e952374-f8b2-4230-b1de-0a8708c93af3/deploy-status)](https://app.netlify.com/sites/brunopaz/deploys)
+
 ## Tech stack
 
 * Built with [NuxtJS](https://nuxtjs.org/), [Tailwind CSS](https://tailwindcss.com/). Deployed on [Netlify](https://www.netlify.com/)
