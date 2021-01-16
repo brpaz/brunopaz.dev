@@ -93,3 +93,6 @@ cypress/videos
 cypress/screenshots
 
 .env
+
+# Local Netlify folder
+.netlify

@@ -16,7 +16,7 @@ describe('Blog Page', () => {
     cy.get('#pagination a')
       .eq(1)
       .click()
-      .wait(500)
+      .wait(1000)
       .get('#pagination')
       .find("a[class*='current-page']")
       .contains('2')
