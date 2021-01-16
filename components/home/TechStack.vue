@@ -1,7 +1,7 @@
 <template>
   <section
     id="tech-stack"
-    class="flex flex-col mx-auto justify-center text-center"
+    class="flex flex-col mx-auto justify-center text-center mb-8"
   >
     <h2 class="font-bold text-secondary-600 text-4xl mb-4 text-center">
       Teck Stack

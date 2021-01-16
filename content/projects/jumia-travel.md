@@ -25,6 +25,7 @@ cover: jtravel/cover.png
 images:
   - jtravel/jtravel01.jpg
 position: 4
+featured: true
 ---
 
 With over 25,000 hotel listings across 40 African countries and 200,000 hotels across the globe, Jumia Travel is Africa's N°1 hotel booking website.

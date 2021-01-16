@@ -30,8 +30,8 @@
           target="_blank"
           >T-Shaped Developer</a
         >
-        mindset, and I direct my learnings for that, so I am capable of
-        launching a product, "from idea to production".
+        mindset, and I direct my learnings for that. My goal is to be able to
+        launch an application, "from idea to production".
       </p>
 
       <p class="mb-4">
@@ -41,11 +41,11 @@
       </p>
 
       <p class="mb-4">
-        I am a fast learner and I don´t believe in silver bullets or in use one
-        tech for everything. Context is very important and I try to balance
+        I am a fast learner and I don´t believe in silver bullets or in "Hype
+        Driven Development". Context is very important and I try to balance
         pragmatism, with the normal desire to experiment with some new tech.
-        Sometimes using an older but stable technology is a much better option
-        that experimenting with the latest hype tech.
+        There are many cases where using a stable and "boring" technology is the
+        right choice.
       </p>
     </section>
 

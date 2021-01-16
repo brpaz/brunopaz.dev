@@ -10,12 +10,16 @@ cover: jpay/cover.jpg
 images:
   - jpay/jpay01.png
   - jpay/jpay02.png
+  - jpay/jpay-business01.png
+  - jpay/jpay-business02.png
+  - jpay/jpay-business03.png
 position: 1
+featured: true
 ---
 
-<b>JumiaPay</b> is a free online payment service that enables you to make payments online securely, instantly and cost-effectively.</p>
+<b>JumiaPay</b> is a free online payment service, deeply integrated with the <a href="https://jumia.com.ng">Jumia</a> E-Commerce Platform, the nº1 E-Commerce platform in Africa.
 <!--more-->
-On this project, I worked mostly on the following areas:
+I was part of the "Business" team, which was responsible for developing the platform thar merchants and sellers of JumiaPay can use to manage their Sales and Wallet. Some of the work included:
 
 * Defined the architechure for the new Business Area application for JumiaPay merchants and integrate with the existing JumiaPay services.
 * Implemented features on Business Area application, including:
@@ -26,4 +30,3 @@ On this project, I worked mostly on the following areas:
   * Integration with "Seller center" Jumia application for seller Payouts
   * Purchases and Refunds List
   * Settlements 
-* Improvments and bug fixes on the core of JumiaPay app.

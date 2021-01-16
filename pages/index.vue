@@ -3,6 +3,7 @@
     <home-hero />
     <what-i-do />
     <tech-stack />
+    <featured-projects />
   </div>
 </template>
 
@@ -10,7 +11,8 @@
 import HomeHero from '~/components/home/HomeHero.vue'
 import WhatIDo from '~/components/home/WhatIDo.vue'
 import TechStack from '~/components/home/TechStack.vue'
+import FeaturedProjects from '~/components/home/FeaturedProjects.vue'
 export default {
-  components: { HomeHero, WhatIDo, TechStack },
+  components: { HomeHero, WhatIDo, TechStack, FeaturedProjects },
 }
 </script>

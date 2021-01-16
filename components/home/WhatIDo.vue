@@ -97,15 +97,15 @@
         </svg>
         <h3 class="text-lg font-semibold mb-4">Open Source</h3>
         <p>
-          I am grateful to all the Open source work I have used, so I try to
-          give back a little by also releasing Open source code when possible.
+          I am grateful to all OSS Software that make our lives easier, so I try
+          to give back when building something that could be useful to others.
         </p>
         <p>
-          You can check my work on my
+          From Ulauncher and VSCode Extensions to small libraries, you can check
+          my work on
           <a href="https://github.com/brpaz/repositories" target="_blank"
             >GitHub</a
           >
-          profile.
         </p>
       </div>
     </div>

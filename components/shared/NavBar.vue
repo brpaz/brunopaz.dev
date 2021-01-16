@@ -1,5 +1,5 @@
 <template>
-  <header class="flex w-full h-16 justify-between items-center mb-16">
+  <header class="flex w-full h-16 justify-between items-center mb-16 bg-white">
     <nuxt-link class="flex items-center" to="/">
       <HomeLogo with="72px" height="72px" class="fill-current text-blue-600" />
       <span class="text-blue-600 font-bold text-xl uppercase">Bruno Paz</span>
@@ -23,7 +23,7 @@
     <nav
       v-if="showMobileMenu"
       class="main-nav md:hidden absolute left-0 bg-white w-full text-center border-b shadow-sm"
-      style="top: 72px"
+      style="top: 96px"
     >
       <ul>
         <li class="block mb-2">
