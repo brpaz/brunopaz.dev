@@ -133,6 +133,13 @@ export default {
   },
 
   methods: {
+    encode(data) {
+      return Object.keys(data)
+        .map(
+          (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+        )
+        .join('&')
+    },
     async handleSubmit(e) {
       this.hasErrors = false
       this.submitSuccess = false
@@ -140,12 +147,14 @@ export default {
 
       const formData = new FormData(event.target)
 
-      const response = await fetch('/', {
+      const data = Array.from(formData.entries())
+      console.log(data)
+      const response = await fetch(event.target.action, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: formData,
+        body: this.encode(data),
       })
 
       this.loading = false
