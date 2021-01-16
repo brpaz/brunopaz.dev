@@ -5,13 +5,14 @@
         <nuxt-link
           class="w-full"
           :to="{ name: 'projects-slug', params: { slug: project.slug } }"
+          :title="`Image for ${project.name}`"
         >
           <nuxt-image
             :placeholder="true"
             :src="coverImage(project)"
             class="block w-full"
             aria-hidden="true"
-            alt="Image"
+            :alt="`Image for ${project.name}`"
           />
         </nuxt-link>
       </div>

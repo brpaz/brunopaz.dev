@@ -74,7 +74,9 @@
         <p>I enjoy writing and sharing my discoveries and knowledge.</p>
         <p>
           One of the Top 500 contributors of 2019 on
-          <a href="https://dev.to/brpaz" target="_blank">dev.to</a>
+          <a href="https://dev.to/brpaz" target="_blank" rel="noopener"
+            >dev.to</a
+          >
           and one time awarded the "weekly must read" badge.
         </p>
       </div>

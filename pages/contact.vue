@@ -100,6 +100,13 @@
           </svg>
           Send
         </button>
+
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden">
+          <label
+            >Don’t fill this out if you’re human: <input name="eegee3EB"
+          /></label>
+        </p>
       </div>
 
       <div v-if="submitSuccess" class="text-green-600">
