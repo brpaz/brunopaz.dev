@@ -151,6 +151,7 @@ export default {
   @apply mx-auto;
 
   max-width: 100px;
+  width: 100%;
 }
 
 #tech-stack .language-logo {
