@@ -7,8 +7,8 @@
           :to="{ name: 'projects-slug', params: { slug: project.slug } }"
           :title="`Image for ${project.name}`"
         >
-          <nuxt-image
-            :placeholder="false"
+          <!-- replace this with nuxt-image when more stable -->
+          <img
             :src="coverImage(project)"
             class="block w-full"
             aria-hidden="true"
