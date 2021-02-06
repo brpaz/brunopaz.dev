@@ -54,7 +54,7 @@ export default {
   },
   computed: {
     postShareUrl() {
-      return `${this.$config.baseUrl}${this.$route.fullPath}`
+      return `${this.$config.baseURL}${this.$route.fullPath}`
     },
   },
 }
