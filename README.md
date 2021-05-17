@@ -6,7 +6,7 @@
 
 ## Tech stack
 
-* Built with [NuxtJS](https://nuxtjs.org/), [Tailwind CSS](https://tailwindcss.com/). Deployed on [Netlify](https://www.netlify.com/)
+* Built with [NuxtJS](https://nuxtjs.org/), [Tailwind CSS](https://tailwindcss.com/) and deployed on [Netlify](https://www.netlify.com/)
 
 
 ## Build Setup
