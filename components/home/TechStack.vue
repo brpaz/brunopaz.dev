@@ -16,138 +16,226 @@
     <div class="flex flex-col">
       <div class="flex flex-wrap justify-center">
         <div class="language-logo" title="PHP">
-          <PhpLogo />
+          <img
+            data-src="~assets/icons/languages/php.svg"
+            alt="PHP"
+            v-lazy-load
+          />
         </div>
 
         <div class="language-logo" title="Symfony">
-          <SymfonyLogo />
+          <img
+            data-src="~assets/icons/languages/symfony.svg"
+            alt="Symfony"
+            v-lazy-load
+          />
         </div>
 
         <div class="language-logo" title="Golang">
-          <GolangLogo height="120px" />
+          <img
+            data-src="~assets/icons/languages/go.svg"
+            style="height: 120px"
+            alt="Golang"
+            v-lazy-load
+          />
         </div>
 
-        <div class="language-logo" title="NodeJS"><NodeLogo /></div>
+        <div class="language-logo" title="NodeJS">
+          <img
+            data-src="~assets/icons/languages/node.svg"
+            alt="NodeJS"
+            v-lazy-load
+          />
+        </div>
 
         <div class="language-logo" title="Java">
-          <JavaLogo />
+          <img
+            data-src="~assets/icons/languages/java.svg"
+            alt="Java"
+            v-lazy-load
+          />
         </div>
 
         <div class="language-logo" title="MySQL">
-          <MysqlLogo />
+          <img
+            data-src="~assets/icons/languages/mysql.svg"
+            alt="MySQL"
+            v-lazy-load
+          />
         </div>
 
         <div class="language-logo" title="PostgresSQL">
-          <PostgresLogo />
+          <img
+            data-src="~assets/icons/languages/postgres.svg"
+            alt="Postgres"
+            v-lazy-load
+          />
         </div>
 
-        <div class="language-logo" title="Redis"><RedisLogo /></div>
+        <div class="language-logo" title="Redis">
+          <img
+            data-src="~assets/icons/languages/redis.svg"
+            alt="Redis"
+            v-lazy-load
+          />
+        </div>
 
-        <div class="language-logo" title="ElasticSearch"><ElasticLogo /></div>
-        <div class="language-logo" title="Apache Kafka"><KafkaLogo /></div>
-        <div class="language-logo" title="HTML"><HtmlLogo /></div>
+        <div class="language-logo" title="ElasticSearch">
+          <img
+            data-src="~assets/icons/languages/elasticsearch.svg"
+            alt="ElasticSearch"
+            v-lazy-load
+          />
+        </div>
+        <div class="language-logo" title="Apache Kafka">
+          <img
+            data-src="~assets/icons/languages/apache-kafka.svg"
+            alt="Apache Kafka"
+            v-lazy-load
+          />
+        </div>
+        <div class="language-logo" title="HTML">
+          <img
+            data-src="~assets/icons/languages/html5.svg"
+            alt="HTML 5"
+            v-lazy-load
+          />
+        </div>
 
         <div class="language-logo" title="Javascript">
-          <JavascriptLogo />
+          <img
+            data-src="~assets/icons/languages/javascript.svg"
+            alt="Javascript"
+            v-lazy-load
+          />
         </div>
 
-        <div class="language-logo" title="NuxtJS"><NuxtJsLogo /></div>
+        <div class="language-logo" title="NuxtJS">
+          <img
+            data-src="~assets/icons/languages/nuxt.svg"
+            alt="NuxtJS"
+            v-lazy-load
+          />
+        </div>
 
-        <div class="language-logo" title="TailwindCSS"><TailwindcssLogo /></div>
+        <div class="language-logo" title="TailwindCSS">
+          <img
+            data-src="~assets/icons/languages/tailwindcss.svg"
+            alt="TailwindCSS"
+            v-lazy-load
+          />
+        </div>
 
-        <div class="language-logo" title="Linux"><LinuxLogo /></div>
+        <div class="language-logo" title="Linux">
+          <img
+            data-src="~assets/icons/languages/linux.svg"
+            alt="Linux"
+            v-lazy-load
+          />
+        </div>
         <div class="language-logo" title="Git">
-          <GitLogo />
+          <img
+            data-src="~assets/icons/languages/git.svg"
+            alt="Git"
+            v-lazy-load
+          />
         </div>
 
-        <div class="language-logo" title="Docker"><DockerLogo /></div>
-        <div class="language-logo" title="Nginx"><NginxLogo /></div>
+        <div class="language-logo" title="Docker">
+          <img
+            data-src="~assets/icons/languages/docker.svg"
+            alt="Docker"
+            v-lazy-load
+          />
+        </div>
+        <div class="language-logo" title="Nginx">
+          <img
+            data-src="~assets/icons/languages/nginx.svg"
+            alt="Nginx"
+            v-lazy-load
+          />
+        </div>
 
         <div class="language-logo" title="DigitalOcean">
-          <DigitalOceanLogo />
+          <img
+            data-src="~assets/icons/languages/digitalocean.svg"
+            alt="DigitalOcean"
+            v-lazy-load
+          />
         </div>
         <div class="language-logo" title="Google Cloud Platform">
-          <GoogleCloudLogo />
+          <img
+            data-src="~assets/icons/languages/google-cloud.svg"
+            alt="Google Cloud"
+            v-lazy-load
+          />
         </div>
 
-        <div class="language-logo" title="Amazon Web Services"><AwsLogo /></div>
+        <div class="language-logo" title="Amazon Web Services">
+          <img
+            data-src="~assets/icons/languages/aws.svg"
+            alt="AWS"
+            v-lazy-load
+          />
+        </div>
 
-        <div class="language-logo" title="Netlify"><NetlifyLogo /></div>
-        <div class="language-logo" title="Ansible"><AnsibleLogo /></div>
+        <div class="language-logo" title="Netlify">
+          <img
+            data-src="~assets/icons/languages/netlify.svg"
+            alt="Netlify"
+            v-lazy-load
+          />
+        </div>
+        <div class="language-logo" title="Ansible">
+          <img
+            data-src="~assets/icons/languages/ansible.svg"
+            alt="Ansible"
+            v-lazy-load
+          />
+        </div>
 
-        <div class="language-logo" title="GitHub"><GitHubLogo /></div>
-        <div class="language-logo" title="GitLab"><GitlabLogo /></div>
+        <div class="language-logo" title="GitHub">
+          <img
+            data-src="~assets/icons/languages/github.svg"
+            alt="GitHub"
+            v-lazy-load
+          />
+        </div>
+        <div class="language-logo" title="GitLab">
+          <img
+            data-src="~assets/icons/languages/gitlab.svg"
+            alt="GitLab"
+            v-lazy-load
+          />
+        </div>
 
-        <div class="language-logo" title="Jenkins"><JenkinsLogo /></div>
-        <div class="language-logo" title="Jira"><JiraLogo /></div>
+        <div class="language-logo" title="Jenkins">
+          <img
+            data-src="~assets/icons/languages/jenkins.svg"
+            alt="Jenkins"
+            v-lazy-load
+          />
+        </div>
+        <div class="language-logo" title="Jira">
+          <img
+            data-src="~assets/icons/languages/jira.svg"
+            alt="Jira"
+            v-lazy-load
+          />
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import PhpLogo from '~/assets/icons/languages/php.svg?inline'
-import SymfonyLogo from '~/assets/icons/languages/symfony.svg?inline'
-import GolangLogo from '~/assets/icons/languages/go.svg?inline'
-import GitLogo from '~/assets/icons/languages/git.svg?inline'
-import HtmlLogo from '~/assets/icons/languages/html5.svg?inline'
-import JavaLogo from '~/assets/icons/languages/java.svg?inline'
-import JavascriptLogo from '~/assets/icons/languages/javascript.svg?inline'
-import MysqlLogo from '~/assets/icons/languages/mysql.svg?inline'
-import PostgresLogo from '~/assets/icons/languages/postgres.svg?inline'
-import RedisLogo from '~/assets/icons/languages/redis.svg?inline'
-import NginxLogo from '~/assets/icons/languages/nginx.svg?inline'
-import LinuxLogo from '~/assets/icons/languages/linux.svg?inline'
-import AwsLogo from '~/assets/icons/languages/aws.svg?inline'
-import NodeLogo from '~/assets/icons/languages/node.svg?inline'
-import DockerLogo from '~/assets/icons/languages/docker.svg?inline'
-import AnsibleLogo from '~/assets/icons/languages/ansible.svg?inline'
-import DigitalOceanLogo from '~/assets/icons/languages/digitalocean.svg?inline'
-import GoogleCloudLogo from '~/assets/icons/languages/google-cloud.svg?inline'
-import TailwindcssLogo from '~/assets/icons/languages/tailwindcss.svg?inline'
-import NuxtJsLogo from '~/assets/icons/languages/nuxt.svg?inline'
-import ElasticLogo from '~/assets/icons/languages/elastic.svg?inline'
-import GitHubLogo from '~/assets/icons/languages/github.svg?inline'
-import GitlabLogo from '~/assets/icons/languages/gitlab.svg?inline'
-import JenkinsLogo from '~/assets/icons/languages/jenkins.svg?inline'
-import NetlifyLogo from '~/assets/icons/languages/netlify.svg?inline'
-import KafkaLogo from '~/assets/icons/languages/apache-kafka.svg?inline'
-import JiraLogo from '~/assets/icons/languages/jira.svg?inline'
 export default {
-  components: {
-    PhpLogo,
-    SymfonyLogo,
-    GolangLogo,
-    GitLogo,
-    HtmlLogo,
-    JavascriptLogo,
-    JavaLogo,
-    MysqlLogo,
-    PostgresLogo,
-    RedisLogo,
-    NginxLogo,
-    AwsLogo,
-    GoogleCloudLogo,
-    DockerLogo,
-    NodeLogo,
-    AnsibleLogo,
-    DigitalOceanLogo,
-    TailwindcssLogo,
-    NuxtJsLogo,
-    LinuxLogo,
-    ElasticLogo,
-    GitHubLogo,
-    GitlabLogo,
-    JenkinsLogo,
-    NetlifyLogo,
-    KafkaLogo,
-    JiraLogo,
-  },
+  components: {},
 }
 </script>
 
 <style lang="postcss">
-#tech-stack svg {
+#tech-stack img {
   @apply mx-auto;
 
   max-width: 100px;

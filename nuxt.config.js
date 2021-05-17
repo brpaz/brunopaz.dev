@@ -38,20 +38,22 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
       {
+        rel: 'dns-prefetch',
+        href: '//fonts.googleapis.com',
+      },
+      {
         rel: 'preconnect',
-        href: 'https://fonts.gstatic.com',
+        href: '//fonts.gstatic.com',
         crossorigin: true,
       },
       {
         rel: 'preload',
         as: 'style',
-        href:
-          'https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swap',
+        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swap',
       },
       {
         rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swap',
+        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swap',
         media: 'print',
         onload: "this.media='all'",
       },
@@ -81,7 +83,6 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/google-analytics',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -93,9 +94,14 @@ export default {
     '@nuxtjs/feed',
     '@nuxtjs/sitemap',
     '@nuxtjs/svg',
-    '@nuxt/image',
     'vue-social-sharing/nuxt',
     '@nuxtjs/sentry',
+    [
+      'nuxt-lazy-load',
+      {
+        directiveOnly: true,
+      },
+    ],
   ],
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
@@ -121,7 +127,9 @@ export default {
     fallback: '404.html',
   },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    extractCSS: true,
+  },
 
   loading: {
     color: '#2463EB',
@@ -201,14 +209,6 @@ export default {
   sentry: {
     dsn: process.env.SENTRY_DSN || '',
     dev: process.env.NODE_ENV !== 'production',
-  },
-
-  /**
-   * Google Analytics Configuration
-   * see https://google-analytics.nuxtjs.org/
-   */
-  googleAnalytics: {
-    id: process.env.GA_ID || '',
   },
 
   /**
