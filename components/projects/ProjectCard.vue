@@ -9,7 +9,8 @@
         >
           <!-- replace this with nuxt-image when more stable -->
           <img
-            :src="coverImage(project)"
+            v-lazy-load
+            :data-src="coverImage(project)"
             class="block w-full"
             aria-hidden="true"
             :alt="`Image for ${project.name}`"

@@ -1,7 +1,16 @@
 <template>
   <div class="flex md:w-1/2 sm:w-full lg:w-1/3">
     <div
-      class="flex flex-col rounded-lg shadow-lg mb-8 p-1 mr-4 bg-gray-200 w-full"
+      class="
+        flex flex-col
+        rounded-lg
+        shadow-lg
+        mb-8
+        p-1
+        mr-4
+        bg-gray-200
+        w-full
+      "
     >
       <div class="flex flex-col p-4 h-full">
         <div class="flex h-16">

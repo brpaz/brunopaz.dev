@@ -5,10 +5,10 @@
   >
     <client-only>
       <carousel
-        :perPage="1"
-        :navigationEnabled="true"
-        paginationColor="#475569"
-        paginationActiveColor="#2563EB"
+        :per-page="1"
+        :navigation-enabled="true"
+        pagination-color="#475569"
+        pagination-active-color="#2563EB"
       >
         <slide
           v-for="image in images"

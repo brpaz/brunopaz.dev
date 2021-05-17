@@ -24,15 +24,20 @@ const POSTS_PER_PAGE = 5
 export default {
   components: { PostsList, Pagination, PageHeader },
   scrollToTop: true,
-  async fetch() {
-    await this.fetchPosts()
-  },
   data() {
     return {
       posts: [],
       pagination: {
         total: 0,
       },
+    }
+  },
+  async fetch() {
+    await this.fetchPosts()
+  },
+  head() {
+    return {
+      title: 'Blog | Bruno Paz',
     }
   },
   methods: {
@@ -56,11 +61,6 @@ export default {
         total: totalPages,
       }
     },
-  },
-  head() {
-    return {
-      title: 'Blog | Bruno Paz',
-    }
   },
 }
 </script>

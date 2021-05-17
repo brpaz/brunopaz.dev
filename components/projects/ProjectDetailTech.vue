@@ -11,8 +11,9 @@
         style="width: 96px; height: 96px"
         :title="tech"
         :alt="tech"
-        v-html="renderTechIcon(tech)"
-      />
+      >
+        <img :src="techImage(tech)" :alt="tech" />
+      </div>
     </div>
   </div>
 </template>
@@ -26,11 +27,11 @@ export default {
     },
   },
   methods: {
-    renderTechIcon(name) {
+    techImage(name) {
       name = name.toLowerCase().replace(' ', '-')
       let src = ''
       try {
-        src = require(`~/assets/icons/languages/${name}.svg?raw`)
+        src = require(`~/assets/icons/languages/${name}.svg`)
       } catch (e) {
         console.error(e)
       }
@@ -41,7 +42,7 @@ export default {
 </script>
 
 <style>
-.technologies-list svg {
+.technologies-list img {
   width: 64px;
   overflow: hidden;
 }

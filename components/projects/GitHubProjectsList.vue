@@ -8,7 +8,16 @@
 
     <div class="flex justify-center w-full">
       <a
-        class="inline-flex p-4 items-center bg-gray-800 hover:bg-gray-700 text-white hover:text-white rounded-md"
+        class="
+          inline-flex
+          p-4
+          items-center
+          bg-gray-800
+          hover:bg-gray-700
+          text-white
+          hover:text-white
+          rounded-md
+        "
         href="https://github.com/brpaz?tab=repositories&q=&type=source&language="
         target="_blank"
       >

@@ -6,7 +6,16 @@
           <img
             src="~/assets/images/profile_pic.png"
             alt="Profile Picture"
-            class="shadow-lg text-center block rounded-full max-w-full h-auto align-middle border-none"
+            class="
+              shadow-lg
+              text-center
+              block
+              rounded-full
+              max-w-full
+              h-auto
+              align-middle
+              border-none
+            "
           />
         </div>
       </div>

@@ -28,16 +28,16 @@ import GlobeIcon from '~/assets/icons/globe.svg?inline'
 import FolderIcon from '~/assets/icons/folder-open.svg?inline'
 export default {
   components: { CalendarIcon, GlobeIcon, FolderIcon },
-  props: {
-    project: {
-      type: Object,
-      required: true,
-    },
-  },
   filters: {
     capitalize(value) {
       value.toLowerCase().split(' ')
       return value.charAt(0).toUpperCase() + value.slice(1)
+    },
+  },
+  props: {
+    project: {
+      type: Object,
+      required: true,
     },
   },
 }
