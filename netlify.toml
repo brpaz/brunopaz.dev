@@ -1,6 +1,6 @@
 [build]
 command = "NODE_ENV=production yarn generate"
-ignore = "git log -1 --pretty=%B | grep dependabot"
+# ignore = "git log -1 --pretty=%B | grep dependabot"
 publish = "dist/"
 
 [build.environment]
