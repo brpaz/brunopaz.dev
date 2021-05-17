@@ -96,3 +96,5 @@ cypress/screenshots
 
 # Local Netlify folder
 .netlify
+
+.husky

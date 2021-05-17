@@ -22,7 +22,17 @@
 
     <nav
       v-if="showMobileMenu"
-      class="main-nav md:hidden absolute left-0 bg-white w-full text-center border-b shadow-sm"
+      class="
+        main-nav
+        md:hidden
+        absolute
+        left-0
+        bg-white
+        w-full
+        text-center
+        border-b
+        shadow-sm
+      "
       style="top: 96px"
     >
       <ul>
@@ -41,7 +51,18 @@
       </ul>
     </nav>
     <button
-      class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none"
+      class="
+        md:hidden
+        inline-flex
+        items-center
+        justify-center
+        p-2
+        rounded-md
+        text-gray-400
+        hover:text-gray-500
+        hover:bg-gray-100
+        focus:outline-none
+      "
       aria-expanded="false"
       style="width: 36px; height: 36px"
       @click="toggleMobileMenu()"

@@ -23,7 +23,15 @@
       <div class="flex flex-wrap mb-6">
         <div class="w-full md:w-1/2 justify-between mb-4 md:pr-4">
           <label
-            class="block text-left uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            class="
+              block
+              text-left
+              uppercase
+              tracking-wide
+              text-gray-700 text-xs
+              font-bold
+              mb-2
+            "
             for="name"
           >
             Name <span class="text-red-600"> * </span>
@@ -33,12 +41,34 @@
             name="name"
             type="text"
             required="required"
-            class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            class="
+              appearance-none
+              block
+              w-full
+              bg-gray-200
+              text-gray-700
+              border
+              rounded
+              py-3
+              px-4
+              mb-3
+              leading-tight
+              focus:outline-none
+              focus:bg-white
+            "
           />
         </div>
         <div class="w-full md:w-1/2">
           <label
-            class="block text-left uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            class="
+              block
+              text-left
+              uppercase
+              tracking-wide
+              text-gray-700 text-xs
+              font-bold
+              mb-2
+            "
             for="email"
           >
             Email address <span class="text-red-600"> * </span>
@@ -48,7 +78,21 @@
             name="email"
             type="email"
             required
-            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            class="
+              appearance-none
+              block
+              w-full
+              bg-gray-200
+              text-gray-700
+              border border-gray-200
+              rounded
+              py-3
+              px-4
+              leading-tight
+              focus:outline-none
+              focus:bg-white
+              focus:border-gray-500
+            "
           />
         </div>
       </div>
@@ -56,7 +100,15 @@
       <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">
           <label
-            class="block text-left uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            class="
+              block
+              text-left
+              uppercase
+              tracking-wide
+              text-gray-700 text-xs
+              font-bold
+              mb-2
+            "
             for="message"
           >
             Message <span class="text-red-600"> * </span>
@@ -65,7 +117,25 @@
             id="message"
             name="message"
             required="required"
-            class="no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
+            class="
+              no-resize
+              appearance-none
+              block
+              w-full
+              bg-gray-200
+              text-gray-700
+              border border-gray-200
+              rounded
+              py-3
+              px-4
+              mb-3
+              leading-tight
+              focus:outline-none
+              focus:bg-white
+              focus:border-gray-500
+              h-48
+              resize-none
+            "
           ></textarea>
         </div>
       </div>
@@ -73,7 +143,23 @@
       <div class="mb-4">
         <button
           type="submit"
-          class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-blue-400 hover:bg-blue-600 transition ease-in-out duration-150"
+          class="
+            inline-flex
+            items-center
+            px-4
+            py-2
+            border border-transparent
+            text-base
+            leading-6
+            font-medium
+            rounded-md
+            text-white
+            bg-blue-400
+            hover:bg-blue-600
+            transition
+            ease-in-out
+            duration-150
+          "
           :disabled="loading"
           :class="{ 'cursor-not-allowed': loading }"
         >
@@ -131,6 +217,11 @@ export default {
       submitSuccess: false,
     }
   },
+  head() {
+    return {
+      title: 'Contact | Bruno Paz',
+    }
+  },
 
   methods: {
     async handleSubmit(e) {
@@ -155,11 +246,6 @@ export default {
         this.hasErrors = true
       }
     },
-  },
-  head() {
-    return {
-      title: 'Contact | Bruno Paz',
-    }
   },
 }
 </script>

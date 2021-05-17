@@ -96,9 +96,6 @@
 
 <script>
 export default {
-  async fetch() {
-    this.meta = await this.$nuxt.context.$content('meta').fetch()
-  },
   data() {
     return {
       currentYear: new Date().getFullYear(),
@@ -106,6 +103,9 @@ export default {
         social: {},
       },
     }
+  },
+  async fetch() {
+    this.meta = await this.$nuxt.context.$content('meta').fetch()
   },
 }
 </script>

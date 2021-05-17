@@ -2,13 +2,33 @@
   <div v-if="total > 1">
     <nav
       id="pagination"
-      class="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0 w-1/2 mx-auto"
+      class="
+        border-t border-gray-200
+        px-4
+        flex
+        items-center
+        justify-between
+        sm:px-0
+        w-1/2
+        mx-auto
+      "
     >
       <div class="-mt-px w-0 flex-1 flex">
         <nuxt-link
           v-if="page > 1"
           :to="{ name: 'blog-page-id', params: { page: `${page - 1}` } }"
-          class="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
+          class="
+            border-t-2 border-transparent
+            pt-4
+            pr-1
+            inline-flex
+            items-center
+            text-sm
+            font-medium
+            text-gray-500
+            hover:text-gray-700
+            hover:border-gray-300
+          "
         >
           <!-- Heroicon name: arrow-narrow-left -->
           <svg
@@ -33,7 +53,19 @@
           <nuxt-link
             :v-if="item !== '...'"
             :to="{ name: 'blog-page-id', params: { page: item } }"
-            class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+            class="
+              border-transparent
+              text-gray-500
+              hover:text-gray-700
+              hover:border-gray-300
+              border-t-2
+              pt-4
+              px-4
+              inline-flex
+              items-center
+              text-sm
+              font-medium
+            "
             :class="{ 'text-blue-600 font-bold current-page': page == item }"
           >
             {{ item }}
@@ -44,7 +76,18 @@
         <nuxt-link
           v-if="hasNext"
           :to="{ name: 'blog-page-id', params: { page: `${page + 1}` } }"
-          class="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300"
+          class="
+            border-t-2 border-transparent
+            pt-4
+            pl-1
+            inline-flex
+            items-center
+            text-sm
+            font-medium
+            text-gray-500
+            hover:text-gray-700
+            hover:border-gray-300
+          "
         >
           Next
           <svg

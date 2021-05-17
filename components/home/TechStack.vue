@@ -17,210 +17,210 @@
       <div class="flex flex-wrap justify-center">
         <div class="language-logo" title="PHP">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/php.svg"
             alt="PHP"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="Symfony">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/symfony.svg"
             alt="Symfony"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="Golang">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/go.svg"
             style="height: 120px"
             alt="Golang"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="NodeJS">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/node.svg"
             alt="NodeJS"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="Java">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/java.svg"
             alt="Java"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="MySQL">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/mysql.svg"
             alt="MySQL"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="PostgresSQL">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/postgres.svg"
             alt="Postgres"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="Redis">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/redis.svg"
             alt="Redis"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="ElasticSearch">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/elasticsearch.svg"
             alt="ElasticSearch"
-            v-lazy-load
           />
         </div>
         <div class="language-logo" title="Apache Kafka">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/apache-kafka.svg"
             alt="Apache Kafka"
-            v-lazy-load
           />
         </div>
         <div class="language-logo" title="HTML">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/html5.svg"
             alt="HTML 5"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="Javascript">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/javascript.svg"
             alt="Javascript"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="NuxtJS">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/nuxt.svg"
             alt="NuxtJS"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="TailwindCSS">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/tailwindcss.svg"
             alt="TailwindCSS"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="Linux">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/linux.svg"
             alt="Linux"
-            v-lazy-load
           />
         </div>
         <div class="language-logo" title="Git">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/git.svg"
             alt="Git"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="Docker">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/docker.svg"
             alt="Docker"
-            v-lazy-load
           />
         </div>
         <div class="language-logo" title="Nginx">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/nginx.svg"
             alt="Nginx"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="DigitalOcean">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/digitalocean.svg"
             alt="DigitalOcean"
-            v-lazy-load
           />
         </div>
         <div class="language-logo" title="Google Cloud Platform">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/google-cloud.svg"
             alt="Google Cloud"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="Amazon Web Services">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/aws.svg"
             alt="AWS"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="Netlify">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/netlify.svg"
             alt="Netlify"
-            v-lazy-load
           />
         </div>
         <div class="language-logo" title="Ansible">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/ansible.svg"
             alt="Ansible"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="GitHub">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/github.svg"
             alt="GitHub"
-            v-lazy-load
           />
         </div>
         <div class="language-logo" title="GitLab">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/gitlab.svg"
             alt="GitLab"
-            v-lazy-load
           />
         </div>
 
         <div class="language-logo" title="Jenkins">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/jenkins.svg"
             alt="Jenkins"
-            v-lazy-load
           />
         </div>
         <div class="language-logo" title="Jira">
           <img
+            v-lazy-load
             data-src="~assets/icons/languages/jira.svg"
             alt="Jira"
-            v-lazy-load
           />
         </div>
       </div>
