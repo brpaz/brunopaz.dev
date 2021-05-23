@@ -2,12 +2,13 @@
   <article class="w-4/5 lg:w-2/3 mx-auto">
     <page-header :text="post.title" />
 
-    <div class="text-xs md:text-right mb-2">{{ formatDate(post) }}</div>
-    <div v-if="post.devto_url" class="mb-4 text-xs">
+    <div class="text-xs text-center mb-2">{{ formatDate(post) }}</div>
+
+    <nuxt-content :document="post" class="mt-8" />
+
+    <div v-if="post.devto_url" class="text-xs">
       This post was cross posted on <a :href="post.devto_url">Dev.to</a>
     </div>
-
-    <nuxt-content :document="post" />
 
     <social-share :post="post" />
   </article>
