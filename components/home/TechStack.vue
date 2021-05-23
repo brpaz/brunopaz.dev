@@ -35,7 +35,6 @@
           <img
             v-lazy-load
             data-src="~assets/icons/languages/go.svg"
-            style="height: 120px"
             alt="Golang"
           />
         </div>
@@ -179,11 +178,11 @@
           />
         </div>
 
-        <div class="language-logo" title="Netlify">
+        <div class="language-logo" title="Kubernetes">
           <img
             v-lazy-load
-            data-src="~assets/icons/languages/netlify.svg"
-            alt="Netlify"
+            data-src="~assets/icons/languages/kubernetes.svg"
+            alt="Kubernetes"
           />
         </div>
         <div class="language-logo" title="Ansible">
