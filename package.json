@@ -28,7 +28,7 @@
     "@nuxtjs/feed": "^2.0.0",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/sentry": "^5.0.3",
-    "core-js": "^3.12.1",
+    "core-js": "^3.15.1",
     "nuxt": "^2.15.6",
     "nuxt-lazy-load": "^1.2.6",
     "prism-themes": "^1.7.0",
