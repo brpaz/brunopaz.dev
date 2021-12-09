@@ -53,7 +53,7 @@ let sitePreviewImage = Astro.props.previewImage || `${Astro.site.origin}/img/sit
 
     {sentryEnabled &&
       <script src={`https://js.sentry-cdn.com/${sentryKey}.min.js`}
-      crossorigin="anonymous"
+      crossorigin="anonymous" defer
     ></script>
 
     }
