@@ -19,6 +19,6 @@ describe("Blog Page", () => {
       .find("a[class*='current-page']")
       .contains("2");
 
-    cy.url().should("include", "/blog/2");
+    cy.url().should("include", "/blog/page/2");
   });
 });

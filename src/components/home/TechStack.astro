@@ -61,7 +61,7 @@ const languages = [
       <div class="flex flex-wrap justify-center">
          {languages.map((item) => (
             <div title={item} class="language-logo">
-                <img alt={item}
+                <img alt={item} width="100" height="100"
                 src={Astro.resolve(`../../assets/icons/languages/${getLanguageIconName(item)}`)} loading="lazy">
             </div>
         ))}
