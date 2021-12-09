@@ -1,0 +1,72 @@
+---
+import { getLanguageIconName } from '~/utils/icons.ts'
+
+const languages = [
+    'PHP',
+    'Symfony',
+    'Golang',
+    'NodeJS',
+    'Java',
+    'TypeScript',
+    'MySQL',
+    'Postgres',
+    'Redis',
+    'ElasticSearch',
+    'Apache Kafka',
+    'JavaScript',
+    'NuxtJS',
+    'TailwindCSS',
+    'Linux',
+    'Git',
+    'Docker',
+    'Kubernetes',
+    'DigitalOcean',
+    'Amazon Web Services',
+    'Google Cloud',
+    'Ansible',
+    'Terraform',
+    'Netlify',
+];
+---
+<style>
+#tech-stack img {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100px;
+    width: 100%;
+}
+.language-logo {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+</style>
+<section id="tech-stack" class="flex flex-col mx-auto justify-center text-center mb-12">
+   <h2 class="font-bold text-neutral-600 text-4xl mb-4 text-center">
+      Teck Stack
+   </h2>
+   <div class="mb-12">
+      <p>
+         I believe in always choosing the most appropriate technology for the job.
+      </p>
+      <p>
+        Here are some technologies that I have used or that I am familiar with:
+      </p>
+   </div>
+   <div class="flex flex-col">
+      <div class="flex flex-wrap justify-center">
+         {languages.map((item) => (
+            <div title={item} class="language-logo">
+                <img alt={item}
+                src={Astro.resolve(`../../assets/icons/languages/${getLanguageIconName(item)}`)} loading="lazy">
+            </div>
+        ))}
+      </div>
+   </div>
+</section>
+
+

@@ -1,0 +1,19 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  font-family: 'Inter', Roboto, sans-serif;
+  @apply text-lg;
+  @apply h-screen w-full flex flex-col text-neutral-600 bg-no-repeat bg-fixed;
+}
+
+a {
+  @apply text-primary-400;
+}
+
+a:hover {
+  @apply text-primary-600;
+}

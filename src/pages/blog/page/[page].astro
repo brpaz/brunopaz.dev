@@ -1,0 +1,63 @@
+---
+import DefaultLayout from '~/layouts/Default.astro'
+import PageTitle from '~/components/shared/PageTitle.astro'
+import Post from '~/components/blog/Post.astro'
+import Pagination from '~/components/blog/Pagination.astro'
+import IconWriting from '~/assets/icons/writing.svg'
+
+export async function getStaticPaths({ paginate, rss }) {
+
+  const posts = Astro.fetchContent('../**/*.md')
+    .filter(({ published }) => !!published)
+    .map((post) => {
+      return {
+        title: post.title,
+        tags: post.tags,
+        summary: post.summary,
+        content: post.astro.source,
+        html: post.astro.html,
+        date: new Date(post.date),
+        slug: post.slug,
+        url: `/blog/${post.slug}`
+      }
+    })
+    .sort((a, b) => b.date.valueOf() - a.date.valueOf());
+
+   // Setup RSS feed
+   rss({
+    title: 'Bruno Paz Engineering blog',
+    description: 'Personal blog of Bruno Paz, a Web Engineer from Porto, Portugal',
+    items: posts.map(item => ({
+      title: item.title,
+      description: item.summary,
+      link: item.url,
+      pubDate: item.date,
+    }))
+  });
+
+  return paginate(posts, { pageSize: 6 });
+}
+
+const { page } = Astro.props;
+
+---
+<DefaultLayout>
+  <PageTitle title="My Blog"/>
+
+  <img src={IconWriting} height="128px" width="128px" class="mb-8 mt-8 mx-auto" alt="Blog" title="Blog" aria-hidden="true"/>
+
+  <div class="mt-16">
+   {page.data.map((post) => (
+     <div>
+      <Post post={post}></Post>
+
+       <hr class="block w-2/3 bg-primary-300 text-center mx-auto mt-8 mb-8" style="height: 2px;"/>
+     </div>
+  ))}
+
+  {page.total > 1 &&
+    <Pagination totalPages={page.lastPage} currentPage={page.currentPage} itemsPerPage={page.size} />
+  }
+</div>
+
+</DefaultLayout>

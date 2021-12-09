@@ -1,0 +1,13 @@
+{
+  "title": "Bruno Paz | Web engineer",
+  "description": "Web Engineer from Porto, Portugal. Specialized in PHP, Symfony and Golang with some professional Java experience. Strong focus on code quality and engineering practices.Believer that Tech only makes sense at the service of people!",
+  "social": {
+    "github": "https://github.com/brpaz",
+    "twitter": {
+      "url": "https://twitter.com/@brunopaz88",
+      "handle": "@brunopaz88"
+    },
+    "linkedin": "https://www.linkedin.com/in/brunopaz88",
+    "devto": "https://dev.to/brpaz"
+  }
+}

@@ -1,0 +1,84 @@
+---
+const currentPage = Astro.request.url.pathname
+
+const menuItems = [
+  {
+    title: 'About',
+    path: '/about',
+    rootPath: '/about'
+  },
+  {
+    title: 'Work',
+    path: '/work',
+    rootPath: '/work'
+  },
+  {
+    title: 'Blog',
+    path: '/blog/page/1',
+    rootPath: '/blog'
+  },
+  {
+    title: 'Contact',
+    path: '/contact',
+    rootPath: '/contact'
+  },
+
+];
+---
+<script hoist>
+function toggleMobileMenu() {
+  const mobileNav = document.getElementById("main-nav-mobile")
+  mobileNav.classList.toggle("hidden");
+}
+
+var toggleMenuListener = () => {
+   document.getElementById("menu-toggle").addEventListener("click", toggleMobileMenu);
+}
+
+window.addEventListener('DOMContentLoaded',toggleMenuListener);
+document.addEventListener('swup:contentReplaced', toggleMenuListener);
+</script>
+
+<style>
+.main-nav a, #main-nav-mobile a {
+  @apply mr-8 font-medium text-xl text-neutral-600 hover:text-primary-400;
+}
+
+.main-nav a.active,#main-nav-mobile a.active{
+  @apply text-primary-400;
+}
+</style>
+<ul class="main-nav items-center hidden md:flex">
+  {menuItems.map((item) => (
+    <li>
+      <a href={item.path} class={currentPage.startsWith(item.rootPath) ? 'active': ''}>{item.title}</a>
+    </li>
+))}
+</ul>
+
+<!-- toggle mobile menu -->
+<button id="menu-toggle" aria-expanded="false" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-neutral-400 hover:text-neutral-500 hover:bg-secondary-100 focus:outline-none" style="width:36px;height:36px">
+    <span class="sr-only">Open main menu</span>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" class="block">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+</button>
+
+<nav id="main-nav-mobile" class="
+   hidden
+   absolute
+   left-0
+   bg-white
+   w-full
+   text-center
+   border-b
+   shadow-sm
+   " style="top: 96px;">
+   <ul>
+    {menuItems.map((item) => (
+      <li class="block mb-2">
+        <a href={item.path} class={currentPage == item.rootPath ? 'active': ''} >{item.title}</a>
+      </li>
+    ))}
+   </ul>
+</nav>

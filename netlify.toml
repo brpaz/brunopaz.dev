@@ -1,0 +1,14 @@
+[build]
+command = "npm run build"
+publish = "dist"
+
+[[headers]]
+for = "/*"
+[headers.values]
+Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+
+[[redirects]]
+force = true
+from = "https://brunopaz.netlify.com/*"
+status = 301
+to = " https://brunopaz.dev/:splat"

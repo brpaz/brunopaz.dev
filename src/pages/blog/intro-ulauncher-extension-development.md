@@ -1,0 +1,416 @@
+---
+title: An introduction to Ulauncher Extension Development
+slug: intro-ulauncher-extension-development
+date: 2018-10-28
+summary: Ulauncher is an Extensible and modern Application Launcher for Linux. In this post I will do a quick introduction to Ulauncher and then demonstrate how to build a simple Currency Conversion extension.
+tags: ['development', 'python', 'ulauncher']
+published: true
+devto_url: https://dev.to/brpaz/an-introduction-to-ulauncher-extension-development-1m69
+layout: ../../layouts/Post.astro
+---
+
+Hello.
+In this post I will introduce you to [Ulauncher](https://ulauncher.io/) and demonstrate how simple it is to build an extension for it.
+
+We will build a "Currency Conversion" extension that will look like this:
+
+![Ulauncher Extension example](/blog/2018-08-18T10:36:08.309173.png)
+
+Stay tuned.
+
+## What is Ulauncher?
+
+[Ulauncher](https://ulauncher.io/) its an Open source Application Launcher for Linux. It is written in Python 2 and have a lot of nice features like Shortcuts, Extensions and Custom themes.
+
+IMO, its the one of the best Launchers for Linux right now and it is the closest thing I found out for MacOS [Alfred](https://www.alfredapp.com/). Alfred its simply amazing and I really dont understand how come there no popular alternatives for Linux.
+Being a Mac tool, are Linux people not aware of it or dont feel the need? I tried few alternatives like Synapse, Albert, Zazu, Dext, Cerebro, each one with his pros and cons, until I finally found Ulauncher which I am putting all my horses in.
+
+Besides the core features, one of the things that makes Alfred so awesome its the community and the number of Extensions. You can literally find everything already done in sites like [Packal](http://www.packal.org/). Ulauncher and other Linux Launchers lacks that popularity and community interest.
+
+That´s one of the reasons I decided to write this post. To try to make more people aware of Ulauncher and to contribute both to the core or with extensions, hoping that we can finally see a popular Linux launcher.
+
+You can see all the available Extensions [here](https://ext.ulauncher.io/).
+
+Ok, lets start writing an extension.
+
+## Pre-Requisites
+
+- You must have Ulauncher installed on your machine. You can find install instructions in [here](https://ulauncher.io/#Download).
+- Basic knowledge of Python is required.
+
+## What is an Extension?
+
+From the [Ulauncher extensions documentation website](http://docs.ulauncher.io/en/latest/extensions/intro.html):
+
+> Ulauncher extensions are Python 2 programs that run as separate processes along with the app.
+
+When you run Ulauncher it starts all available extensions so they are ready to react to user events. All extensions are terminated when Ulauncher app is closed or crashed.
+
+Basically an extension consists of a "keyword" that will trigger the extension and a set of Events and Actions.
+
+Some of the available events includes:
+
+- KeywordQueryEvent - Triggered when the user inputs text on Ulauncher
+- ItemEnterEvent - Triggered when the user selects an item in Ulauncher
+- PreferencesUpdateEvent - Triggered when the user updates the extension preferences.
+
+You can listen to this events in the extension and you can respond with actions.
+Available actions include:
+
+- CopyToClipboardAction
+- LaunchAppAction
+- OpenUrlAction
+- RunScriptAction
+- SetUserQueryAction
+
+This event driven architecture is really well done and it will let you do almost anything in an extension.
+
+## Create our first extension
+
+Next, I will guide you step by step to create your first extension. I will show you the process of developing [this](https://ext.ulauncher.io/-/github-brpaz-ulauncher-currency) extension. Its a simple extension that allows you to convert a value between two currencies using [Fixer](https://fixer.io) API.
+
+We will use this [demo extension](https://github.com/Ulauncher/ulauncher-demo-ext) as a base for this extension.
+
+Ulauncher looks for extensions in "~/.cache/ulauncher_cache/extensions/". you can clone to there directly, but I prefer to have all my extensions elsewhere and then just symlink them to the extensions folder.
+
+For the purpose of this tutorial we will develop directly in "extensions folder".
+
+So, open a terminal window and type:
+
+```bash
+cd ~/.cache/ulauncher_cache/extensions/
+git clone https://github.com/Ulauncher/ulauncher-demo-ext demo-extension
+```
+
+If you have Ulauncher running, close it and run from the terminal `ulauncher -v`. This will launch Ulauncher in verbose mode, very useful for developing as will allow to see any logs or errors for all the installed extensions.
+
+**Tip: If you have many extensions installed it will be hard to find out the logs of your extension. You can use "grep" to filter the output like so:**
+
+```bash
+ulauncher -v |& grep -A 5 "ulauncher-currency"
+```
+
+If you type "dm" on Ulauncher window, you should see the demo extension working.
+
+![demo](/blog/caQZHxN.png)
+
+**Note: After a code change in your extension, just "Ctrl-C" in your terminal to stop Ulauncher and launch it again using "ulauncher -v".**
+
+Now open the project in your editor and lets start the development.
+
+There are to main files in your extension. "manifest.json" and "main.py".
+The manifest file is where you define, your extension information, the keyword that will trigger it, as well as any other preferences you want your users to be able to configure.
+
+So update your manifest file and change the "name" and "default_value" in the keyword prefrences:
+
+```json
+ {
+            "id": "kw",
+            "type": "keyword",
+            "name": "Currency Converter",
+            "default_value": "currency"
+ },
+```
+
+The "default_value" is the keyword itself that will trigger your extension. The "name" is the value that will appear when you are searching inside Ulauncher.
+
+We will go back to this file later on.
+
+If you reload Ulauncher, you should now be able to launch the demo extension with the "currency" keyword instead of the "dm" keyword.
+
+You can read more about the available options in manifest.json [here](http://docs.ulauncher.io/en/latest/extensions/tutorial.html#manifest-json).
+
+Now lets open "main.py". This is where your extension code lives in. Since this extension is quite simple we will code everything in this file. For more complex extensions, it might be wise to split your code in multiple files or modules.
+
+The main.py contains a bunch of imports at the top and then your extension class, with the init method:
+
+```python
+def __init__(self):
+        super(DemoExtension, self).__init__()
+        self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
+        self.subscribe(ItemEnterEvent, ItemEnterEventListener())
+```
+
+This is the constructor method called when your Extension is started. Any initialization logic and event subscription should be placed here.
+
+Further down you have another class. The "KeywordQueryEventListener" which was registered as an event listener for the "KeywordQueryEvent".
+
+```python
+class KeywordQueryEventListener(EventListener):
+
+    def on_event(self, event, extension):
+        items = []
+        logger.info('preferences %s' % json.dumps(extension.preferences))
+        for i in range(5):
+            item_name = extension.preferences['item_name']
+            data = {'new_name': '%s %s was clicked' % (item_name, i)}
+            items.append(ExtensionResultItem(icon='images/icon.png',
+                                             name='%s %s' % (item_name, i),
+                                             description='Item description %s' % i,
+                                             on_enter=ExtensionCustomAction(data, keep_app_open=True)))
+
+        return RenderResultListAction(items)
+
+```
+
+This is like the main entry point for your extension. Every time the user inputs a text in Ulauncher, after your extension keyword it will trigger the "on_event" method of this class. The "event" argument contains data about the event, like for example the text inputed by the user. "event.get_argument()".
+The "extension" argument, allows you to access the methods and properties you define in your extension class and also your extension preferences.
+
+This method should always return a list of "ExtensionResultItem". "ExtensionResultItem" represents a item in the result list, and contains, properties like, "name", "description", "icon", and "on_enter", which will be a function that will handle the item selection.
+
+This demo extension, also registers a Listener for "ItemEnterEvent", which is triggered, when the user selects one of the items from the results list.
+
+Listen to this event, allows you to customize what you want to do when the user selects an item. You only need to implement this, if you any of the default actions, like "CopyToClipboardAction" or "OpenUrlAction" are not enough for your needs.
+
+Ulauncher extensions are just this. Events and Actions.
+
+Now lets start writing our extension.
+First lets update our manifest file with a new input field for "api_key". This field is required for using the Fixer API to get the exchange rates. Also remove everything from the demo extension besides the "keyword" preference.
+
+Our final preferences array will look like this:
+
+```json
+    "preferences": [{
+            "id": "kw",
+            "type": "keyword",
+            "name": "Currency Converter",
+            "description": "Currency Conversion",
+            "default_value": "currency"
+        },
+        {
+            "id": "api_key",
+            "type": "input",
+            "name": "Fixer API key",
+            "description": "API key for Fixer.io API. Get yours <a href=\"https://fixer.io/quickstart\">here</a>",
+            "default_value": ""
+        }
+    ]
+```
+
+Next in your "main.py", replace all the references to "Demo" with "CurrencyConverter" and also remove the ItemEnterEvent which we will not need.
+
+We will add a method to the CurrencyConverterExtension class that will receive an "amount", "from_currency" and "to_currency" and return the amount converted in the "to_currency". Here is how the extension class look like with this changes:
+
+```python
+class CurrencyConverterExtension(Extension):
+
+    def __init__(self):
+        super(CurrencyConverterExtension, self).__init__()
+        self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
+
+    def convert_currency(self, amount, from_currency, to_currency):
+        """ Converts an amount from one currency to another """
+
+        params = {'access_key': self.preferences['api_key'], 'symbols': '%s,%s' % (
+            from_currency, to_currency)}
+
+        r = requests.get("http://data.fixer.io/api/latest", params=params)
+        response = r.json()
+
+        if r.status_code != 200:
+            raise ConversionException(
+                "Error connecting to conversion service.")
+
+        if not response['success']:
+            raise ConversionException(response['error']['info'])
+
+        # Calculate the amount from the conversion rates.
+        # Fixer.io base Currency is Eur.
+        rates = response['rates']
+
+        result = (float(amount) / rates[from_currency]) * rates[to_currency]
+
+        return str(round(result, 2))
+
+```
+
+The only Ulauncher specific logic in this method is this line:
+
+```python
+self.preferences['api_key']
+```
+
+This is the simpler way you can access to your extension preferences. However,
+there might be cases where you dont want access it every time and want to have it stored in a property on the extension. For this, you can listen to "PreferencesUpdateEvent" and "PreferencesEvent" which will be triggered, when the preferences are loaded for the first time and when the user updates them in the extension settings For an real example, see [here](https://github.com/brpaz/ulauncher-text-expander/blob/master/main.py).
+
+The rest its just normal Python code, that uses the "requests" library to do an API call to Fixer API to get the exchange rates and do the conversion.
+
+We have also created a custom "ConversionException" class, which we will be throw n in case of an error.
+
+Add this to the end of the file, before "if **name** == '**main**'" line:
+
+```python
+class ConversionException(Exception):
+    """ Exception thrown when there was an error calling the conversion API """
+    pass
+```
+
+Ok. Now we need to implement our "KeywordQueryEventListener".
+
+Our extension will behave like this. The user will need to input an expression like, "20 USD to EUR" to trigger a conversion. We will use a regex to match that. After a match with the expression, we will call the "convert_currency" method we defined in our extension class and render the result.
+
+So here is the final code for the "KeyboardQueryEventListener:
+
+```python
+class KeywordQueryEventListener(EventListener):
+
+    def on_event(self, event, extension):
+        items = []
+
+        regex = r"(\d+\.?\d*)\s([a-zA-Z]{3})\sto\s([a-zA-Z]{3})"
+        query = event.get_argument() or ""
+
+        matches = re.findall(regex, query, re.IGNORECASE)
+
+        if not matches:
+            items.append(ExtensionResultItem(icon='images/icon.png',
+                                             name='Keep typing your query ...',
+                                             description='It should be in the format: "20 EUR to USD"',
+                                             highlightable=False,
+                                             on_enter=HideWindowAction()))
+
+            return RenderResultListAction(items)
+
+        try:
+            params = matches[0]
+
+            amount = params[0]
+            from_currency = params[1].upper()
+            to_currency = params[2].upper()
+
+            value = extension.convert_currency(
+                amount, from_currency, to_currency)
+
+            items.append(ExtensionResultItem(icon='images/icon.png',
+                                             name="%s %s" % (
+                                                 value, to_currency),
+                                             highlightable=False,
+                                             on_enter=CopyToClipboardAction(value)))
+
+            return RenderResultListAction(items)
+
+        except ConversionException as e:
+            items.append(ExtensionResultItem(icon='images/icon.png',
+                                             name='An error ocurred during the conversion process',
+                                             description=e.message,
+                                             highlightable=False,
+                                             on_enter=HideWindowAction()))
+
+            return RenderResultListAction(items)
+```
+
+Its pretty simple to understand, if you know Python.
+We get the user text using: "event.get_argument()" method and then we see if it matches our regex.
+
+If not we just display a message to the user, to keep typing. If it matches, we extract each parts from our regex and call the "convert_currency" method.
+In the end we always return a list of "ExtensionResultItem".
+
+So here´s how the final "main.py" look like:
+
+```python
+import requests
+import re
+from ulauncher.api.client.Extension import Extension
+from ulauncher.api.client.EventListener import EventListener
+from ulauncher.api.shared.event import KeywordQueryEvent
+from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
+from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
+from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
+from ulauncher.api.shared.action.CopyToClipboardAction import CopyToClipboardAction
+
+class CurrencyConverterExtension(Extension):
+
+    def __init__(self):
+        super(CurrencyConverterExtension, self).__init__()
+        self.subscribe(KeywordQueryEvent, KeywordQueryEventListener())
+
+    def convert_currency(self, amount, from_currency, to_currency):
+        params = {'access_key': self.preferences['api_key'], 'symbols': '%s,%s' % (
+            from_currency, to_currency)}
+
+        r = requests.get("http://data.fixer.io/api/latest", params=params)
+        response = r.json()
+
+        if r.status_code != 200:
+            raise ConversionException(
+                "Error connecting to conversion service.")
+
+        if not response['success']:
+            raise ConversionException(response['error']['info'])
+
+        # Calculate the amount from the conversion rates.
+        # Fixer.io base Currency is Eur.
+        rates = response['rates']
+
+        result = (float(amount) / rates[from_currency]) * rates[to_currency]
+
+        return str(round(result, 2))
+
+
+class KeywordQueryEventListener(EventListener):
+
+    def on_event(self, event, extension):
+        """ Handles the event """
+        items = []
+
+        regex = r"(\d+\.?\d*)\s([a-zA-Z]{3})\sto\s([a-zA-Z]{3})"
+        query = event.get_argument() or ""
+
+        matches = re.findall(regex, query, re.IGNORECASE)
+
+        if not matches:
+            items.append(ExtensionResultItem(icon='images/icon.png',
+                                             name='Keep typing your query ...',
+                                             description='It should be in the format: "20 EUR to USD"',
+                                             highlightable=False,
+                                             on_enter=HideWindowAction()))
+
+            return RenderResultListAction(items)
+
+        try:
+            params = matches[0]
+
+            amount = params[0]
+            from_currency = params[1].upper()
+            to_currency = params[2].upper()
+
+            value = extension.convert_currency(
+                amount, from_currency, to_currency)
+
+            items.append(ExtensionResultItem(icon='images/icon.png',
+                                             name="%s %s" % (
+                                                 value, to_currency),
+                                             highlightable=False,
+                                             on_enter=CopyToClipboardAction(value)))
+
+            return RenderResultListAction(items)
+
+        except ConversionException as e:
+            items.append(ExtensionResultItem(icon='images/icon.png',
+                                             name='An error ocurred during the conversion process',
+                                             description=e.message,
+                                             highlightable=False,
+                                             on_enter=HideWindowAction()))
+
+            return RenderResultListAction(items)
+
+
+class ConversionException(Exception):
+    pass
+
+
+if __name__ == '__main__':
+    CurrencyConverterExtension().run()
+```
+
+And voilá. if you reload Ulauncher, you should have your extension working. Dont forget o go to your Extension settings and define the "API key" for Fixer service.
+
+You can install the final version of this extension [here](https://ext.ulauncher.io/-/github-brpaz-ulauncher-currency).
+
+That´s it. As you can see its a really simple process. Hope it was clear enough and that I get your interest in Ulauncher itself and its extensions system.
+
+Hope to see the number of extensions going up ;)
+
+If you have any questions feel free to ask in the comments section.
+
+Thank you!

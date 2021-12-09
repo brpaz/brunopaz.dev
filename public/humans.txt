@@ -1,0 +1,4 @@
+/* SITE INFORMATION */
+Author: Bruno Paz
+Location:   PT
+Built with: Astro
