@@ -29,7 +29,7 @@ let sitePreviewImage = Astro.props.previewImage || `${Astro.site.origin}/img/sit
     <meta name="twitter:title" property="og:title" itemprop="title name" content={title} />
     <meta name="twitter:description" property="og:description" itemprop="description" content={description} />
     <meta name="twitter:image" content={sitePreviewImage}>
-    <link rel="canonical" href={Astro.request.canonicalURL} />
+    <link rel="canonical" href={Astro.request.canonicalURL.toString().slice(0,-1)} />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for brunopaz.dev" href="/feed.xml" />
 

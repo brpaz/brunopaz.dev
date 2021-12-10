@@ -41,3 +41,9 @@ jobs:
 
       - name: Test
         run: npm run test
+
+      - name: Run Lighthouse test
+        uses: treosh/lighthouse-ci-action@v8
+        with:
+          configPath: "./lighthouserc.json"
+          budgetPath: ./budget.json
