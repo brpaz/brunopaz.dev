@@ -6,18 +6,22 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "preview": "astro preview",
+    "preview": "astro preview --port=3001",
     "build": "astro build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "lint": "npm-run-all lint:*",
+    "lint:astro": "astro check",
     "lint:md": "markdownlint src/content/projects/*.md  src/pages/blog/*.md",
-    "test": "start-server-and-test preview http://localhost:3000 cy:run",
-    "generate-social-previews": "node scripts/generate-social-previews.mjs"
+    "test": "start-server-and-test preview http://localhost:3001 cy:run",
+    "test-perf": "start-server-and-test preview http://localhost:3001 lighthouse-test",
+    "generate-social-previews": "node scripts/generate-social-previews.mjs",
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "lighthouse-test": "lighthouse http://localhost:3001 --budget-path=./budget.json --output-path=lighthouse-results.html --view"
   },
   "devDependencies": {
     "@jlengstorf/get-share-image": "^0.8.0",
-    "astro": "^0.21.11",
+    "astro": "^0.21.12",
     "front-matter": "^4.0.2",
     "markdownlint-cli": "^0.30.0",
     "npm-run-all": "^4.1.5",
@@ -39,6 +43,11 @@
     "date-fns": "^2.27.0",
     "dotenv": "^10.0.0",
     "glob-promise": "^4.2.2",
+    "imagemin": "^8.0.1",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "lighthouse": "^9.1.0",
+    "lighthouse-cli": "^0.1.2",
     "node-fetch": "^3.1.0",
     "prismjs": "^1.25.0",
     "swup": "^2.0.14"

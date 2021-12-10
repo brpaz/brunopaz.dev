@@ -1,0 +1,25 @@
+[
+  {
+    "path": "/*",
+    "timings": [
+      {
+        "metric": "interactive",
+        "budget": 2500
+      },
+      {
+        "metric": "first-meaningful-paint",
+        "budget": 2000
+      }
+    ],
+    "resourceSizes": [
+      {
+        "resourceType": "total",
+        "budget": 300
+      },
+      {
+        "resourceType": "script",
+        "budget": 100
+      }
+    ]
+  }
+]

@@ -3,7 +3,7 @@ title: A better log search experience during development with Grafana Loki
 date: 2021-05-23
 summary: Logs are an essential debbuging tool when developing. But if your application emits many logs it can become hard to find what you are looking for. In this article, I will show you how to use Grafana Loki in your local envrionment, a tool that will make your log searching experience much better.
 tags: ['loki','logging','docker', 'development']
-slug: how-to-keep-software-installed-from-github-updated-with-ansible
+slug: better-docker-log-search-experience-with-loki
 published: true
 # devto_url: https://dev.to/brpaz/from-notion-to-dendron-my-new-note-taking-and-knowledge-base-application-4icl-temp-slug-6997891
 layout: ../../layouts/Post.astro
