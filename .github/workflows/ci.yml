@@ -47,3 +47,4 @@ jobs:
         with:
           configPath: "./lighthouserc.json"
           budgetPath: ./budget.json
+          uploadArtifacts: true
