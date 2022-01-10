@@ -28,7 +28,7 @@
     "postcss": "^8.4.5",
     "slugify": "^1.6.3",
     "start-server-and-test": "^1.14.0",
-    "tailwindcss": "^2.2.19"
+    "tailwindcss": "^3.0.12"
   },
   "dependencies": {
     "@splidejs/splide": "^3.6.9",
