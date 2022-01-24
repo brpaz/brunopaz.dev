@@ -39,7 +39,7 @@
     "@swup/scripts-plugin": "^1.1.0",
     "@swup/slide-theme": "^1.0.5",
     "chalk": "^5.0.0",
-    "cypress": "^9.1.1",
+    "cypress": "^9.3.1",
     "date-fns": "^2.27.0",
     "dotenv": "^10.0.0",
     "glob-promise": "^4.2.2",
