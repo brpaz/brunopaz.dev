@@ -49,7 +49,7 @@
     "lighthouse": "^9.1.0",
     "lighthouse-cli": "^0.1.2",
     "node-fetch": "^3.1.0",
-    "prismjs": "^1.25.0",
+    "prismjs": "^1.28.0",
     "swup": "^2.0.14"
   }
 }
