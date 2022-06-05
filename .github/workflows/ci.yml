@@ -15,32 +15,24 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
+      - uses: actions/setup-node@v3
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          node-version: "17"
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install –frozen-lockfile
 
       - name: Lint
-        run: npm run lint
-        continue-on-error: true #  Temporary until I fix all issues on blog posts.
+        run: yarn lint
+        continue-on-error: true
 
       - name: Build
-        run: npm run build
+        run: yarn build
 
       - name: Test
-        run: npm run test
+        run: yarn test
 
       - name: Run Lighthouse test
         uses: treosh/lighthouse-ci-action@v8

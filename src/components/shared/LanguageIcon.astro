@@ -8,12 +8,13 @@ interface Props {
 }
 
 const { name, width, height } = Astro.props as Props;
----
 
+const fileName = slugify(name.toLowerCase());
+---
 <img alt={name}
      width={width}
      height={height}
      title={name}
-     src={(await
-     import(`./../../assets/icons/languages/${slugify(name.toLowerCase())}.svg?url`)).default}
-     loading="lazy">
+     src={(await import(`./../../assets/icons/languages/${fileName}.svg`)).default}
+     loading="lazy"
+/>

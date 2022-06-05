@@ -1,4 +1,5 @@
 import slugify from "slugify";
+
 export enum ProjectType {
   OpenSource = "github",
   Company = "company",
@@ -21,6 +22,7 @@ export interface ProjectFileMetadata {
   position: number;
   images: Array<string>;
   cover: string;
+  featured: boolean;
 }
 
 export interface Project {

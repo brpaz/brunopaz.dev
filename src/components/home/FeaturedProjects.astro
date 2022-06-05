@@ -1,12 +1,13 @@
 ---
-import { SourceProject, ProjectType, mapProject } from '~/api/projects'
+import { ProjectFile, ProjectFileMetadata, Project, ProjectType, mapProject } from '~/api/projects'
 import ProjectCard from '@components/work/list/ProjectCard.astro'
-const projects = await Astro.glob<SourceProject>('../../content/projects/*.md')
 
-let featuredProjects = projects.filter((project) => !!project.frontmatter.featured)
+let projects = await Astro.glob<ProjectFile>('../../content/projects/*.md')
+
+const rawFeaturedProjects = projects.filter((project) => !!project.frontmatter.featured)
   .filter((project) => project.frontmatter.type === ProjectType.Company);
 
-featuredProjects = await Promise.all(featuredProjects.map((project) => mapProject(project)));
+let featuredProjects = await Promise.all(rawFeaturedProjects.map((project) => mapProject(project)));
 featuredProjects = featuredProjects.sort((a, b) => Number(a.position) - Number(b.position));
 ---
 

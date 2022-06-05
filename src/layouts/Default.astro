@@ -52,7 +52,9 @@ let description = Astro.props.description || siteData.description;
 
     <SocialImageMeta title={title} url={Astro.request.url} />
 
-    <script type="module" src={(await import("../assets/scripts/app.js?url")).default} defer></script>
+    <script>
+      import '../assets/scripts/app.js';
+    </script>
 
     {sentryEnabled &&
       <script src={`https://js.sentry-cdn.com/${sentryKey}.min.js`}

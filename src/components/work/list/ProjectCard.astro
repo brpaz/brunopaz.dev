@@ -1,6 +1,11 @@
 ---
 import { Project } from '~/api/projects';
-const {project} = Astro.props as Project;
+
+export interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props as Props;
 
 function getProjectImagePath(path) {
     return `/img/projects/${path}`;
