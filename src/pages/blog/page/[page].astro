@@ -2,38 +2,28 @@
 import DefaultLayout from '~/layouts/Default.astro'
 import PageTitle from '~/components/shared/PageTitle.astro'
 import Post from '~/components/blog/Post.astro'
-import Pagination from '~/components/blog/Pagination.astro'
+import { Pagination } from "@sarissa/pagination";
 import IconWriting from '~/assets/icons/writing.svg'
 
-export async function getStaticPaths({ paginate, rss }) {
+const totalPage = 6;
 
-  const posts = Astro.fetchContent('../**/*.md')
-    .filter(({ published }) => !!published)
+export async function getStaticPaths({ paginate }) {
+
+  let posts = await Astro.glob('../**/*.md')
+  posts = posts.filter(({ frontmatter }) => !!frontmatter.published)
     .map((post) => {
       return {
-        title: post.title,
-        tags: post.tags,
-        summary: post.summary,
-        content: post.astro.source,
-        html: post.astro.html,
-        date: new Date(post.date),
-        slug: post.slug,
-        url: `/blog/${post.slug}`
+        title: post.frontmatter.title,
+        tags: post.frontmatter.tags,
+        summary: post.frontmatter.summary,
+        content: post.Content,
+        date: new Date(post.frontmatter.date),
+        slug: post.frontmatter.slug,
+        url: `/blog/${post.frontmatter.slug}`
       }
     })
     .sort((a, b) => b.date.valueOf() - a.date.valueOf());
 
-   // Setup RSS feed
-   rss({
-    title: 'Bruno Paz Engineering blog',
-    description: 'Personal blog of Bruno Paz, a Web Engineer from Porto, Portugal',
-    items: posts.map(item => ({
-      title: item.title,
-      description: item.summary,
-      link: item.url,
-      pubDate: item.date,
-    }))
-  });
 
   return paginate(posts, { pageSize: 6 });
 }
@@ -41,23 +31,35 @@ export async function getStaticPaths({ paginate, rss }) {
 const { page } = Astro.props;
 
 ---
-<DefaultLayout>
-  <PageTitle title="My Blog"/>
 
-  <img src={IconWriting} height="128px" width="128px" class="mb-8 mt-8 mx-auto" alt="Blog" title="Blog" aria-hidden="true"/>
+
+<DefaultLayout>
+  <PageTitle title="My Blog" />
+
+  <img src={IconWriting}
+       height="128px"
+       width="128px"
+       class="mb-8 mt-8 mx-auto"
+       alt="Blog"
+       title="Blog"
+       aria-hidden="true" />
 
   <div class="mt-16">
-   {page.data.map((post) => (
-     <div>
+    {page.data.map((post) => (
+    <div>
+
       <Post post={post}></Post>
 
-       <hr class="block w-2/3 bg-primary-300 text-center mx-auto mt-8 mb-8" style="height: 2px;"/>
-     </div>
-  ))}
+      <hr class="block w-2/3 bg-primary-300 text-center mx-auto mt-8 mb-8"
+          style="height: 2px;" />
+    </div>
+    ))}
 
-  {page.total > 1 &&
-    <Pagination totalPages={page.lastPage} currentPage={page.currentPage} itemsPerPage={page.size} />
-  }
-</div>
+    {page.total > 1 &&
+    <div class="mt-4">
+    <Pagination currentPage={page.currentPage} totalPage={page.lastPage} url="blog/page" buttonGroup="pagination" activeButton="bg-primary-400 text-white  hover:bg-primary-400 hover:text-white current-page" />
+    </div>
+    }
+  </div>
 
 </DefaultLayout>

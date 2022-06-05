@@ -1,8 +1,10 @@
 ---
-import Header from '~/components/shared/Header.astro';
-import Footer from '~/components/shared/Footer.astro';
-import CrispChat from '~/components/shared/CrispChat.astro';
+import '@assets/styles/global.css'
 
+import Header from '@components/shared/Header.astro';
+import Footer from '@components/shared/Footer.astro';
+import CrispChat from '@components/shared/CrispChat.astro';
+import SocialImageMeta from '@components/shared/SocialImageMeta.astro';
 import siteData from '~/data/site.json';
 
 const monetizationUrl = import.meta.env.PUBLIC_WEB_MONETIZATION_ID || "";
@@ -14,7 +16,6 @@ const crispWebsiteId = import.meta.env.PUBLIC_CRISP_WEBSITE_ID || "";
 let title = Astro.props.title || siteData.title;
 let description = Astro.props.description || siteData.description;
 
-let sitePreviewImage = Astro.props.previewImage || `${Astro.site.origin}/img/site-preview.png`
 
 ---
 <html lang="en">
@@ -25,19 +26,15 @@ let sitePreviewImage = Astro.props.previewImage || `${Astro.site.origin}/img/sit
     <meta name="description" content={description}/>
     <meta name="monetization" content={monetizationUrl}/>
     <meta property="og:url" content={Astro.request.url}>
-    <meta property="og:image" content={sitePreviewImage}>
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:creator" content={siteData.social.twitter.handle} />
     <meta name="twitter:app:country" content="PT">
     <meta name="twitter:title" property="og:title" itemprop="title name" content={title} />
     <meta name="twitter:description" property="og:description" itemprop="description" content={description} />
-    <meta name="twitter:image" content={sitePreviewImage}>
-    <link rel="canonical" href={Astro.request.canonicalURL.toString().slice(0,-1)} />
+    <link rel="canonical" href={Astro.canonicalURL.toString().slice(0,-1)} />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for brunopaz.dev" href="/feed.xml" />
-
-    <link rel="stylesheet" href={Astro.resolve('../assets/styles/global.css')}>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,13 +50,14 @@ let sitePreviewImage = Astro.props.previewImage || `${Astro.site.origin}/img/sit
       />
     </noscript>
 
-    <script type="module" src={Astro.resolve('../assets/scripts/app.js')} defer></script>
+    <SocialImageMeta title={title} url={Astro.request.url} />
+
+    <script type="module" src={(await import("../assets/scripts/app.js?url")).default} defer></script>
 
     {sentryEnabled &&
       <script src={`https://js.sentry-cdn.com/${sentryKey}.min.js`}
       crossorigin="anonymous" defer
     ></script>
-
     }
 </head>
 <body class="h-screen w-full flex flex-col text-neutral-600">

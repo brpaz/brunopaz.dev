@@ -1,5 +1,5 @@
 ---
-const currentPage = Astro.request.url.pathname
+const currentPage = new URL(Astro.request.url).pathname;
 
 const menuItems = [
   {
@@ -25,7 +25,7 @@ const menuItems = [
 
 ];
 ---
-<script hoist>
+<script>
 function toggleMobileMenu() {
   const mobileNav = document.getElementById("main-nav-mobile")
   mobileNav.classList.toggle("hidden");

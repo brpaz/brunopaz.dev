@@ -1,6 +1,6 @@
 ---
 title: Building a basic CI/CD pipeline for a Golang application using GitHub Actions
-slug: docker-phpstorm-and-xdebug-the-definitive-guide
+slug: building-a-basic-ci-cd-pipeline-for-a-golang-application-using-github-actions
 date: 2019-08-19
 summary: GitHub has announced last week exciting new features for GitHub Actions, including built-in support for CI/CD pipelines. It this post I will show the capabilities of the new GitHub Actions for CI/CD by creating a simple pipeline for a Golang application.
 tags: ['development','ci/cd', 'github']
@@ -102,7 +102,7 @@ Each file in the directory represents a different Workflow.
 Here is how our Build workflow looks like:
 
 
-```yml
+```yaml
 name: Build and Test
 on:
   push:

@@ -82,7 +82,7 @@ Creating an Ansible playbook is as simple as creating an YAML file following the
 
 The full playbook for this example, will look like this:
 
-```yml
+```yaml
 - name: GitHub Cli install
   hosts: all
 
@@ -203,7 +203,7 @@ ansible-playbook -i hosts setup.yml
 
 The `-i` flag indicates a path to the "inventory" file, which specifies the ip addresses and other connection properties that will be used by Ansible to connect to the target machine. Ansible works by connecting to the target machine via SSH, but since we are running this playbook locally, we can use the property "ansible_connection" to indicate that in the hosts file.
 
-```yml
+```yaml
 local ansible_connection=local
 ```
 

@@ -6,11 +6,21 @@
 // helpful tooltips, and warnings if your exported object is invalid.
 // You can disable this by removing "@ts-check" and `@type` comments below.
 
+import svelte from "@astrojs/svelte";
+import sitemap from "@astrojs/sitemap";
+
 // @ts-check
 export default /** @type {import('astro').AstroUserConfig} */ ({
-  buildOptions: {
-    site: process.env.BASE_URL || "http://localhost:3000",
-    sitemap: true,
+  site: process.env.BASE_URL || "http://localhost:3000",
+  markdown: {
+    shikiConfig: {
+      // Choose from Shiki's built-in themes (or add your own)
+      // https://github.com/shikijs/shiki/blob/main/docs/themes.md
+      theme: "dracula",
+    },
   },
-  renderers: ["@astrojs/renderer-svelte"],
+  integrations: [svelte(), sitemap()],
+  vite: {
+    plugins: [],
+  },
 });

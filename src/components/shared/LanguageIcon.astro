@@ -1,0 +1,19 @@
+---
+import slugify from 'slugify'
+
+interface Props {
+  name: string;
+  width: string;
+  height: string;
+}
+
+const { name, width, height } = Astro.props as Props;
+---
+
+<img alt={name}
+     width={width}
+     height={height}
+     title={name}
+     src={(await
+     import(`./../../assets/icons/languages/${slugify(name.toLowerCase())}.svg?url`)).default}
+     loading="lazy">

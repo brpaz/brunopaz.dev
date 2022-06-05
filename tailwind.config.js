@@ -2,14 +2,13 @@ const colors = require("tailwindcss/colors");
 
 module.exports = {
   mode: "jit",
-  purge: ["./public/**/*.html", "./src/**/*.{astro,js,jsx,ts,tsx,vue}"],
-  darkMode: false, // or 'media' or 'class'
+  content: ["./public/**/*.html", "./src/**/*.{astro,js,jsx,ts,tsx,vue}"],
   theme: {
     extend: {
       colors: {
         primary: colors.blue,
-        secondary: colors.coolGray,
-        neutral: colors.coolGray,
+        secondary: colors.gray,
+        neutral: colors.gray,
       },
     },
   },

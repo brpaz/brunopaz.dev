@@ -148,7 +148,7 @@ Symfony allows you to define your routes in multiple formats like Annotations, Y
 
 Here is an example of Routes defined in using YAML:
 
-```yml
+```yaml
 # config/routes.yaml
 blog_list:
     path:     /blog

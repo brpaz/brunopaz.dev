@@ -5,17 +5,16 @@ import PageTitle from '~/components/shared/PageTitle.astro'
 import SocialShare from '~/components/blog/SocialShare.astro'
 const { content } = Astro.props;
 ---
-<link rel="stylesheet" href={Astro.resolve('../assets/styles/prism.css')}/>
 
-<style global>
+<style is:global>
 .post-content h2 {
-  @apply font-bold text-2xl mb-4;
+  @apply font-bold text-2xl mb-4 mt-4;
 }
 .post-content h3 {
   @apply font-bold text-lg mb-4;
 }
 .post-content p {
-  @apply mb-2 leading-8;
+  @apply mb-4 leading-8;
 }
 
 .post-content img {
@@ -31,11 +30,11 @@ const { content } = Astro.props;
 }
 
 .post-content pre {
-    @apply mb-4;
+    @apply mb-4 p-4;
 }
 </style>
 
-<DefaultLayout title={content.title} description={content.summary} previewImage={`${Astro.site.origin}/img/blog/preview-${content.slug}.png`}>
+<DefaultLayout title={content.title} description={content.summary}>
     <PageTitle title={content.title}></PageTitle>
 
     <div class="text-xs text-center mb-4">{formatPostDate(new Date(content.date))}</div>
@@ -43,5 +42,5 @@ const { content } = Astro.props;
     <div class="post-content">
         <slot/>
     </div>
-    <SocialShare url={Astro.request.canonicalURL.toString().slice(0, -1)} title={content.title} />
+    <SocialShare url={Astro.canonicalURL.toString().slice(0, -1)} title={content.title} />
 </DefaultLayout>
