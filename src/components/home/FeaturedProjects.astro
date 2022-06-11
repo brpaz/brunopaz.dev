@@ -2,7 +2,7 @@
 import { ProjectFile, ProjectFileMetadata, Project, ProjectType, mapProject } from '~/api/projects'
 import ProjectCard from '@components/work/list/ProjectCard.astro'
 
-let projects = await Astro.glob<ProjectFile>('../../content/projects/*.md');
+let projects = await Astro.glob<ProjectFileMetadata>('../../content/projects/*.md');
 
 const rawFeaturedProjects = projects.filter((project) => !!project.frontmatter.featured)
   .filter((project) => project.frontmatter.type === ProjectType.Company);

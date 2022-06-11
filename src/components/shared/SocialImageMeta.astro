@@ -1,5 +1,5 @@
 ---
-import { SocialImage, generateSocialImage } from 'astro-social-images';
+import { generateSocialImage } from 'astro-social-images';
 import { wrapText } from '~/utils/strings'
 export interface Props {
   title: string;
@@ -34,11 +34,11 @@ const socialImage = generateSocialImage(
       ...socialTitle,
       {
         content: "Bruno Paz Engineering Blog",
-        attributes: { x: '55', y: '540', 'font-size': '46px', fill: '#fefffe' },
+        attributes: { 'x': '55', y: '540' , 'font-size': '46px', fill: '#fefffe' },
       },
       {
         content: Astro.request.url,
-        attributes: { x: '55', y: '580', 'font-size': '20px', fill: '#fefffe' },
+        attributes: { x: '55', y: '80', 'font-size': '20px', fill: '#fefffe' },
       }
     ],
   },
