@@ -57,7 +57,7 @@ const { project } = Astro.props;
   <div class="content leading-8 mb-8">
     {project.images.length > 0 &&
     <ProjectGallery images={project.images}
-                    client:load />
+                    client:only />
     }
 
     <Markdown content={project.content} />

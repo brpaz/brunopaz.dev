@@ -8,7 +8,6 @@
 
 import svelte from "@astrojs/svelte";
 import sitemap from "@astrojs/sitemap";
-import { astroImageTools } from "astro-imagetools";
 
 // @ts-check
 export default /** @type {import('astro').AstroUserConfig} */ ({
@@ -20,7 +19,7 @@ export default /** @type {import('astro').AstroUserConfig} */ ({
       theme: "dracula",
     },
   },
-  integrations: [svelte(), sitemap(), astroImageTools],
+  integrations: [svelte(), sitemap()],
   vite: {
     plugins: [],
   },
