@@ -57,7 +57,7 @@ const { page } = Astro.props;
 
     {page.total > 1 &&
     <div class="mt-4">
-    <Pagination currentPage={page.currentPage} totalPage={page.lastPage} url="blog/page" buttonGroup="pagination" activeButton="bg-primary-400 text-white  hover:bg-primary-400 hover:text-white current-page" />
+    <Pagination currentPage={page.currentPage} totalPage={page.lastPage} url="blog/page" buttonGroup="pagination" activeButton="bg-primary-400 text-white  hover:bg-primary-400 hover:text-white current-page" outerDiv="flex items-center justify-center" button="relative flex-nowrap inline-flex items-center px-4 py-2 border text-sm font-medium" disabledButton="disabled:opacity-75" />
     </div>
     }
   </div>
