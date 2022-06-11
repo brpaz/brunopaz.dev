@@ -16,7 +16,8 @@
     "test": "start-server-and-test preview http://localhost:3001 cy:run",
     "test-perf": "start-server-and-test preview http://localhost:3001 lighthouse-test",
     "optimize-images": "node scripts/optimize-images.mjs",
-    "lighthouse-test": "lighthouse http://localhost:3001 --budget-path=./budget.json --output-path=lighthouse-results.html --view"
+    "lighthouse-test": "lighthouse http://localhost:3001 --budget-path=./budget.json --output-path=lighthouse-results.html --view",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@astrojs/rss": "^0.2.0",
@@ -33,7 +34,8 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.14",
     "start-server-and-test": "^1.14.0",
-    "tailwindcss": "^3.0.24"
+    "tailwindcss": "^3.0.24",
+    "husky": "^8.0.0"
   },
   "dependencies": {
     "@splidejs/splide": "^4.0.6",
