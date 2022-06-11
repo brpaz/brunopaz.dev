@@ -22,7 +22,7 @@ jobs:
           node-version: "17"
 
       - name: Install dependencies
-        run: yarn add –frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: Lint
         run: yarn lint
@@ -42,7 +42,9 @@ jobs:
           uploadArtifacts: true
 
       - name: Sync images to Cloudinary
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: node scripts/cloudinary-sync.mjs
+
         env:
           CLOUDINARY_FOLDER: ${{ secrets.CLOUDINARY_FOLDER }}
           CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
