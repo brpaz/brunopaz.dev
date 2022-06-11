@@ -1,33 +1,53 @@
 ---
-import linkedinShareBtn from '~/assets/icons/linkedin-share-button.svg';
-import twitterShareBtn from '~/assets/icons/twitter-share-button.svg';
-import facebookShareBtn from '~/assets/icons/facebook-share-button.svg';
+import linkedinShareBtn from '@assets/icons/linkedin-share-button.svg';
+import twitterShareBtn from '@assets/icons/twitter-share-button.svg';
+import facebookShareBtn from '@assets/icons/facebook-share-button.svg';
 
 interface Props {
-    url: string;
-    title: string;
+  url: string;
+  title: string;
 }
 
-const {url, title} = Astro.props;
+const { url, title } = Astro.props as Props;
 ---
 
 <div class="mt-8 flex">
-    <div class="mr-2">
-        <a href={ `https://www.facebook.com/sharer/sharer.php?u=${url}&t=${title}`} target="_blank" rel="noopener" title="Share on Facebook">
-            <img src={facebookShareBtn} alt="Share on facebook" width="128px" loading="lazy"/>
-        </a>
-    </div>
+  <div class="mr-2">
+    <a href={
+       `https://www.facebook.com/sharer/sharer.php?u=${url}&t=${title}`}
+       target="_blank"
+       rel="noopener"
+       title="Share on Facebook">
+      <img src={facebookShareBtn}
+           alt="Share on facebook"
+           width="128px"
+           loading="lazy" />
+    </a>
+  </div>
 
-    <div class="mr-2">
-        <a href={ `https://twitter.com/intent/tweet?url=${url}`} target="_blank" rel="noopener" title="Share on Twitter">
-            <img src={twitterShareBtn} alt="Share on Twitter" width="128px" loading="lazy"/>
-        </a>
-    </div>
+  <div class="mr-2">
+    <a href={
+       `https://twitter.com/intent/tweet?url=${url}`}
+       target="_blank"
+       rel="noopener"
+       title="Share on Twitter">
+      <img src={twitterShareBtn}
+           alt="Share on Twitter"
+           width="128px"
+           loading="lazy" />
+    </a>
+  </div>
 
-    <div class="mr-2">
-        <a href={ `http://www.linkedin.com/shareArticle?mini=true&title=${title}&source=${url}`} target="_blank" rel="noopener" title="Share on Linkedin">
-            <img src={linkedinShareBtn} alt="Share on Linkedin" width="128px" loading="lazy"/>
-        </a>
-    </div>
+  <div class="mr-2">
+    <a href={
+       `http://www.linkedin.com/shareArticle?mini=true&title=${title}&source=${url}`}
+       target="_blank"
+       rel="noopener"
+       title="Share on Linkedin">
+      <img src={linkedinShareBtn}
+           alt="Share on Linkedin"
+           width="128px"
+           loading="lazy" />
+    </a>
+  </div>
 </div>
-

@@ -22,7 +22,7 @@ jobs:
           node-version: "17"
 
       - name: Install dependencies
-        run: yarn install –frozen-lockfile
+        run: yarn add –frozen-lockfile
 
       - name: Lint
         run: yarn lint
@@ -40,3 +40,9 @@ jobs:
           configPath: "./lighthouserc.json"
           budgetPath: ./budget.json
           uploadArtifacts: true
+
+      - name: Sync images to Cloudinary
+        run: node scripts/cloudinary-sync.mjs
+        env:
+          CLOUDINARY_FOLDER: ${{ secrets.CLOUDINARY_FOLDER }}
+          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}

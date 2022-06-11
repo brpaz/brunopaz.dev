@@ -3,7 +3,7 @@ import DefaultLayout from '~/layouts/Default.astro'
 import PageTitle from '~/components/shared/PageTitle.astro'
 import ProjectCard from '~/components/work/list/ProjectCard.astro'
 import GithubProjectCard from '~/components/work/list/GithubProjectCard.astro'
-import { ProjectFileMetadata, ProjectType, mapProject } from '~/api/projects.ts'
+import { ProjectFileMetadata, ProjectType, mapProject } from '~/api/projects'
 import IconBriefcase from '~/assets/icons/briefcase.svg'
 
 let projects = await Astro.glob<ProjectFileMetadata>('../../content/projects/*.md');

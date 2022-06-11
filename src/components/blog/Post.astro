@@ -4,14 +4,15 @@ import { formatPostDate } from '~/utils/date'
 interface Post {
   url: string;
   title: string;
-  date: string;
+  date: Date;
+  summary: string;
 }
 
 interface Props {
   post: Post;
 }
 
-const { post } = Astro.props;
+const { post } = Astro.props as Props;
 ---
 
 <article>
