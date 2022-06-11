@@ -9,6 +9,8 @@ published: true
 featured: true
 devto_url: https://dev.to/brpaz/serverless-beyond-faas-5fo
 layout: ../../layouts/Post.astro
+setup: |
+  import Image from '../../components/blog/Image.astro'
 ---
 
 Microservices are dead!! Serverless is for some time, the new hype in the infrastructure world.
@@ -23,11 +25,11 @@ The main idea behind lambdas is that you build small independent functions, each
 
 Considering a traditional REST API, you can imagine that any Controller Action would be a separate function.
 
-![Serverless Architecture evolution](/img/blog/srlu3tkztl4dwuoi3hi9.jpg)
+<Image name="srlu3tkztl4dwuoi3hi9.jpg" alt="Serverless Architecture evolution" />
 
 So now, instead of having 50 Microservices, you have 1000 functions! ;)
 
-![Deploy All the functions](/img/blog/w8smkpat272msl3p95i1.jpg)
+<Image name="w8smkpat272msl3p95i1.jpg" alt="Meme: Deploy all the functions!" />
 
 It´s true that with a FaaS platform, you won´t need to worry about managing the servers, scalability, etc that would take a lot of effort to do it right, in a big Microservices Architecture.
 

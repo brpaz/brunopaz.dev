@@ -1,12 +1,14 @@
 import slugify from "slugify";
 
+const assetsBaseURL = import.meta.env.PUBLIC_ASSETS_BASE_URL || "";
+
 export enum ProjectType {
   OpenSource = "github",
   Company = "company",
 }
 
 export interface ProjectFile {
-  Content: any;
+  compiledContent: any;
   frontmatter: ProjectFileMetadata;
 }
 
@@ -42,12 +44,24 @@ export interface Project {
   content: string;
 }
 
+function getImageUrl(name: string): string {
+  return `${assetsBaseURL}/img/projects/${name}`;
+}
+
 export async function mapProject(source: ProjectFile): Promise<Project> {
   const frontMatter = source.frontmatter;
 
   const projectSlug = slugify(frontMatter.name.toLowerCase());
 
   const content = await source.compiledContent();
+  let images = [];
+
+  if (frontMatter.images) {
+    images = frontMatter.images.map((image) => {
+      return getImageUrl(image);
+    });
+  }
+
   return {
     type: frontMatter.type,
     name: frontMatter.name,
@@ -58,8 +72,8 @@ export async function mapProject(source: ProjectFile): Promise<Project> {
     technologies: frontMatter.technologies ? frontMatter.technologies : [],
     url: frontMatter.externalUrl,
     detailsUrl: `/work/project/${projectSlug}`,
-    images: frontMatter.images ? frontMatter.images : [],
-    coverImage: frontMatter.cover,
+    images: images,
+    coverImage: getImageUrl(frontMatter.cover),
     position: frontMatter.position,
     content: content,
     slug: projectSlug,

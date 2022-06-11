@@ -7,6 +7,8 @@ slug: better-docker-log-search-experience-with-loki
 published: true
 # devto_url: https://dev.to/brpaz/from-notion-to-dendron-my-new-note-taking-and-knowledge-base-application-4icl-temp-slug-6997891
 layout: ../../layouts/Post.astro
+setup: |
+  import Image from '../../components/blog/Image.astro'
 featured: true
 ---
 
@@ -189,15 +191,14 @@ We should now have everything we need to start our demo.
 
 ## Show me the logs!
 
-![show me the logs meme ](/img/blog/1df76102-bd23-405d-b3ba-79e90b523701.jpg)
+<Image name="1df76102-bd23-405d-b3ba-79e90b523701.jpg" alt="Show me all the logs"/>
 
-Run **docker-compose up** to start all the containers.
 
 If everything went fine you can then open grafana in your browser at **localhost:3000**. You can use **admin/testloki** credentials to login.
 
 You should now see the Grafana homepage. Head over to "Configuration -> DataSources" on the left menu, and you should see Loki datasource automatically configured:
 
-![Grafana Loki](/img/blog/3f19034b-e4d4-4536-af71-841796091fa4.gif)
+<Image name="3f19034b-e4d4-4536-af71-841796091fa4.gif" alt="Grafana Loki Interface"/>
 
 You can click on the "Test" button to check that Grafana and Loki can communicate.
 
@@ -205,7 +206,7 @@ Next we can go to the Loki interface, by clicking on the "Explorer" menu on the 
 
 If You open the "Log Labels" menu you should see all the labels that we configured in Promtail and that were extracted from the logs.
 
-![Loki logs view](/img/blog/b0673b6c-3861-4ea0-84af-ce8b62abf940.gif)
+<Image name="b0673b6c-3861-4ea0-84af-ce8b62abf940.gif" alt="Loki logs view"/>
 
 You can select one of them to display the associated logs, or with a LogQL query directly.
 
@@ -238,8 +239,7 @@ For example, to get all the logs containg the "name" text in our application, we
 ```
 {container_name="logs-with-loki_demo-app_1"} |= "name"
 ```
-
-![Log search](/blog/657c5d7e-dfc5-4047-9f74-1b6d73a0bc4d.png)
+<Image name="657c5d7e-dfc5-4047-9f74-1b6d73a0bc4d.png" alt="Grafana Loki Logs search view"/>
 
 To know more about the syntax of LogQL and all the possible queries, this [cheat sheet](https://megamorf.gitlab.io/cheat-sheets/loki/) is a good place start, followed by the official [LogQL Documentation](https://grafana.com/docs/loki/latest/logql/#line-filter-expression).
 

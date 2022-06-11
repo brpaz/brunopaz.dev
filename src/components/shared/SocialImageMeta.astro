@@ -1,39 +1,55 @@
 ---
-import { SocialImage } from 'astro-social-images';
-import { wrapText } from '~/utils/strings.ts'
-
+import { SocialImage, generateSocialImage } from 'astro-social-images';
+import { wrapText } from '~/utils/strings'
 export interface Props {
   title: string;
   url: string;
 }
 
-const {title, url} = Astro.props as Props;
+const assetsBaseURL = import.meta.env.PUBLIC_ASSETS_BASE_URL || import.meta.env.BASE_URL;
+
+const { title, url } = Astro.props as Props;
 
 let y = 105;
 let socialTitle = wrapText(title, 40, 3).map((line) => {
   const data = {
     content: line,
-    attributes: { x: '55', y: y, 'font-size': '70px', fill: '#fefffe'},
+    attributes: { x: '55', y: y, 'font-size': '70px', fill: '#fefffe' },
   };
-  y = y+80;
+  y = y + 80;
 
   return data;
 });
 
+const socialImage = generateSocialImage(
+  {
+    backgroundColor: "#0284C7",
+    images: [
+      {
+        url: 'public/img/socials/_profile-pic.png',
+        attributes: { top: 420, left: 960 },
+      },
+    ],
+    texts: [
+      ...socialTitle,
+      {
+        content: "Bruno Paz Engineering Blog",
+        attributes: { x: '55', y: '540', 'font-size': '46px', fill: '#fefffe' },
+      },
+      {
+        content: Astro.request.url,
+        attributes: { x: '55', y: '580', 'font-size': '20px', fill: '#fefffe' },
+      }
+    ],
+  },
+  {
+    urlPath: `${assetsBaseURL}/`,
+    outputDir: 'public/img/socials'
+  }
+);
 ---
 
- <SocialImage
-      backgroundColor="#0284C7"
-      images={[{ url: 'public/socials/_profile-pic.png', attributes: { top: 420, left: 960 } }]}
-      texts={[
-        ...socialTitle,
-         {
-          content: "Bruno Paz Engineering Blog",
-          attributes: { x: '55', y: '540', 'font-size': '46px', fill: '#fefffe' },
-        },
-         {
-          content: Astro.request.url,
-          attributes: { x: '55', y: '580', 'font-size': '20px', fill: '#fefffe' },
-        },
-      ]}
-    />
+<meta property="og:image"
+      content={socialImage.url} />
+<meta name="twitter:image"
+      content={socialImage.url} />

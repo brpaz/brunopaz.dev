@@ -5,7 +5,7 @@ import ProjectHeader from '~/components/work/detail/ProjectDetailHeader.astro'
 import ProjectGallery from '~/components/work/detail/ProjectDetailGallery.svelte'
 import ProjectTech from '~/components/work/detail/ProjectDetailTech.astro'
 import PageTitle from '~/components/shared/PageTitle.astro'
-import { ProjectFileMetadata, mapProject } from '~/api/projects.ts'
+import { ProjectFileMetadata, mapProject } from '~/api/projects'
 
 export async function getStaticPaths() {
   const projectPages = await Astro.glob<ProjectFileMetadata>('../../../content/projects/*.md');
@@ -21,8 +21,6 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-
-const imagesUrls = project.images.map(image => `/img/projects/${image}`);
 ---
 
 <style>
@@ -56,10 +54,9 @@ const imagesUrls = project.images.map(image => `/img/projects/${image}`);
 
   <ProjectHeader project={project} />
 
-
   <div class="content leading-8 mb-8">
-    {imagesUrls.length > 0 &&
-    <ProjectGallery images={imagesUrls}
+    {project.images.length > 0 &&
+    <ProjectGallery images={project.images}
                     client:load />
     }
 

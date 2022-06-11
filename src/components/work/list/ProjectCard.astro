@@ -1,43 +1,38 @@
 ---
 import { Project } from '~/api/projects';
-
 export interface Props {
   project: Project;
 }
 
 const { project } = Astro.props as Props;
-
-function getProjectImagePath(path) {
-    return `/img/projects/${path}`;
-}
-
 ---
+
 <div class="project-card flex flex-col rounded-lg shadow-lg mb-8 p-1 mr-4 h-full bg-blue-200">
-    <div class="flex items-center bg-white h-56 mb-2 overflow-hidden">
-    <a
-        class="w-full h-full flex items-center"
-        href={project.detailsUrl}
-    >
-        <img
-        src={getProjectImagePath(project.coverImage)}
-        alt={`Image of project: ${project.name}`}
-        class="flex w-full"
-        loading="lazy"
-        aria-hidden="true">
+  <div class="flex items-center bg-white h-56 mb-2 overflow-hidden">
+    <a class="w-full h-full flex items-center"
+       href={project.detailsUrl}>
+      <img src={project.coverImage}
+           alt={`Image
+           of
+           project:
+           ${project.name}`}
+           class="flex w-full"
+           loading="lazy"
+           aria-hidden="true">
     </a>
+  </div>
+
+  <div class="px-4 py-2">
+    <div class="flex justify-between">
+      <a href={project.detailsUrl}>
+        <h3 class="font-bold text-xl mb-4">
+          {project.name}
+        </h3>
+      </a>
+
+      <span class="text-sm">{ project.category }</span>
     </div>
 
-    <div class="px-4 py-2">
-        <div class="flex justify-between">
-            <a
-            href={project.detailsUrl}
-            ><h3 class="font-bold text-xl mb-4">
-                {project.name}
-            </h3></a>
-
-            <span class="text-sm">{ project.category }</span>
-        </div>
-
-        {project.description}
-    </div>
+    {project.description}
+  </div>
 </div>

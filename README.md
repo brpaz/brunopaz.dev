@@ -1,5 +1,7 @@
 # brunopaz.dev
 
+
+
 > Source code for my personal website, [brunopaz.dev](https://brunopaz.dev). Powered by [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
 
 ## 🧞 Development
