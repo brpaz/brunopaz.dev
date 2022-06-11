@@ -26,7 +26,6 @@ jobs:
 
       - name: Lint
         run: yarn lint
-        continue-on-error: true
 
       - name: Build
         run: yarn build

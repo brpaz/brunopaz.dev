@@ -6,9 +6,9 @@ import GithubProjectCard from '~/components/work/list/GithubProjectCard.astro'
 import { ProjectFileMetadata, ProjectType, mapProject } from '~/api/projects'
 import IconBriefcase from '~/assets/icons/briefcase.svg'
 
-let projects = await Astro.glob<ProjectFileMetadata>('../../content/projects/*.md');
+let projectsFiles = await Astro.glob<ProjectFileMetadata>('../../content/projects/*.md');
 
-projects = await Promise.all(projects.map(async (project) => mapProject(project)));
+let projects = await Promise.all(projectsFiles.map(async (project) => mapProject(project)));
 
 projects = projects.sort((a, b) => Number(a.position) - Number(b.position));
 

@@ -31,7 +31,6 @@ I was still pretty new in the work field, and trying to grow as Developer myself
 
 Later, I moved to the company I currently work for, which is 10 times bigger and where I am now a Senior Engineer. Support Junior Devs in my team is now an important part of my daily work and its something that I really enjoy.
 
-
 ## How to be a great mentor
 
 ### Get to know your mentee
@@ -43,7 +42,6 @@ What´s their background, its their first job or they have any previous experien
 Its also your opportunity to show you are there to help and to make them feel comfortable with you.
 
 By knowing them well, you will be able to understand better what kind of mentorship they need.
-
 
 ### Be patient and understand that people learn at different speed
 
@@ -93,7 +91,6 @@ I once read somewhere, "If in an Performance evaluation phase you were surprised
 
 If you are a manager, don´t wait til the evaluation process to tell them about their performance. Give constant feedback. What they are doing good, and what they can improve. Listen to their concerns. Understand their career goals and give them conditions to achieve that goals.
 
-
 ### Code Review
 
 Code review is one of the most important activities you can do as a mentor. Don´t take it lightly.
@@ -129,8 +126,7 @@ As a mentor, you can help them a lot with that. You could, for example, show or 
 
 But that´s why you should "Get to know your mentee". So you can understand their concerns and expectations and help them accordingly. May be she already knows exactly that Backend Development is their passion? Everyone is different.
 
-
-## If you are a Junior reading this ...
+## If you are a Junior reading this
 
 I also have some advice to you.
 

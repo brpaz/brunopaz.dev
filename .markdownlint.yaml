@@ -1,5 +1,4 @@
 MD041: false # Disable this rule because of front-matter.
 
 MD013: false # Line length. Disable temporalily, until I fix all issues.
-MD033:
-  allowed_elements: ["iframe"]
+MD033: false # Allow inline html

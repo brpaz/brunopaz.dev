@@ -46,7 +46,6 @@ This book has lots of code examples that will help understanding the concepts.
 
 Even if you dont want to follow a full DDD Approach, there are great concepts in this book that will help you better organizing your application code.
 
-
 ## [Scaling PHP Apps](https://www.scalingphpbook.com/)
 
 ![Imgur](https://i.imgur.com/tKCMH2t.png)
@@ -54,7 +53,6 @@ Even if you dont want to follow a full DDD Approach, there are great concepts in
 You can make the best application following "Clean Code" or "DDD" approach, but if you cant deploy it live and scale, it will be useless.
 
 This book is more focused on the operational side of PHP and it will explain great techniques, for getting the most of PHP and LEMP stack, from optimizing the application itself to the Webserver, Database, Caching etc.
-
 
 ## [Build APIs You Won't Hate](https://leanpub.com/build-apis-you-wont-hate)
 
@@ -64,8 +62,7 @@ While this book is not specific for PHP, Its a very important topic for any Web 
 
 As a bonus, all the code examples are written in PHP.
 
-
-# Conclusion
+## Conclusion
 
 Thats it. These are my favorites. [This](https://leanpub.com/mlaphp) and [This](https://leanpub.com/the-essentials-of-object-oriented-php) also look interesting, but I have only talked about books I have read.
 

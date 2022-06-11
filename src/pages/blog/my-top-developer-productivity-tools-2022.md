@@ -4,7 +4,7 @@ slug: my-top-developer-productivity-tools-2022
 date: 2022-04-02
 summary: In this blog post I will talk a bit about the setup and software of my personal laptop, powered by Linux.
 tags: ['development','productivity','linux']
-published: true
+published: false
 layout: ../../layouts/Post.astro
 ---
 
@@ -16,7 +16,6 @@ Tooling and workflows are a very personal thing. What works for me, might not wo
 
 Let´s start.
 
-
 ## Raindrop
 
 [Raindrop](https://raindrop.io/) is an Web Application and Browser extension that works All-in-one bookmark manager. I use Raindrop to save any interesting piece of information that I found online and want to refer to it later. Articles or books to read, Products to try, Code Libraries to experiment, etc.
@@ -26,7 +25,6 @@ Raindrop is my first line to process information from the web. I use it mostly a
 By default I will save all the bookmarks in the "Unsorted" collection, and then when I procecss each item, I can archive into a specific collection as well as add relevant tags.
 
 I still use browser bookmarks for purely bookmark frequently used websites that doens´t change offten.
-
 
 ## Obsidian
 
@@ -38,7 +36,6 @@ Obsidian also have a very big list of plugins that you can use extend it´s func
 
 I use Obsidian for almost everything from storing notes about programming languages, code snippets, book highlights,online courses notes and much more.
 
-
 ## TickTick / Gnome Todo
 
 For my todo list management and reminders, I found [TickTick](https://www.ticktick.com/) to be one of the best apps and believe me, I tried a lot of them! I really like how the reminders feature work and that you can easily snooze your tasks. You can also group your tasks into different lists and use tags to better organize them.
@@ -47,20 +44,22 @@ For work related daily tasks, I use [Gnome Todo](https://wiki.gnome.org/Apps/Tod
 
 ## Memex
 
-
 ## Ulauncher
 
 I use [Ulauncher](https://ulauncher.io/) as an application launcher and also as a way to quicly access a few commands and websites. Context switching can kill a productive moment, and having an application that you can trigger with a keyboard shortcut and floats on top of your current windows is great.
 
 ## Espanso
 
+TODO
 
 ## TextPieces
 
+TODO
 
 ## Portainer
 
+TODO
+
 ## Brotab
 
-
-
+TODO

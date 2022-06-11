@@ -6,7 +6,7 @@ export interface Props {
 const { websiteId } = Astro.props;
 ---
 
-<script define:vars={{ websiteId }} type="text/javascript" defer>
+<script define:vars={{ websiteId }} defer is:raw is:inline>
 window.$crisp=[];
 window.CRISP_WEBSITE_ID=websiteId;
 

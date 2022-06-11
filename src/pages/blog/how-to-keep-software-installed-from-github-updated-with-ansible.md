@@ -76,7 +76,7 @@ This Ansible module depends on the `github.py` Python package to interact with t
 pip install github3.py
 ```
 
-### Creating the playbook.
+### Creating the playbook
 
 Creating an Ansible playbook is as simple as creating an YAML file following the structure required by ansible.
 
@@ -165,7 +165,6 @@ Then we need to download the respective artifact from GitHub. This step can be a
 
 As we can see in the [releases page](https://github.com/cli/cli/releases), this project offers artifacts for deb, rpm, and archive (tar.gz).  For this example, we will use the archive version as it is the most common used format that we will probably find. But if the project have a better format available for your system, you should use that. If you are using Ubuntu, you could use the [APT module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html) to install the .deb file directly instead.
 
-
 For downloading and extracting the tarball, we will use the built-in [Unarchive](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/unarchive_module.html) module, that can do both at the same time:
 
 ```yaml
@@ -209,7 +208,7 @@ local ansible_connection=local
 
 After Ansible is executed , when we open a new terminal and type `gh`, it should show the GitHub CLI help command.
 
-## Using it at scale.
+## Using it at scale
 
 This example, showed the basics of using Ansible to install GitHub software. The tasks will vary slightly depending on the project and what kind of artifacts they provide.
 

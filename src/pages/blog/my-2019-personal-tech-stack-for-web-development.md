@@ -169,7 +169,6 @@ To provide content editing capabilities without much effort, [Netlify CMS](https
 
 For a self-hosted solution, [Directus](https://directus.io/) or [Strapi](https://strapi.io/).
 
-
 ## Infrastructure
 
 Code that is not in production is not really useful.
@@ -219,7 +218,6 @@ For coding, I use [VScode](https://code.visualstudio.com/), together with [JetBr
 [Docker](https://www.docker.com/) and [Docker-Compose](https://docs.docker.com/compose/) provides a streamligned development envrionment.
 
 [Postman](https://www.getpostman.com/) for testing REST APIs, [Cacher](https://www.cacher.io/) for storing code snippets, [Dbeaver](https://dbeaver.io/) for connecting to databases.
-
 
 ---
 

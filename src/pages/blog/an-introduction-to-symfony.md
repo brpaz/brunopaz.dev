@@ -471,20 +471,17 @@ class BookRepository extends ServiceEntityRepository
 You will then need to associate the repository and entity class by adding an annotation to the Entity:
 
 ```php
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
  */
 class Book
-
 ```
-
 
 ### The Controller
 
 Now lets create our BookController class. Maker bundle also provides an easy way to generate new Controller classes.
 
-```
+```bash
 php bin/console make:controller BookController
 ```
 

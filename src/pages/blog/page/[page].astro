@@ -9,8 +9,8 @@ const totalPage = 6;
 
 export async function getStaticPaths({ paginate }) {
 
-  let posts = await Astro.glob('../**/*.md')
-  posts = posts.filter(({ frontmatter }) => !!frontmatter.published)
+  const postsFiles = await Astro.glob('../**/*.md')
+  const posts = postsFiles.filter(({ frontmatter }) => !!frontmatter.published)
     .map((post) => {
       return {
         title: post.frontmatter.title,

@@ -77,6 +77,7 @@ Cloud Run, is build on top of [Knative](https://knative.dev/). which is an open-
 I know AWS has [Fargate](https://aws.amazon.com/fargate/), which seems to require some more configuration but should be the closest equivalent of Cloud Run in AWS.
 
 I am also looking forward to what comes out from the [DigitalOcean/Nanobox](https://www.digitalocean.com/nanobox/) integration.
+
 ## Conclusion
 
 Serverless is a great concept and I believe will keep maturing in the next years.
@@ -86,4 +87,3 @@ It won´t replace traditional servers for more complex applications or when more
 But, for smaller teams and single developers, who want to build a product without having concerns about scalability and server maintenance and with the extra benefit of only Pay for what is used, is perfect.
 
 It´s important to understand that Serverless is not just FaaS. Platforms like Google Cloud Run are a great example and might be a much simpler alternative for deploying your applications instead of trying to squeeze them into a Lambda.
-

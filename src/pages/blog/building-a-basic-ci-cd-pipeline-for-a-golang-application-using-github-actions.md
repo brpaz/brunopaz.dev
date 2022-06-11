@@ -45,24 +45,23 @@ Here is the code for the main.go file:
 package main
 
 import (
-	"fmt"
-	"github.com/brpaz/go-github-actions/hello"
+  "fmt"
+  "github.com/brpaz/go-github-actions/hello"
 )
 
 func main() {
-	fmt.Println(hello.Greet())
+  fmt.Println(hello.Greet())
 }
 ```
 
 And here is the "Greet" function:
-
 
 ```go
 package hello
 
 // Greet Greets GitHub Actions
 func Greet() string {
-	return "Hello GitHub Actions"
+  return "Hello GitHub Actions"
 }
 ```
 
@@ -102,7 +101,6 @@ Workflows are defined in YAML files located in `.github/workflows` directory of 
 Each file in the directory represents a different Workflow.
 
 Here is how our Build workflow looks like:
-
 
 ```yaml
 name: Build and Test
@@ -265,7 +263,7 @@ And with this, we finished our first workflow ;)
 
 Let´s create a new branch and do a code change to see the PR workflow in action.
 
-```
+```bash
 git checkout -b greet-devto
 ```
 
@@ -273,19 +271,18 @@ Now change our "Greet" function to "greet" also Dev.to users:
 
 ```go
 func Greet() string {
-	return "Hello GitHub Actions. Dev.to is awesome"
+  return "Hello GitHub Actions. Dev.to is awesome"
 }
 ```
-
 
 We also need to update the respective unit test accordingly:
 
 ```go
 func TestGreetsGitHub(t *testing.T) {
-	result := Greet()
-	if result != "ello GitHub Actions. Dev.to is awesome" {
-		t.Errorf("Greet() = %s; want ello GitHub Actions. Dev.to is awesome", result)
-	}
+  result := Greet()
+  if result != "ello GitHub Actions. Dev.to is awesome" {
+    t.Errorf("Greet() = %s; want ello GitHub Actions. Dev.to is awesome", result)
+  }
 }
 ```
 
@@ -343,7 +340,7 @@ We also specify the `GITHUB_TOKEN` environment variable required by Go Releaser 
 
 If you create a tag and push to the repository:
 
-```
+```bash
 git tag v0.1.0
 git push --tags
 ```
