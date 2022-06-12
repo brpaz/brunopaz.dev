@@ -5,6 +5,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
+    permissions:
+      contents: read
+      deployments: write
     environment:
       name: production
       url: "https://brunopaz.dev"
@@ -43,6 +46,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          projectName: brunopazdev
+          projectName: ${{ secrets.CF_PROJECT_NAME }}
           directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
