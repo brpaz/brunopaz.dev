@@ -1,16 +1,22 @@
+name: Deploy to Cloudflare Pages
+
 on:
   release:
     types: [published]
 
+env:
+  SITE_URL: https://brunopaz.dev
+
+permissions:
+  contents: read
+  deployments: write
+
 jobs:
   deploy:
     runs-on: ubuntu-20.04
-    permissions:
-      contents: read
-      deployments: write
     environment:
       name: production
-      url: "https://brunopaz.dev"
+      url: https://brunopaz.dev
     steps:
       - uses: actions/checkout@v3
 
@@ -28,7 +34,7 @@ jobs:
           PUBLIC_FORMSPREE_FORM_ID: ${{ secrets.PUBLIC_FORMSPREE_FORM_ID }}
           PUBLIC_SENTRY_KEY: ${{ secrets.PUBLIC_SENTRY_KEY }}
           PUBLIC_WEB_MONETIZATION_ID: ${{ secrets.PUBLIC_WEB_MONETIZATION_ID }}
-          BASE_URL: "https://brunopaz.dev"
+          BASE_URL: ${{ env.SITE_URL }}
           PUBLIC_CHAT_ENABLED: "true"
           PUBLIC_SENTRY_ENABLED: "true"
 
