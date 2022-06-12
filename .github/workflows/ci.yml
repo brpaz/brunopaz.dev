@@ -29,6 +29,14 @@ jobs:
 
       - name: Build
         run: yarn build
+        env:
+          PUBLIC_ASSETS_BASE_URL: ${{ secrets.PUBLIC_ASSETS_BASE_URL }}
+          PUBLIC_FORMSPREE_FORM_ID: ${{ secrets.PUBLIC_FORMSPREE_FORM_ID }}
+          PUBLIC_SENTRY_KEY: ${{ secrets.PUBLIC_SENTRY_KEY }}
+          PUBLIC_WEB_MONETIZATION_ID: ${{ secrets.PUBLIC_WEB_MONETIZATION_ID }}
+          BASE_URL: "https://brunopaz.dev"
+          PUBLIC_CHAT_ENABLED: "true"
+          PUBLIC_SENTRY_ENABLED: "true"
 
       - name: Test
         run: yarn test
@@ -39,6 +47,12 @@ jobs:
           configPath: "./lighthouserc.json"
           budgetPath: ./budget.json
           uploadArtifacts: true
+
+      - name: Deploy Preview Envrionment
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          command: pages publish --project-name=brunopaz dist
 
       - name: Sync images to Cloudinary
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
