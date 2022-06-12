@@ -3,7 +3,7 @@ import '@assets/styles/global.css'
 
 import Header from '@components/shared/Header.astro';
 import Footer from '@components/shared/Footer.astro';
-import CrispChat from '@components/shared/CrispChat.astro';
+import FormButton from '@components/shared/FormButton.astro';
 import SocialImageMeta from '@components/shared/SocialImageMeta.astro';
 import siteData from '~/data/site.json';
 
@@ -11,69 +11,96 @@ const monetizationUrl = import.meta.env.PUBLIC_WEB_MONETIZATION_ID || "";
 const sentryEnabled = import.meta.env.PUBLIC_SENTRY_ENABLED || false;
 const sentryKey = import.meta.env.PUBLIC_SENTRY_KEY || "";
 const chatEnabled = import.meta.env.PUBLIC_CHAT_ENABLED || false;
-const crispWebsiteId = import.meta.env.PUBLIC_CRISP_WEBSITE_ID || "";
+const formspreeFormId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID || "";
 
 let title = Astro.props.title || siteData.title;
 let description = Astro.props.description || siteData.description;
 
 
 ---
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{title}</title>
-    <meta name="description" content={description}/>
-    <meta name="monetization" content={monetizationUrl}/>
-    <meta property="og:url" content={Astro.request.url}>
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:creator" content={siteData.social.twitter.handle} />
-    <meta name="twitter:app:country" content="PT">
-    <meta name="twitter:title" property="og:title" itemprop="title name" content={title} />
-    <meta name="twitter:description" property="og:description" itemprop="description" content={description} />
-    <link rel="canonical" href={Astro.canonicalURL.toString().slice(0,-1)} />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed for brunopaz.dev" href="/feed.xml" />
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1">
+  <title>{title}</title>
+  <meta name="description"
+        content={description} />
+  <meta name="monetization"
+        content={monetizationUrl} />
+  <meta property="og:url"
+        content={Astro.request.url}>
+  <meta property="og:type"
+        content="website">
+  <meta name="twitter:card"
+        content="summary">
+  <meta name="twitter:creator"
+        content={siteData.social.twitter.handle} />
+  <meta name="twitter:app:country"
+        content="PT">
+  <meta name="twitter:title"
+        property="og:title"
+        itemprop="title name"
+        content={title} />
+  <meta name="twitter:description"
+        property="og:description"
+        itemprop="description"
+        content={description} />
+  <link rel="canonical"
+        href={Astro.canonicalURL.toString().slice(0,-1)} />
+  <link rel="icon"
+        type="image/png"
+        href="/favicon.png" />
+  <link rel="alternate"
+        type="application/rss+xml"
+        title="RSS Feed for brunopaz.dev"
+        href="/feed.xml" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"/>
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+  <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"
+        as="style"
+        onload="this.onload=null;this.rel='stylesheet'" />
 
-    <noscript>
-      <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"
           rel="stylesheet"
-          type="text/css"
-      />
-    </noscript>
+          type="text/css" />
+  </noscript>
 
-    <SocialImageMeta title={title} url={Astro.request.url} />
+  <SocialImageMeta title={title}
+                   url={Astro.request.url} />
 
-    <script>
-      import '../assets/scripts/app.js';
-    </script>
+  <script>
+    import '../assets/scripts/app.js';
+  </script>
 
-    {sentryEnabled &&
-      <script src={`https://js.sentry-cdn.com/${sentryKey}.min.js`}
-      crossorigin="anonymous" defer
-    ></script>
-    }
+  {sentryEnabled &&
+  <script src={`https://js.sentry-cdn.com/${sentryKey}.min.js`}
+          crossorigin="anonymous"
+          defer></script>
+  }
 </head>
+
 <body class="h-screen w-full flex flex-col text-neutral-600">
-   <main id="swup" class="container mx-auto mb-auto pb-16 p-4">
-        <Header />
+  <main id="swup"
+        class="container mx-auto mb-auto pb-16 p-4">
+    <Header />
 
-        <!-- The page will render it's content here -->
-        <slot />
-   </main>
-    <Footer />
+    <!-- The page will render it's content here -->
+    <slot />
+  </main>
+  <Footer />
 
-    {(chatEnabled && crispWebsiteId !== "" ) &&
-      <CrispChat websiteId={crispWebsiteId} />
-    }
-  </body>
+  {(chatEnabled && formspreeFormId !== "" ) &&
+  <FormButton formId={formspreeFormId} />
+  }
+</body>
 
 </html>
