@@ -55,4 +55,4 @@ jobs:
           projectName: ${{ secrets.CF_PROJECT_NAME }}
           directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: production
+          branch: main
