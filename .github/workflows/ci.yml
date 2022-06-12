@@ -46,6 +46,7 @@ jobs:
           uploadArtifacts: true
 
       - name: Deploy Preview
+        if: github.event_name == 'pull_request'
         uses: brpaz/pages-action@add-envrionment-deploy
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
