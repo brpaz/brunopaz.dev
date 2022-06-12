@@ -42,10 +42,11 @@ jobs:
           CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
 
       - name: Deploy to Production
-        uses: cloudflare/pages-action@1
+        uses: brpaz/pages-action@add-envrionment-deploy
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
           projectName: ${{ secrets.CF_PROJECT_NAME }}
           directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: production
