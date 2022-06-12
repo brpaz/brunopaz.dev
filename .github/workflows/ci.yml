@@ -53,6 +53,8 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           command: pages publish --project-name=brunopaz dist
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
 
       - name: Sync images to Cloudinary
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
