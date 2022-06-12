@@ -45,10 +45,8 @@ jobs:
           budgetPath: ./budget.json
           uploadArtifacts: true
 
-      - run: echo ${{ toJson(github) }}
-
       - name: Deploy Preview
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.actor != 'dependabot'
         uses: brpaz/pages-action@add-envrionment-deploy
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
