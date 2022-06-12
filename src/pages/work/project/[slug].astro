@@ -7,6 +7,8 @@ import ProjectTech from '~/components/work/detail/ProjectDetailTech.astro'
 import PageTitle from '~/components/shared/PageTitle.astro'
 import { ProjectFileMetadata, mapProject } from '~/api/projects'
 
+import "@splidejs/splide/dist/css/themes/splide-skyblue.min.css";
+
 export async function getStaticPaths() {
   const projectPages = await Astro.glob<ProjectFileMetadata>('../../../content/projects/*.md');
 
