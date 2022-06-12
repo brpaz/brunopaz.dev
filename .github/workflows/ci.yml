@@ -1,46 +1,42 @@
 name: ci
 
 on:
-  # Triggers the workflow on push and pull request events but only for the main branch
   push:
     branches: [main]
   pull_request:
     branches: [main]
-
-  # Allows you to run this workflow manually from the Actions tab.
   workflow_dispatch:
 
+permissions:
+  contents: read
+  deployments: write
 jobs:
   build:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
+      - uses: actions/setup-node@v3
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          node-version: "16"
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
 
       - name: Lint
-        run: npm run lint
-        continue-on-error: true #  Temporary until I fix all issues on blog posts.
+        run: yarn lint
 
       - name: Build
-        run: npm run build
+        run: yarn build
+        env:
+          PUBLIC_ASSETS_BASE_URL: ""
+          BASE_URL: "https://brunopaz.dev"
+          PUBLIC_CHAT_ENABLED: "false"
+          PUBLIC_SENTRY_ENABLED: "false"
 
       - name: Test
-        run: npm run test
+        run: yarn test
 
       - name: Run Lighthouse test
         uses: treosh/lighthouse-ci-action@v8
@@ -48,3 +44,12 @@ jobs:
           configPath: "./lighthouserc.json"
           budgetPath: ./budget.json
           uploadArtifacts: true
+
+      - name: Deploy Preview
+        uses: brpaz/pages-action@add-envrionment-deploy
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          projectName: ${{ secrets.CF_PROJECT_NAME }}
+          directory: dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

@@ -13,7 +13,6 @@ Docker has changed dramatically the way we develop applications. Thanks to it, i
 
 But everything comes with a price. There is an extra complexity of maintaining all the Docker stuff. Also some things that were very easy in a normal development environment running locally, like debugging your application from your IDE, now requires some extra configuration. And in case of getting Xdebug to work, its not an easy task. I couldn't find a single guide that have all the steps from start to finish. Thats why I decided to write this article. It will guide you to step by step through the process of installing and configuring Xdebug and PHPStorm with a Dockerized Symfony 4 application.
 
-
 ## Pre-requisites
 
 * This was tested on an Ubuntu 18.04 machine with PHPStorm 2018.1.4 and latest versions of [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/). Some things might work a little different in other Operating Systems.
@@ -25,21 +24,19 @@ But everything comes with a price. There is an extra complexity of maintaining a
 Of course, to be able to use Xdebug you must install it on your Docker container.
 The way to do this, will depend of your base image. I always use alpine based images. I wont enter in detail about how to Dockerize a Symfony application. You can follow along with the [Dockerfile](https://github.com/brpaz/symfony-docker-xdebug-demo/blob/master/Dockerfile) included in the demo repository.
 
-
 Here is the relevant excerpt of the Dockerfile that installs Xdebug:
-
 
 ```bash
 ARG WITH_XDEBUG=false
 
 RUN if [ $WITH_XDEBUG = "true" ] ; then \
-	    pecl install xdebug; \
-	    docker-php-ext-enable xdebug; \
-	    echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
-	    echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
-	    echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
-	    echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
-	fi ;
+pecl install xdebug; \
+docker-php-ext-enable xdebug; \
+echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
+echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
+echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
+echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
+fi;
 ```
 
 I dont want have to have a separate Dockerfile for development and production, so I have defined a build argument that will tell whether we want to install Xdebug or not.
@@ -76,7 +73,7 @@ We will define the following environment variables:
 
 We will add them to our ".env" file like this:
 
-```
+```ini
 PHP_IDE_CONFIG=serverName=symfony-demo
 XDEBUG_CONFIG=remote_host=192.168.1.102 remote_port=9001
 ```
@@ -91,13 +88,13 @@ The first thing you should do is to check your Debug settings. In PHPStorm, go t
 
 Make sure you have the some port that you have configured previously in "XDEBUG_CONFIG" environment variable:
 
-![](https://i.imgur.com/lt8ayc9.png)
+![image](https://i.imgur.com/lt8ayc9.png)
 
 Next, we need to configure a server. This is how PHPStorm will map the file paths in your local system to the ones in your container.
 
 Go to File -> Settings -> Languages and Frameworks -> PHP -> Servers
 
-![](https://i.imgur.com/zTF9QFb.png)
+![image](https://i.imgur.com/zTF9QFb.png)
 
 Give a name to your server. It should match the value you have defined in your "PHP_IDE_CONFIG" environment variable. We will call it "symfony-demo".
 
@@ -113,13 +110,13 @@ The last part is to configure the remote debugger of your project.
 
 On the top right, click on "edit configurations":
 
-![](https://i.imgur.com/G4r1uoo.png)
+![image](https://i.imgur.com/G4r1uoo.png)
 
 Click in the green "plus" sign at the top left and select "PHP Remote Debug" from the list.
 
 Now configure it like this:
 
-![](https://i.imgur.com/hTi2lM6.png)
+![image](https://i.imgur.com/hTi2lM6.png)
 
 Make sure you associate it with the previously created "server" definition. Use "PHPSTORM" as idekey.
 
@@ -133,14 +130,13 @@ Your IDE should be now correctly configured. Lets test.
 
 * Then click on "Start Listening for PHP Debug connections" icon on top right corner of PHPStorm.
 
-![](https://i.imgur.com/e6kD7BT.png)
+![image](https://i.imgur.com/e6kD7BT.png)
 
-* Open http://localhost:8888?XDEBUG_SESSION_START=PHPSTORM
+* Open `http://localhost:8888?XDEBUG_SESSION_START=PHPSTORM`
 
 If everything went well you should see the execution stop at your breakpoint.
 
-![](https://i.imgur.com/UxgccEi.png)
-
+![image](https://i.imgur.com/UxgccEi.png)
 
 And thats it. You should now have a fully configured development environment with Docker and Xdebug integrated with PHPStorm IDE.
 

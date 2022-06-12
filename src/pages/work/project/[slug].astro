@@ -5,62 +5,65 @@ import ProjectHeader from '~/components/work/detail/ProjectDetailHeader.astro'
 import ProjectGallery from '~/components/work/detail/ProjectDetailGallery.svelte'
 import ProjectTech from '~/components/work/detail/ProjectDetailTech.astro'
 import PageTitle from '~/components/shared/PageTitle.astro'
-import {SourceProject, mapProject} from '~/api/projects.ts'
+import { ProjectFileMetadata, mapProject } from '~/api/projects'
 
 export async function getStaticPaths() {
-    const projects = Astro.fetchContent<SourceProject>('../../../content/projects/*.md')
-    .map((project) => mapProject(project))
+  const projectPages = await Astro.glob<ProjectFileMetadata>('../../../content/projects/*.md');
 
-    return projects.map((project) => {
-        return {
-            params: { slug: project.slug },
-            props: { project } 
-        };
+  const projects = await Promise.all(projectPages.map(async (project) => mapProject(project)));
+
+  return projects.map((project) => {
+    return {
+      params: { slug: project.slug },
+      props: { project }
+    };
   });
 }
 
-const {project} = Astro.props;
+const { project } = Astro.props;
+---
 
-const imagesUrls = project.images.map(image => `/img/projects/${image}`);
---- 
 <style>
-.content h2 {
-  @apply font-bold text-2xl mb-4;
-}
-.content h3 {
-  @apply font-bold text-lg mb-4;
-}
-.content p {
-  @apply mb-4;
-}
+  .content h2 {
+    @apply font-bold text-2xl mb-4;
+  }
 
-.content img {
-  @apply my-4 mx-auto;
-}
+  .content h3 {
+    @apply font-bold text-lg mb-4;
+  }
 
-.content ul {
-  @apply list-disc ml-6 mb-4;
-}
+  .content p {
+    @apply mb-4;
+  }
 
-.content hr {
-  @apply flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto;
-}
-</style>    
-<DefaultLayout title={project.name} description={project.description}>   
-  <PageTitle title={project.name}/>
+  .content img {
+    @apply my-4 mx-auto;
+  }
+
+  .content ul {
+    @apply list-disc ml-6 mb-4;
+  }
+
+  .content hr {
+    @apply flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto;
+  }
+</style>
+<DefaultLayout title={project.name}
+               description={project.description}>
+  <PageTitle title={project.name} />
 
   <ProjectHeader project={project} />
 
-
   <div class="content leading-8 mb-8">
-    {imagesUrls.length > 0 &&
-      <ProjectGallery images={imagesUrls} client:load />
+    {project.images.length > 0 &&
+    <ProjectGallery images={project.images}
+                    client:only />
     }
-  
-    <Markdown content={project.content}/>
+
+    <Markdown content={project.content} />
   </div>
 
   {project.technologies.length > 0 &&
-    <ProjectTech technologies={project.technologies} />
+  <ProjectTech technologies={project.technologies} />
   }
 </DefaultLayout>

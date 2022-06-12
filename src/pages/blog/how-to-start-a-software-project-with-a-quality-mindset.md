@@ -199,7 +199,6 @@ There are lots of great tools to define your Delivery Pipeline. [Jenkins](https:
 
 GitLab and Drone are Open Source and you can install them on your own infrastructure but if you are just starting you should look for their Cloud solutions. GitLab is an all in one solution and it gives everything you need from Version Control, Issue boards, CI Pipeline, Integration with Kubernetes for deployments and many more as its a great tool to start fast your pipeline.
 
-
 To learn more about how to properly build a Continuous Delivery Pipeline, take a look at these articles:
 
 - [Continuous Delivery Pipeline 101 | Atlassian](https://www.atlassian.com/continuous-delivery/pipeline)
@@ -230,7 +229,6 @@ And with some experience and good tooling, it won't really take that much extra 
 Thanks for reading.
 
 ## Worth Reading
-
 
 - [Is High-Quality Software Worth the Cost?](https://martinfowler.com/articles/is-quality-worth-cost.html)
 - [Why we always start with Continuous Integration and Continuous Delivery](https://tailordev.fr/blog/2017/04/05/why-we-always-start-with-ci-cd/?utm_content=buffera2717&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer)

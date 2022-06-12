@@ -64,7 +64,6 @@ You can specify as many domains as you want, but personally, I am using "lh" (lo
 
 Go to `/etc/NetworkManager/dnsmasq.d` and create a new file with the name of your TLD, in my case `lh.conf` with the following contents:
 
-
 ```ini
 address=/lh/127.0.0.1
 ```
@@ -117,4 +116,3 @@ But if you work on many projects at the same time, projects with complex microse
 ## Reference
 
 * [Using the NetworkManager's DNSMasq plugin - Fedora Magazine](https://fedoramagazine.org/using-the-networkmanagers-dnsmasq-plugin/)
-

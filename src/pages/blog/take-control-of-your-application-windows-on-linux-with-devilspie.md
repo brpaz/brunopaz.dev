@@ -114,6 +114,7 @@ Hope you enjoyed it. Feel free to ask any questions in the comments section belo
 See you.
 
 ---
+
 ## Reference
 
 * [Devilspie2 for Automatic Placement of Windows on a Linux Desktop – Justin Gedge](https://www.justingedge.com/linux/devilspie2-automatic-window-placement/)

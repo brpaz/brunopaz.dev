@@ -29,7 +29,7 @@ Right now my machine is running Linux Mint 18.3 but I am thinking of moving back
 
 * [Google Chrome](https://www.google.com/chrome/) — My primary browser of choice.
 
-* [Firefox ](https://www.mozilla.org/en-US/firefox/new/)— My secondary browser.
+* [Firefox](https://www.mozilla.org/en-US/firefox/new/)— My secondary browser.
 
 * [Min](https://github.com/minbrowser/min) — Min is a minimalist webbrowser. Since Linux doesn't have anything like [Fenetre](https://xn--fent-ipa.re/) for Mac, I use it when I want to browse documentation, follow a tutorial or watch a video side in a Picture in Picture / side by side mode.
 
@@ -55,7 +55,7 @@ Right now my machine is running Linux Mint 18.3 but I am thinking of moving back
 
 * [XnConvert](https://www.xnview.com/en/xnconvert/) — a powerful and free cross-platform batch image processor, allowing you to combine over 80 actions.
 
-* [Draw.io ](https://github.com/jgraph/drawio-desktop)— Draw.io is my app of choice for designing all kinds of diagrams, from flowcharts, to sequence diagrams or even wireframes. Its 100% free to use and can be integrated with Google Drive.
+* [Draw.io](https://github.com/jgraph/drawio-desktop)— Draw.io is my app of choice for designing all kinds of diagrams, from flowcharts, to sequence diagrams or even wireframes. Its 100% free to use and can be integrated with Google Drive.
 
 * [Shutter](http://shutter-project.org/) — For taking screenshots and quickly annotate them with arrows, boxes etc. It also have some nice effects like blur sensible parts of an image.
 
@@ -105,7 +105,7 @@ Right now my machine is running Linux Mint 18.3 but I am thinking of moving back
 
 * [zplug](https://github.com/zplug/zplug) — To manage zsh plugins.
 
-* [zsh-completions ](https://github.com/zsh-users/zsh-completions)— Additional completion definitions for Zsh.
+* [zsh-completions](https://github.com/zsh-users/zsh-completions)— Additional completion definitions for Zsh.
 
 ## Command line utilities
 
@@ -137,7 +137,7 @@ Right now my machine is running Linux Mint 18.3 but I am thinking of moving back
 
 * [get-port-cli](https://github.com/sindresorhus/get-port-cli) — Get an available port
 
-* [public-ip-cli ](https://github.com/sindresorhus/public-ip-cli)— Get your public IP address
+* [public-ip-cli](https://github.com/sindresorhus/public-ip-cli)— Get your public IP address
 
 * i[nternal-ip-cli](https://github.com/sindresorhus/internal-ip-cli) — Get your internal IP address
 
@@ -167,8 +167,6 @@ I use Docker extensively in my development environment. I still have common runt
 
 ## Development tools
 
-* [how2](http://stackoverflow from the terminal) — Stack overflow from terminal
-
 * [Pet](https://github.com/knqyf263/pet) — Simple command-line snippet manager. I use it to store the commands I use most.
 
 * [caniuse-cmd](https://github.com/sgentle/caniuse-cmd) — Caniuse command line tool
@@ -185,7 +183,7 @@ I use Docker extensively in my development environment. I still have common runt
 
 * [tig](https://github.com/jonas/tig) — Text-mode interface for git
 
-* [jq ](https://stedolan.github.io/jq/)— jq is a lightweight and flexible command-line JSON processor
+* [jq](https://stedolan.github.io/jq/)— jq is a lightweight and flexible command-line JSON processor
 
 * [python-gitlab](https://github.com/python-gitlab/python-gitlab)— GitLab client
 
@@ -262,4 +260,3 @@ This is current Development machine. Hope you have find this useful.
 I am always looking for ways to improve my workflow, so if you use any tool that you find useful and its not listed here, feel free to comment this post.
 
 Linux can be a very powerful development environment. Its a pity that amazing Mac applications like [Alfred](https://www.alfredapp.com/) or [Fenetre](https://xn--fent-ipa.re/) doesn't have a viable Linux alternative. Thats what I miss the most. And I never used a Mac but I feel the power of these applications!
-

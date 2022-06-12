@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { Options } from '@splidejs/splide';
-  import { Splide, SplideSlide } from '@splidejs/svelte-splide';
-  import '@splidejs/splide/dist/css/themes/splide-skyblue.min.css';
+  import type { Options } from "@splidejs/splide";
+  import { Splide, SplideSlide } from "@splidejs/svelte-splide";
+  import "@splidejs/splide/dist/css/themes/splide-skyblue.min.css";
   export let images = [];
 
   const options: Options = {

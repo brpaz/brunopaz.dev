@@ -74,7 +74,6 @@ An example in this project was the Payments service. When the user made a bookin
 
 This process is slow and and there are many things that can fail in the middle. Using asynchronous communication makes your services more resilient to failure as you can implement mechanisms like retry in a case of error in an easier way.
 
-
 ## Conclusion
 
 The advantages of a Microservices architecture are clear, from a better separation of concerns resulting in more decoupled applications, the possibility to scale each service independently or to write each service into the most appropriate programming language.
@@ -90,7 +89,6 @@ The word Monolith has a bad connotation in general, but the truth is, nothing st
 Every application is different. Its your job as a Software Engineer to analyze the requirements and choose the most appropriate path.
 
 Hope you enjoyed the article. If you have any questions or comments, feel free to use the comment box below.
-
 
 ## Reference
 

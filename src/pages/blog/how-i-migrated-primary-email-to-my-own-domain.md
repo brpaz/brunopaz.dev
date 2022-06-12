@@ -14,7 +14,7 @@ I spent my last weekend migrating my primary email address to my own domain. In 
 
 I had the same email address for like 15 years or more. I was still using the mail service provided by my first ISP, which I created when I was a teenager. Unlike many, I hadn´t any "non-professional" Hotmail account and I didn't enter on the Gmail bandwagon when it becomes popular.
 
-My email address was simple, "<firstname><lastname>" and it fitted my needs for many time.
+My email address was simple, `<firstname><lastname>` and it fitted my needs for many time.
 
 I still have a Gmail address for my Google account but it is some random email, that doesn´t even have my name on it.
 

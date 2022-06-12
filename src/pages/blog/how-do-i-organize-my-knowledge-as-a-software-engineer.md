@@ -73,7 +73,6 @@ I use cheat sheets as reference of how to use some library or programming langua
 
 I am still experimenting with this but its working great so far.
 
-
 ## Diigo
 
 [Diigo](https://www.diigo.com/index) allows you to Annotate and Highlight parts of websites. I use it to annotate important information when studying new topics or to save particular paragraphs from articles, Stack Overflow answers or inspirational quotes from Twitter! ;)
@@ -85,7 +84,3 @@ And thats it. There might be some overlap in terms of functionality in some of t
 What about you? How to you organize your Knowledge?. Please feel free to comment below.
 
 Thank you for reading.
-
-
-
-

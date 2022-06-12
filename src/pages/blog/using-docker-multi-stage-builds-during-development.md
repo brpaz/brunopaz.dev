@@ -25,7 +25,7 @@ For example:
 
 Consider the following Dockerfile, which is responsible for building a [Jekyll](https://jekyllrb.com/) based static site.
 
-```dockerfile
+```docker
 FROM ruby:2.5.1-alpine3.7  AS build-env
 RUN apk update && apk add --no-cache nodejs build-base
 RUN apk add yarn --no-cache --repository http://dl-3.alpinelinux.org/alpine/v3.8/community/ --allow-untrusted
