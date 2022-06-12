@@ -38,7 +38,7 @@
     "husky": "^8.0.1"
   },
   "dependencies": {
-    "@splidejs/splide": "^4.0.6",
+    "@splidejs/splide": "^4.0.7",
     "@splidejs/svelte-splide": "^0.2.4",
     "@swup/a11y-plugin": "^2.0.0",
     "@swup/head-plugin": "^1.2.0",
