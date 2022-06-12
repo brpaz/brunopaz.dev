@@ -48,6 +48,7 @@ jobs:
           budgetPath: ./budget.json
           uploadArtifacts: true
 
+      - run: git status
       - name: Deploy Preview
         uses: brpaz/pages-action@add-envrionment-deploy
         with:
