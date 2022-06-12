@@ -20,3 +20,6 @@ yarn-error.log*
 cypress/videos
 cypress/screenshots
 lighthouse-results.html
+
+# Ignore social images, since they will be generated at build time
+public/img/socials

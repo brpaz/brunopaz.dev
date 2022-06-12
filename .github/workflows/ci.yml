@@ -46,7 +46,7 @@ jobs:
           uploadArtifacts: true
 
       - name: Deploy Preview
-        uses: cloudflare/pages-action@1
+        uses: brpaz/pages-action@add-envrionment-deploy
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
