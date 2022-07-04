@@ -57,6 +57,6 @@
     "lighthouse-cli": "^0.1.2",
     "node-fetch": "^3.2.6",
     "slugify": "^1.6.5",
-    "swup": "^2.0.14"
+    "swup": "^2.0.16"
   }
 }
