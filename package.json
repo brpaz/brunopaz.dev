@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@astrojs/rss": "^0.2.0",
-    "@astrojs/sitemap": "^0.1.2",
+    "@astrojs/sitemap": "^0.2.5",
     "@astrojs/svelte": "^0.1.4",
     "@jlengstorf/get-share-image": "^0.8.0",
     "@sarissa/pagination": "^1.0.3",
