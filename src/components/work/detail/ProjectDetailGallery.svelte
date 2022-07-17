@@ -14,8 +14,19 @@
   <Splide {options}>
     {#each images as image, i}
       <SplideSlide>
-        <img width="1280" src={image} alt={`Project image ${++i}`} />
+        <img
+          width="1280"
+          src={image}
+          alt={`Project image ${++i}`}
+          style="margin: 0 auto;"
+        />
       </SplideSlide>
     {/each}
   </Splide>
 </div>
+
+<style global>
+  .splide__arrow:disabled {
+    opacity: 0;
+  }
+</style>

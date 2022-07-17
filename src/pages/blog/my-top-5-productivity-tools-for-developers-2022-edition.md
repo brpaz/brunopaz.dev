@@ -1,0 +1,131 @@
+---
+title: My Top 5 productivity tools for developers, 2022 edition
+slug: my-top-5-productivity-tools-for-developers-2022-edition
+date: 2022-07-10
+summary: In this post I will talk a bit about the setup and software of my personal laptop, powered by Linux.
+tags: ['development','productivity','linux']
+published: true
+layout: ../../layouts/Post.astro
+setup: |
+  import Image from '../../components/blog/Image.astro'
+---
+
+I have always been a bit obssessed (in a good way) in the looking for tools and software to improve my developement workflows and productivity. Time is a precious and scarse resource, and I don´t want to waste any of it, struggling with my workflow. if it´s possible to make processes better and faster, using better tools, let´s do it, so I can focus on more important things.
+
+Finding the "best" tools and workflows is a continuous process and I have experimented with many different solutions over the years, some of them I thought were top notch at the time, but were later replaced by new and better ones and the cycle will continue for sure. But I am quite happy with everything I am using right now.
+
+That´s why I decided to write this article, too share a bit of my experience with you.
+
+Before continuing, a reminder that tooling and workflows are a very personal thing. What works well for me, might not work well for you. You should aim to find your balance and your own set of tools, that fits your workflow and not blindly copy other persons workflows. But they can serve of inspiration, I have took inspiration on many similar articles, so hope that this one, can also serve as an inspiration for someone :)
+
+Let´s start!
+
+## Raindrop
+
+<Image name="raindrop.png" alt="Raindrop Screenshot" />
+
+[Raindrop](https://raindrop.io/) is an All-in-one bookmark manager, avalable as a Web Application and as a browser extension. I use Raindrop to save any interesting piece of information that I found online and want to refer to it later. Articles or books to read, Products to try, Code Libraries to experiment, etc.
+
+Raindrop is my first line to process information from the web. I started using it mostly as a "Read Later" service like [Pocket](https://getpocket.com/en/), but with a much more features in terms of organization of your content. You can use folders/collections with nested levels, tags and more. And the UI is very pretty too as you can even import custom icons for your collections to give it an unique style.
+
+By default all the bookmarks I save are stored in the "Unsorted" collection, and then later, I will procecss each of then, and move them to a final destination and also assign correct tags. Or simply delete it, if not relevant anymore.
+
+I still use browser bookmarks for purely bookmark frequently used websites. Eventually I might move them to Raindrop as well, but for now I prefer to keep them separate since they serve for a bit different purposes.
+
+One exciting feature that was added recently to Raindrop is the possibility to add hightlights and annotations to any page you save. I was using [Memex](https://memex.garden/) for that, but when this feature come out in Raindrop, it made sense to consolidate everything in a single tool. Annotations and hightlights are really helpful when you are learning a particular topic or reading an article and you want to annotate and save the most important parts of it.
+
+## Obsidian
+
+I have tried tons of Note taking tools before, from commercial ones like [Evernote](https://evernote.com/) to Open Source ones like [Joplin](https://joplinapp.org/) or [Boostnote](https://boostnote.io/). But none of them really stood up on me for various reasons. Until I discovered [Obsidian](https://obsidian.md/).
+
+<Image name="obsidian-screenshot.png" alt="Obsidian.md interface Screenshot" />
+
+Obsidian is a lot more that a note taking app, it can be used as a powerful knowledge base on top of a local folder of plain text Markdown files.
+
+I believe that something as important as your entire knowledge base should not be locked in in any closed platform. and by being Markdown based, Obsidian gave me that portability.
+
+Obsidian has a paid mobile application that you can sync your notes, but personally I just store all my notes into a GitHub repository then use [GitJournal](https://gitjournal.io/) app to access the notes from anywhere from my Android phone.
+
+Obsidian also has a very big list of community plugins that you can install extend it´s functionality. Some of then, that I use include:
+
+* [DataView Plugin](https://blacksmithgu.github.io/obsidian-dataview/) - Dataview is a live index and query engine over your knowledge base. You can associate data (like tags, dates, snippets, numbers, and so on) with your markdown pages, and then query (like filter, sort, transform) this data.
+* [aidenlx/alx-folder-note](https://github.com/aidenlx/alx-folder-note) - Allow to have a "index" page at the folder level.
+* [Templater Plugin](https://github.com/SilentVoid13/Templater) - Create templates for your notes.
+* [zsviczian/obsidian-excalidraw-plugin](https://github.com/zsviczian/obsidian-excalidraw-plugin) - A plugin to edit and view [Excalidraw](https://excalidraw.com/) drawings in Obsidian.
+* [zapthedingbat/drawio-obsidian](https://github.com/zapthedingbat/drawio-obsidian) - [Draw.io](https://app.diagrams.net/) plugin for obsidian.md.
+* [mtopping/obsidian-raindrop](https://github.com/mtopping/obsidian-raindrop) - This plugin allows for basic integration with Raindrop.io, a bookmarking service and Obsidian
+* [hadynz/obsidian-kindle-plugin](https://github.com/hadynz/obsidian-kindle-plugin) - Sync your Kindle notes and highlights directly into your Obsidian vault
+
+I use Obsidian for almost everything regarding knowledge management, from storing notes about programming languages, code snippets, book highlights, online courses notes and much more.
+
+## TickTick
+
+<Image name="TickTick-app.jpg" alt="TickTick interface Screenshot" />
+
+Another important productivity app is a Todo list management application.
+
+Like for note taking apps, I tried tons of them, until I found [TickTick](https://www.ticktick.com/). It´s one of the very few TODO apps that I tried, where it´s reminder feature, work and look exactly like I wanted.
+
+You can also group your tasks into different lists and use tags to better organize them.
+
+TickTick has a mobile and web application, and an app for the post popular Desktop Operating Systems. Unfortunately, the Linux version only supports Debian based desktops and I use Fedora, so I end up, wrapping the Web Version into a standalone application, using [WebCatalog](https://webcatalog.io/webcatalog/).
+
+## Ulauncher
+
+<Image name="ulauncher-demo.gif" alt="Ulauncher interface Screenshot" />
+
+A critical piece of my workflow is a Launcher application. The biggest advantage of this kind of tool, is that they reduce context switching by allowing you to run common tasks like switching applications, open websites, search on the web, triggering code snippets, etc, in a dialog like window, without you losing focus of your current application, like the code editor or the web browser.
+
+Since, I am on Linux, I use [Ulauncher](https://ulauncher.io/) for this. If you are on a Mac [Raycast](https://www.raycast.com/) is fantastic.
+
+Ulauncher have an extension system and there are tons of extensions build by the community (many of them, made by myself :)) to add new features. You see explore what is available [here](https://ext.ulauncher.io/).
+
+Things I do using Ulauncher:
+
+* Search documentation, using [Docsearch extension](https://github.com/brpaz/ulauncher-docsearch)
+* Access my GitHub projects and have a quick views about issues and PRs assigned to me, using [GitHub extension](https://github.com/brpaz/ulauncher-github)
+* Encode/Decode text into multiple formats like base64, using [Encoder](https://github.com/brpaz/ulauncher-encoder) extension.
+* Managing code snippets with [Snippets Extensions](https://ext.ulauncher.io/-/github-mikebarkmin-ulauncher-snippets)
+* Quick switch to a particular browser tab or search or access my bookmarks using [Brotab Extension](https://ext.ulauncher.io/-/github-brpaz-ulauncher-brotab) and [Firefox Bookmarks Extensions](https://ext.ulauncher.io/-github-kuenzelit-ulauncher-firefox-bookmarks)
+
+and much more.
+
+I also use [Raindrop Extension](https://github.com/brpaz/ulauncher-raindrop) and [Obsidian Extensions](https://ext.ulauncher.io/-/github-mikebarkmin-ulauncher-obsidian), which connect all the dots with my other used tools, and make very easy to search their contents.
+
+## TextPieces
+
+<Image name="textpieces.png" alt="TextPices interface Screenshot" />
+
+As a Developer, how many times, did you wanted to do some kind of text manipulation like count lines on a file, calculate hashes, format JSON files, escape and unescape strings ...?
+
+I used to just search some random website, that allowed to do it online, which was not great approach, also for security reasons. [TextPieces](https://flathub.org/apps/details/com.github.liferooter.textpieces), solves this need. It´s a desktop app that allows you to do all kinds of text manipulation, completely offline.
+
+For Mac, a similar tool (and a bit more powerful even) is [DevUtils.app - All-in-one Toolbox for Developers](https://devutils.app/).
+
+## VSCode
+
+<Image name="vscode-dev.png" alt="VSCode interface Screenshot" />
+
+And to finalize this list, a very known tool, [VSCode](https://code.visualstudio.com/). Not much to say about it, it´s one of the best all-round and free code editors, with a lot of extensions.
+
+It´s my main code editor at the moment. I still, switch back and forth with Jetbrains IDEs for more complex projects, as autocomplete and refactoring funcionality of these are still one step above VSCode. But I am trying to stick more to VSCode has his ecosystem of extensions is a lot bigger and support for some newer languages and frameworks like [Astro](https://astro.build/) is much better.
+
+### Extra - A tilling window manager
+
+One of the things that improved my productivity by a lot, was a Tilling Window manager.
+
+This is even more useful when you have a bigger monitor. I recently got a QHD 27 inch monitor with a 2560x1440 resolution, to replace an older FHD 22 inch monitor, and the extra resolution, makes it perfect to have always two windows side by side. When programming, I rarely work full screen anymore. Instead, I usually have my Code editor and my browser side by side (like 75% / 25% width), while my terminal or any other reference material, is kept on my Laptop monitor, which is used as a secondary monitor.
+
+Posiition windows like this manually everytime is cumberstone, so a tilling window manager makes this process a breeze. Since I use Linux based OS with Gnome, [pop-shell](https://github.com/pop-os/shell) works really well.
+
+---
+
+## Conclusion
+
+This article covers up some of my favorite productivity tools that I use almost everyday.
+
+There are some others, that could be included on this article, but I wanted to focus on the essentials.
+
+In a future article, I plan to expand this to talk about my terminal setup, as it is also a very important part of a developer workflow. ZSH plugins, prompts, autocomplete, etc.
+
+Stay tuned! :)

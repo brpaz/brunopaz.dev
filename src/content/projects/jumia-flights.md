@@ -23,7 +23,7 @@ technologies:
   - Jira
 cover: jflights/cover.jpg
 images: []
-position: 3
+position: 4
 ---
 
 **Jumia Flights** is a flight booking website, focused on the African market, and inspired by [Skyscanner](https://skycanner.com).

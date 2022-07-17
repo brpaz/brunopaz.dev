@@ -1,12 +1,12 @@
 ---
 name: Uebbill
-description: uebbill is a web application oriented to small business, that allows to manage the entire billing process of a business in a simple and intuitive way. 
+description: uebbill is a web application oriented to small business, that allows to manage the entire billing process of a business in a simple and intuitive way.
 start_date: Jan 2012
 end_date: Mar 2014
 type: company
 category: application
 externalUrl: https://uebbill.com
-technologies: 
+technologies:
   - PHP
   - Symfony
   - MySQL
@@ -15,7 +15,7 @@ technologies:
   - CPanel
 cover: uebbill/cover.jpg
 images: []
-position: 5
+position: 6
 ---
 
 **uebbill** is a web application oriented to small business,

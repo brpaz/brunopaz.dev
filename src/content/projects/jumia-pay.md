@@ -14,7 +14,7 @@ images:
   - jpay/jpay-business01.png
   - jpay/jpay-business02.png
   - jpay/jpay-business03.png
-position: 1
+position: 2
 featured: true
 ---
 
