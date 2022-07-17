@@ -1,6 +1,6 @@
 ---
 name: JForce
-description: JForce is a PWA Application, that helps thousand of Jumia Agents by providing easy access to their orders, sales, commissions and more. 
+description: JForce is a PWA Application, that helps thousand of Jumia Agents by providing easy access to their orders, sales, commissions and more.
 start_date: Jan 2018
 end_date: Dec 2018
 type: company
@@ -11,8 +11,8 @@ cover: jforce/cover.jpg
 images:
   - jforce/jforce01.png
   - jforce/jforce02.png
-position: 2
-featured: true
+position: 3
+featured: false
 ---
 
 **JForce** is a web application created to help manage the thousands of agents that Jumia has in the field

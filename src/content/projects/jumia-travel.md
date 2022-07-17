@@ -6,7 +6,7 @@ end_date: Jul 2017
 type: company
 category: application
 externalUrl: https://travel.jumia.com
-technologies: 
+technologies:
   - PHP
   - Symfony
   - MySQL
@@ -25,7 +25,7 @@ technologies:
 cover: jtravel/cover.png
 images:
   - jtravel/jtravel01.jpg
-position: 4
+position: 5
 featured: true
 ---
 
