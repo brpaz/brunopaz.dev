@@ -55,7 +55,7 @@
     "imagemin-optipng": "^8.0.0",
     "lighthouse": "^9.6.3",
     "lighthouse-cli": "^0.1.2",
-    "node-fetch": "^3.2.8",
+    "node-fetch": "^3.2.9",
     "slugify": "^1.6.5",
     "swup": "^2.0.16"
   }
