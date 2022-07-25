@@ -146,10 +146,10 @@
     svelte "^3.24.0"
     svelte2tsx "^0.5.5"
 
-"@astrojs/svelte@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@astrojs/svelte/-/svelte-0.4.0.tgz#9f26f3d2186b7412c32fd002c503bb33d1a13cef"
-  integrity sha512-R/ARqtUpz3nT1qHO7652Sjmn4jAAEVwZzjz0/ZsOO8Fwcrd1TmP59TloHqT3N31HF4aoBI9Zi81WPAkZeze/zg==
+"@astrojs/svelte@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@astrojs/svelte/-/svelte-0.4.1.tgz#df801edfde3a30b91788cbc2ccdb0157512cdbcf"
+  integrity sha512-LsVK4sXhlKV20wyeavxViyXouXiTYunsDqnLqTpfiS3/WUK2MtlgVtLuCb18O7EUHgzXjXjfF7UIep6Bn/qzfQ==
   dependencies:
     "@sveltejs/vite-plugin-svelte" "^1.0.0-next.48"
     postcss-load-config "^3.1.4"
@@ -7588,18 +7588,10 @@ svelte-preprocess@^4.10.7:
     sorcery "^0.10.0"
     strip-indent "^3.0.0"
 
-svelte2tsx@^0.5.11:
+svelte2tsx@^0.5.11, svelte2tsx@^0.5.5:
   version "0.5.11"
   resolved "https://registry.yarnpkg.com/svelte2tsx/-/svelte2tsx-0.5.11.tgz#50d7ff1a03e949a288afafa9b4cbd8c4f7643f02"
   integrity sha512-Is95G1wqNvEUJZ9DITRS2zfMwVJRZztMduPs1vJJ0cm65WUg/avBl5vBXjHycQL/qmFpaqa3NG4qWnf7bCHPag==
-  dependencies:
-    dedent-js "^1.0.1"
-    pascal-case "^3.1.1"
-
-svelte2tsx@^0.5.5:
-  version "0.5.10"
-  resolved "https://registry.yarnpkg.com/svelte2tsx/-/svelte2tsx-0.5.10.tgz#32f244534361325e40f8976173ce2569c7e71fdb"
-  integrity sha512-nokQ0HTTWMcNX6tLrDLiOmJCuqjKZU9nCZ6/mVuCL3nusXdbp+9nv69VG2pCy7uQC66kV4Ls+j0WfvvJuGVnkg==
   dependencies:
     dedent-js "^1.0.1"
     pascal-case "^3.1.1"
@@ -8135,19 +8127,7 @@ vfile@^5.0.0, vfile@^5.3.2:
     unist-util-stringify-position "^3.0.0"
     vfile-message "^3.0.0"
 
-vite@^2.8.6:
-  version "2.9.9"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-2.9.9.tgz#8b558987db5e60fedec2f4b003b73164cb081c5e"
-  integrity sha512-ffaam+NgHfbEmfw/Vuh6BHKKlI/XIAhxE5QSS7gFLIngxg171mg1P3a4LSRME0z2ZU1ScxoKzphkipcYwSD5Ew==
-  dependencies:
-    esbuild "^0.14.27"
-    postcss "^8.4.13"
-    resolve "^1.22.0"
-    rollup "^2.59.0"
-  optionalDependencies:
-    fsevents "~2.3.2"
-
-vite@^2.9.10, vite@^2.9.14:
+vite@^2.8.6, vite@^2.9.10, vite@^2.9.14:
   version "2.9.14"
   resolved "https://registry.yarnpkg.com/vite/-/vite-2.9.14.tgz#c438324c6594afd1050df3777da981dee988bb1b"
   integrity sha512-P/UCjSpSMcE54r4mPak55hWAZPlyfS369svib/gpmz8/01L822lMPOJ/RYW6tLCe1RPvMvOsJ17erf55bKp4Hw==
