@@ -123,10 +123,10 @@
   resolved "https://registry.yarnpkg.com/@astrojs/prism/-/prism-0.6.0.tgz#fba82d4aa8e04c076430740c8588e97e87fc8cf5"
   integrity sha512-aHho3xNaJbys8KzkoyWOiwXwYwTBSe/RBflUolxEtHdNi8ibM0K3U20M6/SnamHnk6m78aEHQ4oHWFHI1wYUhw==
 
-"@astrojs/rss@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@astrojs/rss/-/rss-0.2.1.tgz#7439bb3c17a277358ed0af9c3e6f8409e2c74db0"
-  integrity sha512-qGmQU0Biui2cRSCLXtGGaLcF3UfBpq3ijPnasbVee4bB18tAQ5Wk3XwKUH9/+abxU5LjWXkx5LIwBUu72M0DZg==
+"@astrojs/rss@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@astrojs/rss/-/rss-1.0.1.tgz#a2d928c2ea2eeac47df207c63f978151bbbc4c08"
+  integrity sha512-CgfL1vSnHKZDUoSWVuRd6Z/s/2Hrazt9J3f4lKxTF/SwN28zJ+81e2obnOoxGhw5SfLNOqN/VEyHrGSJofaIRQ==
   dependencies:
     fast-xml-parser "^4.0.8"
 
@@ -3171,14 +3171,7 @@ fast-levenshtein@~2.0.6:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==
 
-fast-xml-parser@^4.0.7:
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.0.8.tgz#abf0fbfe477b90b796118bd097a3afa4b9b4673f"
-  integrity sha512-N4XqZaRMuHMvOFwFlqeBTlvrnXU+QN8wvCl2g9fHzMx2BnLoIYRDwy6XwI8FxogHMFI9OfGQBCddgckvSLTnvg==
-  dependencies:
-    strnum "^1.0.5"
-
-fast-xml-parser@^4.0.8:
+fast-xml-parser@^4.0.7, fast-xml-parser@^4.0.8:
   version "4.0.9"
   resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.0.9.tgz#3a81dab7b4952b8d38f0136d28bd055b80ed6512"
   integrity sha512-4G8EzDg2Nb1Qurs3f7BpFV4+jpMVsdgLVuG1Uv8O2OHJfVCg7gcA53obuKbmVqzd4Y7YXVBK05oJG7hzGIdyzg==
