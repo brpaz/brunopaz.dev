@@ -146,16 +146,15 @@
     svelte "^3.24.0"
     svelte2tsx "^0.5.5"
 
-"@astrojs/svelte@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@astrojs/svelte/-/svelte-0.4.0.tgz#9f26f3d2186b7412c32fd002c503bb33d1a13cef"
-  integrity sha512-R/ARqtUpz3nT1qHO7652Sjmn4jAAEVwZzjz0/ZsOO8Fwcrd1TmP59TloHqT3N31HF4aoBI9Zi81WPAkZeze/zg==
+"@astrojs/svelte@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@astrojs/svelte/-/svelte-1.0.1.tgz#75695200eeb31f7be429779836240f47ea21a189"
+  integrity sha512-br0yikJvfYuf12aN1XoPuog141Dz/DWC2P+OZrgfjkNpqFBUnDqwIcJPFwFJ7Cwfg3jjzNs94+P/QhaihryGnA==
   dependencies:
-    "@sveltejs/vite-plugin-svelte" "^1.0.0-next.48"
+    "@sveltejs/vite-plugin-svelte" "^1.0.1"
     postcss-load-config "^3.1.4"
     svelte-preprocess "^4.10.7"
     svelte2tsx "^0.5.11"
-    vite "^2.9.10"
 
 "@astrojs/telemetry@^0.4.0":
   version "0.4.0"
@@ -683,17 +682,17 @@
   dependencies:
     "@splidejs/splide" "^4.0.7"
 
-"@sveltejs/vite-plugin-svelte@^1.0.0-next.48":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@sveltejs/vite-plugin-svelte/-/vite-plugin-svelte-1.0.1.tgz#7f468f03c933fcdfc60d4773671c73f33b9ef4d6"
-  integrity sha512-PorCgUounn0VXcpeJu+hOweZODKmGuLHsLomwqSj+p26IwjjGffmYQfVHtiTWq+NqaUuuHWWG7vPge6UFw4Aeg==
+"@sveltejs/vite-plugin-svelte@^1.0.1":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@sveltejs/vite-plugin-svelte/-/vite-plugin-svelte-1.0.8.tgz#a8ebf58d3efc7bdb9eb8692ef3d78fdc39a6baa8"
+  integrity sha512-1xkVTB4pm6zuign858FzVYE9Fdw9MQBOlxrdd85STV0NvTDmcofcRpcrK+zcIyT8SZ2dseHLu8hvDwzssF6RfA==
   dependencies:
     "@rollup/pluginutils" "^4.2.1"
     debug "^4.3.4"
     deepmerge "^4.2.2"
     kleur "^4.1.5"
-    magic-string "^0.26.2"
-    svelte-hmr "^0.14.12"
+    magic-string "^0.26.3"
+    svelte-hmr "^0.15.0"
 
 "@swup/a11y-plugin@^2.0.0":
   version "2.0.0"
@@ -4920,10 +4919,10 @@ magic-string@^0.25.7, magic-string@^0.25.9:
   dependencies:
     sourcemap-codec "^1.4.8"
 
-magic-string@^0.26.2:
-  version "0.26.2"
-  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.26.2.tgz#5331700e4158cd6befda738bb6b0c7b93c0d4432"
-  integrity sha512-NzzlXpclt5zAbmo6h6jNc8zl2gNRGHvmsZW4IvZhTC4W7k4OlLP+S5YLussa/r3ixNT66KOQfNORlXHSOy/X4A==
+magic-string@^0.26.3:
+  version "0.26.5"
+  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.26.5.tgz#3ceb5c60f546ba4e21e3865ab8de4d32bd8ed07f"
+  integrity sha512-yXUIYOOQnEHKHOftp5shMWpB9ImfgfDJpapa38j/qMtTj5QHWucvxP4lUtuRmHT9vAzvtpHkWKXW9xBwimXeNg==
   dependencies:
     sourcemap-codec "^1.4.8"
 
@@ -7571,10 +7570,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-svelte-hmr@^0.14.12:
-  version "0.14.12"
-  resolved "https://registry.yarnpkg.com/svelte-hmr/-/svelte-hmr-0.14.12.tgz#a127aec02f1896500b10148b2d4d21ddde39973f"
-  integrity sha512-4QSW/VvXuqVcFZ+RhxiR8/newmwOCTlbYIezvkeN6302YFRE8cXy0naamHcjz8Y9Ce3ITTZtrHrIL0AGfyo61w==
+svelte-hmr@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/svelte-hmr/-/svelte-hmr-0.15.0.tgz#c8304b5dd33f006415329d91470761d19417a324"
+  integrity sha512-Aw21SsyoohyVn4yiKXWPNCSW2DQNH/76kvUnE9kpt4h9hcg9tfyQc6xshx9hzgMfGF0kVx0EGD8oBMWSnATeOg==
 
 svelte-preprocess@^4.10.7:
   version "4.10.7"
@@ -7588,18 +7587,10 @@ svelte-preprocess@^4.10.7:
     sorcery "^0.10.0"
     strip-indent "^3.0.0"
 
-svelte2tsx@^0.5.11:
+svelte2tsx@^0.5.11, svelte2tsx@^0.5.5:
   version "0.5.11"
   resolved "https://registry.yarnpkg.com/svelte2tsx/-/svelte2tsx-0.5.11.tgz#50d7ff1a03e949a288afafa9b4cbd8c4f7643f02"
   integrity sha512-Is95G1wqNvEUJZ9DITRS2zfMwVJRZztMduPs1vJJ0cm65WUg/avBl5vBXjHycQL/qmFpaqa3NG4qWnf7bCHPag==
-  dependencies:
-    dedent-js "^1.0.1"
-    pascal-case "^3.1.1"
-
-svelte2tsx@^0.5.5:
-  version "0.5.10"
-  resolved "https://registry.yarnpkg.com/svelte2tsx/-/svelte2tsx-0.5.10.tgz#32f244534361325e40f8976173ce2569c7e71fdb"
-  integrity sha512-nokQ0HTTWMcNX6tLrDLiOmJCuqjKZU9nCZ6/mVuCL3nusXdbp+9nv69VG2pCy7uQC66kV4Ls+j0WfvvJuGVnkg==
   dependencies:
     dedent-js "^1.0.1"
     pascal-case "^3.1.1"
@@ -8147,7 +8138,7 @@ vite@^2.8.6:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vite@^2.9.10, vite@^2.9.14:
+vite@^2.9.14:
   version "2.9.14"
   resolved "https://registry.yarnpkg.com/vite/-/vite-2.9.14.tgz#c438324c6594afd1050df3777da981dee988bb1b"
   integrity sha512-P/UCjSpSMcE54r4mPak55hWAZPlyfS369svib/gpmz8/01L822lMPOJ/RYW6tLCe1RPvMvOsJ17erf55bKp4Hw==
