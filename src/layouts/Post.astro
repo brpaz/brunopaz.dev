@@ -42,5 +42,5 @@ const { content } = Astro.props;
     <div class="post-content">
         <slot/>
     </div>
-    <SocialShare url={new URL(Astro.url.pathname, Astro.site).toString().slice(0, -1)} title={content.title} />
+    <SocialShare url={new URL(Astro.url.pathname, Astro.site).toString()} title={content.title} />
 </DefaultLayout>
