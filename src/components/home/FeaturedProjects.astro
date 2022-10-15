@@ -1,5 +1,5 @@
 ---
-import { ProjectFile, ProjectFileMetadata, Project, ProjectType, mapProject } from '~/api/projects'
+import { ProjectFileMetadata, ProjectType, mapProject } from '~/api/projects'
 import ProjectCard from '@components/work/list/ProjectCard.astro'
 
 let projects = await Astro.glob<ProjectFileMetadata>('../../content/projects/*.md');
