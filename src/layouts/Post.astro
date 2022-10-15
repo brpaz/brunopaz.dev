@@ -1,5 +1,5 @@
 ---
-import { formatPostDate } from '~/utils/date.ts'
+import { formatPostDate } from '~/utils/date'
 import DefaultLayout from '~/layouts/Default.astro'
 import PageTitle from '~/components/shared/PageTitle.astro'
 import SocialShare from '~/components/blog/SocialShare.astro'
@@ -42,5 +42,5 @@ const { content } = Astro.props;
     <div class="post-content">
         <slot/>
     </div>
-    <SocialShare url={Astro.canonicalURL.toString().slice(0, -1)} title={content.title} />
+    <SocialShare url={new URL(Astro.url.pathname, Astro.site).toString()} title={content.title} />
 </DefaultLayout>

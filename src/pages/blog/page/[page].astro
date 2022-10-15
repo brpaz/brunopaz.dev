@@ -5,8 +5,6 @@ import Post from '~/components/blog/Post.astro'
 import { Pagination } from "@sarissa/pagination";
 import IconWriting from '~/assets/icons/writing.svg'
 
-const totalPage = 6;
-
 export async function getStaticPaths({ paginate }) {
 
   const postsFiles = await Astro.glob('../**/*.md')

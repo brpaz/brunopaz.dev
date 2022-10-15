@@ -8,7 +8,7 @@ export interface Props {
 
 const assetsBaseURL = import.meta.env.PUBLIC_ASSETS_BASE_URL || import.meta.env.BASE_URL;
 
-const { title, url } = Astro.props as Props;
+const { title } = Astro.props as Props;
 
 let y = 105;
 let socialTitle = wrapText(title, 40, 3).map((line) => {
