@@ -39,7 +39,7 @@ jobs:
         run: yarn test
 
       - name: Run Lighthouse test
-        uses: treosh/lighthouse-ci-action@v8
+        uses: treosh/lighthouse-ci-action@v9
         with:
           configPath: "./lighthouserc.json"
           budgetPath: ./budget.json
