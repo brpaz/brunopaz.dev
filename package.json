@@ -50,7 +50,7 @@
     "cypress": "^10.10.0",
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
-    "glob-promise": "^4.2.2",
+    "glob-promise": "^6.0.2",
     "imagemin": "^8.0.1",
     "imagemin-jpegtran": "^7.0.0",
     "imagemin-optipng": "^8.0.0",
