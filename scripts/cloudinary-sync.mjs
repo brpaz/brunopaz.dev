@@ -6,7 +6,7 @@
  */
 import path from "path";
 import { fileURLToPath } from "url";
-import glob from "glob-promise";
+import glob from "glob";
 import chalk from "chalk";
 import { v2 as cloudinary } from "cloudinary";
 
@@ -32,6 +32,8 @@ if (!process.env.CLOUDINARY_URL) {
 
 async function run() {
   const files = await glob(`${imagesRootDir}/**/*.{jpg,png,svg}`);
+  console.log(chalk.yellow(`Found ${files.length} files to upload.`));
+  
   for (let file of files) {
     const subPath = file.replace(publicDir, "").slice(1);
 
