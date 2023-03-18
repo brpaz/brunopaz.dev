@@ -6,9 +6,9 @@ summary: In this post I will talk a bit about the setup and software of my perso
 tags: ['development','productivity','linux']
 published: true
 layout: ../../layouts/Post.astro
-setup: |
-  import Image from '../../components/blog/Image.astro'
 ---
+
+import Image from '../../components/blog/Image.astro'
 
 I have always been a bit obssessed (in a good way) in the looking for tools and software to improve my developement workflows and productivity. Time is a precious and scarse resource, and I don´t want to waste any of it, struggling with my workflow. if it´s possible to make processes better and faster, using better tools, let´s do it, so I can focus on more important things.
 

@@ -20,6 +20,13 @@ position: 1
 featured: true
 ---
 
-Sword Health is the world’s fastest growing virtual MSK care provider, on a mission to free two billion people from pain.
+Sword Health is the world’s fastest-growing virtual MSK care provider, on a mission to free two billion people from pain.
 
-I work on Sword as a Tech lead for one of the web teams, which core responsability on member onboardging and marketing communications.
+At Sword, I worked as Tech lead in one of the Web Teams, whose main topic is Marketing and Communications.
+
+My responsibilities included:
+
+- Managing a team of 4 Backend Engineers and ultimately being responsible for the processes and delivery of the team.
+- Working together with the PO to define and prioritize the product and tech roadmap.
+- Working with other Tech Leads and Directors of Engineering to help define the general architecture and Engineering best practices for Sword.
+- Support and Smaller projects development work.

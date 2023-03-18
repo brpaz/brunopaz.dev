@@ -9,9 +9,9 @@ published: true
 featured: true
 devto_url: https://dev.to/brpaz/serverless-beyond-faas-5fo
 layout: ../../layouts/Post.astro
-setup: |
-  import Image from '../../components/blog/Image.astro'
 ---
+
+import Image from '../../components/blog/Image.astro'
 
 Microservices are dead!! Serverless is for some time, the new hype in the infrastructure world.
 
