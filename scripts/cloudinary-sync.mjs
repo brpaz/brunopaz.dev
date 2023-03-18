@@ -30,25 +30,29 @@ if (!process.env.CLOUDINARY_URL) {
   process.exit(1);
 }
 
-const files = await glob(`${imagesRootDir}/**/*.{jpg,png,svg}`);
-for (let file of files) {
-  const subPath = file.replace(publicDir, "").slice(1);
+async function run() {
+  const files = await glob(`${imagesRootDir}/**/*.{jpg,png,svg}`);
+  for (let file of files) {
+    const subPath = file.replace(publicDir, "").slice(1);
 
-  const folder = path.join(cloudinaryBaseDir, path.dirname(subPath));
-  const fileName = path.basename(subPath);
+    const folder = path.join(cloudinaryBaseDir, path.dirname(subPath));
+    const fileName = path.basename(subPath);
 
-  console.log(chalk.yellow(`Uploading file: ${subPath}`));
-  try {
-    await cloudinary.uploader.upload(file, {
-      folder: folder,
-      access_mode: "public",
-      exif: false,
-      overwrite: false,
-      use_filename: true,
-      unique_filename: false,
-      filename_override: fileName,
-    });
-  } catch (error) {
-    console.log(chalk.red(`Failed to Upload ${subPath}: ${error.message}`));
+    console.log(chalk.yellow(`Uploading file: ${subPath}`));
+    try {
+      await cloudinary.uploader.upload(file, {
+        folder: folder,
+        access_mode: "public",
+        exif: false,
+        overwrite: false,
+        use_filename: true,
+        unique_filename: false,
+        filename_override: fileName,
+      });
+    } catch (error) {
+      console.log(chalk.red(`Failed to Upload ${subPath}: ${error.message}`));
+    }
   }
 }
+
+await run();
