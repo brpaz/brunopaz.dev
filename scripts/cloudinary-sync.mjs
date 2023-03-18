@@ -33,6 +33,7 @@ if (!process.env.CLOUDINARY_URL) {
 async function run() {
   const files = await glob(`${imagesRootDir}/**/*.{jpg,png,svg}`);
   console.log(chalk.yellow(`Found ${files.length} files to upload.`));
+  
   for (let file of files) {
     const subPath = file.replace(publicDir, "").slice(1);
 
