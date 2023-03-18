@@ -24,3 +24,6 @@ lighthouse-results.html
 
 # Ignore social images, since they will be generated at build time
 public/img/socials
+
+# Astro output
+.astro

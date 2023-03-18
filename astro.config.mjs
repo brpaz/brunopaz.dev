@@ -6,11 +6,13 @@
 // helpful tooltips, and warnings if your exported object is invalid.
 // You can disable this by removing "@ts-check" and `@type` comments below.
 
+
 import svelte from "@astrojs/svelte";
 import sitemap from "@astrojs/sitemap";
+import mdx from '@astrojs/mdx';
+import { defineConfig } from 'astro/config';
 
-// @ts-check
-export default /** @type {import('astro').AstroUserConfig} */ ({
+export default defineConfig({
   site: process.env.BASE_URL || "http://localhost:3000",
   markdown: {
     shikiConfig: {
@@ -19,7 +21,7 @@ export default /** @type {import('astro').AstroUserConfig} */ ({
       theme: "dracula",
     },
   },
-  integrations: [svelte(), sitemap()],
+  integrations: [svelte(), sitemap(), mdx()],
   vite: {
     plugins: [],
   },
