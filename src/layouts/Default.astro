@@ -1,6 +1,8 @@
 ---
 import '@assets/styles/global.css'
 import '@fontsource-variable/inter';
+import { fade } from 'astro:transitions';
+import { ViewTransitions } from "astro:transitions";
 import Header from '@components/shared/Header.astro';
 import Footer from '@components/shared/Footer.astro';
 import FormButton from '@components/shared/FormButton.astro';
@@ -66,20 +68,21 @@ let description = Astro.props.description || siteData.description;
   <SocialImageMeta title={title}
                    url={Astro.request.url} />
 
+
   <script>
-    import '../assets/scripts/app.js';
+    //import '../assets/scripts/app.js';
   </script>
 
   {sentryEnabled &&
-  <script src={`https://js.sentry-cdn.com/${sentryKey}.min.js`}
+  <script is:inline src={`https://js.sentry-cdn.com/${sentryKey}.min.js`}
           crossorigin="anonymous"
           defer></script>
   }
+  <ViewTransitions />
 </head>
 
-<body class="h-screen w-full flex flex-col text-neutral-600">
-  <main id="swup"
-        class="container mx-auto mb-auto pb-16 p-4">
+<body class="h-screen w-full flex flex-col text-neutral-600" transition:animate={fade({ duration: '0.4s' })}>
+  <main class="container mx-auto mb-auto pb-16 p-4">
     <Header />
 
     <!-- The page will render it's content here -->

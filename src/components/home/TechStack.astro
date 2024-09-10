@@ -64,7 +64,11 @@ const languages = [
       {languages.map((item) => (
       <div title={item}
            class="language-logo">
-        <LanguageIcon width=100 height=100 name={item} />
+        <LanguageIcon
+          name={item}
+          width={100}
+          height={100}
+        />
       </div>
       ))}
     </div>

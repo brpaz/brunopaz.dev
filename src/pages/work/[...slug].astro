@@ -1,0 +1,70 @@
+---
+import DefaultLayout from '~/layouts/Default.astro'
+import  PageTitle from '~/components/shared/PageTitle.astro'
+import ProjectHeader from '~/components/work/detail/ProjectDetailHeader.astro'
+import ProjectTech from '~/components/work/detail/ProjectDetailTech.astro'
+
+import type { Project } from '~/content/contentTypes'
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<Project>;
+}
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map(project => ({
+    params: { slug: project.slug }, props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<style is:global>
+  .content h2 {
+    @apply font-bold text-2xl mb-4;
+  }
+
+  .content h3 {
+    @apply font-bold text-lg mb-4;
+  }
+
+  .content p {
+    @apply mb-4;
+  }
+
+  .content img {
+    @apply my-4 mx-auto;
+  }
+
+  .content ul {
+    @apply list-disc ml-6 mb-4;
+  }
+
+  .content hr {
+    @apply flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto;
+  }
+</style>
+<DefaultLayout title={project.data
+.name}
+               description={project.data
+              .description}>
+  <PageTitle title={project.data.name} />
+
+  <ProjectHeader project={project} />
+
+  <div class="content leading-8 mb-8">
+    <!--{project.images.length > 0 &&
+    <ProjectGallery images={project.images}
+                    client:only="svelte" />
+  }-->
+
+    <Content />
+  </div>
+
+  {project.data.technologies.length > 0 &&
+  <ProjectTech technologies={project.data.technologies} />
+  }
+</DefaultLayout>

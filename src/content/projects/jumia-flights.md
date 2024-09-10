@@ -1,37 +1,33 @@
 ---
-name: Jumia Flights
-description: Jumia Flights is the Flights booking solution of Jumia and it was built with the goal to be the biggest online Flights booking marketplace im Africa.
-start_date: Aug 2017
-end_date: May 2018
-type: company
-category: application
-externalUrl: https://travel.jumia.com
+name: "Jumia Flights"
+description: "Jumia Flights is a travel booking platform by Jumia that allows users to search, compare, and book flights across Africa. It aims to provide easy access to competitive fares and travel options."
+startDate: 2017-08-01
+endDate: 2018-05-31
+category: "application"
 technologies:
-  - PHP
-  - Phalcon
-  - Go
-  - Java
-  - Play Framework
-  - MySQL
-  - ScyllaDB
-  - Websockets
-  - Git
-  - Docker
-  - Kubernetes
-  - Jenkins
-  - GitHub
-  - Jira
-cover: jflights/cover.jpg
+  - "Golang"
+  - "Java"
+  - "Phalcon"
+  - "Play Framework"
+  - "MySQL"
+  - "Jenkins"
+  - "Amazon Web Services"
+  - "JIRA"
+  - "Git"
+  - "GitHub"
+  - "NewRelic"
+coverImage: "jflights/cover.jpg"
 images: []
-position: 4
+role: "Developer"
+company: "Jumia"
+isPrivate: true
+sortOrder: 3
 ---
 
-**Jumia Flights** is a flight booking website, focused on the African market, and inspired by [Skyscanner](https://skycanner.com).
+Jumia Flights is a travel booking service provided by Jumia that enables users to search, compare, and book flights within Africa. It offers a user-friendly interface for finding competitive fares, and provides access to a wide range of airlines and travel options, helping travelers find the best deals and plan their trips more efficiently. The platform aims to simplify the flight booking process and enhance travel convenience across the continent.
 
-I have worked on this project from the ground up, including:
-
-- Define the general application architecture following a Microservices architecture.
-- Implement core features such as Search, Booking, and Payments, using Java (Play Framework) and PHP (Phalcon Framework).
-- Implementation of the Search Rules engine, using Golang.
-- Integration with popular third-party Flights providers like [Amadeus](https://amadeus.com) and [Kiwi](https://www.kiwi.com/en/).
-- Multi-provider search using Web Sockets.
+- **Architecture Planning:** Worked closely with the Head of Flights, Tech Lead, and CTO to define the initial architecture and tech stack, ensuring the project met business requirements.
+- **Core Features Implementation:** Contributed to the development of the project MVP, including the search engine, booking and payment process, using a microservices oriented architecture and a diverse tech stack, including Java, PHP and Golang.
+- **Search Engine and Flight providers integration:**  Developed a high-performance search engine with Java Play Framework, integrating data from thrid party providers like Amadeus and Kiwi. Implemented parallel data fetching using Java async features and used WebSockets to deliver the results to the frontend as they became available,to enhance user experience.
+- **Performance Optimization:** Developed a caching strategy using ScyllaDB to store complete search responses, reducing response times for users and the load on provider APIs.
+- **Search Rules Engine:** Developed a rules engine in Golang that allowed the operations team to set business rules for search results, including provider preferences, specific airlines, and routes, in order to increase the conversion rate and revenue.

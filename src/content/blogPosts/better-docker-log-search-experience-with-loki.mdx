@@ -1,0 +1,277 @@
+---
+title: A better log search experience during development with Grafana Loki
+publishDate: 2021-05-23
+excerpt: Logs are an essential debbuging tool when developing. But if your application emits many logs it can become hard to find what you are looking for. In this article, I will show you how to use Grafana Loki in your local envrionment, a tool that will make your log searching experience much better.
+tags: ['loki','logging','docker', 'development']
+slug: better-docker-log-search-experience-with-loki
+published: true
+# devto_url: https://dev.to/brpaz/from-notion-to-dendron-my-new-note-taking-and-knowledge-base-application-4icl-temp-slug-6997891
+
+featured: true
+---
+
+import Image from '../../components/blog/PostImage.astro'
+
+Logs are an essential debbuging tool when developing. For simple applications doing a `tail -f` or `docker logs` can be enough to find what we are looking for.
+
+But for more complex applications or applications which logs are very verbose (hello Java!), finding the exact piece we want can be cumberstone.
+
+In production systems, it´s common to have some sort of centralized logging platform where we can  use powerfull queries to search the logs. Two popular tools are the Elastic Stack with [Kibana](https://www.elastic.co/kibana) and [Grafana Loki](https://grafana.com/oss/loki/).
+
+So why not having something similar on our local envrionment? Kibana uses ElasticSearch as storage, which can be a little heavy. [Grafana Loki](https://grafana.com/oss/loki/) is a much more lightweight alternative. I also prefer Grafana as visualization tool.
+
+Unlike Elastic Stack, Loki doens´t index our logs. Instead logs are stored in plaintext and tagged with a set of label names and values, where only the label pairs are indexed. This makes it cheaper to operate than a full index.
+
+Logs in Loki are queried using [LogQL](https://grafana.com/docs/loki/latest/logql/), a powerfull query language, inspired by PromQL, the Prometheus Query language.
+
+A more detailed comparison between Elastic stack and Loki can be found [here](https://grafana.com/docs/loki/latest/overview/comparisons/).
+
+## The demo project
+
+To demonstrate the use of Loki, we will use Docker Compose to start a sample application and all the required components for Loki to work. You can follow along with the complete source on [GitHub](http://github.com/brpaz/logs-with-loki).
+
+The "Loki stack" consists of the following components:
+
+- [Grafana](https://grafana.com/) - The interface that will allow us to visualize and search the logs.
+- [Loki](https://grafana.com/oss/loki/) - The main component, reponsible to store and aggregate the logs.
+- [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) - The agent that will read the logs from it´s original sources and ship them to Loki.
+
+We will also use [echo-server](https://hub.docker.com/r/ealen/echo-server) as example application that will generate some logs.
+
+You can check the full [docker-compose](https://github.com/brpaz/logs-with-loki/blob/main/docker-compose.yml) file. Next, I will explain in detail the more relevant parts.
+
+### The Loki container
+
+```yaml
+  loki:
+    image: grafana/loki:2.2.1
+    ports:
+      - "3100"
+    volumes:
+      - ./config/loki/loki-config.yaml:/mnt/config/loki-config.yaml
+    command: -config.file=/mnt/config/loki-config.yaml
+    networks:
+      - loki
+```
+
+Here we start our Loki instance, using a config file. The config file allow us to configure some properties of Loki, like the retention time for our logs. You can check all available options [here](https://grafana.com/docs/loki/latest/configuration/), But at least for development, you should not need to change much of the default config.
+
+Loki has an Api that will listen on the configured `server.http_listen_port` (3100 by default), Api that will be used by the clients to push logs to Loki.
+
+### The Grafana container
+
+```yaml
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./config/grafana/provisioning/:/etc/grafana/provisioning/
+    networks:
+      - loki
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: testloki
+```
+
+This container runs a standard Grafana install.
+
+We are taking advantage of the [Provisioning](https://grafana.com/docs/grafana/latest/administration/provisioning/) feature, which allows to automatically configure any Datasources or Dashboard on Grafana startup. Otherwsie, we would need to manually create the Loki datasource on Grafana interface.
+
+### Shipping the container logs to Loki
+
+Now that we have Grafana and Loki configured, we need a way to effectively ship the logs to Loki.
+
+There are two ways to do this: Using [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) or the [Log driver plugin](https://grafana.com/docs/loki/latest/clients/docker-driver/).
+
+I don´t have a formed opinion about which way is the best. Promtail is more flexible and it´s not limited to Docker logs. You could use the same Promtail instance to ingest log files for example, so if your application writes logs to file system instead of stdout you have to use Promtail.
+
+Another difference is that if you want to have a global configuration to ship all your container logs to Loki, you would need to install Loki directly on the host machine or expose the `3100` in the Loki container, as the Docker Daemon would need to be able to reach the Loki API. Not a big deal, but not needed with Promtail, if it´s deployed on the same Docker network as loki, the communication will be internal.
+
+With Promtail, the source logs are read directly from `/var/lib/docker/containers` in the host filesystem, so you have to mount this volume in the Promtail container, where with the Docker Log driver, you don´t need to.
+
+In this demo I am using Promtail, but using the Log driver on my local PC. It´s up to you to see which one fits better with your requirements.
+
+If you want to know more about the Loki log driver, you can read more about the available configurations in [Configuring the Docker Driver](https://grafana.com/docs/loki/latest/clients/docker-driver/configuration/).
+
+For Promtail, we have the following definition in our Docker compose file.
+
+```yaml
+  promtail:
+    image: grafana/promtail:2.2.1
+    volumes:
+      - ./config/loki/promtail-config.yaml:/mnt/config/promtail-config.yaml
+      - /var/lib/docker/containers:/host/containers
+    command: -config.file /mnt/config/promtail-config.yaml
+    networks:
+      - loki
+```
+
+Note that we mount the `/var/lib/docker/containers`, since it´s the place where the Docker logs are stored in the host filesystem and where Promtail will read from.
+
+Similar to Loki, Promtail configuration is done with a config file `promtail-config.yaml`.
+
+```yaml
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+
+scrape_configs:
+  - job_name: docker
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: dockerlogs
+          __path__: /host/containers/*/*log
+    pipeline_stages:
+      - json:
+          expressions:
+            output: log
+            stream: stream
+            attrs:
+      - json:
+          expressions:
+            tag:
+          source: attrs
+      - regex:
+          expression: (?P<image_name>(?:[^|]*[^|])).(?P<container_name>(?:[^|]*[^|])).(?P<image_id>(?:[^|]*[^|])).(?P<container_id>(?:[^|]*[^|]))
+          source: tag
+      - timestamp:
+          format: RFC3339Nano
+          source: time
+      - labels:
+          tag:
+          stream:
+          image_name:
+          container_name:
+          image_id:
+          container_id:
+      - output:
+          source: output
+```
+
+The `clients` section contains the endpoint information where the logs will be shipped. In our example, we configure it the to the respective Loki push url.
+
+The `scrape_configs` section is where we define the configuration for the jobs that will scrape the logs.
+
+We defined a job named `docker` whose `__path__` property indicates where the logs are located on the file system. Since we are mounting `/var/lib/docker/containers` into  `/host/containers`, we configure that path here.
+
+```yaml
+ job_name: docker
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: dockerlogs
+          __path__: /host/containers/*/*log
+```
+
+The "pipeline_stages" field allow to configure a log processing pipeline, that will be executed for each log line and can be used for example to modify the contents of each log before being ingested or to add labels. Labels that will be indexed by Loki, and will be very useful for searching.
+
+You can read more about Pipeline stages [here](https://grafana.com/docs/loki/latest/clients/promtail/pipelines/).
+
+In this particular example, we configure the pipeline to parse the log as JSON, extract the "tag" field, parse the contents of that field using a regex and expose the result as labels.
+
+But where that field comes from? The `tag` field is a standard option of the docker logging configuration, than is used to idenfity the container where the logs come from.
+
+By default, the system uses the first 12 characters of the container ID, but we can override it to a more meaningfull value. That can be done in the log driver configuration. In our docker-compose we do it like this:
+
+```yaml
+logging:
+  driver: json-file
+  options:
+    tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+```
+
+Docker supports some special template markup that we can use - see [Customize log driver output](https://docs.docker.com/config/containers/logging/log_tags/).
+
+So our tag will consist of the Image Name, Container Name, Image Id and Container ID. This info will be populated by docker in each log line, and Promtail will parse it and create the appropriate labels.
+
+We should now have everything we need to start our demo.
+
+## Show me the logs
+
+<Image name="1df76102-bd23-405d-b3ba-79e90b523701.jpg" alt="Show me all the logs"/>
+
+If everything went fine you can then open grafana in your browser at **localhost:3000**. You can use **admin/testloki** credentials to login.
+
+You should now see the Grafana homepage. Head over to "Configuration -> DataSources" on the left menu, and you should see Loki datasource automatically configured:
+
+<Image name="3f19034b-e4d4-4536-af71-841796091fa4.gif" alt="Grafana Loki Interface"/>
+
+You can click on the "Test" button to check that Grafana and Loki can communicate.
+
+Next we can go to the Loki interface, by clicking on the "Explorer" menu on the left sidebar.  We should already be able to see some logs from Grafana, Loki and Promtail containers.
+
+If You open the "Log Labels" menu you should see all the labels that we configured in Promtail and that were extracted from the logs.
+
+<Image name="b0673b6c-3861-4ea0-84af-ce8b62abf940.gif" alt="Loki logs view"/>
+
+You can select one of them to display the associated logs, or with a LogQL query directly.
+
+For example, to see all the logs of Loki container itself, you can use the following query:
+
+```js
+{container_name="logs-with-loki_loki_1"}
+```
+
+You can also use a regular expression on the query. For example, to get the logs for all the applications in our project, we can do:
+
+```bash
+{container_name=~"logs-with-loki.+"}
+```
+
+We can do now some requests to our Demo app by opening `http://localhost:3001`. Logs should appear shortly on Grafana.
+
+We should be able use the following LogQL query, to get the application logs:
+
+```bash
+{container_name="logs-with-loki_demo-app_1"}
+```
+
+Filtering by labels is nice, but to use our logs in full, we have to be able to search in the logs content.
+
+We can use a [filter expression](https://grafana.com/docs/loki/latest/logql/#line-filter-expression) in LogQL to do just that.
+
+For example, to get all the logs containg the "name" text in our application, we can do:
+
+```bash
+{container_name="logs-with-loki_demo-app_1"} |= "name"
+```
+
+<Image name="657c5d7e-dfc5-4047-9f74-1b6d73a0bc4d.png" alt="Grafana Loki Logs search view"/>
+
+To know more about the syntax of LogQL and all the possible queries, this [cheat sheet](https://megamorf.gitlab.io/cheat-sheets/loki/) is a good place start, followed by the official [LogQL Documentation](https://grafana.com/docs/loki/latest/logql/#line-filter-expression).
+
+And that´s it. We know have a centralized way to visualize the logs for all our applications in a nice interface and with powerfull search capabilities.
+
+## Send all your container logs to Loki
+
+Right now, only logs of the containers defined in the docker compose file will be ingested by Loki, because we configured the log driver in locally to the compose file.
+
+I prefer to have Loki globally in my machine, so all the container logs, doens´t matter if they are originated from Compose project, or standalone docker container, are indexed and stored in the same place. You can do that by configuring the log driver globally in the Docker daemon, instead of in the Compose file.
+
+For that, you should open `/etc/docker/daemon.json` and add the following contents: (create the file if not exists):
+
+```json
+{
+    "log-driver": "json-file",
+    "log-opts": {
+        "tag": "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+    }
+}
+```
+
+Restart your docker daemon to apply the new configuration.
+
+Note that, this configuration will only work for newly created containers.
+
+You have to make sure that Loki and Promtail are always running. I would recommend having a docker-compose file with Loki, Grafana and Promtail and add `restart: always` option, or running the containers manually using `docker run` with the `--restart always` flag.
+
+If you want to use the Log plugin instead of Promtail, check this [Guide](https://grafana.com/docs/loki/latest/clients/docker-driver/configuration/).
+
+## Conclusion
+
+Hope you enjoyed this article.
+
+Grafana Loki is a great tool that can help a lot searching in your application logs. You should give it a try.

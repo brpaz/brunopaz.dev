@@ -1,4 +1,4 @@
-export function wrapText(title, rowLength, maxRows) {
+export function wrapText(title : string, rowLength: number, maxRows: number) {
   let title_rows = [];
   let words = title.split(/(?<=[^a-zA-Z0-9()<>""''])/);
   let _row = "";

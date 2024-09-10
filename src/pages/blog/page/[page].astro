@@ -3,35 +3,66 @@ import { Image } from 'astro:assets';
 import DefaultLayout from '~/layouts/Default.astro'
 import PageTitle from '~/components/shared/PageTitle.astro'
 import Post from '~/components/blog/Post.astro'
-import { Pagination } from "@sarissa/pagination";
 import IconWriting from '~/assets/icons/writing.svg'
+import { getCollection } from 'astro:content';
+import type { Page, PaginateFunction } from 'astro'
+import type { BlogPost } from '~/content/contentTypes'
+import { Pagination } from "@sarissa/pagination";
+import type { CollectionEntry } from 'astro:content'
 
-export async function getStaticPaths({ paginate }) {
+interface PostsData{
+  params: { slug: string };
+  props: { post: CollectionEntry<BlogPost> };
+}
 
-  const postsFiles = await Astro.glob('../**/*.md')
-  const posts = postsFiles.filter(({ frontmatter }) => !!frontmatter.published)
-    .map((post) => {
-      return {
-        title: post.frontmatter.title,
-        tags: post.frontmatter.tags,
-        summary: post.frontmatter.summary,
-        content: post.Content,
-        date: new Date(post.frontmatter.date),
-        slug: post.frontmatter.slug,
-        url: `/blog/${post.frontmatter.slug}`
-      }
-    })
-    .sort((a, b) => b.date.valueOf() - a.date.valueOf());
+/**
+ * Helper function to sort posts by publish date (most recent first).
+ * If a post does not have a publish date, it is placed at the start of the list.
+ * @param posts - Collection of blog posts
+ * @returns - Sorted collection of blog posts
+ */
+export function sortPosts(posts: CollectionEntry<BlogPost>[]): CollectionEntry<BlogPost>[] {
+  return posts.sort((a, b) => {
+    if (a.data.publishDate === undefined) {
+      return -1;
+    }
 
+    if (b.data.publishDate === undefined) {
+      return 1;
+    }
+
+    // Convert dates to timestamps for comparison
+    const aTimestamp = a.data.publishDate.getTime();
+    const bTimestamp = b.data.publishDate.getTime();
+
+    return bTimestamp - aTimestamp;
+  });
+}
+
+// Define the function with the specified types
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction;
+}) {
+  const postEntries = await getCollection('blogPosts', ({ data }) => {
+    return import.meta.env.PROD ? data.published === true : true;
+  });
+
+  const posts = sortPosts(postEntries).map(post => ({
+    params: { slug: post.slug }, props: { post },
+  }));
 
   return paginate(posts, { pageSize: 6 });
 }
 
-const { page } = Astro.props;
+const { page }: { page: Page<PostsData> } = Astro.props;
+
+const posts = page.data.map((data) => {
+  return data.props.post;
+});
 
 ---
-
-
 <DefaultLayout>
   <PageTitle title="My Blog" />
 
@@ -45,10 +76,10 @@ const { page } = Astro.props;
   />
 
   <div class="mt-16">
-    {page.data.map((post) => (
+    {posts.map((post) => (
     <div>
 
-      <Post post={post}></Post>
+      <Post post={post} />
 
       <hr class="block w-2/3 bg-primary-300 text-center mx-auto mt-8 mb-8"
           style="height: 2px;" />

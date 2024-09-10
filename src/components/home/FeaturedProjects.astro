@@ -1,5 +1,6 @@
----
-import { ProjectFileMetadata, ProjectType, mapProject } from '~/api/projects'
+<!-- ---
+import { ProjectFileMetadata, ProjectType } from '~/types/projects';
+import { mapProject } from '~/utils/projects';
 import ProjectCard from '@components/work/list/ProjectCard.astro'
 
 let projects = await Astro.glob<ProjectFileMetadata>('../../content/projects/*.md');
@@ -33,4 +34,4 @@ featuredProjects = featuredProjects.sort((a, b) => Number(a.position) - Number(b
        class="inline-block text-white bg-primary-400 py-2 px-4 rounded-md hover:text-white hover:bg-primary-500
        ">More projects</a>
   </div>
-</section>
+</section> -->

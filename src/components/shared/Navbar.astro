@@ -25,7 +25,7 @@ const menuItems = [
 
 ];
 ---
-<script>
+<script is:inline>
 function toggleMobileMenu() {
   const mobileNav = document.getElementById("main-nav-mobile")
   mobileNav.classList.toggle("hidden");
@@ -36,7 +36,7 @@ var toggleMenuListener = () => {
 }
 
 window.addEventListener('DOMContentLoaded',toggleMenuListener);
-document.addEventListener('swup:contentReplaced', toggleMenuListener);
+document.addEventListener('astro:after-swap', toggleMenuListener);
 </script>
 
 <style>
