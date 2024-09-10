@@ -1,19 +1,20 @@
 ---
-import profileImage from '~/assets/images/profile_pic.jpg?url';
+import { Image } from 'astro:assets';
+import profileImage from '~/assets/images/profile_pic.jpg';
 ---
+
 <section class="flex flex-col mx-auto">
    <div>
       <div class="flex flex-wrap justify-center mb-6">
-         <div class="flex w-6/12 sm:w-4/12 justify-center "><img src={profileImage} width="192px" height="192px" alt="Profile Picture" class="
-            shadow-lg
-            text-center
-            block
-            rounded-full
-            max-w-full
-            h-auto
-            align-middle
-            border-none
-            "></div>
+        <div class="flex w-6/12 sm:w-4/12 justify-center">
+          <Image
+            src={profileImage}
+            alt="Profile picture"
+            width="192"
+            height="192"
+            class="shadow-lg text-center block rounded-full max-w-full h-auto align-middle border-none"
+          />
+        </div>
       </div>
       <div class="text-center text-xl text-neutral-600 mb-16">
          <h1 class="font-extrabold text-neutral-700 text-6xl mb-6">Bruno Paz</h1>

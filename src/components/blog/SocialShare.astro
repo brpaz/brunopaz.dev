@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import linkedinShareBtn from '@assets/icons/linkedin-share-button.svg';
 import twitterShareBtn from '@assets/icons/twitter-share-button.svg';
 import facebookShareBtn from '@assets/icons/facebook-share-button.svg';
@@ -18,10 +19,11 @@ const { url, title } = Astro.props as Props;
        target="_blank"
        rel="noopener"
        title="Share on Facebook">
-      <img src={facebookShareBtn}
-           alt="Share on facebook"
-           width="128px"
-           loading="lazy" />
+      <Image
+        src={facebookShareBtn}
+        width="128"
+        alt="Share on facebook"
+      />
     </a>
   </div>
 
@@ -31,10 +33,11 @@ const { url, title } = Astro.props as Props;
        target="_blank"
        rel="noopener"
        title="Share on Twitter">
-      <img src={twitterShareBtn}
-           alt="Share on Twitter"
-           width="128px"
-           loading="lazy" />
+      <Image
+        src={twitterShareBtn}
+        width=128
+        alt="Share on Twitter"
+      />
     </a>
   </div>
 
@@ -44,10 +47,10 @@ const { url, title } = Astro.props as Props;
        target="_blank"
        rel="noopener"
        title="Share on Linkedin">
-      <img src={linkedinShareBtn}
-           alt="Share on Linkedin"
-           width="128px"
-           loading="lazy" />
+      <Image src={linkedinShareBtn}
+        width=128
+        alt="Share on Linkedin"
+      />
     </a>
   </div>
 </div>

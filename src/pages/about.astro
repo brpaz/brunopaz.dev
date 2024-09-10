@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets'
 import DefaultLayout from '../layouts/Default.astro'
 import PageTitle from '~/components/shared/PageTitle.astro'
 import IconWave from '~/assets/icons/wave.svg'
@@ -11,9 +12,9 @@ import IconParty from '~/assets/icons/party.svg'
     <section id="profile">
       <PageTitle title="About me"></PageTitle>
 
-      <img src={IconWave}
-           height="128px"
-           width="128px"
+      <Image src={IconWave}
+           height=128
+           width=128
            class="mb-8 mt-8 mx-auto"
            alt="Hi There!"
            title="Hi there!" />
@@ -80,12 +81,14 @@ import IconParty from '~/assets/icons/party.svg'
       </p>
     </section>
     <section id="work">
-      <img src={IconBriefcase}
-           height="128px"
-           width="128px"
-           class="mb-8 mt-8 mx-auto"
-           alt="Work timeline"
-           title="Work timeline" />
+      <Image
+        src={IconBriefcase}
+        height=128
+        width=128
+        class="mb-8 mt-8 mx-auto"
+        alt="Work timeline"
+        title="Work timeline"
+        />
       <p>
         I studied
         <b>Computer Science at
@@ -174,12 +177,13 @@ import IconParty from '~/assets/icons/party.svg'
       <p>In Sword, I become Tech Lead from one of the Web Teams.</p>
     </section>
     <section id="hobbies">
-      <img src={IconParty}
-           height="128px"
-           width="128px"
-           class="mb-8 mt-8 mx-auto"
-           alt="My Hobbies"
-           title="My Hobbies" />
+      <Image src={IconParty}
+        height=128
+        width=128
+        class="mb-8 mt-8 mx-auto"
+        alt="My Hobbies"
+        title="My Hobbies"
+      />
       <p>
         Besides Programming, I like to hangout with friends, watch and play sports, TV Shows, and do activities outside
         like walking.

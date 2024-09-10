@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import DefaultLayout from '~/layouts/Default.astro'
 import PageTitle from '~/components/shared/PageTitle.astro'
 import Post from '~/components/blog/Post.astro'
@@ -34,13 +35,14 @@ const { page } = Astro.props;
 <DefaultLayout>
   <PageTitle title="My Blog" />
 
-  <img src={IconWriting}
-       height="128px"
-       width="128px"
-       class="mb-8 mt-8 mx-auto"
-       alt="Blog"
-       title="Blog"
-       aria-hidden="true" />
+  <Image src={IconWriting}
+      height=128
+      width=128
+      class="mb-8 mt-8 mx-auto"
+      alt="Blog"
+      title="Blog"
+      aria-hidden="true"
+  />
 
   <div class="mt-16">
     {page.data.map((post) => (

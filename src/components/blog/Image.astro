@@ -1,15 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 const assetsBaseURL = import.meta.env.PUBLIC_ASSETS_BASE_URL || "";
 
 interface Props {
   name: string;
   alt?: string;
 }
-
 const { name, alt } = Astro.props as Props;
-
 ---
 
-<img src={`${assetsBaseURL}/img/blog/${name}`}
+<Image src={`${assetsBaseURL}/img/blog/${name}`}
      alt={alt}
      title={alt} />

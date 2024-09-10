@@ -1,5 +1,6 @@
 ---
 import DefaultLayout from '~/layouts/Default.astro'
+import { Image } from 'astro:assets'
 import PageTitle from '~/components/shared/PageTitle.astro'
 import ProjectCard from '~/components/work/list/ProjectCard.astro'
 import GithubProjectCard from '~/components/work/list/GithubProjectCard.astro'
@@ -19,9 +20,9 @@ const gitHubProjects = projects.filter((project) => project.type === ProjectType
 <DefaultLayout>
   <PageTitle title="Work" />
 
-  <img src={IconBriefcase}
-       height="128px"
-       width="128px"
+  <Image src={IconBriefcase}
+       height=128
+       width=128
        class="mb-8 mt-8 mx-auto"
        alt="Work"
        title="Work" />

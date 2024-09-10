@@ -1,5 +1,4 @@
 ---
-import Markdown from '@astrojs/markdown-component';
 import DefaultLayout from '~/layouts/Default.astro'
 import ProjectHeader from '~/components/work/detail/ProjectDetailHeader.astro'
 import ProjectGallery from '~/components/work/detail/ProjectDetailGallery.svelte'
@@ -59,10 +58,11 @@ const { project } = Astro.props;
   <div class="content leading-8 mb-8">
     {project.images.length > 0 &&
     <ProjectGallery images={project.images}
-                    client:only />
+                    client:only="svelte" />
     }
 
-    <Markdown content={project.content} />
+    {project.content}
+    <!-- TODO Render content here -->
   </div>
 
   {project.technologies.length > 0 &&

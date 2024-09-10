@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import { Project } from '~/api/projects';
+
 export interface Props {
   project: Project;
 }
@@ -11,7 +13,7 @@ const { project } = Astro.props as Props;
   <div class="flex items-center bg-white h-56 mb-2 overflow-hidden">
     <a class="w-full h-full flex items-center"
        href={project.detailsUrl}>
-      <img src={project.coverImage}
+      <Image src={project.coverImage}
            alt={`Image
            of
            project:

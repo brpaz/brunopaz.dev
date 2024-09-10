@@ -1,6 +1,6 @@
 ---
+import { Image } from 'astro:assets';
 const { project } = Astro.props;
-
 ---
 
 <div class="flex flex-col rounded-lg shadow-lg mb-8 p-1 mr-4 bg-secondary-200">
@@ -9,7 +9,7 @@ const { project } = Astro.props;
        target="_blank"
        rel="noopener"
        href={project.url}>
-      <img src={project.coverImage}
+      <Image src={project.coverImage}
            class="flex w-full"
            title={project.name}
            alt={`${project.name}

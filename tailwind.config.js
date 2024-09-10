@@ -1,8 +1,10 @@
-const colors = require("tailwindcss/colors");
+import defaultTheme from 'tailwindcss/defaultTheme'
+import colors from 'tailwindcss/colors';
 
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+export default {
   mode: "jit",
-  content: ["./public/**/*.html", "./src/**/*.{astro,js,jsx,ts,tsx,vue}"],
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
       colors: {
@@ -10,10 +12,10 @@ module.exports = {
         secondary: colors.gray,
         neutral: colors.gray,
       },
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 };

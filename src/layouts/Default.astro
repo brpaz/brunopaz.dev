@@ -1,10 +1,11 @@
 ---
 import '@assets/styles/global.css'
+import '@fontsource-variable/inter';
 import Header from '@components/shared/Header.astro';
 import Footer from '@components/shared/Footer.astro';
 import FormButton from '@components/shared/FormButton.astro';
 import SocialImageMeta from '@components/shared/SocialImageMeta.astro';
-import siteData from '~/data/site.json';
+import * as siteData from '~/data/site.json';
 
 const monetizationUrl = import.meta.env.PUBLIC_WEB_MONETIZATION_ID || "";
 const sentryEnabled = import.meta.env.PUBLIC_SENTRY_ENABLED || false;
@@ -15,11 +16,8 @@ const formspreeFormId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID || "";
 let title = Astro.props.title || siteData.title;
 let description = Astro.props.description || siteData.description;
 
-
 ---
-
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
@@ -27,6 +25,7 @@ let description = Astro.props.description || siteData.description;
   <title>{title}</title>
   <meta name="description"
         content={description} />
+  <meta name="generator" content={Astro.generator} />
   <meta name="monetization"
         content={monetizationUrl} />
   <meta property="og:url"
@@ -56,16 +55,7 @@ let description = Astro.props.description || siteData.description;
         type="application/rss+xml"
         title="RSS Feed for brunopaz.dev"
         href="/blog/rss.xml" />
-
-  <link rel="preconnect"
-        href="https://fonts.googleapis.com">
-  <link rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
-  <link rel="preload"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"
-        as="style"
-        onload="this.onload=null;this.rel='stylesheet'" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
 
   <noscript>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"

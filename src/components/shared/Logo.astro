@@ -1,8 +1,9 @@
 ---
 import logo from '~/assets/icons/code.svg';
+import { Image } from 'astro:assets';
 ---
 
 <a href="/" aria-current="page" class="flex items-center">
-    <img src={logo} height="72px" width="72px" aria-hidden="true"/>
+    <Image src={logo} height="72" width="72" aria-hidden="true" alt="Logo"/>
     <span class="text-primary-400 font-bold text-2xl uppercase">Bruno Paz</span>
 </a>

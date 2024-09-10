@@ -1,5 +1,6 @@
 ---
 import DefaultLayout from '../layouts/Default.astro'
+import { Image } from 'astro:assets'
 import PageTitle from '~/components/shared/PageTitle.astro'
 import IconEmail from '~/assets/icons/email.svg'
 import ContactForm from '~/components/ContactForm.astro'
@@ -7,9 +8,16 @@ import ContactForm from '~/components/ContactForm.astro'
 <DefaultLayout>
    <div class="text-center w-4/5 lg:w-2/3 mx-auto">
       <PageTitle title="Contact"></PageTitle>
-      
-      <img src={IconEmail} width="128px" height="128px" aria-hidden="true" class="m4-8 mt-4 mx-auto"/>
-      
+
+      <Image
+        src={IconEmail}
+        width=128
+        height=128
+        alt=""
+        aria-hidden="true"
+        class="m4-8 mt-4 mx-auto"
+      />
+
       <p class="mb-16">Feel free to reach me using the form below:</p>
       <ContactForm />
    </div>

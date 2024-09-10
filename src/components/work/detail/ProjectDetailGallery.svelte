@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import type { Options } from "@splidejs/splide";
   import { Splide, SplideSlide } from "@splidejs/svelte-splide";
   export let images = [];
@@ -23,7 +23,7 @@
       </SplideSlide>
     {/each}
   </Splide>
-</div>
+</div> -->
 
 <style global>
   .splide__arrow:disabled {
