@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import type { Project } from '~/content/types';
-import { loadAsset } from '~/utils/assets';
 
 interface Props {
   project: CollectionEntry<Project>;
@@ -10,16 +9,20 @@ interface Props {
 
 const { project } = Astro.props;
 
-const coverImage = await loadAsset(project.data.coverImage);
+const coverImage = project.data.coverImage.split('.');
 ---
 
 <div
   class="project-card flex flex-col rounded-lg shadow-lg mb-8 p-1 mr-4 h-full bg-blue-200"
 >
   <div class="flex items-center bg-white h-56 mb-2 overflow-hidden">
-    <a class="w-full h-full flex items-center" href="">
+    <a class="w-full h-full flex items-center" href=`/work/${project.slug}`>
       <Image
-        src={coverImage}
+        src={(
+          await import(
+            `./../../../assets/images/projects/${project.slug}/${coverImage[0]}.${coverImage[1]}`
+          )
+        ).default}
         alt={`Image of project: ${project.data.name}`}
         class="flex w-full"
         loading="lazy"

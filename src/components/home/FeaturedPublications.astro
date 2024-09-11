@@ -1,10 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
-import { sortPosts } from '~/content/posts';
 import { BlogPostCollection } from '~/content/types';
+import { sortPosts } from '~/content/posts';
+import BlogPostCard from '~/components/home/BlogPostCard.astro';
 
 const allFeaturedPosts = await getCollection(BlogPostCollection, ({ data }) => {
-  return data.featured && data.published === true && data.publishDate;
+  return data.published === true && data.publishDate;
 });
 
 const featuredPosts = sortPosts(allFeaturedPosts).slice(0, 3);
@@ -12,41 +13,19 @@ const featuredPosts = sortPosts(allFeaturedPosts).slice(0, 3);
 
 <section class="flex flex-col mx-auto justify-center text-center mb-12">
   <h2 class="font-bold text-neutral-600 text-4xl mb-4 text-center">
-    Featured publications
+    Latest Posts
   </h2>
   <div class="mb-12">
-    <p class="mb-4">Some articles that I wrote</p>
+    <p class="mb-4">Some recent posts I wrote on the blog.</p>
 
     <div class="flex flex-wrap justify-center mb-4">
-      {
-        featuredPosts.map((post) => (
-          <div class="flex px-2 py-4 w-full md:w-3/4 mx-auto items-center">
-            <svg
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fas"
-              data-icon="clipboard-list"
-              class="fill-current text-neutral-400 w-12 h-12  mr-4"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 384 512"
-            >
-              <path
-                fill="currentColor"
-                d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM96 424c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zm0-96c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zm0-96c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zm96-192c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm128 368c0 4.4-3.6 8-8 8H168c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16zm0-96c0 4.4-3.6 8-8 8H168c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16zm0-96c0 4.4-3.6 8-8 8H168c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h144c4.4 0 8 3.6 8 8v16z"
-              />
-            </svg>
-
-            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-          </div>
-        ))
-      }
+      {featuredPosts.map((post) => <BlogPostCard post={post} />)}
     </div>
 
     <a
       href="/blog/page/1"
-      class="inline-block text-white bg-primary-400 py-2 px-4 rounded-md hover:text-white hover:bg-primary-500"
-      >More publications</a
+      class="inline-block text-white bg-neutral-400 py-2 px-4 rounded-md hover:text-white hover:bg-neutral-500"
+      >Read the Blog</a
     >
   </div>
 </section>

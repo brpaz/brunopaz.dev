@@ -44,7 +44,7 @@ const menuItems = [
 <style>
   .main-nav a,
   #main-nav-mobile a {
-    @apply font-medium text-lg text-neutral-600 hover:text-primary-400;
+    @apply font-medium text-lg text-neutral-500 hover:text-primary-400;
   }
 
   .main-nav a.active,
@@ -55,7 +55,7 @@ const menuItems = [
 <ul class="main-nav items-center hidden md:flex">
   {
     menuItems.map((item) => (
-      <li>
+      <li class="mr-4">
         <a
           href={item.path}
           class={currentPage.startsWith(item.rootPath) ? 'active' : ''}

@@ -20,9 +20,9 @@ technologies:
   - "GitHub"
   - "NewRelic"
   - "Iterable"
-coverImage: "sword/cover.png"
+coverImage: "cover.png"
 images:
-  - "sword/sword-01.png"
+  - "sword-01.png"
 role: "Tech Lead"
 company: "SwordHealth"
 isPrivate: true

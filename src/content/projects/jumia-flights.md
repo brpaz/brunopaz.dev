@@ -16,7 +16,7 @@ technologies:
   - "Git"
   - "GitHub"
   - "NewRelic"
-coverImage: "jflights/cover.jpg"
+coverImage: "cover.jpg"
 images: []
 role: "Developer"
 company: "Jumia"

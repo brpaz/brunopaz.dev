@@ -20,12 +20,12 @@ technologies:
   - "GitHub"
   - "NewRelic"
   - "Kibana"
-coverImage: "jumia-pay/cover.jpg"
+coverImage: "cover.jpg"
 images:
-  - "jumia-pay/jpay-01.png"
-  - "jumia-pay/jpay-02.png"
-  - "jumia-pay/jpay-business01.png"
-  - "jumia-pay/jpay-business02.png"
+  - "jpay-01.png"
+  - "jpay-02.png"
+  - "jpay-business01.png"
+  - "jpay-business02.png"
 role: "Tech Lead"
 company: "Jumia"
 isPrivate: true

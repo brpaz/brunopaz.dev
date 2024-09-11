@@ -7,7 +7,7 @@ html,
 body {
   font-family: 'Inter', Roboto, sans-serif;
   @apply text-lg;
-  @apply h-screen w-full flex flex-col text-neutral-600 bg-no-repeat bg-fixed;
+  @apply h-screen w-full flex flex-col text-neutral-600;
 }
 
 a {
