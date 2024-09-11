@@ -52,7 +52,7 @@ jobs:
 
       - name: Run E2E tests
         run: |
-          BASE_URL=http://localhoat:3001 pnpm run test:e2e
+          BASE_URL=http://127.0.0.1:3001 pnpm run test:e2e
 
       - uses: actions/upload-artifact@v4
         if: always()
