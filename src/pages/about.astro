@@ -1,129 +1,148 @@
 ---
-import { Image } from 'astro:assets'
-import DefaultLayout from '../layouts/Default.astro'
-import PageTitle from '~/components/shared/PageTitle.astro'
-import IconWave from '~/assets/icons/wave.svg'
-import IconBriefcase from '~/assets/icons/briefcase.svg'
-import IconParty from '~/assets/icons/party.svg'
+import { Image } from 'astro:assets';
+import DefaultLayout from '../layouts/Default.astro';
+import PageTitle from '~/components/shared/PageTitle.astro';
+import IconWave from '~/assets/icons/wave.svg';
+import IconBriefcase from '~/assets/icons/briefcase.svg';
+import IconParty from '~/assets/icons/party.svg';
 ---
 
 <DefaultLayout>
   <div class="mx-auto leading-8 w-4/5 lg:w-2/3">
     <section id="profile">
-      <PageTitle title="About me"></PageTitle>
+      <PageTitle title="About me" />
 
-      <Image src={IconWave}
-           height=128
-           width=128
-           class="mb-8 mt-8 mx-auto"
-           alt="Hi There!"
-           title="Hi there!" />
+      <Image
+        src={IconWave}
+        height="128"
+        width="128"
+        class="mb-8 mt-8 mx-auto"
+        alt="Hi There!"
+        title="Hi there!"
+      />
 
       <p class="mb-4">
-        Born in the beautiful and "unbeatable" city of Porto, Portugal 🇵🇹, I have been working as a Web Engineer since
-        2011, working in industries like B2B Apps for small businesses, E-Commerce, Travel and Payments.
+        Born in the beautiful and "unbeatable" city of Porto, Portugal 🇵🇹, I
+        have been working as a Web Engineer since 2011, working in industries
+        like B2B Apps for small businesses, E-Commerce, Travel and Payments.
       </p>
 
       <p class="mb-4">
-        My main expertise is terms of programming languages are <a href="https://go.dev/"
-           target="_blank"
-           rel="noopener">Golang</a> and <a href="https://www.php.net/"
-           target="_blank"
-           rel="noopener">PHP</a> with <a href="https://symfony.com/"
-           target="_blank"
-           rel="noopener">Symfony framework</a>. I have also some professional working experience with <a
-           href="https://www.java.com/en/"
-           target="_blank"
-           rel="noopener">Java</a> in the last few years, as well as interest in <a href="https://nodejs.org/en/"
-           target="_blank"
-           rel="noopener">NodeJS</a> / <a href="https://www.typescriptlang.org/"
-           target="_blank"
-           rel="noopener">Typescript</a>.
+        My main expertise is terms of programming languages are <a
+          href="https://go.dev/"
+          target="_blank"
+          rel="noopener">Golang</a
+        > and <a href="https://www.php.net/" target="_blank" rel="noopener"
+          >PHP</a
+        > with <a href="https://symfony.com/" target="_blank" rel="noopener"
+          >Symfony framework</a
+        >. I have also some professional working experience with <a
+          href="https://www.java.com/en/"
+          target="_blank"
+          rel="noopener">Java</a
+        > in the last few years, as well as interest in <a
+          href="https://nodejs.org/en/"
+          target="_blank"
+          rel="noopener">NodeJS</a
+        > / <a
+          href="https://www.typescriptlang.org/"
+          target="_blank"
+          rel="noopener">Typescript</a
+        >.
       </p>
 
       <p class="mb-4">
-        Despite my knowledge and preferences, I believe in always choose the most appropriate technology for the job,
-        even if that require to go outside of my confort zone.
+        Despite my knowledge and preferences, I believe in always choose the
+        most appropriate technology for the job, even if that require to go
+        outside of my confort zone.
       </p>
 
       <p class="mb-4">
-        I have been working mostly on Backend, but I like to identify myself with a
-        <a href="https://medium.com/quick-code/what-it-is-a-t-shaped-developer-and-why-you-should-be-one-e87293e4bb84"
-           target="_blank"
-           rel="noopener">T-Shaped Developer</a>
-        mindset, and I direct my learnings for that. I want to know enough so I can create any application, "from idea
-        to production".
+        I have been working mostly on Backend, but I like to identify myself
+        with a
+        <a
+          href="https://medium.com/quick-code/what-it-is-a-t-shaped-developer-and-why-you-should-be-one-e87293e4bb84"
+          target="_blank"
+          rel="noopener">T-Shaped Developer</a
+        >
+        mindset, and I direct my learnings for that. I want to know enough so I can
+        create any application, "from idea to production".
       </p>
 
       <p class="mb-4">
-        I have a strong interest in topics related with Engineering best practices like CI/CD, DevOps, Testing and
-        automation.
+        I have a strong interest in topics related with Engineering best
+        practices like CI/CD, DevOps, Testing and automation.
       </p>
 
       <p class="mb-4">
         I am a fast learner and I don´t believe in silver bullets or in "Hype
         Driven Development". Context is very important and I try to balance
-        pragmatism, with the normal desire and curiosity to experiment with some new tech.
-        There are many cases where using a stable and "boring" technology is the
-        better choice.
+        pragmatism, with the normal desire and curiosity to experiment with some
+        new tech. There are many cases where using a stable and "boring"
+        technology is the better choice.
       </p>
 
       <p class="mb-4">
         I am a fast learner and I don´t believe in silver bullets or in "Hype
         Driven Development". Context is very important and I try to balance
-        pragmatism, with the normal desire and curiosity to experiment with some new tech.
-        There are many cases where using a stable and "boring" technology is the
-        better choice.
+        pragmatism, with the normal desire and curiosity to experiment with some
+        new tech. There are many cases where using a stable and "boring"
+        technology is the better choice.
       </p>
 
       <p class="mb-4">
-        I believe that techonology only makes sense, as a way to improve people lives.
+        I believe that techonology only makes sense, as a way to improve people
+        lives.
       </p>
     </section>
     <section id="work">
       <Image
         src={IconBriefcase}
-        height=128
-        width=128
+        height="128"
+        width="128"
         class="mb-8 mt-8 mx-auto"
         alt="Work timeline"
         title="Work timeline"
-        />
+      />
       <p>
         I studied
-        <b>Computer Science at
-          <a href="https://www.dei.isep.ipp.pt/"
-             target="_blank"
-             rel="noopener">ISEP</a></b>
+        <b
+          >Computer Science at
+          <a href="https://www.dei.isep.ipp.pt/" target="_blank" rel="noopener"
+            >ISEP</a
+          ></b
+        >
         were I graduated in 2010.
       </p>
       <p class="mb-4">
         This was the year I also start working at my first company, <b>ueb</b>,
         a small startup, developing Web solutions for small busineses (ex:
-        <a href="https://www.uebbill.pt/"
-           target="_blank"
-           rel="noopener">uebbill</a>) and a customer satisfaction platform for the Automobile area, as well
+        <a href="https://www.uebbill.pt/" target="_blank" rel="noopener"
+          >uebbill</a
+        >) and a customer satisfaction platform for the Automobile area, as well
         as websites for specific clients, like
-        <a href="https://sosconsultoria.pt/"
-           target="_blank"
-           rel="noopener">SOS Consultoria</a>
+        <a href="https://sosconsultoria.pt/" target="_blank" rel="noopener"
+          >SOS Consultoria</a
+        >
         or
-        <a href="https://sporjovem.pt/"
-           target="_blank"
-           rel="noopener">Sporjovem</a>.
+        <a href="https://sporjovem.pt/" target="_blank" rel="noopener"
+          >Sporjovem</a
+        >.
       </p>
       <p class="mb-4">
         As we were very few developers and with lots of challenging projects, I
         ended up having to do a bit of everything from Frontend, Backend to
         Server management, so it was an incredible learning experience.
       </p>
-      <hr class="flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto">
+      <hr class="flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto" />
       <p>
         In 2014, it was time for a new challenge and I joined
-        <b><a href="https://group.jumia.com/"
-             target="_blank"
-             rel="noopener">Jumia</a>
-          Porto Tech Center.</b>
+        <b
+          ><a href="https://group.jumia.com/" target="_blank" rel="noopener"
+            >Jumia</a
+          >
+          Porto Tech Center.</b
+        >
       </p>
       <p class="mb-4">
         Jumia is one of the biggest E-Commerce solutions in Africa with
@@ -137,7 +156,7 @@ import IconParty from '~/assets/icons/party.svg'
         bigger as the application was serving thousands of users. I learned a
         ton!
       </p>
-      <hr class="flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto">
+      <hr class="flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto" />
       <p class="mb-4">
         Later, in 2017, I started working on a new Jumia project, Jumia Flights,
         an "extension" of Jumia Travel to the Flights Business. While my
@@ -152,44 +171,47 @@ import IconParty from '~/assets/icons/party.svg'
         architecture, we managed to build a really cool and scalable product.
         The project was sold to a partner, some months later.
       </p>
-      <hr class="flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto">
+      <hr class="flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto" />
       <p class="mb-4">
         After Flights, a new short term project, J-Force, an internal Jumia
         application to manage their agents on the field, before starting on
-        <a href="https://pay.jumia.com.ng/"
-           target="_blank"
-           rel="noopener">JumiaPay</a> in
-        2019, to build the new
-        <a href="https://business-pay.jumia.com.ng/"
-           target="_blank"
-           rel="noopener">Business</a>
-        application, where the Merchants can see the Purchases in their shops,
-        manage refunds, withdraw money to their Bank accounts etc.
+        <a href="https://pay.jumia.com.ng/" target="_blank" rel="noopener"
+          >JumiaPay</a
+        > in 2019, to build the new
+        <a
+          href="https://business-pay.jumia.com.ng/"
+          target="_blank"
+          rel="noopener">Business</a
+        >
+        application, where the Merchants can see the Purchases in their shops, manage
+        refunds, withdraw money to their Bank accounts etc.
       </p>
 
-      <hr class="flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto">
+      <hr class="flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto" />
       <p class="mb-4">
-        After 8 years working in the same company, I felt the need for a new challenge. I always believed in tech as
-        a way to improve peoples lives and so <b><a href="https://swordhealth.com"
-             target="_blank"
-             rel="noopener">Sword</a></b> mission easily ressonated in me.
+        After 8 years working in the same company, I felt the need for a new
+        challenge. I always believed in tech as a way to improve peoples lives
+        and so <b
+          ><a href="https://swordhealth.com" target="_blank" rel="noopener"
+            >Sword</a
+          ></b
+        > mission easily ressonated in me.
       </p>
       <p>In Sword, I become Tech Lead from one of the Web Teams.</p>
     </section>
     <section id="hobbies">
-      <Image src={IconParty}
-        height=128
-        width=128
+      <Image
+        src={IconParty}
+        height="128"
+        width="128"
         class="mb-8 mt-8 mx-auto"
         alt="My Hobbies"
         title="My Hobbies"
       />
       <p>
-        Besides Programming, I like to hangout with friends, watch and play sports, TV Shows, and do activities outside
-        like walking.
+        Besides Programming, I like to hangout with friends, watch and play
+        sports, TV Shows, and do activities outside like walking.
       </p>
     </section>
   </div>
-
-
 </DefaultLayout>

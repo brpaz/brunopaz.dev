@@ -1,69 +1,94 @@
 ---
-import DefaultLayout from '~/layouts/Default.astro'
-import { Image } from 'astro:assets'
-import { getCollection } from "astro:content";
-import PageTitle from '~/components/shared/PageTitle.astro'
-import ProjectCard from '~/components/work/list/ProjectCard.astro'
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 
-import IconBriefcase from '~/assets/icons/briefcase.svg'
+import DefaultLayout from '~/layouts/Default.astro';
+import PageTitle from '~/components/shared/PageTitle.astro';
+import ProjectCard from '~/components/work/list/ProjectCard.astro';
+import IconBriefcase from '~/assets/icons/briefcase.svg';
 
-const allProjects = await getCollection("projects");
+import { ProjectCollection } from '~/content/types';
 
-const companyProjects = allProjects.filter((project) => project.data.isPrivate).sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+const allProjects = await getCollection(ProjectCollection);
+
+const companyProjects = allProjects
+  .filter((project) => project.data.isPrivate)
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
 ---
 
 <DefaultLayout>
   <PageTitle title="Projects" />
 
-  <Image src={IconBriefcase}
-       height=128
-       width=128
-       class="mb-8 mt-8 mx-auto"
-       alt="Work"
-       title="Work" />
+  <Image
+    src={IconBriefcase}
+    height="128"
+    width="128"
+    class="mb-8 mt-8 mx-auto"
+    alt="Work"
+    title="Work"
+  />
 
   <div class="mb-12 mx-auto w-4/5">
-    <p>I have been working in tech since 2011, involved in different projects across areas like B2B applications, e-commerce, travel, payments, and healthcare.</p>
+    <p>
+      I have been working in tech since 2011, involved in different projects
+      across areas like B2B applications, e-commerce, travel, payments, and
+      healthcare.
+    </p>
 
     <p>
-      In addition to my professional work, I also like to contribute to build side projects and contribute to  open source. These contributions allow me to give back to the community, collaborate with other developers, and continuously learn and improve my skills.
+      In addition to my professional work, I also like to contribute to build
+      side projects and contribute to open source. These contributions allow me
+      to give back to the community, collaborate with other developers, and
+      continuously learn and improve my skills.
     </p>
 
     <p>This page highlights some of the key projects I've worked on.</p>
   </div>
 
-  <section id="projects-list"
-           class="mb-12">
-    <h3 class="font-bold text-center text-neutral-700 text-3xl mb-4">Projects</h3>
+  <section id="projects-list" class="mb-12">
+    <h3 class="font-bold text-center text-neutral-700 text-3xl mb-4">
+      Projects
+    </h3>
 
-    <p class="text-center mb-4">Here are some projects I have worked on a professional envrionment. </p>
+    <p class="text-center mb-4">
+      Here are some projects I have worked on a professional envrionment.
+    </p>
     <div class="flex flex-wrap w-full justify-center">
-      {companyProjects.map((project) => (
-      <div class="project-card flex md:w-1/2 sm:w-full lg:w-1/3 mb-4">
-        <ProjectCard project={project} />
-      </div>
-      ))}
+      {
+        companyProjects.map((project) => (
+          <div class="project-card flex md:w-1/2 sm:w-full lg:w-1/3 mb-4">
+            <ProjectCard project={project} />
+          </div>
+        ))
+      }
     </div>
   </section>
 
   <section>
     <div class="text-center mb-8">
-
       <h3 class="font-bold text-neutral-700 text-3xl mb-4">Open Source</h3>
 
       <div class="mx-auto w-4/5">
-        <p>I like to contribute back to the community, so anything that I make and I think it can be usefull to others,
-          I generally make it available on GitHub</p>
+        <p>
+          I like to contribute back to the community, so anything that I make
+          and I think it can be usefull to others, I generally make it available
+          on GitHub
+        </p>
 
-        <p>Here are some of my OSS work, including <a href="https://ulauncher.io/"
-             target="_blank"
-             rel="noopener">Ulauncher</a> Extensions, <a href="https://code.visualstudio.com/"
-             target="_blank"
-             rel="noopener">VSCode</a> Extensions and small libraries.</p>
+        <p>
+          Here are some of my OSS work, including <a
+            href="https://ulauncher.io/"
+            target="_blank"
+            rel="noopener">Ulauncher</a
+          > Extensions, <a
+            href="https://code.visualstudio.com/"
+            target="_blank"
+            rel="noopener">VSCode</a
+          > Extensions and small libraries.
+        </p>
       </div>
     </div>
   </section>
-
 
   <!--<div class="flex flex-wrap w-full justify-center">
     {gitHubProjects.map((project) => (
@@ -79,5 +104,4 @@ const companyProjects = allProjects.filter((project) => project.data.isPrivate).
        ">
       See more at GitHub</a>
   </div> -->
-
 </DefaultLayout>

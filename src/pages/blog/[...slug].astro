@@ -1,7 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import type { BlogPost } from '~/content/types';
-import type { CollectionEntry } from 'astro:content'
+import type { CollectionEntry } from 'astro:content';
+import { BlogPostCollection } from '~/content/types';
 import DefaultLayout from '~/layouts/Default.astro';
 import PageTitle from '~/components/shared/PageTitle.astro';
 import FormattedDate from '~/components/blog/FormattedDate.astro';
@@ -12,9 +13,10 @@ interface Props {
 }
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blogPosts');
-  return posts.map(post => ({
-    params: { slug: post.slug }, props: { post },
+  const posts = await getCollection(BlogPostCollection);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
   }));
 }
 
@@ -23,45 +25,51 @@ const { title, publishDate, excerpt } = post.data;
 const ogImage = `/open-graph/${post.slug}`;
 const { Content } = await post.render();
 ---
+
 <style is:global>
-.post-content h2 {
-  @apply font-bold text-2xl mb-4 mt-4;
-}
-.post-content h3 {
-  @apply font-bold text-lg mb-4;
-}
-.post-content p {
-  @apply mb-4 leading-8;
-}
+  .post-content h2 {
+    @apply font-bold text-2xl mb-4 mt-4;
+  }
+  .post-content h3 {
+    @apply font-bold text-lg mb-4;
+  }
+  .post-content p {
+    @apply mb-4 leading-8;
+  }
 
-.post-content img {
-  @apply my-4 mx-auto;
-}
+  .post-content img {
+    @apply my-4 mx-auto;
+  }
 
-.post-content ul {
-  @apply list-disc ml-6 mb-4;
-}
+  .post-content ul {
+    @apply list-disc ml-6 mb-4;
+  }
 
-.post-content hr {
-  @apply flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto;
-}
+  .post-content hr {
+    @apply flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto;
+  }
 
-.post-content pre {
+  .post-content pre {
     @apply mb-4 p-4;
-}
+  }
 </style>
 
 <DefaultLayout title={title} description={excerpt} ogImage={ogImage}>
-    <PageTitle title={title}></PageTitle>
+  <PageTitle title={title} />
 
-    {publishDate &&
+  {
+    publishDate && (
       <div class="text-xs text-center mb-4">
-          <FormattedDate date={publishDate} />
+        <FormattedDate date={publishDate} />
       </div>
-      }
+    )
+  }
 
-    <div class="post-content">
-        <Content />
-    </div>
-    <SocialShare url={new URL(Astro.url.pathname, Astro.site).toString()} title={title} />
+  <div class="post-content">
+    <Content />
+  </div>
+  <SocialShare
+    url={new URL(Astro.url.pathname, Astro.site).toString()}
+    title={title}
+  />
 </DefaultLayout>

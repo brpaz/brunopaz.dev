@@ -1,9 +1,6 @@
+export const ProjectCollection = 'projects';
 
-// Define string constants
-export const Project = 'projects';
-export const BlogPost ='blogPosts';
+export const BlogPostCollection = 'blogPosts';
 
-// Define types
-export type Project = typeof Project;
-export type BlogPost = typeof BlogPost;
-
+export type Project = typeof ProjectCollection;
+export type BlogPost = typeof BlogPostCollection;

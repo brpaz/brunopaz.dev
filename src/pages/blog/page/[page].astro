@@ -1,42 +1,20 @@
 ---
+import type { Page, PaginateFunction } from 'astro';
+import type { CollectionEntry } from 'astro:content';
 import { Image } from 'astro:assets';
-import DefaultLayout from '~/layouts/Default.astro'
-import PageTitle from '~/components/shared/PageTitle.astro'
-import Post from '~/components/blog/Post.astro'
-import IconWriting from '~/assets/icons/writing.svg'
 import { getCollection } from 'astro:content';
-import type { Page, PaginateFunction } from 'astro'
-import type { BlogPost } from '~/content/types'
-import { Pagination } from "@sarissa/pagination";
-import type { CollectionEntry } from 'astro:content'
+import DefaultLayout from '~/layouts/Default.astro';
+import PageTitle from '~/components/shared/PageTitle.astro';
+import Post from '~/components/blog/Post.astro';
+import IconWriting from '~/assets/icons/writing.svg';
+import type { BlogPost } from '~/content/types';
+import { sortPosts } from '~/content/posts';
+import { BlogPostCollection } from '~/content/types';
+import { Pagination } from '@sarissa/pagination';
 
-interface PostsData{
+interface PostsData {
   params: { slug: string };
   props: { post: CollectionEntry<BlogPost> };
-}
-
-/**
- * Helper function to sort posts by publish date (most recent first).
- * If a post does not have a publish date, it is placed at the start of the list.
- * @param posts - Collection of blog posts
- * @returns - Sorted collection of blog posts
- */
-export function sortPosts(posts: CollectionEntry<BlogPost>[]): CollectionEntry<BlogPost>[] {
-  return posts.sort((a, b) => {
-    if (a.data.publishDate === undefined) {
-      return -1;
-    }
-
-    if (b.data.publishDate === undefined) {
-      return 1;
-    }
-
-    // Convert dates to timestamps for comparison
-    const aTimestamp = a.data.publishDate.getTime();
-    const bTimestamp = b.data.publishDate.getTime();
-
-    return bTimestamp - aTimestamp;
-  });
 }
 
 // Define the function with the specified types
@@ -45,12 +23,13 @@ export async function getStaticPaths({
 }: {
   paginate: PaginateFunction;
 }) {
-  const postEntries = await getCollection('blogPosts', ({ data }) => {
+  const postEntries = await getCollection(BlogPostCollection, ({ data }) => {
     return import.meta.env.PROD ? data.published === true : true;
   });
 
-  const posts = sortPosts(postEntries).map(post => ({
-    params: { slug: post.slug }, props: { post },
+  const posts = sortPosts(postEntries).map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
   }));
 
   return paginate(posts, { pageSize: 6 });
@@ -61,36 +40,50 @@ const { page }: { page: Page<PostsData> } = Astro.props;
 const posts = page.data.map((data) => {
   return data.props.post;
 });
-
 ---
+
 <DefaultLayout>
   <PageTitle title="My Blog" />
 
-  <Image src={IconWriting}
-      height=128
-      width=128
-      class="mb-8 mt-8 mx-auto"
-      alt="Blog"
-      title="Blog"
-      aria-hidden="true"
+  <Image
+    src={IconWriting}
+    height="128"
+    width="128"
+    class="mb-8 mt-8 mx-auto"
+    alt="Blog"
+    title="Blog"
+    aria-hidden="true"
   />
 
   <div class="mt-16">
-    {posts.map((post) => (
-    <div>
+    {
+      posts.map((post) => (
+        <div>
+          <Post post={post} />
 
-      <Post post={post} />
+          <hr
+            class="block w-2/3 bg-primary-300 text-center mx-auto mt-8 mb-8"
+            style="height: 2px;"
+          />
+        </div>
+      ))
+    }
 
-      <hr class="block w-2/3 bg-primary-300 text-center mx-auto mt-8 mb-8"
-          style="height: 2px;" />
-    </div>
-    ))}
-
-    {page.total > 1 &&
-    <div class="mt-4">
-    <Pagination currentPage={page.currentPage} totalPage={page.lastPage} url="blog/page" buttonGroup="pagination" activeButton="bg-primary-400 text-white  hover:bg-primary-400 hover:text-white current-page" outerDiv="flex items-center justify-center" button="relative flex-nowrap inline-flex items-center px-4 py-2 border text-sm font-medium" disabledButton="disabled:opacity-75" />
-    </div>
+    {
+      page.total > 1 && (
+        <div class="mt-4">
+          <Pagination
+            currentPage={page.currentPage}
+            totalPage={page.lastPage}
+            url="blog/page"
+            buttonGroup="pagination"
+            activeButton="bg-primary-400 text-white  hover:bg-primary-400 hover:text-white current-page"
+            outerDiv="flex items-center justify-center"
+            button="relative flex-nowrap inline-flex items-center px-4 py-2 border text-sm font-medium"
+            disabledButton="disabled:opacity-75"
+          />
+        </div>
+      )
     }
   </div>
-
 </DefaultLayout>

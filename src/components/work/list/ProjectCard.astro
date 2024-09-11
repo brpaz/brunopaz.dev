@@ -13,16 +13,18 @@ const { project } = Astro.props;
 const coverImage = await loadAsset(project.data.coverImage);
 ---
 
-<div class="project-card flex flex-col rounded-lg shadow-lg mb-8 p-1 mr-4 h-full bg-blue-200">
+<div
+  class="project-card flex flex-col rounded-lg shadow-lg mb-8 p-1 mr-4 h-full bg-blue-200"
+>
   <div class="flex items-center bg-white h-56 mb-2 overflow-hidden">
-    <a class="w-full h-full flex items-center"
-       href="">
+    <a class="w-full h-full flex items-center" href="">
       <Image
         src={coverImage}
         alt={`Image of project: ${project.data.name}`}
         class="flex w-full"
         loading="lazy"
-        aria-hidden="true">
+        aria-hidden="true"
+      />
     </a>
   </div>
 
@@ -33,7 +35,7 @@ const coverImage = await loadAsset(project.data.coverImage);
           {project.data.name}
         </h3>
       </a>
-      <span class="text-sm">{ project.data.category }</span>
+      <span class="text-sm">{project.data.category}</span>
     </div>
 
     {project.data.description}

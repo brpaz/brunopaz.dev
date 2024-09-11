@@ -1,15 +1,24 @@
 ---
 import { Image } from 'astro:assets';
-import DefaultLayout from '../layouts/Default.astro'
+import DefaultLayout from '../layouts/Default.astro';
 
 import notFoundImage from '~/assets/icons/404.svg';
-
 ---
+
 <DefaultLayout>
-    <div class="flex flex-col text-center items-center justify-center text-xl pt-6">
+  <div
+    class="flex flex-col text-center items-center justify-center text-xl pt-6"
+  >
     <div>
-        <Image src={notFoundImage} height="256" width="256"  class="block mx-auto mb-2" aria-hidden="true" alt="Page not found"/>
-        <p>The requested page was not found</p>
+      <Image
+        src={notFoundImage}
+        height="256"
+        width="256"
+        class="block mx-auto mb-2"
+        aria-hidden="true"
+        alt="Page not found"
+      />
+      <p>The requested page was not found</p>
     </div>
-    </div>
+  </div>
 </DefaultLayout>

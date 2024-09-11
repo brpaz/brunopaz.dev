@@ -1,20 +1,23 @@
 ---
-import DefaultLayout from '~/layouts/Default.astro'
-import  PageTitle from '~/components/shared/PageTitle.astro'
-import ProjectHeader from '~/components/work/detail/ProjectDetailHeader.astro'
-import ProjectTech from '~/components/work/detail/ProjectDetailTech.astro'
-
-import type { Project } from '~/content/types'
 import { getCollection, type CollectionEntry } from 'astro:content';
+
+import DefaultLayout from '~/layouts/Default.astro';
+import PageTitle from '~/components/shared/PageTitle.astro';
+import ProjectHeader from '~/components/work/detail/ProjectDetailHeader.astro';
+import ProjectTech from '~/components/work/detail/ProjectDetailTech.astro';
+
+import type { Project } from '~/content/types';
+import { ProjectCollection } from '~/content/types';
 
 interface Props {
   project: CollectionEntry<Project>;
 }
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
-  return projects.map(project => ({
-    params: { slug: project.slug }, props: { project },
+  const projects = await getCollection(ProjectCollection);
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
   }));
 }
 
@@ -47,10 +50,7 @@ const { Content } = await project.render();
     @apply flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto;
   }
 </style>
-<DefaultLayout title={project.data
-.name}
-               description={project.data
-              .description}>
+<DefaultLayout title={project.data.name} description={project.data.description}>
   <PageTitle title={project.data.name} />
 
   <ProjectHeader project={project} />
@@ -64,7 +64,9 @@ const { Content } = await project.render();
     <Content />
   </div>
 
-  {project.data.technologies.length > 0 &&
-  <ProjectTech technologies={project.data.technologies} />
+  {
+    project.data.technologies.length > 0 && (
+      <ProjectTech technologies={project.data.technologies} />
+    )
   }
 </DefaultLayout>

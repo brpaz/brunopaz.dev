@@ -1,6 +1,6 @@
 import type { CollectionEntry } from 'astro:content';
 import type { BlogPost } from './types';
-import { z, defineCollection } from "astro:content";
+import { z, defineCollection } from 'astro:content';
 
 export const blogPostsCollection = defineCollection({
   type: 'content',
@@ -12,13 +12,15 @@ export const blogPostsCollection = defineCollection({
     coverImage: z.string().optional(),
     tags: z.array(z.string()),
     featured: z.boolean().default(false),
-  })
+  }),
 });
 
 /**
  * Helper function to sort a collection of posts by it´s published date.
  */
-export function sortPosts(posts: CollectionEntry<BlogPost>[]): CollectionEntry<BlogPost>[] {
+export function sortPosts(
+  posts: CollectionEntry<BlogPost>[],
+): CollectionEntry<BlogPost>[] {
   return posts.sort((a, b) => {
     if (a.data.publishDate === undefined) {
       return -1;
