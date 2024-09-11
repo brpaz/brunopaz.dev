@@ -39,20 +39,20 @@ jobs:
       - name: Build
         run: pnpm run build
         env:
-          BASE_URL: "https://brunopaz.dev"
+          BASE_URL: "https://localhost:3001"
           PUBLIC_CHAT_ENABLED: "false"
           PUBLIC_SENTRY_ENABLED: "false"
 
       - name: Start preview server
         run: |
           pnpm run preview &
-          sleep 5
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
 
       - name: Run E2E tests
-        run: pnpm test:e2e
+        run: |
+          BASE_URL=http://localhoat:3001 pnpm run test:e2e
 
       - uses: actions/upload-artifact@v4
         if: always()
