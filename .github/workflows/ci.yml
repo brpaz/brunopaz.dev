@@ -10,6 +10,9 @@ on:
 permissions:
   contents: read
   deployments: write
+
+env:
+  PNPM_VERSION: 9
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -17,9 +20,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.node-version'
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
@@ -34,9 +43,13 @@ jobs:
           PUBLIC_CHAT_ENABLED: "false"
           PUBLIC_SENTRY_ENABLED: "false"
 
+      - name: Start preview server
+        run: |
+          pnpm run preview &
+          sleep 5
+
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
-
 
       - name: Run E2E tests
         run: pnpm test:e2e

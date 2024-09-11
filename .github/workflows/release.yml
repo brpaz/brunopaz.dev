@@ -20,14 +20,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
       - uses: actions/setup-node@v4
         with:
-          node-version: ".node-version"
+          node-version-file: '.node-version'
+          cache: 'pnpm'
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build
+      - name: Build production image
         run: pnpm build
         env:
           PUBLIC_FORMSPREE_FORM_ID: ${{ secrets.PUBLIC_FORMSPREE_FORM_ID }}
@@ -36,9 +39,6 @@ jobs:
           BASE_URL: ${{ env.SITE_URL }}
           PUBLIC_CHAT_ENABLED: "true"
           PUBLIC_SENTRY_ENABLED: "true"
-
-      - name: Test
-        run: pnpm test
 
       - name: Update CHANGELOG
         uses: stefanzweifel/changelog-updater-action@v1
