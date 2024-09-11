@@ -9,7 +9,6 @@ interface Props {
 }
 
 const { name, width, height } = Astro.props as Props;
-
 const fileName = slugify(name.toLowerCase());
 ---
 <Image alt={name}

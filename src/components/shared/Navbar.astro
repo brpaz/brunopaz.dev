@@ -26,17 +26,17 @@ const menuItems = [
 ];
 ---
 <script is:inline>
-function toggleMobileMenu() {
-  const mobileNav = document.getElementById("main-nav-mobile")
-  mobileNav.classList.toggle("hidden");
-}
+  function toggleMobileMenu() {
+    const mobileNav = document.getElementById("main-nav-mobile")
+    mobileNav.classList.toggle("hidden");
+  }
 
-var toggleMenuListener = () => {
-   document.getElementById("menu-toggle").addEventListener("click", toggleMobileMenu);
-}
+  var toggleMenuListener = () => {
+    document.getElementById("menu-toggle").addEventListener("click", toggleMobileMenu);
+  }
 
-window.addEventListener('DOMContentLoaded',toggleMenuListener);
-document.addEventListener('astro:after-swap', toggleMenuListener);
+  window.addEventListener('DOMContentLoaded',toggleMenuListener);
+  document.addEventListener('astro:after-swap', toggleMenuListener);
 </script>
 
 <style>

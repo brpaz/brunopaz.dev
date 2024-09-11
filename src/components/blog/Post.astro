@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import type { BlogPost } from '~/content/contentTypes'
-import FormattedDate from '~/components/blog/FormattedDate.astro'
+import type { BlogPost } from '~/content/types';
+import FormattedDate from '~/components/blog/FormattedDate.astro';
 
 interface Props {
   post: CollectionEntry<BlogPost>;

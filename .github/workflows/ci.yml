@@ -1,4 +1,4 @@
-name: ci
+name: CI
 
 on:
   push:
@@ -12,34 +12,33 @@ permissions:
   deployments: write
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version-file: '.node-version'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm i --frozen-lockfile
 
       - name: Lint
-        run: yarn lint
+        run: pnpm run lint
 
       - name: Build
-        run: yarn build
+        run: pnpm run build
         env:
-          PUBLIC_ASSETS_BASE_URL: ""
           BASE_URL: "https://brunopaz.dev"
           PUBLIC_CHAT_ENABLED: "false"
           PUBLIC_SENTRY_ENABLED: "false"
 
       - name: Test
-        run: yarn test
+        run: pnpm test
 
       - name: Run Lighthouse test
-        uses: treosh/lighthouse-ci-action@v8
+        uses: treosh/lighthouse-ci-action@v12
         with:
           configPath: "./lighthouserc.json"
           budgetPath: ./budget.json
@@ -47,7 +46,7 @@ jobs:
 
       - name: Deploy Preview
         if: github.event_name == 'pull_request' && github.actor != 'dependabot'
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/pages-action@v1.5.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}

@@ -1,6 +1,5 @@
 version: 2
 updates:
-  # Fetch and update latest `npm` packages
   - package-ecosystem: npm
     directory: "/"
     schedule:
@@ -9,13 +8,8 @@ updates:
     open-pull-requests-limit: 5
     reviewers:
       - brpaz
-    assignees:
-      - brpaz
-    commit-message:
-      prefix: fix
-      prefix-development: chore
-      include: scope
-  # Fetch and update latest `github-actions` pkgs
+    labels:
+      - dependencies
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
@@ -24,9 +18,5 @@ updates:
     open-pull-requests-limit: 5
     reviewers:
       - brpaz
-    assignees:
-      - brpaz
-    commit-message:
-      prefix: fix
-      prefix-development: chore
-      include: scope
+    labels:
+      - dependencies

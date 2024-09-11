@@ -13,24 +13,23 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     environment:
       name: production
       url: https://brunopaz.dev
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version: ".node-version"
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: yarn build
+        run: pnpm build
         env:
-          PUBLIC_ASSETS_BASE_URL: ${{ secrets.PUBLIC_ASSETS_BASE_URL }}
           PUBLIC_FORMSPREE_FORM_ID: ${{ secrets.PUBLIC_FORMSPREE_FORM_ID }}
           PUBLIC_SENTRY_KEY: ${{ secrets.PUBLIC_SENTRY_KEY }}
           PUBLIC_WEB_MONETIZATION_ID: ${{ secrets.PUBLIC_WEB_MONETIZATION_ID }}
@@ -39,16 +38,23 @@ jobs:
           PUBLIC_SENTRY_ENABLED: "true"
 
       - name: Test
-        run: yarn test
+        run: pnpm test
 
-      - name: Sync images to Cloudinary
-        run: node scripts/cloudinary-sync.mjs
-        env:
-          CLOUDINARY_FOLDER: ${{ secrets.CLOUDINARY_FOLDER }}
-          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+      - name: Update CHANGELOG
+        uses: stefanzweifel/changelog-updater-action@v1
+        with:
+          latest-version: ${{ github.event.release.tag_name }}
+          release-notes: ${{ github.event.release.body }}
+
+      - name: Commit updated CHANGELOG and README files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: main
+          commit_message: "chore(release): [skip-ci] ${{ github.event.release.tag_name }}"
+          file_pattern: CHANGELOG.md
 
       - name: Deploy to Production
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/pages-action@v1.5.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
@@ -56,3 +62,4 @@ jobs:
           directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: main
+

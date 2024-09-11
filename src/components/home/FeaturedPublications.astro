@@ -1,17 +1,13 @@
 ---
-const blogPosts = await Astro.glob('../../pages/blog/*.md');
 
-const featuredPublications = blogPosts.filter((post) => !!post.frontmatter.featured)
-  .filter((post) => !!post.frontmatter.published)
-  .map((post) => {
-    return {
-      position: post.frontmatter.position,
-      title: post.frontmatter.title,
-      slug: post.frontmatter.slug,
-    }
-  })
-  .sort((a, b) => Number(a.position) - Number(b.position))
-  .slice(0, 5);
+import { getCollection } from 'astro:content';
+import  { sortPosts } from '~/content/posts'
+
+const allFeaturedPosts = await getCollection('blogPosts', ({ data }) => {
+    return data.featured && data.published === true && data.publishDate
+});
+
+const featuredPosts = sortPosts(allFeaturedPosts).slice(0, 3);
 ---
 
 <section class="flex flex-col mx-auto justify-center text-center mb-12">
@@ -24,7 +20,7 @@ const featuredPublications = blogPosts.filter((post) => !!post.frontmatter.featu
     </p>
 
     <div class="flex flex-wrap justify-center mb-4">
-      {featuredPublications.map((post) => (
+      {featuredPosts.map((post) => (
       <div class="flex px-2 py-4 w-full md:w-3/4 mx-auto items-center">
         <svg aria-hidden="true"
              focusable="false"
@@ -39,7 +35,7 @@ const featuredPublications = blogPosts.filter((post) => !!post.frontmatter.featu
           </path>
         </svg>
 
-        <a href={`/blog/${post.slug}`}>{post.title}</a>
+        <a href={`/blog/${post.slug}`}>{post.data.title}</a>
       </div>
       ))}
     </div>

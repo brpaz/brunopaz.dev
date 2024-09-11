@@ -5,12 +5,13 @@ excerpt: Logs are an essential debbuging tool when developing. But if your appli
 tags: ['loki','logging','docker', 'development']
 slug: better-docker-log-search-experience-with-loki
 published: true
-# devto_url: https://dev.to/brpaz/from-notion-to-dendron-my-new-note-taking-and-knowledge-base-application-4icl-temp-slug-6997891
-
 featured: true
 ---
-
-import Image from '../../components/blog/PostImage.astro'
+import { Picture } from 'astro:assets';
+import img1 from '../../assets/images/blog/1df76102-bd23-405d-b3ba-79e90b523701.jpg';
+import img2 from '../../assets/images/blog/3f19034b-e4d4-4536-af71-841796091fa4.gif'
+import img3 from '../../assets/images/blog/b0673b6c-3861-4ea0-84af-ce8b62abf940.gif'
+import img4 from '../../assets/images/blog/657c5d7e-dfc5-4047-9f74-1b6d73a0bc4d.png'
 
 Logs are an essential debbuging tool when developing. For simple applications doing a `tail -f` or `docker logs` can be enough to find what we are looking for.
 
@@ -134,7 +135,7 @@ scrape_configs:
             tag:
           source: attrs
       - regex:
-          expression: (?P<image_name>(?:[^|]*[^|])).(?P<container_name>(?:[^|]*[^|])).(?P<image_id>(?:[^|]*[^|])).(?P<container_id>(?:[^|]*[^|]))
+          expression: (?P<Picture_name>(?:[^|]*[^|])).(?P<container_name>(?:[^|]*[^|])).(?P<Picture_id>(?:[^|]*[^|])).(?P<container_id>(?:[^|]*[^|]))
           source: tag
       - timestamp:
           format: RFC3339Nano
@@ -191,13 +192,13 @@ We should now have everything we need to start our demo.
 
 ## Show me the logs
 
-<Image name="1df76102-bd23-405d-b3ba-79e90b523701.jpg" alt="Show me all the logs"/>
+<Picture src={img1} formats={['avif','webp']} alt="Show me all the logs"/>
 
 If everything went fine you can then open grafana in your browser at **localhost:3000**. You can use **admin/testloki** credentials to login.
 
 You should now see the Grafana homepage. Head over to "Configuration -> DataSources" on the left menu, and you should see Loki datasource automatically configured:
 
-<Image name="3f19034b-e4d4-4536-af71-841796091fa4.gif" alt="Grafana Loki Interface"/>
+<Picture src={img2} alt="Grafana Loki Interface"/>
 
 You can click on the "Test" button to check that Grafana and Loki can communicate.
 
@@ -205,7 +206,7 @@ Next we can go to the Loki interface, by clicking on the "Explorer" menu on the 
 
 If You open the "Log Labels" menu you should see all the labels that we configured in Promtail and that were extracted from the logs.
 
-<Image name="b0673b6c-3861-4ea0-84af-ce8b62abf940.gif" alt="Loki logs view"/>
+<Picture src={img3} alt="Loki logs view"/>
 
 You can select one of them to display the associated logs, or with a LogQL query directly.
 
@@ -239,7 +240,7 @@ For example, to get all the logs containg the "name" text in our application, we
 {container_name="logs-with-loki_demo-app_1"} |= "name"
 ```
 
-<Image name="657c5d7e-dfc5-4047-9f74-1b6d73a0bc4d.png" alt="Grafana Loki Logs search view"/>
+<Picture src={img4}  alt="Grafana Loki Logs search view"/>
 
 To know more about the syntax of LogQL and all the possible queries, this [cheat sheet](https://megamorf.gitlab.io/cheat-sheets/loki/) is a good place start, followed by the official [LogQL Documentation](https://grafana.com/docs/loki/latest/logql/#line-filter-expression).
 

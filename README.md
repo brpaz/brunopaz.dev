@@ -49,7 +49,6 @@ This website requires the following environment variables to be defined:
 | PUBLIC_SENTRY_KEY          	| The sentry DSN configuration, to allow sending error logs to Sentry.                              	|
 | PUBLIC_CHAT_ENABLED        	| Wether to enable the Chat box or not                                                              	|
 | PUBLIC_FORMSPREE_FORM_ID   	| The id of the form defined in formspree. Used by the Contact form and chat box.                   	|
-| PUBLIC_ASSETS_BASE_URL     	| The base URL for assets like images. If empty it will serve the images directly from dist folder. 	|
 
 ---
 
