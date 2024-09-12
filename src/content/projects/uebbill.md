@@ -1,6 +1,7 @@
 ---
 name: "Uebbill"
 description: "Uebbill is a cloud-based billing software for small businesses, certified by the Portuguese Finance Authority."
+type: "work"
 startDate: 2010-08-01
 endDate: 2014-03-30
 externalUrl: "https://www.uebbill.pt/"
@@ -16,7 +17,7 @@ technologies:
   - "Bitbucket"
 coverImage: "cover.jpg"
 images:
-  - "uebill.png"
+  - "uebbill.png"
 role:
   - "Software Engineer"
 company: "Ueb"

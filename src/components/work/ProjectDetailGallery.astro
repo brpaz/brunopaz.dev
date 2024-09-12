@@ -1,0 +1,110 @@
+---
+import { Image } from 'astro:assets';
+interface Props {
+  slug: string;
+  images: string[];
+}
+
+const { slug, images } = Astro.props as Props;
+
+export async function getImages(slug: string, imageNames: string[]): Promise<string[]> {
+  return Promise.all(
+    imageNames.map(async (image) => {
+      const imageParts = image.split('.');
+      const imageFileName = imageParts[0];
+      const imageFileExtension = imageParts[1];
+
+      return (await import(`./../../assets/images/projects/${slug}/${imageFileName}.${imageFileExtension}`)).default;
+    })
+  );
+}
+
+const imageUrls = await getImages(slug, images);
+---
+
+<div id="gallery" class="w-full mr-8" data-images={JSON.stringify(imageUrls)}>
+  <div id="image-container" class="relative w-full overflow-hidden" style="height: 35rem">
+    <button
+      class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-neutral-800 bg-opacity-50 text-white p-2 z-10"
+      id="prevBtn">&#10094;</button
+    >
+    <Image id="currentImage" src={imageUrls[0]} alt="Image" class="w-full object-cover" loading="eager" />
+    <button
+      class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-neutral-800 bg-opacity-50 text-white p-2 z-10"
+      id="nextBtn">&#10095;</button
+    >
+  </div>
+
+  <!-- Carousel -->
+  <div class="carousel flex mt-4 space-x-2 overflow-hidden justify-center">
+    {
+      imageUrls.map((image, index) => (
+        <div class="flex flex-shrink-0 items-center justify-center">
+          <Image
+            src={image}
+            alt={`Thumbnail ${index}`}
+            class="thumbnail w-20 h-20 object-cover cursor-pointer border-2 border-transparent  transition-transform transform hover:scale-105"
+            data-index={index}
+            loading="eager"
+          />
+        </div>
+      ))
+    }
+  </div>
+
+  <script is:inline>
+    const galleryElement = document.getElementById('gallery');
+
+    const images = JSON.parse(galleryElement.dataset.images);
+
+    const imageContainer = document.getElementById('image-container');
+
+    let currentIndex = 0;
+
+    const currentImage = document.getElementById('currentImage');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+
+    // Set current image based on index
+    function showImage(index) {
+      currentIndex = index;
+      currentImage.src = images[currentIndex].src;
+
+      // Update thumbnail border
+      thumbnails.forEach((thumb) => thumb.classList.remove('current'));
+      thumbnails[currentIndex].classList.add('current');
+    }
+
+    // Next and previous buttons
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+    });
+
+    // Click event for thumbnails
+    thumbnails.forEach((thumb) => {
+      thumb.addEventListener('click', (e) => {
+        const index = parseInt(e.target.dataset.index);
+        showImage(index);
+      });
+    });
+  </script>
+
+  <style>
+    #gallery img {
+      display: flex;
+      transition: transform 0.5s ease-in-out; /* Slide transition */
+    }
+
+    .thumbnail {
+      @apply border-2 border-transparent;
+    }
+    .thumbnail.current {
+      @apply border-primary-400;
+    }
+  </style>
+</div>

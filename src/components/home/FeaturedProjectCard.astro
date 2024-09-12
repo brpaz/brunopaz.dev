@@ -19,7 +19,7 @@ const coverImageFileExtension = coverImage[1];
     class="block h-full p-1 hover:text-white text-white hover:bg-primary-500 rounded-lg shadow-lg"
     href={`/work/${project.slug}`}
   >
-    <div class="flex items-center bg-white h-56 mb-2 overflow-hidden">
+    <div class="flex items-center justify-center bg-white h-56 mb-2 overflow-hidden">
       <Image
         src={(
           await import(
@@ -27,7 +27,7 @@ const coverImageFileExtension = coverImage[1];
           )
         ).default}
         alt={`Image of project: ${project.data.name}`}
-        class="object-cover w-full"
+        class="w-full"
         loading="lazy"
         aria-hidden="true"
       />

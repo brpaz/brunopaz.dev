@@ -4,98 +4,60 @@ import { getCollection } from 'astro:content';
 
 import DefaultLayout from '~/layouts/Default.astro';
 import PageTitle from '~/components/shared/PageTitle.astro';
-import ProjectCard from '~/components/work/list/ProjectCard.astro';
+import ProjectCard from '~/components/work/ProjectCard.astro';
 import IconBriefcase from '~/assets/icons/briefcase.svg';
 
 import { ProjectCollection } from '~/content/types';
+import { ProjectType } from '~/content/projects';
 
 const allProjects = await getCollection(ProjectCollection);
 
 const companyProjects = allProjects
-  .filter((project) => project.data.isPrivate)
+  .filter((project) => project.data.type == ProjectType.Work)
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+
+const personalProjects = allProjects
+  .filter((project) => project.data.type == ProjectType.Personal)
   .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
 ---
 
 <DefaultLayout>
   <PageTitle title="Work" />
 
-  <Image
-    src={IconBriefcase}
-    height="128"
-    width="128"
-    class="mb-8 mt-8 mx-auto"
-    alt="Work"
-    title="Work"
-  />
+  <Image src={IconBriefcase} height="128" width="128" class="mb-8 mt-8 mx-auto" alt="Work" title="Work" />
 
   <div class="mb-12 mx-auto w-4/5">
-    <p>
-      I have been working in tech since 2011, involved in different projects
-      across areas like B2B applications, e-commerce, travel, payments, and
-      healthcare.
+    <p class="mb-4">
+      On this page, you can find some of the most relevant projects I have worked on during my professional career, as
+      well as personal side projects.
     </p>
-
-    <p>
-      In addition to my professional work, I also like to contribute to build
-      side projects and contribute to open source. These contributions allow me
-      to give back to the community, collaborate with other developers, and
-      continuously learn and improve my skills.
-    </p>
-
-    <p>This page highlights some of the key projects I've worked on.</p>
   </div>
 
   <section id="projects-list" class="mb-12">
-    <h3 class="font-bold text-center text-neutral-700 text-3xl mb-4">
-      Projects
-    </h3>
+    <h3 class="font-bold text-center text-neutral-700 text-3xl mb-8">Professional Projects</h3>
 
-    <p class="text-center mb-4">
-      Here are some projects I have worked on a professional envrionment.
-    </p>
     <div class="flex flex-wrap w-full justify-center">
-      {companyProjects.map((project) => <ProjectCard project={project} />)}
+      {
+        companyProjects.map((project) => (
+          <div class="project-card flex md:w-1/2 sm:w-full lg:w-1/3 mb-4">
+            <ProjectCard project={project} />
+          </div>
+        ))
+      }
     </div>
   </section>
 
-  <section>
-    <div class="text-center mb-8">
-      <h3 class="font-bold text-neutral-700 text-3xl mb-4">Open Source</h3>
+  <section id="projects-list" class="mb-12">
+    <h3 class="font-bold text-center text-neutral-700 text-3xl mb-8">Personal Projects</h3>
 
-      <div class="mx-auto w-4/5">
-        <p>
-          I like to contribute back to the community, so anything that I make
-          and I think it can be usefull to others, I generally make it available
-          on GitHub
-        </p>
-
-        <p>
-          Here are some of my OSS work, including <a
-            href="https://ulauncher.io/"
-            target="_blank"
-            rel="noopener">Ulauncher</a
-          > Extensions, <a
-            href="https://code.visualstudio.com/"
-            target="_blank"
-            rel="noopener">VSCode</a
-          > Extensions and small libraries.
-        </p>
-      </div>
+    <div class="flex flex-wrap w-full justify-center">
+      {
+        personalProjects.map((project) => (
+          <div class="project-card flex md:w-1/2 sm:w-full lg:w-1/3 mb-4">
+            <ProjectCard project={project} />
+          </div>
+        ))
+      }
     </div>
   </section>
-
-  <!--<div class="flex flex-wrap w-full justify-center">
-    {gitHubProjects.map((project) => (
-    <div class="flex md:w-1/2 sm:w-full lg:w-1/3">
-      <GithubProjectCard project={project} />
-    </div>
-    ))}
-
-    <a href="https://github.com/brpaz/repositories"
-       target="_blank"
-       rel="noopener"
-       class="inline-block text-white bg-text-primary-600 bg py-2 px-4 rounded-md hover:text-white hover:bg-text-primary-800
-       ">
-      See more at GitHub</a>
-  </div> -->
 </DefaultLayout>

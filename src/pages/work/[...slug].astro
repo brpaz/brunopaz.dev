@@ -3,8 +3,9 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 
 import DefaultLayout from '~/layouts/Default.astro';
 import PageTitle from '~/components/shared/PageTitle.astro';
-import ProjectHeader from '~/components/work/detail/ProjectDetailHeader.astro';
-import ProjectTech from '~/components/work/detail/ProjectDetailTech.astro';
+import ProjectHeader from '~/components/work/ProjectDetailHeader.astro';
+import ProjectTech from '~/components/work/ProjectDetailTech.astro';
+import ProjectGallery from '~/components/work/ProjectDetailGallery.astro';
 
 import type { Project } from '~/content/types';
 import { ProjectCollection } from '~/content/types';
@@ -26,27 +27,31 @@ const { Content } = await project.render();
 ---
 
 <style is:global>
-  .content h2 {
+  .project-detail-content h2 {
     @apply font-bold text-2xl mb-4;
   }
 
-  .content h3 {
+  .project-detail-content h3 {
     @apply font-bold text-lg mb-4;
   }
 
-  .content p {
+  .project-detail-content p {
     @apply mb-4;
   }
 
-  .content img {
+  .project-detail-content img {
     @apply my-4 mx-auto;
   }
 
-  .content ul {
+  .project-detail-content ul {
     @apply list-disc ml-6 mb-4;
   }
 
-  .content hr {
+  .project-detail-content ul li {
+    @apply mb-2;
+  }
+
+  .project-detail-content hr {
     @apply flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto;
   }
 </style>
@@ -55,18 +60,11 @@ const { Content } = await project.render();
 
   <ProjectHeader project={project} />
 
-  <div class="content leading-8 mb-8">
-    <!--{project.images.length > 0 &&
-    <ProjectGallery images={project.images}
-                    client:only="svelte" />
-  }-->
+  <div class="project-detail-content leading-8 mb-8">
+    {project.data.images.length > 0 && <ProjectGallery slug={project.slug} images={project.data.images} />}
 
     <Content />
   </div>
 
-  {
-    project.data.technologies.length > 0 && (
-      <ProjectTech technologies={project.data.technologies} />
-    )
-  }
+  {project.data.technologies.length > 0 && <ProjectTech technologies={project.data.technologies} />}
 </DefaultLayout>

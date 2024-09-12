@@ -3,6 +3,7 @@ name: "Jumia Flights"
 description: "Jumia Flights is a travel booking platform by Jumia that allows users to search, compare, and book flights across Africa."
 startDate: 2017-08-01
 endDate: 2018-05-31
+type: "work"
 category: "application"
 technologies:
   - "Golang"

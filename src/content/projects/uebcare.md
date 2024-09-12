@@ -1,6 +1,7 @@
 ---
 name: "UebCare"
 description: "UebCare is a survey and customer satisfaction platform, focused on the Automobile area."
+type: "work"
 startDate: 2010-08-01
 endDate: 2014-03-30
 category: "application"
@@ -13,7 +14,7 @@ technologies:
   - "jQuery"
   - "Git"
   - "Bitbucket"
-coverImage: "cover.jpg"
+coverImage: "cover.png"
 images: []
 role:
   - "Software Engineer"

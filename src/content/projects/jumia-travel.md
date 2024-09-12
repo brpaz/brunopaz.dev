@@ -1,8 +1,9 @@
 ---
 name: "Jumia Travel"
-description: "Jumia Travel is an online travel agency offering hotel bookings and travel services across Africa"
-startDate: 2017-07-30
-endDate: 2014-04-01
+description: "Jumia Travel is an online travel agency offering hotel bookings and travel services across Africa."
+type: "work"
+startDate: 2014-04-01
+endDate: 2017-07-30
 category: "application"
 technologies:
   - "PHP"
@@ -21,8 +22,8 @@ technologies:
   - "Amazon Web Services"
 coverImage: "cover.png"
 images:
-  - "jtravel01.png"
-  - "jtravel02.png"
+  - "jtravel01.jpg"
+  - "jtravel02.jpg"
 role:
   - "Software Engineer"
 company: "Jumia"

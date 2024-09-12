@@ -3,6 +3,7 @@ name: "JForce"
 description: "Jumia JForce is a sales consultant program where agents earn commissions by helping customers place orders on Jumia`s platform."
 startDate: 2016-06-01
 endDate: 2018-12-31
+type: work
 category: "application"
 externalUrl: https://jforce.jumia.com.ng/
 technologies:

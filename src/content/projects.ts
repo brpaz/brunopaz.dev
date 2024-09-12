@@ -2,6 +2,11 @@ import { z, defineCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { Project } from './types';
 
+export enum ProjectType {
+  Work = 'work',
+  Personal = 'personal',
+}
+
 export const projectsCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -16,16 +21,18 @@ export const projectsCollection = defineCollection({
     coverImage: z.string(),
     images: z.array(z.string()),
     isFeatured: z.boolean().default(false),
-    role: z.array(
-      z.enum([
-        'Developer',
-        'Software Engineer',
-        'Tech Lead',
-        'Engineering Manager',
-      ]),
-    ),
+    role: z
+      .array(
+        z.enum([
+          'Developer',
+          'Software Engineer',
+          'Tech Lead',
+          'Engineering Manager',
+        ]),
+      )
+      .optional(),
     company: z.string().optional(),
-    isPrivate: z.boolean().default(true),
+    type: z.enum(['work', 'personal']).default('work'),
     sortOrder: z.number().default(1),
   }),
 });
