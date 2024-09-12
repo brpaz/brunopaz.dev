@@ -39,9 +39,9 @@ jobs:
       - name: Build
         run: pnpm run build
         env:
-          BASE_URL: "https://localhost:3001"
-          PUBLIC_CHAT_ENABLED: "false"
-          PUBLIC_SENTRY_ENABLED: "false"
+          BASE_URL: 'https://localhost:3001'
+          PUBLIC_CHAT_ENABLED: 'false'
+          PUBLIC_SENTRY_ENABLED: 'false'
 
       - name: Start preview server
         run: |
@@ -52,7 +52,7 @@ jobs:
 
       - name: Run E2E tests
         run: |
-          BASE_URL=http://127.0.0.1:3001 pnpm run test:e2e
+          BASE_URLhttp://localhost:4321 pnpm run test:e2e
 
       - uses: actions/upload-artifact@v4
         if: always()
@@ -64,7 +64,7 @@ jobs:
       - name: Run Lighthouse test
         uses: treosh/lighthouse-ci-action@v12
         with:
-          configPath: "./lighthouserc.json"
+          configPath: './lighthouserc.json'
           budgetPath: ./budget.json
           uploadArtifacts: true
 

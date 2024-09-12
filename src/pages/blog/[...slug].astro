@@ -7,7 +7,7 @@ import DefaultLayout from '~/layouts/Default.astro';
 import PageTitle from '~/components/shared/PageTitle.astro';
 import FormattedDate from '~/components/blog/FormattedDate.astro';
 import SocialShare from '~/components/blog/SocialShare.astro';
-
+import TagsList from '~/components/blog/TagsList.astro';
 interface Props {
   post: CollectionEntry<BlogPost>;
 }
@@ -65,11 +65,22 @@ const { Content } = await post.render();
     )
   }
 
+  {
+    post.data.tags.length > 0 && (
+      <div class="flex mb-4 w-full justify-center">
+        <TagsList tags={post.data.tags} />
+      </div>
+    )
+  }
+
   <div class="post-content">
     <Content />
   </div>
-  <SocialShare
-    url={new URL(Astro.url.pathname, Astro.site).toString()}
-    title={title}
-  />
+
+  <div class="flex">
+    <SocialShare
+      url={new URL(Astro.url.pathname, Astro.site).toString()}
+      title={title}
+    />
+  </div>
 </DefaultLayout>
