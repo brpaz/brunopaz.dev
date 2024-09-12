@@ -1,6 +1,6 @@
 ---
 name: "JumiaPay"
-description: "JumiaPay, by Jumia, offers a secure platform for online payments and financial transactions across Africa, simplifying purchases and utility payments."
+description: "JumiaPay, offers a secure platform for online payments and financial transactions across Africa, simplifying purchases and utility payments."
 startDate: 2019-01-01
 endDate: 2022-05-31
 category: "application"
@@ -26,10 +26,13 @@ images:
   - "jpay-02.png"
   - "jpay-business01.png"
   - "jpay-business02.png"
-role: "Tech Lead"
+role:
+  - "Engineering Manager"
+  - "Software Engineer"
 company: "Jumia"
 isPrivate: true
-sortOrder: 2
+isFeatured: true
+sortOrder: 4
 ---
 
 JumiaPay is Jumias digital payment platform that simplifies online transactions across Africa. It allows users to make secure payments for goods, services, and utilities, both on Jumias marketplace and beyond. The platform aims to enhance financial inclusion by providing a convenient and reliable payment solution in regions with limited banking services.

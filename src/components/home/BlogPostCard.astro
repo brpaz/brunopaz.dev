@@ -11,7 +11,9 @@ const { post } = Astro.props;
 
 <a
   href={`/blog/${post.slug}`}
-  class="block bg-primary-400 rounded-md px-4 py-4 mb-4 md:w-3/4 mx-auto text-white font-bold hover:text-white hover:bg-primary-500"
+  class="h-18 bg-primary-400 rounded-md px-4 py-4 mb-4 mr-4 text-white font-bold hover:text-white hover:bg-primary-500
+  text-clip
+  overflow-hidden"
 >
   <div class="flex items-center w-full">
     <svg
@@ -29,6 +31,6 @@ const { post } = Astro.props;
       ></path><path fill="none" d="M0 0h24v24H0z"></path>
     </svg>
 
-    <span>{post.data.title}</span>
+    {post.data.title}
   </div>
 </a>

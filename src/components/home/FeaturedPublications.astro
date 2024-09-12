@@ -3,29 +3,29 @@ import { getCollection } from 'astro:content';
 import { BlogPostCollection } from '~/content/types';
 import { sortPosts } from '~/content/posts';
 import BlogPostCard from '~/components/home/BlogPostCard.astro';
+import MoreButton from '@components/home/MoreButton.astro';
 
 const allFeaturedPosts = await getCollection(BlogPostCollection, ({ data }) => {
   return data.published === true && data.publishDate;
 });
 
-const featuredPosts = sortPosts(allFeaturedPosts).slice(0, 3);
+const featuredPosts = sortPosts(allFeaturedPosts).slice(0, 4);
 ---
 
 <section class="flex flex-col mx-auto justify-center text-center mb-12">
-  <h2 class="font-bold text-neutral-600 text-4xl mb-4 text-center">
-    Latest Posts
-  </h2>
+  <h2 class="font-bold text-neutral-600 text-4xl mb-4 text-center">Latest Posts</h2>
   <div class="mb-12">
     <p class="mb-4">Some recent posts I wrote on the blog.</p>
 
-    <div class="flex flex-wrap justify-center mb-4">
-      {featuredPosts.map((post) => <BlogPostCard post={post} />)}
+    <div class="flex flex-wrap mb-4">
+      {
+        featuredPosts.map((post) => (
+          <div class="flex flex-col md:w-1/2 w-full">
+            <BlogPostCard post={post} />
+          </div>
+        ))
+      }
     </div>
-
-    <a
-      href="/blog/page/1"
-      class="inline-block text-white bg-neutral-400 py-2 px-4 rounded-md hover:text-white hover:bg-neutral-500"
-      >Read the Blog</a
-    >
+    <MoreButton url="/blog/page/1" label="Read Blog" />
   </div>
 </section>

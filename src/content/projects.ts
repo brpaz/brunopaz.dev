@@ -1,4 +1,6 @@
 import { z, defineCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import type { Project } from './types';
 
 export const projectsCollection = defineCollection({
   type: 'content',
@@ -14,9 +16,25 @@ export const projectsCollection = defineCollection({
     coverImage: z.string(),
     images: z.array(z.string()),
     isFeatured: z.boolean().default(false),
-    role: z.enum(['Developer', 'Tech Lead']),
+    role: z.array(
+      z.enum([
+        'Developer',
+        'Software Engineer',
+        'Tech Lead',
+        'Engineering Manager',
+      ]),
+    ),
     company: z.string().optional(),
     isPrivate: z.boolean().default(true),
     sortOrder: z.number().default(1),
   }),
 });
+
+/**
+ * Helper function to sort a collection of projects by it´s sortOrder.
+ */
+export function sortProjects(
+  projects: CollectionEntry<Project>[],
+): CollectionEntry<Project>[] {
+  return projects.sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+}

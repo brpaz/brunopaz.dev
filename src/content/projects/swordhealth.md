@@ -1,6 +1,6 @@
 ---
 name: "SwordHealth"
-description: "Sword Health is the world’s fastest-growing virtual MSK care provider, on a mission to free two billion people from pain"
+description: "Sword Health is the world’s fastest-growing virtual MSK care provider, on a mission to free two billion people from pain."
 startDate: 2022-06-01
 category: "application"
 externalUrl: "https://swordhealth.com/"
@@ -22,10 +22,13 @@ technologies:
   - "Iterable"
 coverImage: "cover.png"
 images:
-  - "sword-01.png"
-role: "Tech Lead"
+  - "sword01.png"
+  - "sword02.png"
+role:
+  - "Tech Lead"
 company: "SwordHealth"
 isPrivate: true
+isFeatured: true
 sortOrder: 1
 ---
 

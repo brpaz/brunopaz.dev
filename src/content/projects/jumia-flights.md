@@ -1,6 +1,6 @@
 ---
 name: "Jumia Flights"
-description: "Jumia Flights is a travel booking platform by Jumia that allows users to search, compare, and book flights across Africa. It aims to provide easy access to competitive fares and travel options."
+description: "Jumia Flights is a travel booking platform by Jumia that allows users to search, compare, and book flights across Africa."
 startDate: 2017-08-01
 endDate: 2018-05-31
 category: "application"
@@ -18,7 +18,8 @@ technologies:
   - "NewRelic"
 coverImage: "cover.jpg"
 images: []
-role: "Developer"
+role:
+  - "Software Engineer"
 company: "Jumia"
 isPrivate: true
 sortOrder: 3

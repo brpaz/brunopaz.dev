@@ -6,7 +6,7 @@ import LoadingIndicator from 'astro-loading-indicator/component';
 import { fade } from 'astro:transitions';
 import Header from '@components/shared/Header.astro';
 import Footer from '@components/shared/Footer.astro';
-import FormButton from '@components/shared/FormButton.astro';
+import ChatButton from '~/components/shared/ChatButton.astro';
 import site from '~/content/site';
 
 const monetizationUrl = import.meta.env.PUBLIC_WEB_MONETIZATION_ID || '';
@@ -47,29 +47,11 @@ if (props.ogImage) {
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content={site.social.twitter.handle} />
     <meta name="twitter:app:country" content="PT" />
-    <meta
-      name="twitter:title"
-      property="og:title"
-      itemprop="title name"
-      content={title}
-    />
-    <meta
-      name="twitter:description"
-      property="og:description"
-      itemprop="description"
-      content={description}
-    />
-    <link
-      rel="canonical"
-      href={new URL(Astro.url.pathname, Astro.site).toString()}
-    />
+    <meta name="twitter:title" property="og:title" itemprop="title name" content={title} />
+    <meta name="twitter:description" property="og:description" itemprop="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).toString()} />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Bruno Paz Engineering Blog"
-      href="/blog/rss.xml"
-    />
+    <link rel="alternate" type="application/rss+xml" title="Bruno Paz Engineering Blog" href="/blog/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <noscript>
       <link
@@ -81,33 +63,21 @@ if (props.ogImage) {
 
     {
       sentryEnabled && (
-        <script
-          is:inline
-          src={`https://js.sentry-cdn.com/${sentryKey}.min.js`}
-          crossorigin="anonymous"
-          defer
-        />
+        <script is:inline src={`https://js.sentry-cdn.com/${sentryKey}.min.js`} crossorigin="anonymous" defer />
       )
     }
     <ViewTransitions />
     <LoadingIndicator color="#60a5fa" />
   </head>
 
-  <body
-    class="h-screen w-full flex flex-col text-neutral-600"
-    transition:animate={fade({ duration: '0.4s' })}
-  >
-    <main class="container mx-auto mb-auto pb-16 p-4">
+  <body class="h-screen w-full flex flex-col" transition:animate={fade({ duration: '0.4s' })}>
+    <main class="container mx-auto mb-auto p-4">
       <Header />
       <!-- The page will render it's content here -->
       <slot />
     </main>
     <Footer />
 
-    {
-      chatEnabled && formspreeFormId !== '' && (
-        <FormButton formId={formspreeFormId} />
-      )
-    }
+    {chatEnabled && formspreeFormId !== '' && <ChatButton formId={formspreeFormId} />}
   </body>
 </html>
