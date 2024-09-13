@@ -38,6 +38,8 @@ const imageUrls = await getImages(slug, images);
         imageUrls.map((imageUrl, index) => (
           <li class="splide__slide">
             <Image
+              width="1280"
+              height="720"
               src={imageUrl}
               alt={`Project Image ${index}+1 `}
               loading="eager"
@@ -59,7 +61,12 @@ const imageUrls = await getImages(slug, images);
       {
         imageUrls.map((imageUrl, index) => (
           <li class="splide__slide">
-            <Image src={imageUrl} alt={`Project Image ${index}+1 `} />
+            <Image
+              src={imageUrl}
+              width="120"
+              height="80"
+              alt={`Project Image ${index}+1 `}
+            />
           </li>
         ))
       }
