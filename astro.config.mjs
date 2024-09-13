@@ -9,7 +9,7 @@ export default defineConfig({
   site: process.env.BASE_URL || 'http://localhost:3000',
   redirects: {
     '/blog/': '/blog/page/1', // force redirect to first page of blog
-    '/blog/tags/[tag]': '/blog/tags/[tag]/1', // https://github.com/withastro/astro/issues/8384
+    //'/blog/tags/[tag]': '/blog/tags/[tag]/1', // https://github.com/withastro/astro/issues/8384
   },
   markdown: {
     shikiConfig: {

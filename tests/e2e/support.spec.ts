@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test';
 import site from '../../src/content/site';
 
-test.describe('Home Page', () => {
+test.describe('Support Page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/support');
   });
 
   test('Meta tags', async ({ page }) => {
-    await expect(page).toHaveTitle(site.title);
+    await expect(page).toHaveTitle('Bruno Paz | Support');
 
     const metaDescription = await page.$eval('meta[name="description"]', (el) =>
       el.getAttribute('content'),
@@ -15,8 +15,8 @@ test.describe('Home Page', () => {
     expect(metaDescription).toBe(site.description);
   });
 
-  test('Renders header text', async ({ page }) => {
+  test('Open support page', async ({ page }) => {
     const header = page.locator('h1');
-    await expect(header).toHaveText('Bruno Paz');
+    await expect(header).toHaveText('Support My Work ');
   });
 });

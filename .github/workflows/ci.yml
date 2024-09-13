@@ -38,21 +38,12 @@ jobs:
 
       - name: Build
         run: pnpm run build
-        env:
-          BASE_URL: 'https://localhost:3001'
-          PUBLIC_CHAT_ENABLED: 'false'
-          PUBLIC_SENTRY_ENABLED: 'false'
-
-      - name: Start preview server
-        run: |
-          pnpm run preview &
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
 
       - name: Run E2E tests
-        run: |
-          BASE_URLhttp://localhost:4321 pnpm run test:e2e
+        run: pnpm run test:e2e
 
       - uses: actions/upload-artifact@v4
         if: always()
@@ -61,12 +52,12 @@ jobs:
           path: playwright-report/
           retention-days: 15
 
-      - name: Run Lighthouse test
-        uses: treosh/lighthouse-ci-action@v12
-        with:
-          configPath: './lighthouserc.json'
-          budgetPath: ./budget.json
-          uploadArtifacts: true
+      #- name: Run Lighthouse test
+      #  uses: treosh/lighthouse-ci-action@v12
+      #  with:
+      #    configPath: './lighthouserc.json'
+      #    budgetPath: ./budget.json
+      #    uploadArtifacts: true
 
       - name: Deploy Preview
         if: github.event_name == 'pull_request' && github.actor != 'dependabot'

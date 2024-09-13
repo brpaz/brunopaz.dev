@@ -20,7 +20,7 @@
     "lint:md": "markdownlint src/content/**/*.mdx",
     "test:e2e": "playwright test",
     "test:e2e:report": "playwright show-report",
-    "test:lh": "lighthouse --budget-path=./budget.json --output-path=lighthouse-results.html --view",
+    "test:lh": "lhci collect --budget-path=./budget.json",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -31,6 +31,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
+    "@lhci/cli": "^0.14.0",
     "@playwright/test": "^1.47.0",
     "@sarissa/pagination": "^1.0.3",
     "@types/node": "^22.5.4",

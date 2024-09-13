@@ -1,5 +1,5 @@
 export default {
-  title: 'brunopaz.dev',
+  title: 'Bruno Paz',
   description:
     'Personal website of Bruno Paz. A Software Engineer, Tech Lead, and Developer Advocate. Writing about software development, leadership, and productivity.',
   social: {

@@ -64,10 +64,10 @@ export default defineConfig({
   ],
 
   /*Run your local dev server before starting the tests */
-  /*webServer: {
+  webServer: {
     command: 'pnpm run preview',
-    url: 'http://127.0.0.1:3001',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000, // 2 minutes
-  },*/
+    url: process.env.BASE_URL || 'http://localhost:4321',
+    reuseExistingServer: true,
+    timeout: 60 * 1000, // 1 minutes
+  },
 });
