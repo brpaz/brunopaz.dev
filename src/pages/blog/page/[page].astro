@@ -12,6 +12,8 @@ import { sortPosts } from '~/content/posts';
 import { BlogPostCollection } from '~/content/types';
 import { Pagination } from '@sarissa/pagination';
 
+export const pageSize = 5;
+
 interface PostsData {
   params: { slug: string };
   props: { post: CollectionEntry<BlogPost> };
@@ -32,7 +34,7 @@ export async function getStaticPaths({
     props: { post },
   }));
 
-  return paginate(posts, { pageSize: 6 });
+  return paginate(posts, { pageSize: pageSize });
 }
 
 const { page }: { page: Page<PostsData> } = Astro.props;
@@ -49,13 +51,13 @@ const posts = page.data.map((data) => {
     src={IconWriting}
     height="128"
     width="128"
-    class="mb-8 mt-8 mx-auto"
+    class="mt-8 mb-16 mx-auto"
     alt="Blog"
     title="Blog"
     aria-hidden="true"
   />
 
-  <div class="mt-16">
+  <div class="mb-16">
     {
       posts.map((post) => (
         <div>

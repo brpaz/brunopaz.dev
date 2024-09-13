@@ -28,10 +28,10 @@ const { Content } = await post.render();
 
 <style is:global>
   .post-content h2 {
-    @apply font-bold text-2xl mb-4 mt-4;
+    @apply font-bold text-neutral-600 text-2xl mb-4 mt-4;
   }
   .post-content h3 {
-    @apply font-bold text-lg mb-4;
+    @apply text-neutral-600 font-bold text-lg mb-4;
   }
   .post-content p {
     @apply mb-4 leading-8;
@@ -77,7 +77,7 @@ const { Content } = await post.render();
     <Content />
   </div>
 
-  <div class="flex">
+  <div class="flex justify-center mb-8">
     <SocialShare
       url={new URL(Astro.url.pathname, Astro.site).toString()}
       title={title}

@@ -60,11 +60,20 @@ const { Content } = await project.render();
 
   <ProjectHeader project={project} />
 
+  <div class="mb-8">
+    {
+      project.data.images.length > 0 && (
+        <ProjectGallery slug={project.slug} images={project.data.images} />
+      )
+    }
+  </div>
   <div class="project-detail-content leading-8 mb-8">
-    {project.data.images.length > 0 && <ProjectGallery slug={project.slug} images={project.data.images} />}
-
     <Content />
   </div>
 
-  {project.data.technologies.length > 0 && <ProjectTech technologies={project.data.technologies} />}
+  {
+    project.data.technologies.length > 0 && (
+      <ProjectTech technologies={project.data.technologies} />
+    )
+  }
 </DefaultLayout>

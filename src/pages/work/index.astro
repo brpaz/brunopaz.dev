@@ -24,17 +24,28 @@ const personalProjects = allProjects
 <DefaultLayout>
   <PageTitle title="Work" />
 
-  <Image src={IconBriefcase} height="128" width="128" class="mb-8 mt-8 mx-auto" alt="Work" title="Work" />
+  <Image
+    src={IconBriefcase}
+    height="128"
+    width="128"
+    class="mb-8 mt-8 mx-auto"
+    alt="Work"
+    loading="eager"
+    title="Work"
+  />
 
   <div class="mb-12 mx-auto w-4/5">
     <p class="mb-4">
-      On this page, you can find some of the most relevant projects I have worked on during my professional career, as
-      well as personal side projects.
+      On this page, you can find some of the most relevant projects I have
+      worked on during my professional career, as well as personal side
+      projects.
     </p>
   </div>
 
   <section id="projects-list" class="mb-12">
-    <h3 class="font-bold text-center text-neutral-700 text-3xl mb-8">Professional Projects</h3>
+    <h3 class="font-bold text-center text-neutral-700 text-3xl mb-8">
+      Professional Projects
+    </h3>
 
     <div class="flex flex-wrap w-full justify-center">
       {
@@ -48,7 +59,9 @@ const personalProjects = allProjects
   </section>
 
   <section id="projects-list" class="mb-12">
-    <h3 class="font-bold text-center text-neutral-700 text-3xl mb-8">Personal Projects</h3>
+    <h3 class="font-bold text-center text-neutral-700 text-3xl mb-8">
+      Personal Projects
+    </h3>
 
     <div class="flex flex-wrap w-full justify-center">
       {

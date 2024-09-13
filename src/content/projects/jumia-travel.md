@@ -23,7 +23,6 @@ technologies:
 coverImage: "cover.png"
 images:
   - "jtravel01.jpg"
-  - "jtravel02.jpg"
 role:
   - "Software Engineer"
 company: "Jumia"

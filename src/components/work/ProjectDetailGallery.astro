@@ -37,7 +37,11 @@ const imageUrls = await getImages(slug, images);
       {
         imageUrls.map((imageUrl, index) => (
           <li class="splide__slide">
-            <Image src={imageUrl} alt={`Project Image ${index}+1 `} />
+            <Image
+              src={imageUrl}
+              alt={`Project Image ${index}+1 `}
+              loading="eager"
+            />
           </li>
         ))
       }
@@ -47,7 +51,7 @@ const imageUrls = await getImages(slug, images);
 
 <section
   id="thumbnail-carousel"
-  class="splide flex justify-center"
+  class=`splide flex justify-center ${imageUrls.length === 1 ? 'hidden' : ''}`
   aria-label="Project Thumbnail Images"
 >
   <div class="splide__track">
@@ -66,8 +70,6 @@ const imageUrls = await getImages(slug, images);
 <style>
   .splide__slide {
     width: 100%;
-    height: 480px;
-    @apply bg-neutral-100;
     align-items: center;
     display: flex;
   }
@@ -77,30 +79,38 @@ const imageUrls = await getImages(slug, images);
     max-height: 100%;
     display: flex;
     margin: 0 auto;
+    @apply border border-neutral-200;
   }
 
   .splide__track--nav > .splide__list > .splide__slide.is-active {
-    @apply border-2 border-primary-400;
+    @apply border border-primary-400;
   }
 </style>
 
 <script>
   import { Splide } from '@splidejs/splide';
 
-  function initGallery() {
-    const carouselElem = document.getElementById('image-carousel');
+  let mainCarousel: Splide;
+  let thumbsCarousel: Splide;
 
-    if (!carouselElem) {
+  function initGallery() {
+    // Required for Astro not try to run this code on pages without the carousel.
+    const carouselElement = document.getElementById('image-carousel');
+
+    if (!carouselElement) {
       return;
     }
-    const mainCarousel = new Splide('#image-carousel', {
+
+    const imageCount = carouselElement.querySelectorAll('img').length;
+
+    mainCarousel = new Splide('#image-carousel', {
       type: 'fade',
       rewind: true,
       pagination: false,
-      arrows: true,
+      arrows: imageCount > 1,
     });
 
-    const thumbsCarousel = new Splide('#thumbnail-carousel', {
+    thumbsCarousel = new Splide('#thumbnail-carousel', {
       fixedWidth: 120,
       fixedHeight: 60,
       gap: 10,

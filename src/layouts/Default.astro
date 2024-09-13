@@ -6,14 +6,11 @@ import LoadingIndicator from 'astro-loading-indicator/component';
 import { fade } from 'astro:transitions';
 import Header from '@components/shared/Header.astro';
 import Footer from '@components/shared/Footer.astro';
-import ChatButton from '~/components/shared/ChatButton.astro';
 import site from '~/content/site';
 
 const monetizationUrl = import.meta.env.PUBLIC_WEB_MONETIZATION_ID || '';
 const sentryEnabled = import.meta.env.PUBLIC_SENTRY_ENABLED || false;
 const sentryKey = import.meta.env.PUBLIC_SENTRY_KEY || '';
-const chatEnabled = import.meta.env.PUBLIC_CHAT_ENABLED || false;
-const formspreeFormId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID || '';
 
 interface Props {
   title?: string;
@@ -39,19 +36,36 @@ if (props.ogImage) {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <meta name="monetization" content={monetizationUrl} />
+    <!--<meta name="monetization" content={monetizationUrl} />-->
     <meta property="og:url" content={Astro.request.url} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={ogImageURL} />
     <meta name="twitter:image" content={ogImageURL} />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:creator" content={site.social.twitter.handle} />
     <meta name="twitter:app:country" content="PT" />
-    <meta name="twitter:title" property="og:title" itemprop="title name" content={title} />
-    <meta name="twitter:description" property="og:description" itemprop="description" content={description} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).toString()} />
+    <meta
+      name="twitter:title"
+      property="og:title"
+      itemprop="title name"
+      content={title}
+    />
+    <meta
+      name="twitter:description"
+      property="og:description"
+      itemprop="description"
+      content={description}
+    />
+    <link
+      rel="canonical"
+      href={new URL(Astro.url.pathname, Astro.site).toString()}
+    />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="alternate" type="application/rss+xml" title="Bruno Paz Engineering Blog" href="/blog/rss.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Bruno Paz Engineering Blog"
+      href="/blog/rss.xml"
+    />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <noscript>
       <link
@@ -60,24 +74,29 @@ if (props.ogImage) {
         type="text/css"
       />
     </noscript>
-
     {
       sentryEnabled && (
-        <script is:inline src={`https://js.sentry-cdn.com/${sentryKey}.min.js`} crossorigin="anonymous" defer />
+        <script
+          is:inline
+          src={`https://js.sentry-cdn.com/${sentryKey}.min.js`}
+          crossorigin="anonymous"
+          defer
+        />
       )
     }
     <ViewTransitions />
     <LoadingIndicator color="#60a5fa" />
   </head>
 
-  <body class="h-screen w-full flex flex-col" transition:animate={fade({ duration: '0.4s' })}>
-    <main class="container mx-auto mb-auto p-4">
+  <body
+    class="h-screen w-full flex flex-col"
+    transition:animate={fade({ duration: '0.5s' })}
+  >
+    <main class="container">
       <Header />
       <!-- The page will render it's content here -->
       <slot />
     </main>
     <Footer />
-
-    {chatEnabled && formspreeFormId !== '' && <ChatButton formId={formspreeFormId} />}
   </body>
 </html>

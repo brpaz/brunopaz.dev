@@ -7,7 +7,7 @@ import ContactForm from '~/components/ContactForm.astro';
 ---
 
 <DefaultLayout title="Contact | Bruno Paz">
-  <div class="text-center w-4/5 lg:w-2/3 mx-auto">
+  <div class="text-center mx-auto mb-8">
     <PageTitle title="Contact" />
 
     <Image
@@ -17,9 +17,11 @@ import ContactForm from '~/components/ContactForm.astro';
       alt=""
       aria-hidden="true"
       class="m4-8 mt-4 mx-auto"
+      loading="eager"
     />
 
     <p class="mb-16">Feel free to reach me using the form below:</p>
+
     <ContactForm />
   </div>
 </DefaultLayout>
