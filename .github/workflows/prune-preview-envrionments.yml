@@ -1,0 +1,24 @@
+name: Prune Preview Environments
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  prune-preview-environments:
+    runs-on: ubuntu-latest
+    name: Prune Preview Environments
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pulkitjalan/actions-cloudflare-prune-pages@v1
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          projectName: ${{ secrets.CF_PROJECT_NAME }}
+          environment: preview
+          keep: 1
