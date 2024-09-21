@@ -13,41 +13,11 @@ permissions:
   deployments: write
 
 jobs:
-  deploy:
+  release:
+    name: Release
     runs-on: ubuntu-22.04
-    environment:
-      name: production
-      url: https://brunopaz.dev
     steps:
       - uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
-          run_install: false
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: '.node-version'
-          cache: 'pnpm'
-
-      - name: Build production image
-        run: pnpm build
-        env:
-          SITE_URL: ${{ env.SITE_URL }}
-          PUBLIC_SENTRY_KEY: ${{ secrets.PUBLIC_SENTRY_KEY }}
-          PUBLIC_WEB_MONETIZATION_ID: ${{ secrets.PUBLIC_WEB_MONETIZATION_ID }}
-          PUBLIC_SENTRY_ENABLED: 'true'
-
-      - name: Update version.txt
-        run: |
-          cat <<-EOF > ${{ env.VERSION_FILE }}
-            Version: ${{ github.event.release.tag_name }}
-            Commit: ${{ github.sha }}
-            Date: $(date --iso-8601=seconds)
-          EOF
-        env:
-          VERSION_FILE: dist/version.txt
 
       - name: Update CHANGELOG
         uses: stefanzweifel/changelog-updater-action@v1
@@ -66,7 +36,47 @@ jobs:
           commit_message: 'chore(release): [skip-ci] ${{ github.event.release.tag_name }}'
           file_pattern: CHANGELOG.md package.json
 
-      - name: Deploy to Production
+  deploy:
+    name: Deploy Production
+    runs-on: ubuntu-22.04
+    environment:
+      name: production
+      url: https://brunopaz.dev
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: Build production artifact
+        run: pnpm build
+        env:
+          SITE_URL: ${{ env.SITE_URL }}
+          PUBLIC_SENTRY_KEY: ${{ secrets.PUBLIC_SENTRY_KEY }}
+          PUBLIC_WEB_MONETIZATION_ID: ${{ secrets.PUBLIC_WEB_MONETIZATION_ID }}
+          PUBLIC_SENTRY_ENABLED: 'true'
+
+      - name: Update version.txt
+        run: |
+          cat <<-EOF > ${{ env.VERSION_FILE }}
+            Version: ${{ github.event.release.tag_name }}
+            Commit: ${{ github.sha }}
+            Date: $(date --iso-8601=seconds)
+          EOF
+        env:
+          VERSION_FILE: dist/version.txt
+
+      - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1.5.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
