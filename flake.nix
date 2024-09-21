@@ -17,7 +17,7 @@
           ];
 
           packages = with pkgs; [
-           nodejs_21
+           nodejs_20
            pkgs.pnpm
            pkgs.playwright
           ];
@@ -25,6 +25,8 @@
           shellHook = ''
           	export PLAYWRIGHT_BROWSERS_PATH=${pkgs.playwright-driver.browsers}
             export PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=true
+            export PS1='\[\e[31m\][nix-shell]\[\e[0m\] \[\e[32m\]\w\[\e[0m\] \[\e[34m\]>\[\e[0m\] '
+
             pnpm install --frozen-lockfile
           '';
         };

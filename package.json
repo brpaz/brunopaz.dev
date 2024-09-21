@@ -20,7 +20,8 @@
     "test:e2e:report": "playwright show-report",
     "test:lh": "lhci collect",
     "test:lh:report": "lhci open",
-    "prepare": "husky"
+    "prepare": "husky",
+    "icons:optimize": "svgo -r --config=svgo.config.js --input=src/assets/icons"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.3",

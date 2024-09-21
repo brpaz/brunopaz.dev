@@ -33,3 +33,6 @@ public/img/socials
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Devenv
+.direnv

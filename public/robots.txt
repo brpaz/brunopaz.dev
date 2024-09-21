@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /assets
 Disallow: /img
+Disallow: /_astro
 
 Sitemap: https://brunopaz.dev/sitemap-index.xml
