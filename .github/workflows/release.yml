@@ -39,13 +39,23 @@ jobs:
           PUBLIC_WEB_MONETIZATION_ID: ${{ secrets.PUBLIC_WEB_MONETIZATION_ID }}
           PUBLIC_SENTRY_ENABLED: 'true'
 
+      - name: Update version.txt
+        run: |
+          cat <<-EOF > ${{ env.VERSION_FILE }}
+            Version: ${{ github.event.release.tag_name }}
+            Commit: ${{ github.sha }}
+            Date: $(date --iso-8601=seconds)
+          EOF
+        env:
+          VERSION_FILE: dist/version.txt
+
       - name: Update CHANGELOG
         uses: stefanzweifel/changelog-updater-action@v1
         with:
           latest-version: ${{ github.event.release.tag_name }}
           release-notes: ${{ github.event.release.body }}
 
-      - name: Bump package.json version
+      - name: Bump version
         run: |
           npm version ${{ github.event.release.tag_name }} --no-git-tag-version
 
