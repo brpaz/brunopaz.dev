@@ -2,54 +2,67 @@
 
 > Source code for my personal website, [brunopaz.dev](https://brunopaz.dev). Powered by [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
 
-
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/brpaz/brunopaz.dev/ci?style=for-the-badge)](https://github.com/brpaz/brunopaz.dev/actions)
 
-## 🧞 Development
+## 🚀 Getting started
 
-#### Clone the repo
+There are multiple ways to run this project on local environment:
+
+- Directly on host machine (requires [Node](https://nodejs.org/en) >=20 and [PNPM](https://pnpm.io/))
+- Using [Nix Flakes](https://nixos.wiki/wiki/Flakes)
+- Using [Devcontainers](https://containers.dev/)
+
+### Clone the repo
 
 ```sh
 git clone git@github.com:brpaz/brunopaz.dev.git
 ```
 
-#### Install dependencies
+### Install dependencies
 
 ```sh
-yarn install
+pnpm install
 ```
 
-#### Starting the dev server
+### Starting the dev server
 
 ```sh
-yarn dev
+pnpm run dev
 ```
 
-By default, this will start the application at `localhost:3000`.
+By default, this will start the application at `http://localhost:4321`.
 
-## Build to production
+> [!TIP]
+> You can override the default port the server listens to by specifiying `PORT` envrionment variable.
 
-Run:
+### Running Tests
+
+[Playwright](https://playwright.dev) is used for E2E tests.
+
+You can run the provided test suite using `pnpm run test:e2e` command.
+
+For performance tests, [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) is used. Run `pnpm run test:lh` to execute the tests.
+
+## Build for production
 
 ```sh
-yarn build
+pnpm build
 ```
 
-It will generate a fully static website into `dist` folder, which can then be deployed on any static sites hosting like Netlify or Vercel.
+> [!TIP]
+> This will generate a fully static website into `dist` folder, which can then be deployed on any static sites hosting like Netlify or Vercel.
+
+---
 
 ## Envrionment variables
 
 This website requires the following environment variables to be defined:
 
-| Name                       	| Description                                                                                       	|
-|----------------------------	|---------------------------------------------------------------------------------------------------	|
-| BASE_URL                   	| The website base url                                                                              	|
-| PUBLIC_WEB_MONETIZATION_ID 	| The ID of web monetization platform                                                               	|
-| PUBLIC_SENTRY_ENABLED      	| When to enable Sentry Error reporting                                                             	|
-| PUBLIC_SENTRY_KEY          	| The sentry DSN configuration, to allow sending error logs to Sentry.                              	|
-| PUBLIC_CHAT_ENABLED        	| Wether to enable the Chat box or not                                                              	|
-| PUBLIC_FORMSPREE_FORM_ID   	| The id of the form defined in formspree. Used by the Contact form and chat box.                   	|
-| PUBLIC_ASSETS_BASE_URL     	| The base URL for assets like images. If empty it will serve the images directly from dist folder. 	|
+| Name                       | Description                                                            |
+| -------------------------- | ---------------------------------------------------------------------- |
+| PUBLIC_WEB_MONETIZATION_ID | The ID of the web monetization platform                                |
+| PUBLIC_SENTRY_ENABLED      | Flag to enable Sentry error reporting                                  |
+| PUBLIC_SENTRY_KEY          | The Sentry DSN configuration, allowing error logs to be sent to Sentry |
 
 ---
 
@@ -57,5 +70,5 @@ This website requires the following environment variables to be defined:
 
 👤 **Bruno Paz**
 
-* Website: [brunopaz.dev](https://brunopaz.dev)
-* Github: [@brpaz](https://github.com/brpaz)
+- Website: [brunopaz.dev](https://brunopaz.dev)
+- Github: [@brpaz](https://github.com/brpaz)

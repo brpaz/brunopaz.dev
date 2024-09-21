@@ -1,28 +1,41 @@
 ---
-name: JForce
-description: JForce is a PWA Application, that helps thousand of Jumia Agents by providing easy access to their orders, sales, commissions and more.
-start_date: Jan 2018
-end_date: Dec 2018
-type: company
-category: application
+name: "JForce"
+description: "Jumia JForce is a sales consultant program where agents earn commissions by helping customers place orders on Jumia`s platform."
+startDate: 2016-06-01
+endDate: 2018-12-31
+type: work
+category: "application"
 externalUrl: https://jforce.jumia.com.ng/
-technologies: ['Go', 'PHP', 'Symfony', 'MySQL', 'Docker', 'GitHub', 'Jenkins', 'Jira']
-cover: jforce/cover.jpg
+technologies:
+  - "Golang"
+  - "PHP"
+  - "Symfony"
+  - "MySQL"
+  - "Jenkins"
+  - "Amazon Web Services"
+  - "Docker"
+  - "Kubernetes"
+  - "Git"
+  - "GitHub"
+  - "NewRelic"
+  - "JIRA"
+coverImage: "cover.jpg"
 images:
-  - jforce/jforce01.png
-  - jforce/jforce02.png
-position: 3
-featured: false
+  - jforce01.png
+  - jforce02.png
+role:
+  - "Software Engineer"
+company: "Jumia"
+isPrivate: true
+sortOrder: 3
 ---
 
-**JForce** is a web application created to help manage the thousands of agents that Jumia has in the field
-across all of Africa.
+Jumia JForce is a sales consultant program launched by **Jumia**, an e-commerce platform operating primarily in Africa. The JForce initiative is designed to empower independent sales agents, known as "JForce Agents," who earn commissions by helping customers place orders on Jumia`s platform.
 
-The agents could register on the platform and have quick access to their sales, commissions earned, bonuses, and more.
+These agents typically assist people who may not be familiar with online shopping or those without internet access, helping them navigate the e-commerce site and place orders.
 
-On this project, I worked with my team to develop all the core features of the application from scratch, including:
+On this project, my main responsabilities were:
 
-- Development of all necessary services and APIs , for agents registration, sales management, commission calculation,
-levels and bonuses, following a Microservices oriented architecture.
-- Orders Processing System that used Golang concurrency features to daily import all the orders from all the Jumia websites.
-- Commissions calculation engine
+- **Service and API Development:** Worked in a cross functional team to develop the essential services and APIs for JForce, a platform to manage Jumia Agents, including agent registration, sales management, commission calculation, levels, and bonuses, using Golang and PHP/Symfony within a microservices architecture.
+
+- **Order Processing System:** Implemented an order processing system, leveraging Golang concurrency features like Channels and Go Routines to efficiently import daily orders from Jumia various websites and calculate commissions and bonuses for each agent, based on the defined business rules.

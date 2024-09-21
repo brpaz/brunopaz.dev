@@ -1,0 +1,11 @@
+{
+  "names": {
+    "Bruno Paz": "29a7bf22bcaed64b975f334d6640d0e2e82b469845ce1bd5055340ce9d8bfa4a"
+  },
+  "relays": {
+    "29a7bf22bcaed64b975f334d6640d0e2e82b469845ce1bd5055340ce9d8bfa4a": [
+      "wss://relay.damus.io",
+      "wss://nostr.wine"
+    ]
+  }
+}

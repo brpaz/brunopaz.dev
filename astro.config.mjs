@@ -1,28 +1,28 @@
-// Full Astro Configuration API Documentation:
-// https://docs.astro.build/reference/configuration-reference
-
-// @type-check enabled!
-// VSCode and other TypeScript-enabled text editors will provide auto-completion,
-// helpful tooltips, and warnings if your exported object is invalid.
-// You can disable this by removing "@ts-check" and `@type` comments below.
-
-
-import svelte from "@astrojs/svelte";
-import sitemap from "@astrojs/sitemap";
-import mdx from '@astrojs/mdx';
+// @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx';
+import tailwind from '@astrojs/tailwind';
 
+// https://astro.build/config
 export default defineConfig({
-  site: process.env.BASE_URL || "http://localhost:3000",
+  site: process.env.SITE_URL || 'https://brunopaz.dev',
+  redirects: {
+    '/blog/': '/blog/page/1', // force redirect to first page of blog
+    //'/blog/tags/[...tag]': '/blog/tags/[...tag]/1', // https://github.com/withastro/astro/issues/8384
+  },
   markdown: {
     shikiConfig: {
       // Choose from Shiki's built-in themes (or add your own)
       // https://github.com/shikijs/shiki/blob/main/docs/themes.md
-      theme: "dracula",
+      theme: 'dracula',
     },
   },
-  integrations: [svelte(), sitemap(), mdx()],
+  integrations: [sitemap(), mdx(), tailwind()],
   vite: {
     plugins: [],
+  },
+  server: {
+    port: process.env.PORT ? Number(process.env.PORT) : 4321,
   },
 });

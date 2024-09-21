@@ -1,8 +1,11 @@
-const colors = require("tailwindcss/colors");
+import defaultTheme from 'tailwindcss/defaultTheme';
+import colors from 'tailwindcss/colors';
+import typography from '@tailwindcss/typography';
 
-module.exports = {
-  mode: "jit",
-  content: ["./public/**/*.html", "./src/**/*.{astro,js,jsx,ts,tsx,vue}"],
+/** @type {import('tailwindcss').Config} */
+export default {
+  mode: 'jit',
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
       colors: {
@@ -10,10 +13,23 @@ module.exports = {
         secondary: colors.gray,
         neutral: colors.gray,
       },
+      container: {
+        center: true,
+        padding: '2rem',
+        screens: {
+          xl: '1140px',
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      },
+      fontSize: {
+        base: '1.125rem',
+      },
+      lineHeight: {
+        base: '1.75',
+      },
     },
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
+  plugins: [typography],
 };

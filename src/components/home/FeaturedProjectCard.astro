@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import type { Project } from '~/content/types';
+
+interface Props {
+  project: CollectionEntry<Project>;
+}
+
+const { project } = Astro.props;
+
+const coverImage = project.data.coverImage.split('.');
+const coverImageFileName = coverImage[0];
+const coverImageFileExtension = coverImage[1];
+---
+
+<div class="project-card flex flex-col mb-4 sm:mr-4 h-full rounded-lg shadow-lg bg-primary-400">
+  <a
+    class="block h-full p-1 hover:text-white text-white hover:bg-primary-500 rounded-lg shadow-lg"
+    href={`/work/${project.slug}`}
+  >
+    <div class="flex items-center justify-center bg-white h-56 mb-2 overflow-hidden">
+      <Image
+        src={(
+          await import(
+            `./../../assets/images/projects/${project.slug}/${coverImageFileName}.${coverImageFileExtension}`
+          )
+        ).default}
+        alt={`Image of project: ${project.data.name}`}
+        class="w-full"
+        loading="lazy"
+        aria-hidden="true"
+      />
+    </div>
+
+    <div class="px-4 py-2">
+      <div class="flex justify-between">
+        <h3 class="font-bold text-xl text-white mb-4">
+          {project.data.name}
+        </h3>
+      </div>
+
+      <span>{project.data.description}</span>
+    </div>
+  </a>
+</div>

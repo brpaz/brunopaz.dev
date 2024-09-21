@@ -1,0 +1,134 @@
+---
+import { Image } from 'astro:assets';
+import '@splidejs/splide/css';
+
+interface Props {
+  slug: string;
+  images: string[];
+}
+
+const { slug, images } = Astro.props as Props;
+
+export async function getImages(
+  slug: string,
+  imageNames: string[],
+): Promise<string[]> {
+  return Promise.all(
+    imageNames.map(async (image) => {
+      const imageParts = image.split('.');
+      const imageFileName = imageParts[0];
+      const imageFileExtension = imageParts[1];
+
+      return (
+        await import(
+          `./../../assets/images/projects/${slug}/${imageFileName}.${imageFileExtension}`
+        )
+      ).default;
+    }),
+  );
+}
+
+const imageUrls = await getImages(slug, images);
+---
+
+<section id="image-carousel" class="splide mb-4" aria-label="Project Images">
+  <div class="splide__track">
+    <ul class="splide__list">
+      {
+        imageUrls.map((imageUrl, index) => (
+          <li class="splide__slide">
+            <Image
+              width="1280"
+              height="720"
+              src={imageUrl}
+              alt={`Project Image ${index}+1 `}
+              loading="eager"
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<section
+  id="thumbnail-carousel"
+  class=`splide flex justify-center ${imageUrls.length === 1 ? 'hidden' : ''}`
+  aria-label="Project Thumbnail Images"
+>
+  <div class="splide__track">
+    <ul class="splide__list">
+      {
+        imageUrls.map((imageUrl, index) => (
+          <li class="splide__slide">
+            <Image
+              src={imageUrl}
+              width="120"
+              height="80"
+              alt={`Project Image ${index}+1 `}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .splide__slide {
+    width: 100%;
+    align-items: center;
+    display: flex;
+  }
+
+  .splide__slide img {
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    margin: 0 auto;
+    @apply border border-neutral-200;
+  }
+
+  .splide__track--nav > .splide__list > .splide__slide.is-active {
+    @apply border border-primary-400;
+  }
+</style>
+
+<script>
+  import { Splide } from '@splidejs/splide';
+
+  let mainCarousel: Splide;
+  let thumbsCarousel: Splide;
+
+  function initGallery() {
+    // Required for Astro not try to run this code on pages without the carousel.
+    const carouselElement = document.getElementById('image-carousel');
+
+    if (!carouselElement) {
+      return;
+    }
+
+    const imageCount = carouselElement.querySelectorAll('img').length;
+
+    mainCarousel = new Splide('#image-carousel', {
+      type: 'fade',
+      rewind: true,
+      pagination: false,
+      arrows: imageCount > 1,
+    });
+
+    thumbsCarousel = new Splide('#thumbnail-carousel', {
+      fixedWidth: 120,
+      fixedHeight: 60,
+      gap: 10,
+      rewind: true,
+      pagination: false,
+      isNavigation: true,
+      arrows: false,
+    });
+
+    thumbsCarousel.mount();
+    mainCarousel.sync(thumbsCarousel).mount();
+  }
+  document.addEventListener('astro:page-load', initGallery);
+</script>

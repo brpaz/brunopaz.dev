@@ -1,63 +1,91 @@
 ---
-import DefaultLayout from '~/layouts/Default.astro'
-import PageTitle from '~/components/shared/PageTitle.astro'
-import Post from '~/components/blog/Post.astro'
-import { Pagination } from "@sarissa/pagination";
-import IconWriting from '~/assets/icons/writing.svg'
+import type { Page, PaginateFunction } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import DefaultLayout from '~/layouts/Default.astro';
+import PageTitle from '~/components/shared/PageTitle.astro';
+import Post from '~/components/blog/Post.astro';
+import IconWriting from '~/assets/icons/writing.svg';
+import type { BlogPost } from '~/content/types';
+import { sortPosts } from '~/content/posts';
+import { BlogPostCollection } from '~/content/types';
+import { Pagination } from '@sarissa/pagination';
 
-export async function getStaticPaths({ paginate }) {
+export const pageSize = 5;
 
-  const postsFiles = await Astro.glob('../**/*.md')
-  const posts = postsFiles.filter(({ frontmatter }) => !!frontmatter.published)
-    .map((post) => {
-      return {
-        title: post.frontmatter.title,
-        tags: post.frontmatter.tags,
-        summary: post.frontmatter.summary,
-        content: post.Content,
-        date: new Date(post.frontmatter.date),
-        slug: post.frontmatter.slug,
-        url: `/blog/${post.frontmatter.slug}`
-      }
-    })
-    .sort((a, b) => b.date.valueOf() - a.date.valueOf());
-
-
-  return paginate(posts, { pageSize: 6 });
+interface PostsData {
+  params: { slug: string };
+  props: { post: CollectionEntry<BlogPost> };
 }
 
-const { page } = Astro.props;
+// Define the function with the specified types
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction;
+}) {
+  const postEntries = await getCollection(BlogPostCollection, ({ data }) => {
+    return import.meta.env.PROD ? data.published === true : true;
+  });
 
+  const posts = sortPosts(postEntries).map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+
+  return paginate(posts, { pageSize: pageSize });
+}
+
+const { page }: { page: Page<PostsData> } = Astro.props;
+
+const posts = page.data.map((data) => {
+  return data.props.post;
+});
 ---
-
 
 <DefaultLayout>
   <PageTitle title="My Blog" />
 
-  <img src={IconWriting}
-       height="128px"
-       width="128px"
-       class="mb-8 mt-8 mx-auto"
-       alt="Blog"
-       title="Blog"
-       aria-hidden="true" />
+  <Image
+    src={IconWriting}
+    height="128"
+    width="128"
+    class="mt-8 mb-16 mx-auto"
+    alt="Blog"
+    title="Blog"
+    aria-hidden="true"
+  />
 
-  <div class="mt-16">
-    {page.data.map((post) => (
-    <div>
+  <div class="mb-16">
+    {
+      posts.map((post) => (
+        <div>
+          <Post post={post} />
 
-      <Post post={post}></Post>
+          <hr
+            class="block w-2/3 bg-primary-300 text-center mx-auto mt-8 mb-8"
+            style="height: 2px;"
+          />
+        </div>
+      ))
+    }
 
-      <hr class="block w-2/3 bg-primary-300 text-center mx-auto mt-8 mb-8"
-          style="height: 2px;" />
-    </div>
-    ))}
-
-    {page.total > 1 &&
-    <div class="mt-4">
-    <Pagination currentPage={page.currentPage} totalPage={page.lastPage} url="blog/page" buttonGroup="pagination" activeButton="bg-primary-400 text-white  hover:bg-primary-400 hover:text-white current-page" outerDiv="flex items-center justify-center" button="relative flex-nowrap inline-flex items-center px-4 py-2 border text-sm font-medium" disabledButton="disabled:opacity-75" />
-    </div>
+    {
+      page.total > 1 && (
+        <div class="mt-4">
+          <Pagination
+            currentPage={page.currentPage}
+            totalPage={page.lastPage}
+            url="blog/page"
+            buttonGroup="pagination"
+            activeButton="bg-primary-400 text-white  hover:bg-primary-400 hover:text-white current-page"
+            outerDiv="flex items-center justify-center"
+            button="relative flex-nowrap inline-flex items-center px-4 py-2 border text-sm font-medium"
+            disabledButton="disabled:opacity-75"
+          />
+        </div>
+      )
     }
   </div>
-
 </DefaultLayout>

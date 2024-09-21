@@ -1,31 +1,31 @@
 ---
-import LanguageIcon from "../shared/LanguageIcon.astro";
+import LanguageIcon from '../shared/LanguageIcon.astro';
 
 const languages = [
-  'PHP',
-  'Symfony',
   'Golang',
-  'NodeJS',
-  'Java',
+  'PHP',
+  'JavaScript',
   'TypeScript',
-  'MySQL',
+  'NodeJS',
+  'Symfony',
   'Postgres',
   'Redis',
   'ElasticSearch',
   'Apache Kafka',
-  'JavaScript',
   'NuxtJS',
+  'Astro',
   'TailwindCSS',
   'Linux',
   'Git',
   'Docker',
   'Kubernetes',
-  'DigitalOcean',
-  'Amazon Web Services',
   'Google Cloud',
   'Ansible',
   'Terraform',
-  'Netlify',
+  'Grafana',
+  'Prometheus',
+  'FluxCD',
+  'Strapi',
 ];
 ---
 
@@ -47,29 +47,29 @@ const languages = [
     overflow: hidden;
   }
 </style>
-<section id="tech-stack"
-         class="flex flex-col mx-auto justify-center text-center mb-12">
+<section
+  id="tech-stack"
+  class="flex flex-col mx-auto justify-center text-center mb-12"
+>
   <h2 class="font-bold text-neutral-600 text-4xl mb-4 text-center">
     Teck Stack
   </h2>
-  <div class="mb-12">
-    <p>
-      I believe in always choosing the most appropriate technology for the job.
+  <div class="mb-8">
+    <p class="mb-4">
+      I have experience with a wide range of technologies, and I strongly
+      believe in the importance of choosing the right tool for the job.
     </p>
-    <p>
-      Here are some technologies that I have used or that I am familiar with:
-    </p>
+    <p>Here some of my favorites:</p>
   </div>
   <div class="flex flex-col">
     <div class="flex flex-wrap justify-center">
-      {languages.map((item) => (
-      <div title={item}
-           class="language-logo">
-        <LanguageIcon width="100"
-                      height="100"
-                      name={item} />
-      </div>
-      ))}
+      {
+        languages.map((item) => (
+          <div title={item} class="language-logo">
+            <LanguageIcon name={item} width={100} height={100} />
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>

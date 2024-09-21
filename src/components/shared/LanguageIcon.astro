@@ -1,20 +1,21 @@
 ---
-import slugify from 'slugify'
+import { Image } from 'astro:assets';
+import slugify from 'slugify';
 
 interface Props {
   name: string;
-  width: string;
-  height: string;
+  width: number;
+  height: number;
 }
 
 const { name, width, height } = Astro.props as Props;
-
 const fileName = slugify(name.toLowerCase());
 ---
-<img alt={name}
-     width={width}
-     height={height}
-     title={name}
-     src={(await import(`./../../assets/icons/languages/${fileName}.svg`)).default}
-     loading="lazy"
+
+<Image
+  width={width}
+  height={height}
+  title={name}
+  alt={name}
+  src={(await import(`./../../assets/icons/languages/${fileName}.svg`)).default}
 />

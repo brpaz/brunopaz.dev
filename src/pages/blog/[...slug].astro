@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+import type { BlogPost } from '~/content/types';
+import type { CollectionEntry } from 'astro:content';
+import { BlogPostCollection } from '~/content/types';
+import DefaultLayout from '~/layouts/Default.astro';
+import PageTitle from '~/components/shared/PageTitle.astro';
+import FormattedDate from '~/components/blog/FormattedDate.astro';
+import SocialShare from '~/components/blog/SocialShare.astro';
+import TagsList from '~/components/blog/TagsList.astro';
+interface Props {
+  post: CollectionEntry<BlogPost>;
+}
+
+export async function getStaticPaths() {
+  const posts = await getCollection(BlogPostCollection);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { title, publishDate, excerpt } = post.data;
+const ogImage = `/open-graph/${post.slug}`;
+const { Content } = await post.render();
+---
+
+<style is:global>
+  .post-content img {
+    display: flex;
+    margin: 0 auto;
+  }
+</style>
+
+<DefaultLayout
+  title=`Bruno Paz ${title}`
+  description={excerpt}
+  ogImage={ogImage}
+>
+  <PageTitle title={title} />
+
+  {
+    publishDate && (
+      <div class="text-xs text-center mb-4">
+        <FormattedDate date={publishDate} />
+      </div>
+    )
+  }
+
+  {
+    post.data.tags.length > 0 && (
+      <div class="flex mb-4 w-full justify-center">
+        <TagsList tags={post.data.tags} />
+      </div>
+    )
+  }
+
+  <article class="post-content prose prose-neutral max-w-none">
+    <Content />
+  </article>
+
+  <div class="flex justify-center mb-8">
+    <SocialShare
+      url={new URL(Astro.url.pathname, Astro.site).toString()}
+      title={title}
+    />
+  </div>
+</DefaultLayout>
