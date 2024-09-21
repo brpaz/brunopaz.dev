@@ -6,7 +6,7 @@ export default {
     github: 'https://github.com/brpaz',
     linkedin: 'https://www.linkedin.com/in/brunopaz88',
     devto: 'https://dev.to/brpaz',
-    nostr: '',
+    nostr: 'https://njump.me/npub19xn:9qee35sn',
   },
   support: {
     buyMeACoffee: 'https://www.buymeacoffee.com/Z1Bu6asGV',
