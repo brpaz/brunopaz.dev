@@ -8,14 +8,12 @@ env:
   PNPM_VERSION: 9
   SITE_URL: https://brunopaz.dev
 
-permissions:
-  contents: read
-  deployments: write
-
 jobs:
   release:
     name: Release
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -42,6 +40,9 @@ jobs:
     environment:
       name: production
       url: https://brunopaz.dev
+    permissions:
+      contents: read
+      deployments: write
     steps:
       - uses: actions/checkout@v4
 
