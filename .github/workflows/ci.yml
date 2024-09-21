@@ -13,10 +13,11 @@ permissions:
 
 env:
   PNPM_VERSION: 9
+  SITE_URL: https://localhost:4321
 jobs:
   build:
+    name: Build and Test
     runs-on: ubuntu-22.04
-
     steps:
       - uses: actions/checkout@v4
 
@@ -39,6 +40,12 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Upload dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
 
@@ -52,15 +59,41 @@ jobs:
           path: playwright-report/
           retention-days: 15
 
-      #- name: Run Lighthouse test
-      #  uses: treosh/lighthouse-ci-action@v12
-      #  with:
-      #    configPath: './lighthouserc.json'
-      #    budgetPath: ./budget.json
-      #    uploadArtifacts: true
+      - name: Run Lighthouse test
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          uploadArtifacts: true
+
+  preview:
+    runs-on: ubuntu-22.04
+    if: github.event_name == 'pull_request' && github.actor != 'dependabot'
+    needs: build
+    environment:
+      name: preview
+      url: ${{ steps.deploy-preview.outputs.url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
 
       - name: Deploy Preview
-        if: github.event_name == 'pull_request' && github.actor != 'dependabot'
+        id: deploy-preview
         uses: cloudflare/pages-action@v1.5.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}

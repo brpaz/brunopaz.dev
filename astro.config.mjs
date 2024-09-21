@@ -6,10 +6,10 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.BASE_URL || 'http://localhost:3000',
+  site: process.env.SITE_URL || 'https://brunopaz.dev',
   redirects: {
     '/blog/': '/blog/page/1', // force redirect to first page of blog
-    //'/blog/tags/[tag]': '/blog/tags/[tag]/1', // https://github.com/withastro/astro/issues/8384
+    //'/blog/tags/[...tag]': '/blog/tags/[...tag]/1', // https://github.com/withastro/astro/issues/8384
   },
   markdown: {
     shikiConfig: {

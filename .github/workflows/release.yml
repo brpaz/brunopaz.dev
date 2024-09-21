@@ -5,6 +5,7 @@ on:
     types: [published]
 
 env:
+  PNPM_VERSION: 9
   SITE_URL: https://brunopaz.dev
 
 permissions:
@@ -33,12 +34,10 @@ jobs:
       - name: Build production image
         run: pnpm build
         env:
-          PUBLIC_FORMSPREE_FORM_ID: ${{ secrets.PUBLIC_FORMSPREE_FORM_ID }}
+          SITE_URL: ${{ env.SITE_URL }}
           PUBLIC_SENTRY_KEY: ${{ secrets.PUBLIC_SENTRY_KEY }}
           PUBLIC_WEB_MONETIZATION_ID: ${{ secrets.PUBLIC_WEB_MONETIZATION_ID }}
-          BASE_URL: ${{ env.SITE_URL }}
-          PUBLIC_CHAT_ENABLED: "true"
-          PUBLIC_SENTRY_ENABLED: "true"
+          PUBLIC_SENTRY_ENABLED: 'true'
 
       - name: Update CHANGELOG
         uses: stefanzweifel/changelog-updater-action@v1
@@ -46,12 +45,16 @@ jobs:
           latest-version: ${{ github.event.release.tag_name }}
           release-notes: ${{ github.event.release.body }}
 
-      - name: Commit updated CHANGELOG and README files
+      - name: Bump package.json version
+        run: |
+          npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+
+      - name: Commit updated files
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           branch: main
-          commit_message: "chore(release): [skip-ci] ${{ github.event.release.tag_name }}"
-          file_pattern: CHANGELOG.md
+          commit_message: 'chore(release): [skip-ci] ${{ github.event.release.tag_name }}'
+          file_pattern: CHANGELOG.md package.json
 
       - name: Deploy to Production
         uses: cloudflare/pages-action@v1.5.0
@@ -62,4 +65,3 @@ jobs:
           directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           branch: main
-

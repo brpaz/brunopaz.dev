@@ -27,30 +27,9 @@ const { Content } = await post.render();
 ---
 
 <style is:global>
-  .post-content h2 {
-    @apply font-bold text-neutral-600 text-2xl mb-4 mt-4;
-  }
-  .post-content h3 {
-    @apply text-neutral-600 font-bold text-lg mb-4;
-  }
-  .post-content p {
-    @apply mb-4 leading-8;
-  }
-
   .post-content img {
-    @apply my-4 mx-auto;
-  }
-
-  .post-content ul {
-    @apply list-disc ml-6 mb-4;
-  }
-
-  .post-content hr {
-    @apply flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto;
-  }
-
-  .post-content pre {
-    @apply mb-4 p-4;
+    display: flex;
+    margin: 0 auto;
   }
 </style>
 
@@ -77,9 +56,9 @@ const { Content } = await post.render();
     )
   }
 
-  <div class="post-content">
+  <article class="post-content prose prose-neutral max-w-none">
     <Content />
-  </div>
+  </article>
 
   <div class="flex justify-center mb-8">
     <SocialShare
