@@ -17,7 +17,7 @@ permissions:
 
 env:
   PNPM_VERSION: 9
-  SITE_URL: https://localhost:4321
+  SITE_URL: http://localhost:4321
 
 jobs:
   build:
