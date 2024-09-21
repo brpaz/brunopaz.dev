@@ -22,4 +22,7 @@ export default defineConfig({
   vite: {
     plugins: [],
   },
+  server: {
+    port: process.env.PORT ? Number(process.env.PORT) : 4321,
+  },
 });

@@ -4,7 +4,13 @@
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/brpaz/brunopaz.dev/ci?style=for-the-badge)](https://github.com/brpaz/brunopaz.dev/actions)
 
-## 🧞 Development
+## 🚀 Getting started
+
+There are multiple ways to run this project on local environment:
+
+- Directly on host machine (requires [Node](https://nodejs.org/en) >=20 and [PNPM](https://pnpm.io/))
+- Using [Nix Flakes](https://nixos.wiki/wiki/Flakes)
+- Using [Devcontainers](https://containers.dev/)
 
 ### Clone the repo
 
@@ -24,17 +30,27 @@ pnpm install
 pnpm run dev
 ```
 
-By default, this will start the application at `localhost:3000`.
+By default, this will start the application at `http://localhost:4321`.
 
-## Build form production
+> [!TIP]
+> You can override the default port the server listens to by specifiying `PORT` envrionment variable.
 
-Run:
+### Running Tests
+
+[Playwright](https://playwright.dev) is used for E2E tests.
+
+You can run the provided test suite using `pnpm run test:e2e` command.
+
+For performance tests, [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) is used. Run `pnpm run test:lh` to execute the tests.
+
+## Build for production
 
 ```sh
 pnpm build
 ```
 
-It will generate a fully static website into `dist` folder, which can then be deployed on any static sites hosting like Netlify or Vercel.
+> [!TIP]
+> This will generate a fully static website into `dist` folder, which can then be deployed on any static sites hosting like Netlify or Vercel.
 
 ---
 
@@ -54,5 +70,5 @@ This website requires the following environment variables to be defined:
 
 👤 **Bruno Paz**
 
-* Website: [brunopaz.dev](https://brunopaz.dev)
-* Github: [@brpaz](https://github.com/brpaz)
+- Website: [brunopaz.dev](https://brunopaz.dev)
+- Github: [@brpaz](https://github.com/brpaz)

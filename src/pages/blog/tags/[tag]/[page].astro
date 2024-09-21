@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+import type { Page, PaginateFunction } from 'astro';
+import { Image } from 'astro:assets';
+import { BlogPostCollection } from '~/content/types';
+import DefaultLayout from '~/layouts/Default.astro';
+import Post from '~/components/blog/Post.astro';
+import { Pagination } from '@sarissa/pagination';
+import PageTitle from '~/components/shared/PageTitle.astro';
+import IconWriting from '~/assets/icons/writing.svg';
+
+export const PageSize = 5;
+
+// Define the function with the specified types
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction;
+}) {
+  // Retrieve all published posts
+  const allPosts = await getCollection(BlogPostCollection, ({ data }) => {
+    return data.published === true && data.publishDate;
+  });
+
+  // For each post, get all the unique tags
+  const uniqueTags = [
+    ...new Set(allPosts.map((post) => post.data.tags).flat()),
+  ];
+
+  // For each tag, paginate the posts and create paths
+  return uniqueTags.flatMap((tag) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.data.tags.includes(tag),
+    );
+    return paginate(filteredPosts, {
+      params: { tag },
+      pageSize: 10,
+    });
+  });
+}
+
+const { page } = Astro.props;
+
+const { tag } = Astro.params;
+---
+
+<DefaultLayout>
+  <PageTitle title=`Posts tagged with ${tag}` />
+
+  <Image
+    src={IconWriting}
+    height="128"
+    width="128"
+    class="mb-8 mt-8 mx-auto"
+    alt="Blog"
+    title="Blog"
+    aria-hidden="true"
+  />
+
+  <div class="mt-16 pb-8">
+    {
+      page.data.map((post) => (
+        <div>
+          <Post post={post} />
+
+          <hr
+            class="block w-2/3 bg-primary-300 text-center mx-auto mt-8 mb-8"
+            style="height: 2px;"
+          />
+        </div>
+      ))
+    }
+
+    {
+      page.total > 1 && (
+        <div class="mt-4">
+          <Pagination
+            currentPage={page.currentPage}
+            totalPage={page.lastPage}
+            url={`blog/tags/${tag}`}
+            buttonGroup="pagination"
+            activeButton="bg-primary-400 text-white  hover:bg-primary-400 hover:text-white current-page"
+            outerDiv="flex items-center justify-center"
+            button="relative flex-nowrap inline-flex items-center px-4 py-2 border text-sm font-medium"
+            disabledButton="disabled:opacity-75"
+          />
+        </div>
+      )
+    }
+  </div>
+</DefaultLayout>
