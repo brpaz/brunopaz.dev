@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 1.1.1 - 2025-02-15
+
+### What's Changed
+
+#### ⚠️ Maintenance
+
+- chore(deps): update astro monorepo @[renovate[bot]](https://github.com/apps/renovate) (#170)
+- chore: Configure Renovate @[renovate[bot]](https://github.com/apps/renovate) (#168)
+
+**Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.1.0...v1.1.1
+
 ## 1.0.3 - 2024-09-21
 
 ### What's Changed
