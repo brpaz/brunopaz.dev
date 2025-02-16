@@ -19,7 +19,7 @@ importers:
         version: 0.6.0(astro@4.16.18(@types/node@22.5.5)(rollup@4.21.2)(typescript@5.6.2))
       astro-og-canvas:
         specifier: ^0.5.3
-        version: 0.5.3(astro@4.16.18(@types/node@22.5.5)(rollup@4.21.2)(typescript@5.6.2))
+        version: 0.5.6(astro@4.16.18(@types/node@22.5.5)(rollup@4.21.2)(typescript@5.6.2))
       canvaskit-wasm:
         specifier: ^0.39.1
         version: 0.39.1
@@ -1217,11 +1217,11 @@ packages:
     peerDependencies:
       astro: ^4.0.0
 
-  astro-og-canvas@0.5.3:
-    resolution: {integrity: sha512-xy4k3D/fq4vq71B8CKsqBRuAd2kRJjMaeOMH9EFVtPPqudrDGXG2k87SdxPr5FATvttWpIjYplqK/vYJAoZ2DA==}
+  astro-og-canvas@0.5.6:
+    resolution: {integrity: sha512-w75UErZdRxYyoVnTz4IXn6T869PBrwYQEjPecWVaev9faYCHC3Uk7R47KCO3u+MSDkc8tCENz4ghVDrLImx9SA==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
-      astro: ^3.0.0 || ^4.0.0
+      astro: ^3.0.0 || ^4.0.0 || ^5.0.0
 
   astro@4.16.18:
     resolution: {integrity: sha512-G7zfwJt9BDHEZwlaLNvjbInIw2hPryyD654314KV/XT34pJU6SfN1S+mWa8RAkALcZNJnJXCJmT3JXLQStD3Lw==}
@@ -5989,7 +5989,7 @@ snapshots:
     dependencies:
       astro: 4.16.18(@types/node@22.5.5)(rollup@4.21.2)(typescript@5.6.2)
 
-  astro-og-canvas@0.5.3(astro@4.16.18(@types/node@22.5.5)(rollup@4.21.2)(typescript@5.6.2)):
+  astro-og-canvas@0.5.6(astro@4.16.18(@types/node@22.5.5)(rollup@4.21.2)(typescript@5.6.2)):
     dependencies:
       astro: 4.16.18(@types/node@22.5.5)(rollup@4.21.2)(typescript@5.6.2)
       canvaskit-wasm: 0.39.1
