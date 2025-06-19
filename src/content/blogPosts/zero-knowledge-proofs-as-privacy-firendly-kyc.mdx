@@ -1,0 +1,145 @@
+---
+title: Zero Knowledge proofs as a solution for privacy preserved KYC systems
+slug: zero-knowledge-proofs-as-privacy-preserved-kyc-systems
+publishDate: 2025-06-19
+excerpt: Zero Knowledge proofs (ZKPs) are a powerful cryptographic tool that can enhance privacy in KYC processes by allowing users to prove their identity without revealing sensitive information.
+tags: ['privacy', 'KYC', 'Zero Knowledge Proofs']
+published: true
+---
+
+KYCs (Know Your Customer) systems are commonly used in high regulated industries, like the Banking and Finance sector. These systems are designed to verify the identity of individuals or entities before providing them with access to services.
+
+Usually the process involves collecting sensitive personal information, such as government-issued IDs, proof of address, and other identifying documents. While this is essential for compliance with regulations and preventing fraud, it raises significant privacy concerns.
+
+## The Problem with Traditional KYC Systems
+
+The problem with traditional KYC systems is that they require individuals to share sensitive personal information with multiple third parties. Once your personal information is shared, you lose control over it, and it can be misused or exposed in various ways.
+
+This is information that if fallen into the wrong hands, can lead to identity theft, financial fraud, and other serious consequences.
+
+Consider for a moment all the organizations with which you might have shared your personal identity information through KYC (Know Your Customer) processes:
+
+* Government websites and services
+* Banking institutions
+* Investment and brokerage accounts
+* Cryptocurrency exchanges
+* Insurance providers
+* Property rental applications
+* Telecom service providers
+
+Each additional location storing your personal data represents another potential point of compromise in the event of data breaches or unauthorized access.
+
+There have been numerous high-profile data breaches involving KYC data, exposing sensitive information to malicious actors. For example, in May 2025, Coinbase, one of the largest cryptocurrency exchanges, suffered a data breach that reportedly included government-issued ID images used in their KYC process ([Coinbase Hacked - Massive Data Breach Costs Them $400 Million](https://cybersecuritynews.com/coinbase-hacked/)).
+
+Unfortunately, this is not an isolated incident. Many companies that require KYC data have experienced similar breaches, leading to the exposure of personal information of millions of users.
+
+## The Rise of KYC Data Sharing
+
+In recent years, there has been an increase in the requirement for KYC verification across various online platforms. Cryptocurrency exchanges, financial institutions, and even some social media platforms, require users to undergo KYC verification.
+
+And this trend shows no signs of slowing down. In fact, it is expected to continue growing as more industries recognize the need for identity verification to comply with regulations or at the excuse of user safety.
+
+A good example is the recent developments in France, where the government is pushing for stricter age verification measures on adult websites. - [Porn sites go dark in France over new age verification rules](https://www.rfi.fr/en/france/20250604-porn-sites-go-dark-in-france-over-new-age-verification-rules).
+
+Similar measures are being discussed in other countries and regions.
+
+## The need for Privacy-Preserving KYC Solutions
+
+KYC serves a legitimate purpose in many contexts preventing fraud, ensuring legal compliance, and protecting users.
+
+However, the traditional approach of sharing sensitive personal information with multiple third parties poses significant privacy risks. The more places your identity information is stored, the greater the risk of it being compromised.
+
+The thing is: Most services don't actually need your full identity. They only need to verify specific facts about you:
+
+- That you're over a certain age
+- That you're located in a particular country
+- That you're a real person, not a bot
+- That you meet specific regulatory requirements
+
+What if you could prove these facts without revealing your complete identity? This is where Zero Knowledge Proofs (ZKPs) comes in. A technology that allows you to verify claims without exposing underlying personal data.
+
+## What are Zero Knowledge Proofs?
+
+Zero Knowledge Proofs (ZKPs) are like a magic trick for data privacy. They let you prove something is true without revealing any extra information. Think of it as proving you know a password without actually typing the password.
+
+> "In cryptography, a zero-knowledge proof is a protocol in which one party (the prover) can convince another party (the verifier) that some given statement is true, without conveying to the verifier any information beyond the mere fact of that statement's truth." - [Wikipedia](https://en.wikipedia.org/wiki/Zero-knowledge_proof)
+
+For example, ZKPs would allow you to:
+- Prove you're over 18 without showing your exact birthdate
+- Prove you live in a certain country without revealing your address
+- Prove you have enough money without showing your account balance
+
+The technical details are complex (involving advanced mathematics and cryptography), but the important part is that **you stay in control of your personal data**. You decide exactly what facts to verify without exposing the underlying information.
+
+While ZKPs gained popularity in blockchain and cryptocurrency applications, they can be applied to many privacy-sensitive areas:
+
+- Age verification for online services
+- Citizenship verification for government benefits
+- Income verification for loans
+- Educational credential verification for jobs
+- Identity verification without ID documents
+- Medical status verification while protecting health privacy
+
+## How ZKPs Transform KYC
+
+Zero Knowledge Proofs can completely change how KYC works. Instead of sharing copies of your ID with dozens of services, you could:
+
+1. Have your identity verified once by a trusted authority
+2. Receive cryptographic credentials to your digital wallet
+3. Use ZKPs to prove specific facts from those credentials without revealing the credentials themselves
+
+This approach keeps your sensitive information private while still meeting regulatory requirements. It puts you in control of your identity data.
+
+## The example of Age Verification
+
+Let's see how ZKPs could help with the previous discussed example of age verification for accessing age-restricted content.
+
+### Today's Problematic Approach
+
+When you visit an age-restricted website today, you might need to:
+- Upload a photo of your ID or passport
+- Enter your full birthdate
+- Provide your name and address
+
+The website now has your complete identity information when all it needed to know was "Is this person at least 18 years old?"
+
+### The ZKP Solution
+
+With Zero Knowledge Proofs, the process becomes both simpler and more private:
+
+1. **Your digital ID lives in your phone wallet** - Your government-verified credentials are stored securely on your device, not on company servers.
+
+2. **Website requests age verification** - When you visit the site, it simply asks: "Prove you're 18+"
+
+3. **Your wallet creates a privacy-preserving proof** - Your phone app generates a mathematical proof that confirms: "Yes, this person is over 18" without revealing your birthdate, name, or ID number.
+
+4. **Website gets only what it needs** - The site receives confirmation you meet the age requirement—nothing more.
+
+This approach protects everyone:
+- **You maintain privacy** - Your personal data stays private
+- **The website meets requirements** - They comply with age verification laws
+- **No data to steal** - If the site is hacked, there's no personal data to expose
+
+## Zero Knowledge Proofs in Practice
+
+While the concept of Zero Knowledge Proofs has been around for decades, practical applications are still emerging.
+
+There are a few interesting projects like [Dock.io](https://www.dock.io/) or [Privado.id](https://www.privado.id/) looking to provide infrastructure for using ZKPs with Digital Identity and verification.
+
+Recently Google [announced](https://blog.google/products/google-pay/google-wallet-age-identity-verifications) they are integrating Zero Knowledge Proofs for Digital Identity and age verification.
+
+This is a big sign of the potential of the technology and hopefully of more widespread adoption in the future.
+
+## Conclusion
+
+While KYC systems are necessary for compliance and security, their current implementation creates unacceptable privacy risks. Every new service requiring your identity increases vulnerability to data breaches, identity theft, and unauthorized surveillance.
+
+Zero Knowledge Proofs offer the ideal middle path: maintaining the verification benefits of KYC while eliminating privacy risks. By proving facts without revealing data, ZKPs transform the privacy-security equation from an either/or proposition to a both/and solution.
+
+As these technologies mature, we can build verification systems that respect privacy by design where security no longer comes at the cost of personal freedom.
+
+## Reference
+
+- [Zero-knowledge proof - Wikipedia](https://en.wikipedia.org/wiki/Zero-knowledge_proof)
+- [Zero-knowledge proofs explained in 3 examples](https://www.circularise.com/blogs/zero-knowledge-proofs-explained-in-3-examples)
+- [Zero Knowledge Proofs - Dock.io](https://www.dock.io/post/zero-knowledge-proofs)

@@ -56,14 +56,7 @@ const { Content } = await post.render();
     )
   }
 
-  <article class="post-content prose prose-neutral max-w-none">
+  <article class="post-content prose prose-neutral max-w-none mb-16">
     <Content />
   </article>
-
-  <div class="flex justify-center mb-8">
-    <SocialShare
-      url={new URL(Astro.url.pathname, Astro.site).toString()}
-      title={title}
-    />
-  </div>
 </DefaultLayout>
