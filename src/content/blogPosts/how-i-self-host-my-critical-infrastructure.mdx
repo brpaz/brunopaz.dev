@@ -1,0 +1,178 @@
+---
+title: How I self-host my critical infrastructure
+slug: how-i-self-host-my-critical-infrastructure
+publishDate: 2025-06-26
+excerpt: In this article, I will talk about the importance of self-hosting critical infrastructure and will go through my own self-hosting journey.
+tags: ['DevOps', 'Digital Sovereignty', 'Self-Hosting']
+published: true
+---
+
+In this article, I will talk about the importance of self-hosting critical infrastructure and will go through my own self-hosting journey.
+
+## Why Self-Host?
+
+There are many reasons why someone might want to self-host their critical infrastructure.
+
+Here are some of the main reasons, I personally consider the most important:
+
+### Maintain Digital Sovereignty
+
+We live in an age where personal data is one of the most valuable assets.
+
+When you use a third-party service, you are trusting them to be responsible and not misuse your data. There were countless examples of many companies proved to be untrustworthy, from data breaches leaking personal data, to selling it to third parties without consent.
+
+Many third-party services also store your data in a properiertary format, making it hard or impossible to migrate to another service if you decide to switch.
+
+There are even more risks when using Free services. As the saying goes, "If you're not paying for the product, you are the product."
+
+Self-hosting allows to avoid these risks, as you have full control over your data and how it is stored and processed.
+
+### Cost Effectiveness
+
+Subscription fatigue is a thing!
+
+With so many services out there, it is easy to end up with a long list of subscriptions that can quickly add up to a significant expense.
+
+By self-hosting Open Source software, you can greatly reduce or eliminate these costs, especially for services that you use frequently.
+
+Self-host doesn´t mean free though you have to consider the costs of hardware, electricity, and internet connection, and also the recommended contributions for the projects you use.
+
+However, these costs are often much lower than the cumulative cost of multiple subscriptions.
+
+### Reducing risk of Enshitification
+
+Enshitification is real. There are many examples of popular services that have been ruined either by rising prices to unsustainable levels or by the introduction of ads and other monetization strategies that degrade the user experience.
+
+In a worst case scneario, the service could even be shut down, leaving you at the mercy of the provider.
+
+While self-hosting is not free from these risks and others like license changes, or even introducing of new features behind a paywall, by using Open Source software, you have more flexibility and even if the original project is abandoned, you can continue to use it or fork it to keep it alive.
+
+### Learning and Experimentation
+
+Self-hosting is a great way to learn and experiment with new technologies.
+
+It allows you to gain hands-on experience with various software and tools, and to understand how they work under the hood.
+
+As a Software Engineer, this journey has allowed me to deepen my knowledge of  areas like DevOps, Kubernetes, systems, administration and networoking.
+
+## My Self-hosting Journey
+
+I started my self-hosting journey during the Covid pandemic and it´s been a great experience so far.
+
+My main reasons to start self-hosting were exactly the ones I mentioned above: to maintain digital sovereignty, limit the number of subscriptions and dependencies on third-party services, and to learn new technologies, like Kubernetes.
+
+I am really happy about the results so far. I have learned a lot during the process, and managed to drastically reduce my dependencies on third party services.
+
+I think I am now at a point where I am practically self-sufficient for most of my personal needs in terms of SaaS software. The only services I am not self hosting (and probably never will) are Email, Messaging and Password Manager, as reliability and uptime are critical for those and I prefer to rely on a trusted provider to handle it. I am still careful about choosing those providers, and I try to use ones that are transparent about their practices and have a good reputation in the community.
+
+I am also still using GitHub for most of my code hosting, but for private repositories, I think I could easily do a full switch to my self-hosted Forgejo instance, if I wanted to.
+
+When talking about self-hosting it doesn´t mean that you have to host everything at home on your own hardware. You can use for example a VPS or a cloud provider.
+
+There are trade-offs of course to consider, like the cost, but it´s a perfectly valid option.
+
+In my case, I decided to build a small homelab to host my services.
+
+### The Hardware
+
+An Homelab doesn´t seem to be complicated or look like a mini data center.
+
+At the moment of this writing, it consists of just two machines, A NUC that serves as compute unit for running my applications and a NAS for long term storage.
+
+For the compute part, I am running an [Intel NUC 10th Generation](https://www.asus.com/supportonly/nuc10i5fnh/helpdesk_download/) with an Intel i5-10210U processor, 64GB of RAM, a 500GB SSD for the OS and 2TB NVMe SSD for application storage.
+
+This is a small and power-efficient (It uses less than 15w of power when idle) machine and have served me well.
+
+For the NAS, I am using a [TerraMaster F4-424 NAS](https://www.terra-master.com/global/products/homesoho-nas/f4-801.html) with 2x8TB HDD, 1TB NVMe SSD for cache and [Unraid](https://unraid.net/) as the operating system.
+
+This NAS is used for long term storage of my data, like photos, videos, and backups. It also serves as a media server for streaming content to my devices.
+
+In this article, I will focus on the NUC, as it is the main machine that runs my self-hosted applications.
+
+### NUC software stack
+
+The NUC runs with [Proxmox VE](https://www.proxmox.com/en/proxmox-ve). Proxmox is a powerful and flexible virtualization platform that allows me to run multiple virtual machines and containers on the same hardware.
+
+Having an hypervisor like Proxmox instead of running everything on bare metal have some advtanges:
+
+- I can segment my server better into multiple VMs and allocate resources to each VM as needed.
+- Snapshots and backups are much easier to manage. I can take a snapshot of a VM before making changes, and if something goes wrong, I can easily revert to the previous state. Or I can take a backup and restore it to another server in a few clicks.
+- It simplfies testing. I can create a new VM, install the software I want to test, and then delete it when I am done, without affecting my main setup.
+
+### Using K3s and Flux in my main VM
+
+My main VM runs Ubuntu Server 24.04 LTS with [k3s](https://k3s.io/).
+
+This VM is responsible to run most of my self-hosted applications.
+
+Using a Kubernetes distribution in my homelab, allows me learn and experiment with Kubernetes and apply industry standard practices for deploying and managing my applications.
+
+Together with k3s, I use [Flux](https://fluxcd.io/) for GitOps. All my application state is defined in Git and Flux ensures that everything is in sync.
+
+This simplifies a lot the deployment process and allows me to keep track of the changes made to my application configuration over the time.
+
+Flux integrates well with [Renovate](https://github.com/renovatebot/renovate), which I use to keep track of new versions of the applications.
+
+Renovate will automatically create a pull request to my Flux repository, every time a new version of an application is available. Updating the application to the new version, is as simple as merging the pull request.
+
+## How to access my applications?
+
+My k3s server runs [Traefik](https://traefik.io/) as the ingress controller and [Cert-Manager](https://cert-manager.io/) for managing SSL certificates.
+
+This means every application is accessible via a subdomain and has a valid SSL certificate automatically provisioned by Cert-Manager. Cert-Manager uses [Let's Encrypt](https://letsencrypt.org/) with a DNS challenge to issue the certificates, so the applications don´t need to be publicly accessible to obtain the certificates.
+
+For security reasons, I don´t expose any of my self-hosted applications to the public internet and the domains don´t have a public routable DNS record.
+
+Instead, I run a local DNS server with [Adguard Home](https://adguard.com/en/adguard-home/overview.html) on my home network, that is configured to resolve my applications subdomains to the local IP address of my server.
+
+Aguard Home has also the added benefit of blocking ads and tracking domains and it´s compatible with [DOH](https://en.wikipedia.org/wiki/DNS_over_HTTPS) which improves privacy and security. If I have more servers in the future, I can easily add new DNS entries on Adguard.
+
+Right now, I need to configure each of my devices that needs access to my self-hosted applications to use my local DNS server, which is not ideal. My ISP router does not allow me to change the DNS settings, so I can´t use it as a DNS server for my whole network. I am exploring the posibility to get a new router and then set my ISP router in bridge mode, so I can get rid of those limitations.
+
+What if I need to access my applications from outside my home network?
+
+In this case, I am running [Tailscale](https://tailscale.com/). Tailscale creates a secure mesh network between my devices, allowing me to access my self-hosted applications from anywhere. I configured Tailscale to use my local DNS server, so I can access my applications using the same subdomains as if I was on my home network.
+
+If you really need to expose your applications to the public internet, I recommend using a Tunnel service like [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/) or [Pangolin](https://github.com/fosrl/pangolin) with a Cloud VPS. This way, you can expose your applications to the public internet without exposing your home network directly.
+
+### Some of the applications I self-host
+
+I am self-hosting a variety of applications. I won´t go into too much details about each one, but here is a list of some of the most important ones:
+
+- [Immich](https://immich.app/): A self-hosted photo and video backup solution, that I use to store and manage my photos and videos. It is a great alternative to Google Photos, iCloud, etc.
+- [Nextcloud](https://nextcloud.com/): A self-hosted file sync and share solution, that I use to store my personal files, photos, and documents. Alternative to Google Drive, Dropbox, etc.
+- [Forgejo](https://forgejo.org/): A self-hosted Git service, that I use to host personal private Git repos, and also as a backup for my repositories hosted at GitHub. It is a great alternative to GitHub, GitLab, etc.
+- [Minio](https://min.io/): A self-hosted object storage solution, with an interface compatible with AWS S3. I use it for applications that require object storage. Alternative to AWS S3, Google Cloud Storage, etc.
+- [Harbor](https://goharbor.io/): A self-hosted container registry, that I use to store my Docker images. It´s an alternative to Docker Hub, GitHub Container Registry, etc.
+- [NocoDB](https://nocodb.com/): A self-hosted no-code database solution. I use it to store multiple personal databases. It is a great alternative to Airtable, Google Sheets, etc.
+- [n8n](https://n8n.io/): A self-hosted workflow automation tool. Alternative to Zapier.
+- [Penpot](https://penpot.app/): A self-hosted design and prototyping tool, that I use to create design mockups and prototypes. Alternative to Figma, Adobe XD, etc.
+- [ChartDB](https://chartdb.io/): A tool for creating database schema diagrams. Self-hosted alternative to dbdiagram.io.
+- [Verdaccio](https://verdaccio.org/): A self-hosted npm registry, that I use to host my private npm packages and as caching to public NPM packages. With caching, I can speed up the installation of npm packages but also be able to install them even if the public NPM registry is down.
+- [Athens](https://github.com/gomods/athens): A self-hosted Go module proxy. It serves similar purpose as Verdaccio, but for Go modules.
+- [Uptime Kuma](https://uptime.kuma.pet/): A self-hosted uptime monitoring solution, that I use to monitor the availability of my services. It is a great alternative to UptimeRobot, StatusCake, etc.
+- [Homebox](https://github.com/sysadminsmedia/homebox): A self-hosted home inventory management solution, that I use to keep track of my home and personal inventory items.
+- [FreshRSS](https://freshrss.org/): A self-hosted RSS feed aggregator, that I use to read my favorite blogs and news sites. Alternative to Feedly and Inoreader.
+- [Memos](https://www.usememos.com/): A simple self-hosted note-taking application, similar to Google Keep, for taking quick notes.
+- [Karakeep](https://karakeep.app/) - A bookmark application that allows me to save and organize my web bookmarks and save articles to read later. It is a self-hosted alternative to Pocket, Raindrop.io, etc.
+
+## Conclusion
+
+Self-hosting is a never ending journey. There is always some new cool application to try, an hardware uprade to do. It can be a lot of fun, but it can also be overwhelming at times.
+
+For me, the piece of mind that comes with the fact that I have full control of the software and data, outweighs the extra complexity and effort required to set it up.
+
+I understand it´s not for everyone. But it also doesn´t have to be more complicated than it needs to be. You can start small with a single server and a few containers, and gradually expand your setup as you learn and gain more confidence.
+
+The early ideas of the web were about decentralization, open standards, and user control. Self-hosting is one way to bring those ideas back to life and reclaim our digital sovereignty, and fight agaisnt the ever increasing enshitification and centralization of the web in the walled gardens of a few big companies.
+
+If you are interested in self-hosting, I encourage you to give it a try. There are many resources available online to help you get started, and the community is always willing to help.
+
+Here are some good resources to get started:
+
+- [noted.lol](https://noted.lol/how-can-i-get-started-self-hosting/) - A guide to get started with self-hosting.
+- [Awesome Self-Hosted](https://github.com/awesome-selfhosted/awesome-selfhosted) - A list of Free Software network services and web applications which can be hosted on your own servers
+- [selfh.st](https://selfh.st/) - Weekly self-hosted content and news, in a newsletter format.
+- [r/selfhosted](https://www.reddit.com/r/selfhosted/) - A subreddit dedicated to self-hosting.
+- [Self-Hosted Show](https://selfhosted.show/) - A podcast about self-hosting, with interviews and discussions about self-hosting topics.
+- [Jim´s Garage](https://www.youtube.com/@Jims-Garage) - A YouTube channel with videos about self-hosting, homelab, and DIY projects.

@@ -1,0 +1,886 @@
+---
+title: How I built a platform to host my personal projects
+slug: how-i-built-a-platform-to-host-my-personal-projects
+publishDate: 2025-06-24
+excerpt: As a software engineer who likes to tinker with personal projects and open source applications, and with a desire to contribute to the community, having a reliable and cheap infrastructure setup to host those projects is essential. In this article, I will share how I use Terraform and Ansible to deploy a simple Hetzner Cloud VPS to host any project I want to make public.
+tags: ['DevOps', 'PaaS', 'Hosting', 'Side Projects']
+published: true
+---
+
+As a software engineer who likes to tinker with personal projects and open source applications, and with a desire to contribute to the community, having a reliable and cheap infrastructure setup that allows to host those projects and make them public in an streamlined way, is essential.
+
+In this article, I will share how I use [Terraform](https://terraform.io) and [Ansible](https://docs.ansible.com/ansible/latest/index.html) to deploy a simple [Hetzner Cloud](https://www.hetzner.com/cloud/) VPS to host any project I want to make public.
+
+There were three main requirements I had in mind when building this setup:
+- **Cost-effective**: I wanted to keep the costs low, ideally under 10€ per month.
+- **Self-hosted**: I wanted to have full control over the infrastructure and the applications I run.
+- **Easy to deploy**: I wanted to have a simple and efficient way to deploy and manage my applications.
+
+## Why not use using a third-party PaaS?
+
+There are numeroous third-party PaaS providers like [Heroku](https://www.heroku.com/), [Render](https://render.com/), [Fly.io](https://fly.io/) or [Vercel](https://vercel.com/) that allows you to focus on the deployment of your applications without having to worry about the underlying infrastructure.
+
+Those platforms provide a great developer experience, but at the cost of vendor lock-in and limited control over the infrastructure. They also tend to be more expensive as your projects grow, especially if you want to run multiple applications or services.
+
+For example, if I wanted to host a typical web application with a PostgresSQL database, it could cost around 12$/month on Heroku (7$ for the Basic web dyno and 5$ for the cheapest Heroku Postgres instance), and around 10€/month on Fly.io basic plan with a 1 shared core CPU and 512MB of RAM for the web server and Postgres instance with 10GB of storage. This for a single application.
+
+A serverless alternative like [Google Cloud Run](https://cloud.google.com/run) could be cheaper for the compute part, but I would still need to host the database somewhere else, and deal with the shenanigans of cold starts and other limitations that comes with serverless architectures.
+
+In constrast, for less than 10€/month, I can run a VPS on [Hetzner Cloud](https://www.hetzner.com/cloud) with 2 vCPUs, 8GB of RAM and 80GB of SSD storage, which gives me plenty of space to run multiple applications and services, and that I can easily scale up if needed. I can deploy what I want, how I want, and don´t need to constrain the architecture of my applications to fit the limitations of the infrastructure, like choosing a specific database or storage solution, just because it´s more supported or chepear, which is something I have seen happenning a lot when using third-party PaaS providers.
+
+I am not saying that you should never use a PaaS. If you have static site, using a platform like Vercel or Cloudflare Pages is perfect and you can leverage their global CDN. This website is hosted on [Cloudflare Pages](https://pages.cloudflare.com/) free tier, and I also host a couple of very specific functions on [Cloudflare Workers](https://workers.cloudflare.com/).
+
+Like everything in software engineering, every choice come with trade-offs. In this case, I am trading convinience and low maintenance for control, flexibility and cost-effectiveness.
+
+For me it´s well worth it, but I understand this might not be the case for everyone. If wou just want to throw some new idea out there, and are ok with payling a bit more for the convinience of not having to deal with the infrastructure and the limitations that come with a public PaaS, that´s completely fine.
+
+There are no right or wrong choices. It all depends on your specific needs and requirements.
+
+You could also use an hybrid approach, where you have your own server, but deploy an open source PaaS like [CapRover](https://caprover.com/), [Dokku](https://dokku.viewdocs.io/dokku/) or [Coolify](https://coolify.io/). This is called a Private PaaS, and it allows you to have the best of both worlds: the control and flexibility of a self-hosted solution, with the ease of use and developer experience of a PaaS.
+
+Coolify looks like a solid choice, and It´s something I might play with in the future, but for now, I will a bare bones VPS with a few tools.
+
+If you are intrested in going the self-hosted route, keep reading and hopefully you will find some useful insights and tips that you can apply to your own projects.
+
+## Choosing an hosting provider
+
+The first step would be to select a hosting provider. There are many options available. You can choose a VPS or a Dedicated server. For most smaller deployments a VPS is more than enough, and it is also more cost-effective.
+
+These were the main criteria I considered when choosing a hosting provider:
+- Reputation and trustworthiness
+- Cost
+- Location (Preferably in Europe)
+- Reliability and performance
+
+[Hetzner Cloud](https://www.hetzner.com/cloud) ticked all these boxes for me. I am using them for a while and I am very happy with their service.
+
+[OVH](https://www.ovhcloud.com/en/), [Scaleway](https://www.scaleway.com/en/), [Linode](https://www.linode.com/) and [DigitalOcean](https://www.digitalocean.com/) are some popular alternatives.
+
+## Choosing the right server configurations
+
+Hetzner provides a variety of server configurations. I decided to go with the **CAX21** server type, which comes with:
+- 4 vCPUs
+- 8GB of RAM
+- 80GB of SSD storage
+- 20TB of traffic per month
+
+for 7.98€ per month, it´s a very acceptable price, well within my 10€/monthly budget. Since I am just starting out and currently don´t have many workloads deployed, I could even had gone with the smaller CAX11 server type, but this configuration gives me a lot of room to grow, before having to worry about scaling up.
+
+For Operating system I chose **Ubuntu 24.04 LTS**, which is a stable and well-supported distribution, and commonly used in cloud environments.
+
+## Core server components
+
+In this section, I will describe the core software and general architecture of the server. This is the foundation that will later allow me to deploy my applications on top of it.
+
+### Fail2ban
+
+Security is paramount when managing your own infrastructure.
+
+I will use the Hetzner Firewall to restrict access to the server as you will see later on, but a common used security tool that I install on all my servers is [Fail2ban](https://www.fail2ban.org/).
+
+Fail2ban is a log-parsing tool that scans log files for suspicious activity and bans IP addresses that show signs of malicious behavior, like repeated failed login attempts or brute-force attacks. This is an essential security measure to protect the server from unauthorized access and attacks, specially if you are exposing services like SSH or a web server to the public internet.
+
+### Docker and Swarm
+
+[Docker](https://www.docker.com/) will be used extensively as the foundation to manage application deployments. This will simplify the deployment process and ensure each application runs in its own isolated environment.
+
+Docker is somewhat limited for running production workloads as it lacks some critical features like rolling updates, scaling and load balancing.
+
+For that reason I will use Docker with [Docker Swarm mode](https://docs.docker.com/engine/swarm/) enabled, which is a built-in container orchestration tool that comes with Docker.
+
+Besides the mentioned features like the ability to do rolling deployments without downtime and scaling to multiple replicas, Docker Swarm also provides the ability to manage multiple containers across multiple hosts, by creating an overlay network. This won´t be needed for now, as we are focused on a single server, but it is a nice feature to have in case I want to scale up in the future.
+
+### Reverse Proxy
+
+A reverse proxy is needed to route incoming requests to the correct application based on the domain name or path. This allows you to run multiple applications on the same server, each accessible via its own domain or subdomain.
+
+For this purpose, I chose to use [Traefik](https://traefik.io/), which is a modern reverse proxy and load balancer that integrates seamlessly with Docker. It automatically discovers new containers and configures itself accordingly, making it very easy to manage.
+
+Traefik also provides features like automatic SSL certificate generation and renewal using [Let's Encrypt](https://letsencrypt.org/).
+
+Traefik will be running as a Docker container, and it will bind to the port 80 and 443 on the host machine, so it can handle incoming HTTP and HTTPS requests.
+
+### PostgreSQL
+
+It will be a common use case, that my applications will need a database to store data. For that, I will use [PostgreSQL](https://www.postgresql.org/), which is one of the most popular and reliable open source relational databases.
+
+PostgreSQL will be running as a Docker container, so that can be easily accessed by the applications in the internal network.
+
+For managing databases, users, etc I will leverage the [Ansible Community PostgreSQL](https://docs.ansible.com/ansible/latest/collections/community/postgresql/index.html) module, which provides a set of Ansible tasks to manage PostgreSQL instances.
+
+For security reasons, the PostgreSQL container will not be exposed to the public internet, and will only be accessible from the other containers running on the same server. If I need to access the database from outside the server, I can use a secure SSH tunnel with port forwarding.
+
+### Redis
+
+[Redis](https://redis.io/) is like a Swiss Army knife in-memory data store that can be used for a multitude of purposes, like caching, session storage and even message brokering.
+
+It´s the perfect companion for any web application that needs to store temporary data or cache frequently accessed data to improve performance. It also plays very well with PostgreSQL, as it can be used to cache database queries and reduce the load on the database server.
+
+The messaging broker capabilities of Redis gives me a lot of flexibility to build more complex applications that require running background jobs or pub/sub messaging patterns. I want to keep the infrastructure simple, and Redis will be able to handle these use cases just fine for small to medium sized applications, before having to consider more complex solutions like [RabbitMQ](https://www.rabbitmq.com/) or [Apache Kafka](https://kafka.apache.org/).
+
+Not all applications will need Redis, but I want to have it available as an option.
+
+### Portainer
+
+While most of the deployment and management of the containers will be done using Ansible, it´s still useful to have a web interface where I can see the at at glance the status of the containers, logs, etc.
+
+For that, I will use [Portainer](https://www.portainer.io/). Portainer will be deployed as a Docker container, and. As it is a management tool, it won´t be exposed to the public internet. To access it from outside, I will use a secure SSH tunnel with port forwarding, just like I do with the PostgreSQL database.
+
+### Grafana Alloy
+
+Monitoring is a critical aspect of any production system.
+Despite being a small personal server, I still want to have visibility into the performance and health of the applications running on it.
+
+For that, I will use [Grafana Alloy](https://grafana.com/docs/alloy/latest/) with [Grafana Cloud](https://grafana.com/products/cloud/). Grafana cloud is a managed service that provides a powerful and flexible monitoring solution, with support for a wide range of data sources and visualization options. It has a very generous free tier, which should be enough for a small setup like this.
+
+Grafana Cloud uses [AlertManager](https://prometheus.io/docs/alerting/latest/alertmanager/) to send alerts based on the metrics collected from the applications and the server itself. This way, I can be notified if something goes wrong, like high CPU usage, low disk space or application errors. I am using a custom [NTFY](https://ntfy.sh/) webhook to send notifications to my phone, but Grafana Cloud also supports other notification channels like email, Slack, Discord, etc.
+
+### Backups
+
+Backups are essential to protect your data and ensure you can recover from any disaster. For application data [Restic](https://restic.net/) can be used tp  create encrypted backups on Cloud storage platforms like [Backblaze B2](https://www.backblaze.com/b2/cloud-storage.html).
+
+For databases, [Wal-g](https://github.com/wal-g/wal-g) allows you to create backups of PostgreSQL databases and store them in a remote location, like Backblaze B2 or AWS S3. It supports incremental backups and point-in-time recovery, which is very useful for production systems. For simpler backups, built-in PostgreSQL tools like `pg_dump` and `pg_restore` can be used to create and restore backups of the database and then upload them to Backblaze B2 using `rclone`.
+
+### Other software to consider
+
+This is some software that I am not using right now, but I think it is worth mentioning as they could be useful for your setup, depending on your needs:
+
+- [MinIO](https://min.io/) for object storage, if you need to store large files or media assets.
+- [Tailscale](https://tailscale.com/) for secure remote access to the server.
+
+## Using Cloudflare as extra layer of security
+
+I already use [Cloudflare](https://www.cloudflare.com/) to manage DNS, so it´s a no-brainer to use their security features as Well.
+
+I have activated the "organge cloud" for the domains I want to protect, which means that all traffic to those domains will go through Cloudflare's network. This allows me to take advantage of their DDoS protection, Web Application Firewall (WAF), and other security features, provided by Cloudflare. All this supported by the free plan.
+
+In this setup, Cloudflare will also be responsible for SSL/TLS termination, which means that I don´t need to worry about managing SSL certificates on the server. Cloudflare will forward the requests to the server over HTTP.
+
+Cloudflare also supports a [Full SSL](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/), which means that the connection between Cloudflare and the server will also be encrypted using SSL/TLS. This is something you might consider for extra security, and I might enable in the future, to ensure that the traffic between Cloudflare and my server is also secure, but for now I am keeping the default option to do SSL Termination at Cloudflare level.
+
+## Using infrastructure as code to provision your server.
+
+While you can easily use the Hetzner Cloud web interface to create and manage your server, I prefer to use infrastructure as code (IaC) to declaratively define my infrastructure. This allows to keep track of changes in version control, and to easily recreate the infrastructure if needed, or even move it to another provider in the future, with minimal changes.
+
+I personally use [Terraform](https://www.terraform.io/) for this purpose, together with [Ansible](https://www.ansible.com/) to configure the server after it has been provisioned.
+
+This is the basic folder structure, of my IaC setup:
+
+```
+.
+├── .github
+├── docs
+├── provision
+│   ├── ansible.cfg
+│   ├── inventory
+│   ├── playbooks
+│   ├── requirements.txt
+│   ├── requirements.yml
+│   ├── roles
+│   └── Taskfile.yml
+└── terraform
+    ├── inventory.tf
+    ├── main.tf
+    ├── outputs.tf
+    ├── Taskfile.yml
+    ├── terraform.tf
+    ├── terraform.tfvars
+    └── variables.tf
+├── scripts
+├── README.md
+├── renovate.json
+├── Taskfile.yml
+```
+
+- The `terraform` folder contains the Terraform configuration files to provision the server, while the `provision` folder contains the Ansible playbooks and roles to configure the server after it has been provisioned.
+
+- The `scripts` folder contains any helper scripts that I might need to run on the server, like backup scripts or maintenance tasks.
+
+- [Taskfile](https://taskfile.dev/) is used as task runner to simplify the execution of common tasks, like running Terraform or Ansible commands.
+
+- [Renovate](https://docs.renovatebot.com/) helps me keeping my dependencies up to date, by automatically creating pull requests on the GitHub repository when a new version of a dependency is available. It works well with both Terraform and Ansible, and it is a great way to keep your infrastructure up to date.
+
+I will describe some of these directories in more detail in the following sections.
+
+### Terraform configuration
+
+I am using a single  `terraform/main.tf` file, to encapsulate all the resources needed to provision my server. You can split it into multiple files if you prefer or even use modules to organize your code better, but since I am deploying a single server and currently don´t have that many resources, I find it easier to keep everything in a single file.
+
+Here an the contents of the `terraform/main.tf`:
+
+```hcl
+locals {
+  commonLabels = {
+    "project"     = var.project
+    "environment" = var.environment
+    "managed_by"  = "terraform"
+  }
+
+  ssh_public_key = file(var.ssh_authorized_key)
+}
+
+resource "hcloud_ssh_key" "provision" {
+  name       = var.ssh_user
+  public_key = local.ssh_public_key
+  labels     = local.commonLabels
+}
+
+resource "hcloud_network" "primary" {
+  name     = "primary"
+  ip_range = var.network_cidr
+  labels   = local.commonLabels
+}
+
+resource "hcloud_network_subnet" "primary_subnet" {
+  type         = "cloud"
+  network_id   = hcloud_network.primary.id
+  network_zone = "eu-central"
+  ip_range     = var.subnet_cidr
+}
+
+resource "hcloud_server" "webserver" {
+  name        = format("webserver-%02d", count.index + 1)
+  count       = var.server_count
+  server_type = var.server_type
+  image       = var.server_image
+  location    = var.dc
+  labels      = local.commonLabels
+
+  user_data = <<-EOF
+    #cloud-config
+    users:
+      - name: ${var.ssh_user}
+        ssh-authorized-keys:
+          - "${local.ssh_public_key}
+        sudo: ['ALL=(ALL) NOPASSWD:ALL']
+        groups: sudo
+        shell: /bin/bash
+    swap:
+      filename: /swapfile
+      size: "8192M"
+  EOF
+
+  delete_protection = true
+
+  network {
+    network_id = hcloud_network.primary.id
+  }
+
+  firewall_ids = [hcloud_firewall.public.id]
+  depends_on = [
+    hcloud_network_subnet.primary_subnet
+  ]
+
+  lifecycle {
+    ignore_changes = [
+      network,
+      user_data,
+    ]
+  }
+
+  provisioner "remote-exec" {
+    connection {
+      host        = self.ipv4_address
+      user        = var.ssh_user
+      private_key = file(var.ssh_priv_key_file)
+    }
+
+    inline = [
+      "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for cloud-init...'; sleep 1; done",
+      "echo 'Cloud-init finished.'",
+    ]
+  }
+}
+
+resource "hcloud_firewall" "public" {
+  name = "public"
+
+  rule {
+    description = "Allow HTTP traffic"
+    direction   = "in"
+    protocol    = "tcp"
+    port        = "80"
+    source_ips = [
+      "0.0.0.0/0",
+      "::/0"
+    ]
+  }
+
+  rule {
+    description = "Allow HTTPS traffic"
+    direction   = "in"
+    protocol    = "tcp"
+    port        = "443"
+    source_ips = [
+      "0.0.0.0/0",
+      "::/0"
+    ]
+  }
+
+  rule {
+    description = "Allow SSH traffic"
+    direction   = "in"
+    protocol    = "tcp"
+    port        = "22"
+    source_ips = [
+      "0.0.0.0/0",
+      "::/0"
+    ]
+  }
+  labels = local.commonLabels
+}
+
+resource "cloudflare_dns_record" "dns_records" {
+  for_each = toset(var.domains)
+  zone_id  = var.cloudflare_zone_id
+  comment  = "Managed by Terraform"
+  content  = hcloud_server.webserver[0].ipv4_address
+  name     = each.key
+  proxied  = true
+  ttl      = 1
+  type     = "A"
+}
+```
+
+The major blocks of this configuration are:
+- **hcloud_ssh_key**: This resource creates an SSH key in Hetzner Cloud, which will be used to access the server.
+- **hcloud_network** and **hcloud_network_subnet**: These resources create a private network and subnet in Hetzner Cloud, which will be used to isolate the server from the public internet.
+- **hcloud_firewall**: This resource creates a firewall to secure the server, opening only the necessary ports that need to exposed to the public internet, like HTTP (80), HTTPS (443) and SSH (22).
+- **hcloud_server**: This resource creates a server with the specified number of vCPUs, RAM and disk space, using the specified image and data center location. It leverages [cloud-init](https://cloudinit.readthedocs.io/en/latest/index.html) to setup the bare minimum configuration to get the server up and running, like creating the `provision` user (which will later be used by Ansible) with sudo privileges and with the specified ssh key, and also adding a swap file.
+- **cloudflare_dns_record**: This resource creates DNS records in Cloudflare poniting to the server's public IP address, allow you to start serving your applications right away. You can use any DNS provider you prefer, personally I use [Cloudflare](https://www.cloudflare.com/) for DNS and domain management. It has also some usuful features like DDoS protection, CDN and SSL/TLS management.
+
+All the variables used by this configuration like the SSH keys, server configuration, API tokens to access the provider APIs, etc, are defined in `terraform/terraform.tfvars`. This file ignored from version control, as it contains sensitive information.
+
+I usally like to have a `terraform.tfvars.example` that I can use as a template to create my own `terraform.tfvars` file.
+
+After terraform has provisioned the server, Ansible is used to install and configure all the necessary software and services on the server, as described in the next section.
+
+## Using Ansible to configure the server
+
+### The inventory
+
+One of the core components of Ansible is the inventory, which defines the hosts that Ansible will manage.
+
+There are multiple ways to define an inventory in Ansible, and can either be static or dynamic. In this project, since I am already using Terraform to provision the infrastructure, I will use [Terraform provider plugin](https://github.com/ansible-collections/cloud.terraform/blob/main/docs/cloud.terraform.terraform_provider_inventory.rst), which allows Ansible to dynamically generate the inventory based on the Terraform state.
+
+For using the plugin, the inventory file, should look like this:
+
+```yml
+# provision/inventory/production/hosts.yml
+---
+plugin: cloud.terraform.terraform_provider
+state_file: "" # Use remote Terraform state by specifying empty string
+
+# Terraform project folder. This path is relative to the root of the Ansible (proivision) directory.
+project_path: ../terraform
+```
+
+How does this work? Ansible uses the `cloud.terraform.terraform_provider` plugin to read the Terraform state file and dynamicaly generate an inventory based on the resources defined in the Terraform configuration.
+
+Ansible has multiple different plugins for generaring dynamic inventory files. You can read more it in the [Ansible documentation](https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html).
+
+For Ansible to be able to identify which resources that should be included in the inventory, on the Terraform side, [Terraform Ansible provider](https://registry.terraform.io/providers/ansible/ansible/latest/docs) can be used. This terraform plugin allows to define resources like `ansible_host` and `ansible_group` in the Terraform state, which will be read by the Ansible inventory plugin.
+
+I am using `terraform/inventory.tf` file is to define those resources, like this:
+
+```hcl
+resource "ansible_host" "webserver" {
+  count = length(hcloud_server.webserver)
+  name  = "webserver-${format("%02d", count.index + 1)}"
+
+  groups = ["webservers"]
+  variables = {
+    ansible_user = var.ssh_user
+    ansible_host = hcloud_server.webserver[count.index].ipv4_address
+  }
+```
+
+#### Inventory variables
+
+The inventory defines the hosts that Ansible will manage, but it can also contain variables that are specific to those hosts or groups of hosts. This is where you can define the configuration parameters that will be used by the Ansible playbooks.
+
+I am organzing those inside the inventory folder, like this:
+
+```
+provision/inventory
+└── production
+    ├── group_vars
+    │   └── all
+    │       ├── main.yml
+    │       └── vault.yml
+    └── hosts.yml
+```
+
+The `group_vars` folder is where the variables needed by the server are defined. In this case, since I am only managing a single server, I have a single `all` group, which contains all the variables required by the server.
+
+I am also using Ansible Vault to encrypt sensitive information, like API tokens or passwords. The `vault.yml` file contains the encrypted variables, which can be decrypted using the `ansible-vault` command.
+
+These files will automatically be loaded by Ansible when running the playbooks for that inventory, so you don´t need to specify them explicitly.
+
+### Roles
+
+Ansible roles are a way to organize and reuse Ansible tasks, variables, files and templates. They allow you to encapsulate a set of related tasks and other ansible related resources into a single unit that can be reused across different playbooks and projects.
+
+[Ansible Galaxy](https://galaxy.ansible.com/) is a great place to find pre-built roles that you can use in your projects. You can also create your own roles and share them with the community.
+
+I store my specific project roles in `provision/roles` folder, while galaxy downloaded roles will go in `provision/..ansible_galaxy/roles` folder.
+
+To have ansible read the roles from these paths, I have the following configuration in my `provision/ansible.cfg` file:
+
+```ini
+[defaults]
+...
+roles_path=/usr/share/ansible/roles:/etc/ansible/roles:roles/:.ansible_galaxy/roles
+collection_paths = /usr/share/ansible/collections:/etc/ansible/collections:collections/:.ansible_galaxy/collections
+```
+
+The paths defined here should be related to the root of the Ansible project where `ansible.cfg` is stored, which in this case is the `provision` folder.
+
+Since the main components of this server like Traefik or Postgres, are components that I might want to reuse across different projects, I have created my own Ansible roles for them and published them on [Ansible Galaxy](https://galaxy.ansible.com). You can find the source for those roles in my [here](https://github.com/brpaz?tab=repositories&q=ansible-role&type=&language=&sort=). Note that these roles are opinionated and tailored to my specific needs. Feel free to use them as a starting point, but you might need to adapt them to your own requirements.
+
+If you don´t wand to reuse your roles across projects, you would simple store them in the `provision/roles` folder.
+
+### Playbooks
+
+An Ansible playbook groups a set of tasks that should be executed on the hosts defined in the inventory. It is a YAML file that defines the tasks, handlers, variables and other files needed to configure the hosts.
+
+I store my playbooks in the `provision/playbooks` folder, and I have a single playbook called `site.yml`, which is responsbile for the initial server configuration and installing all the necessary software.
+
+Here what my `site.yml` playbook looks like for this server:
+
+```yml
+---
+- name: Site playbook
+  hosts: "{{ target | default('webservers') }}"
+  pre_tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+      become: true
+    - name: Ensure Ansible Python dependencies are installed
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - python3-apt
+        - python3-jmespath
+        - python3-docker
+        - python3-jsondiff
+      become: true
+  roles:
+    - { role: common, tags: ['common', 'system'] }
+    - { role: robertdebock.fail2ban, tags: ['security','system'], become: true }
+    - { role: geerlingguy.docker, tags: ['docker'],  become: true }
+    - { role: docker_registry, tags: ['docker', 'registry']}
+    - { role: robertdebock.users, tags: ['users', 'system'], become: true }
+    - { role: stefangweichinger.ansible_rclone, tags: ['rclone'], become: true }
+    - { role: roles-ansible.restic, tags: ['backup', 'restic'], become: true }
+    - { role: brpaz.swarm, tags: ['docker'] }
+    - { role: brpaz.swarm_redis, tags: ['docker', 'redis'] }
+    - { role: brpaz.swarm_traefik, tags: ['docker', 'traefik'] }
+    - { role: brpaz.swarm_grafana_alloy, tags: ['docker', 'monitoring'] }
+    - { role: brpaz.swarm_postgres, tags: ['docker', 'postgres'] }
+    - { role: brpaz.swarm_portainer, tags: ['docker', 'portainer'] }
+    - { role: darkwizard242.lazydocker, tags: ['docker', 'lazydocker'], become: true }
+    - { role: gantsign.ctop, tags: ['docker', 'ctop'], become: true }
+```
+As you can see, I am leveraging a few Ansible roles from Ansible Galaxy, as well as my own roles to install all the required software.
+
+Roles like [geerlingguy.docker](https://github.com/geerlingguy/ansible-role-docker) is used to install Docker, while [robertdebock.users](https://github.com/robertdebock/ansible-role-users) is used to manage users on the server.
+
+To apply the playbook, I can use the `ansible-playbook` command, like this:
+
+```bash
+cd provision
+ANSIBLE_VAULT_PASSWORD_FILE=./vault_password.txt \
+ANSIBLE_PRIVATE_KEY_FILE=./ssh_key.pem \
+ansible-playbook -i inventory/production/hosts.yml playbooks/site.yml
+```
+
+This command will run the playbook against the hosts defined in the inventory file, using the specified vault password file and SSH private key file to authenticate to the server.
+
+With this, the server is now provisioned and configured with the core software and services needed to run applications. The next is would be to efectively deploying some applications to the server, which I will cover in the next section.
+
+## Mananing application deployments with Github Actions
+
+We have seen how to provision and configure the server, with the core software. In this section, I will show how applications can be deployed to the server.
+
+### Deploying Third-party applications
+
+For third party applications, that are not under my control, an Ansible role can be created in the IaC repository. For example, If I wanted to deploy a wordpress instance, I would create an Ansible role called `wordpress` that contains all the tasks needed to deploy WordPress on the server, envrionment configuration, database setup, etc.
+
+Since I am using Docker Swarm, all applications should be containerized and deployed as Docker Swarm services or stacks.
+
+Ansible provides a few modules [community.docker.docker_swarm_service](https://docs.ansible.com/ansible/latest/collections/community/docker/ docker_swarm_service_module.html) or [community.docker.docker_stack](https://docs.ansible.com/ansible/latest/collections/community/docker/docker_stack_module.html#ansible-collections-community-docker-docker-stack-module) that helps working with Docker Swarm.
+
+A simple task to deploy a Docker Swarm service using the `community.docker.docker_swarm_service` module would look like this:
+
+```yml
+- name: Deploy application
+  community.docker.docker_swarm_service:
+    name: myapp
+    image: myapp:latest
+    replicas: 1
+    networks:
+      - name: traefik-public
+    labels:
+      traefik.enable: true
+      traefik.http.routers.myapp.rule: Host(`myapp.example.com`)
+      traefik.http.routers.myapp.entrypoints: web
+      traefik.http.services.myapp.loadbalancer.server.port: 80
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+    env:
+      MYAPP_ENV: production
+    restart_config:
+      condition: on-failure
+      delay: 5s
+      max_attempts: 3
+      window: 60s
+    reservations:
+      cpus: 0.25
+      memory: 20M
+    limits:
+      cpus: 0.50
+      memory: 50M
+```
+
+Note that I am setting a few traefik labels, so that Traefik can automatically discover the service and route traffic to it.
+
+### Deploying my own applications
+
+For my own applications, each application repository has its own CI/CD pipeline using GitHub Actions, which is responsible for running the application tests, building a Docker image and publishing it to GHCR (GitHub Container Registry).
+
+A creation of a new docker image, is what will trigger the deployment process, as we will see next.
+
+Each application repository also contains a `deploy` folder, with has all the required Ansible playbooks and roles to deploy that specific application. You could manage this centrally in the IaC repository, if you prefer, but I choose the apporach to keep the deployment configuration close to the application code, and keep the IaC focused on the core server components only.
+
+The `deploy` folder can look like this:
+
+```
+deploy
+├── ansible.cfg
+├── inventory
+│   └── production
+│       ├── group_vars
+│       └── inventory.ini
+├── requirements.txt
+├── requirements.yml
+├── roles
+│   └── app
+│       ├── defaults
+│       ├── tasks
+└── site.yml
+```
+
+Note that in this case, I am using a static inventory file with the server IP address. If you wanted to to use the dynamic inventory with `cloud.terraform.terraform_provider` plugin as shown before, this could be more complicated with this structure, as the terraform state is only accessible in the IaC repository. This could be a good reason to keep the application deployment manifests in the IaC repository as well.
+
+As I don´t expect to have a big fleet of servers or applications, I think this is fine for now. And if I ever need to have a number of servers that would make this approach cumbersome, I would probably be using Kubernetes and Flux already :)
+
+Going back to the GitHub Actions, the CI workflow for the application can look like this:
+
+```yaml
+name: CI
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  release:
+    types: [published]
+
+env:
+  DOCKER_IMAGE_NAME: ghcr.io/brpaz/my-app
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  packages: write
+  contents: write
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+       -name: Run application tests, linting, etc
+        run: |
+          # Run your application tests, linting, etc here
+          # For example:
+          # npm install
+          # npm test
+          echo "Running application tests..."
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ${{ env.DOCKER_IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=sha
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: server
+          platforms: linux/amd64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    needs: build
+    if: ${{ github.event_name == 'release' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update Changelog
+        uses: stefanzweifel/changelog-updater-action@v1
+        with:
+          latest-version: ${{ github.event.release.tag_name }}
+          release-notes: ${{ github.event.release.body }}
+
+      - name: Commit updated CHANGELOG and README files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: main
+          commit_message: "chore(release): [skip-ci] ${{ github.event.release.tag_name }}"
+          file_pattern: CHANGELOG.md
+
+      - name: Trigger release event
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          event-type: docker_image_published
+          client-payload: |
+            {
+              "app": "my-app",
+              "tag": "${{ github.event.release.tag_name }}",
+              "image": "${{ env.DOCKER_IMAGE_NAME }}",
+              "sha": "${{ github.sha }}",
+              "ref": "${{ github.ref }}"
+            }
+```
+
+I am using a few public actions to streamline the process, like the [docker/metadata-action](https://github.com/docker/metadata-action) and [docker/build-push-action](https://github.com/docker/build-push-action) for building and pushing the Docker image to GHCR, and the [stefanzweifel/changelog-updater-action](https://github.com/stefanzweifel/changelog-updater-action) which is used to update the `CHANGELOG` of the application, every time a new release is published.
+
+Let´s focus on the last step, of the `release` job:
+
+```yaml
+- name: Trigger release event
+  uses: peter-evans/repository-dispatch@v3
+  with:
+    event-type: docker_image_published
+    client-payload: |
+      {
+        "app": "my-app",
+        "tag": "${{ github.event.release.tag_name }}",
+        "image": "${{ env.DOCKER_IMAGE_NAME }}",
+        "sha": "${{ github.sha }}",
+        "ref": "${{ github.ref }}"
+      }
+```
+
+This step it what will trigger the automated deploy after the application is built. It triggers a custom event `docker_image_published` with the details of the docker image that was just published to GHCR. It uses the `repostory dispatch` feature from GitHub Actions, which allows you to trigger custom events in a specific repository, that you can then use as a trigger for other workflows.
+
+A `deploy` workflow will listen to this event, and will use Ansible to deploy the application. Here is an example of how the `deploy` workflow can look like:
+
+```yaml
+# .github/workflows/deploy.yml
+name: Deploy
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: "Application to deploy"
+        required: true
+        type: choice
+        options:
+          - my-app
+      tag:
+        description: "Tag to deploy"
+        required: true
+        default: "latest"
+      environment:
+        description: "Environment to deploy"
+        required: true
+        default: production
+        type: environment
+  repository_dispatch:
+    types: [docker_image_published]
+
+env:
+  PYTHON_VERSION: "3.12"
+  IMAGE_NAME: "ghcr.io/brpaz/my-app"
+  DEPLOY_DIR: "deploy"
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      app: ${{ github.event_name == 'workflow_dispatch' && inputs.app || github.event.client_payload.app }}
+      tag: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.event.client_payload.tag }}
+      environment: ${{ github.event_name == 'workflow_dispatch' && inputs.environment || 'production' }}
+    steps:
+      - run: echo "Preparing deployment envrionment"
+  deploy:
+    runs-on: ubuntu-latest
+    needs: prepare
+    env:
+      ANSIBLE_PRIVATE_KEY_FILE: /home/runner/.ssh/deploy_key
+      ANSIBLE_VAULT_PASSWORD_FILE: ${{ github.workspace }}/deploy/.vault_pass.txt
+      ANSIBLE_INVENTORY: inventory/${{ needs.prepare.outputs.environment }}/inventory.ini
+    environment:
+      name: ${{ needs.prepare.outputs.environment }}
+      url: ${{ needs.prepare.outputs.environment == 'production' && 'https://myapp.example.com' || 'https://staging.myapp.example.com' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"
+
+      - name: Install Python dependencies
+        working-directory: ${{ env.DEPLOY_DIR }}
+        run: |
+          pip install -r requirements.txt
+
+      - name: Install Galaxy Roles
+        working-directory: ${{ env.DEPLOY_DIR }}
+        run: |
+          ansible-galaxy install -r requirements.yml
+
+      - name: Setup SSH key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          SSH_DEPLOY_KEY_FILE: ${{ env.ANSIBLE_PRIVATE_KEY_FILE }}
+        run: |
+          mkdir -p /home/runner/.ssh
+          echo "$SSH_PRIVATE_KEY" > "$SSH_DEPLOY_KEY_FILE"
+          chmod 600 "$SSH_DEPLOY_KEY_FILE"
+
+      - name: Setup Ansible Vault password
+        run: |
+          echo "${{ secrets.ANSIBLE_VAULT_PASS }}" > ${{ env.ANSIBLE_VAULT_PASSWORD_FILE }}
+          chmod 600 ${{ env.ANSIBLE_VAULT_PASSWORD_FILE }}
+
+      - name: Write app version to ansible vars
+        if: ${{ needs.prepare.outputs.app == 'server' }}
+        run: |
+          sed -i "s/^my_app_image_tag: .*/my_app_image_tag: ${{ needs.prepare.outputs.tag }}/" ${{ env.DEPLOY_DIR }}/inventory/${{ needs.prepare.outputs.environment }}/group_vars/all.yml
+          cat ${{ env.DEPLOY_DIR }}/inventory/${{ needs.prepare.outputs.environment }}/group_vars/all.yml
+
+      - name: Run Ansible playbook
+        working-directory: ${{ env.DEPLOY_DIR }}
+        run: |
+          ansible-playbook site.yml
+
+      - name: Commit updated versions
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: main
+          commit_message: "chore(deploy): [skip-ci] bump ${{ needs.prepare.outputs.app }} to ${{ needs.prepare.outputs.tag }}"
+          file_pattern: "deploy/inventory/${{ needs.prepare.outputs.environment }}/group_vars/all.yml"
+```
+
+There are a few things to digest on this workflow, so let´s break it down:
+
+This workflow can be triggered automatically on the `repository_dispatch` event or manually using the `workflow_dispatch` event. Having the possibility of triggering the workflow manually is useful for example, if I wanted to rollback to a previous version of the application, or deploy a specific version.
+
+When triggering the workflow manually, you will need to provide the same inputs as the `repository_dispatch` event, which are the application name, tag and environment.
+
+The `prepare` job is an helper job that encapsulates the logic that extract the correct inputs depending on the event that triggered the workflow.
+
+The next few steps, are responsible of setting up the envrionment to run Ansible (installing the required dependencies, setting up the SSH key and Ansible Vault password, etc).
+
+The last three steps are the most important ones, and the ones that are actually reponsible for deploying the application:
+
+```yaml
+- name: Write app version to ansible vars
+  if: ${{ needs.prepare.outputs.app == 'server' }}
+  run: |
+    sed -i "s/^my_app_image_tag: .*/my_app_image_tag: ${{ needs.prepare.outputs.tag }}/" ${{ env.DEPLOY_DIR }}/inventory/${{ needs.prepare.outputs.environment }}/group_vars/all.yml
+    cat ${{ env.DEPLOY_DIR }}/inventory/${{ needs.prepare.outputs.environment }}/group_vars/all.yml
+
+- name: Run Ansible playbook
+  working-directory: ${{ env.DEPLOY_DIR }}
+  run: |
+    ansible-playbook site.yml
+```
+
+The `Write app version to ansible vars` step is responsible for updating the application version to be deployed in the Ansible variables file.
+
+My variable file looks like this:
+
+```yaml
+# deploy/inventory/production/group_vars/all.yml
+---
+my_app_image_tag: "v1.0.0"
+my_app_image: "ghcr.io/brpaz/my-app:${my_app_image_tag}"
+```
+
+The app version could alternatively be passed as an extra variable, when running the Ansible playbook command, which would take precedence over the value defined in the variables file.
+
+This would probably be a bit simpler, but there is a problem with that approach. If you want to run the playbook to deploy the application to a new machine for the first time, or to do some other update tasks like updating envrionment variables or increase the resources of the application, you would need somehow to retrieve the current version of the application that is already deployed on the server, and use that version, otherwise the playbook would try to deploy the version that is defined in the variables file, which might not be the latest version.
+
+While having some extra logic in the playbook to handle these different cases would theroetically be possible, I think it would increase the complexity, so I decided to follow a "GitOps" like apporach, of having the info about the current deployed version of the application stored in the repository.
+
+After the deployment, is done, the variable file with the updated version is committed back to the repository, so it ensures that we always have the current deployed version of each application in version control.
+
+This is done in the following step:
+
+```yaml
+- name: Commit updated versions
+  uses: stefanzweifel/git-auto-commit-action@v5
+  with:
+    branch: main
+    commit_message: "chore(deploy): [skip-ci] bump ${{ needs.prepare.outputs.app }} to ${{ needs.prepare.outputs.tag }}"
+    file_pattern: "deploy/inventory/${{ needs.prepare.outputs.environment }}/group_vars/all.yml"
+```
+
+Finally the  `Run Ansible playbook` step is responsible for running the Ansible playbook responsible for deploying the specified version of the application to the server.
+
+```yaml
+- name: Run Ansible playbook
+  working-directory: ${{ env.DEPLOY_DIR }}
+  run: |
+    ansible-playbook site.yml
+```
+
+This will run the playbook against the hosts defined in the inventory file, using the specified SSH key and Ansible Vault password to authenticate to the server.
+
+## Conclusion
+
+In this post, I shown how I used Terraform and Ansible to build my own server to deploy personal projects using Hetzner Cloud as the infrastructure provider. There are of course room for improvement or different ways to achieve the same result, but I enjoyed setting up this and I think I managed to have a solid foundation to deploy any personal project to the cloud.
+
+I hope this post was helpful to you, and that you learned something new.
+
+I might expand on this topic a bit more in the future, so stay tuned for updates.
+

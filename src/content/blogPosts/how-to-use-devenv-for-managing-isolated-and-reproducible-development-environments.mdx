@@ -1,0 +1,643 @@
+---
+title: How to use devenv for managing isolated and reproducible development environments
+slug: how-to-use-devenv-for-managing-isolated-and-reproducible-development-environments
+publishDate: 2025-06-29
+excerpt: Devenv is a tool that allows to create Fast, Declarative, Reproducible and Composable Developer Environments using Nix. In this article we will explore how to use Devenv to manage development environments with a real world example.
+tags: ['development', 'devenv', 'nix']
+published: true
+---
+
+import { Picture } from 'astro:assets';
+import processCompose from '../../assets/images/blog/a5f69ae2-8ee1-440a-99bc-46030ed5e595.png';
+
+When working with multiple projects at the same time, each with their own set of dependencies and requirements (which may conflict), it can be challenging to maintain a consistent development environment for each project. Having a consistent and reproducible development environment is even more critical when working in a team, as each member may have different setups and configurations, which can lead to inconsistencies and bugs that are hard to track down and the typical saying "it works on my machine".
+
+Docker can help mitigate some of these issues, but where it shines the most is to ensure a consistent runtime environment for the applications, not necessarly for development environments.
+
+This is where [Devenv](https://devenv.sh/) comes in. Devenv is a tool that allows to create Fast, Declarative, Reproducible and Composable Developer Environments using [Nix](https://nixos.org/).
+
+Nix is a powerful package manager and build system designed to provide reliable and reproducible software environments. It allows developers to define their software dependencies and configurations in a declarative manner, ensuring that applications can be built and run consistently across different systems. Nix isolates packages from one another, preventing conflicts and enabling multiple versions of the same software to coexist. This makes it particularly useful for development, testing, and deployment, as it simplifies the management of complex software stacks.
+
+Nix language can have a steep learning curve, specially if you are not familiar with functional programming concepts, and Devenv was built on top of Nix to provide a more user-friendly experience for developers. It abstracts away some of the complexity of Nix, with focus on the requirements for creating and managing development environments, while still allowing for more lower level Nix configurations when needed.
+
+There are other similar tools like [Devbox](https://jetpack.io/devbox/) and [Flox](https://flox.dev/). I used Devbox before, and it´s also a great tool. The biggest selling point of Devbox is that you don´t need to know Nix to use it, as it uses a simple json file to define the development environment. Devenv is less abstract, and while you don´t need to know much Nix to use it, it benefits from having some knowledge of Nix to be able to use it to its full potential. Flox I never used, so I won't comment on it.
+
+Devenv provides some more advanced features than only managing dependencies, like the ability to define and run tasks, which can be used to automate common development workflows, process management that allows to manage the execution of your application and dependant services like Databases, and much more.
+
+## Getting Started
+
+### Installing Devenv
+
+To get started with Devenv, you need to have Nix installed on your system. You can follow the [Nix installation guide](https://nixos.org/download.html) to install Nix on your system.
+
+Then you can install Devenv using nix:
+
+```shell
+nix profile install nixpkgs#devenv
+```
+
+### Initializing a new Devenv project
+
+To initialize a new Devenv project, you can use the `devenv init` command. This will create a `devenv.yaml` file in the current directory, which is the main configuration file for your Devenv project, as well as a `devenv.nix` file, which is where you define your dev environment.
+
+Devenv also generates a `.envrc` file. This file can be used with [direnv](https://direnv.net/) to automatically load a shell for your Devenv environment when you enter the project directory, as well as loading any project level environment variables.
+
+While Direnv is not strictly required to use Devenv, it is highly recommended as it provides a seamless experience when working with Devenv projects. To install direnv on your system, follow the [direnv installation guide](https://direnv.net/docs/installation.html).
+
+## Real world example - A Golang application with Postgres database
+
+To demonstrate the power of Devenv we will create a simple Golang application that connects to a Postgres database. This example will show how to set up a development environment with dependencies, tasks, and process management using Devenv.
+
+You can see find the full source code for this example in [GitHub](https://github.com/brpaz/devenv-golang-example).
+
+### Initialize the Devenv project
+
+Create a new directory for your project and navigate to it:
+
+```shell
+mkdir devenv-go-example
+cd devenv-go-example
+```
+Now, initialize the Devenv project:
+
+```shell
+devenv init
+```
+
+This will create a few files in your project directory:
+
+- `devenv.yaml`: The main configuration file for your Devenv project.
+- `devenv.nix`: The Nix environment file for your project.
+- `.envrc`: The direnv configuration file for your project.
+- `.gitignore`: A file to ignore Devenv-related files in your Git repository.
+- `.devenv`: A directory that contains the Devenv cache and other internal files.
+- `.devenv.lock`: A lock file that ensures reproducibility of your Devenv environment.
+
+The main files you will be working with are `devenv.yaml` and `devenv.nix`.
+
+Let´s inspect the generated `devenv.yaml` file:
+
+```yaml
+# yaml-language-server: $schema=https://devenv.sh/devenv.schema.json
+inputs:
+  nixpkgs:
+    url: github:cachix/devenv-nixpkgs/rolling
+
+# If you're using non-OSS software, you can set allowUnfree to true.
+# allowUnfree: true
+
+# If you're willing to use a package that's vulnerable
+# permittedInsecurePackages:
+#  - "openssl-1.1.1w"
+
+# If you have more than one devenv you can merge them
+#imports:
+# - ./backend
+```
+
+The most important part of this file is the `inputs` section, which allows to define variables that can be used in the Nix environment. In this case, we are using the `nixpkgs` input, which is a reference to the Nix package collection. This allows us to use any package from the Nix package collection in our Devenv project.
+
+You can also define other inputs, like `nixpkgs-unstable` or `nixpkgs-22.11`, to use a specific version of the Nix package collection. This is useful to ensure that your project is using a specific version of the packages, which can help with reproducibility.
+
+`imports` allows to modularize your Devenv project by splitting your configuration into separate files. This can be useful when working with big projects. In the most cases, you will probably be fine with a single devenv file.
+
+The `devenv.nix` is the main file, where we define our development environment.
+
+```nix
+{ pkgs, lib, config, inputs, ... }:
+
+{
+  # https://devenv.sh/basics/
+  env.GREET = "devenv";
+
+  # https://devenv.sh/packages/
+  packages = [ pkgs.git ];
+
+  # https://devenv.sh/languages/
+  # languages.rust.enable = true;
+
+  # https://devenv.sh/processes/
+  # processes.cargo-watch.exec = "cargo-watch";
+
+  # https://devenv.sh/services/
+  # services.postgres.enable = true;
+
+  # https://devenv.sh/scripts/
+  scripts.hello.exec = ''
+    echo hello from $GREET
+  '';
+
+  enterShell = ''
+    hello
+    git --version
+  '';
+
+  # https://devenv.sh/tasks/
+  # tasks = {
+  #   "myproj:setup".exec = "mytool build";
+  #   "devenv:enterShell".after = [ "myproj:setup" ];
+  # };
+
+  # https://devenv.sh/tests/
+  enterTest = ''
+    echo "Running tests"
+    git --version | grep --color=auto "${pkgs.git.version}"
+  '';
+
+  # https://devenv.sh/git-hooks/
+  # git-hooks.hooks.shellcheck.enable = true;
+
+  # See full reference at https://devenv.sh/reference/options/
+}
+```
+
+The generated file already shows some of the available options you can use, like packages, languages, processes and more.
+
+I won´t go into much details about all of these for now. You can always refer to the [Devenv documentation](https://devenv.sh/docs/) for more information.
+
+For now, let´s modify the `devenv.nix` file to remove what we don´t need and add some basic configuration for our Go application.
+
+```nix
+{ pkgs, lib, config, inputs, ... }:
+
+{
+  packages = [ pkgs.git ];
+
+  languages.go.enable = true;
+
+  enterShell = ''
+    go version
+  '';
+}
+```
+
+If you run `devenv shell`, it will enter a shell with the Go compiler and Git installed, and it will print the Go version. This is a simple way to verify that your Devenv environment is set up correctly.
+
+If you are using direnv, it will automatically load the Devenv environment when you enter the project directory, without the need to run `devenv shell` manually.
+
+If you need to update your envrironment after making changes to the `devenv.yaml` or `devenv.nix` files, you can run `direnv reload` in your shell, which will trigger a build of the environment.
+
+If you already had go installed locally, you can confirm that you are using the Devenv version of Go by running `which go`. You should see a path that points to the Devenv environment, like `/nix/store/...-go-1.24.2/bin/go`. This means that you are using the Go compiler and tools provided by Devenv, and not the one installed on your system.
+
+Languages section allows you to enable support for specific programming languages. In this case, we are enabling support for Go, which will install the Go compiler and tools in our Devenv environment. You can find a list of available languages in the [Devenv documentation](https://devenv.sh/languages/).
+
+You could also install the language manually by adding `pkgs.go` to the `packages` section, but using the `languages` section is more convenient and provides additional features like the installation of language servers and other tools that are commonly used in Go development. You can see what is installed and how everything is configured by looking at Devenv source code [here](https://github.com/cachix/devenv/blob/main/src/modules/languages/go.nix)
+
+
+### Adding dependencies
+
+To install additional packages in your Devenv environment, you place them in the `package` section.
+
+To find packages available in the Nix package collection, you can use the [Nix search](https://search.nixos.org/packages) or the `devenv search <package_name>` command.
+
+Modify the `pkgs` section to include the following packages:
+
+```nix
+{ pkgs, lib, config, inputs, ... }:
+
+{
+  packages = [
+    pkgs.git
+    pkgs.golangci-lint
+    pkgs.gotestsum
+  ];
+```
+
+Run `direnv reload` to update your environment. You should now have the `golangci-lint` and `gotestsum` available on your environment. You can confirm this by running `which golangci-lint` and `which gotestsum`, which should point to the Devenv environment.
+
+### Step 3: Initializing Go application.
+
+We have the basics of our environment setup, now it´s time to start building our Go application.
+
+Run the following command to initialize a new Go module in your project directory:
+
+```shell
+go mod init devenv-go-example
+```
+
+Next, create a new file called `main.go` in the project directory with the following content:
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"log/slog"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
+)
+
+func main() {
+
+	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+
+	port := os.Getenv("APP_PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "Hello, World!")
+	})
+
+	server := &http.Server{
+		Addr:         ":" + port,
+		Handler:      mux,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+	}
+
+	go func() {
+		logger.Info("Starting server", "port", port)
+		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			logger.Error("Server failed to start", "error", err)
+		}
+	}()
+
+	sigChan := make(chan os.Signal, 1)
+	signal.Notify(sigChan, syscall.SIGINT, syscall.SIGTERM)
+
+	<-sigChan
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	logger.Info("Shutting down server...")
+
+	if err := server.Shutdown(ctx); err != nil {
+		logger.Error("Server shutdown failed", "error", err)
+	}
+}
+```
+
+If you run `go run main.go`, in your terminal, you should see the message "Starting server" and the server will be listening on port 8080. Access `http://localhost:8080` in your browser, and you should see the message "Hello, World!".
+
+### Managing environment variables
+
+Managing environment variables is an important part of any application. Devenv allows to declare environment variables in the `devenv.nix` using the `env` section. An example for this in shown in the default `devenv.nix` file, created by `direnv init` where the `env.GREET` variable is defined.
+
+```nix
+{ pkgs, lib, config, inputs, ... }:
+
+{
+  env.GREET = "Hello, World!";
+}
+```
+
+This is a good approach if you have a small number of environment variables, that are not sensitive and can be hardcoded in the configuration file.
+
+A common practice across many programming languages is to use a `.env` file. This file is not committed to the version control system, and is used to define environment variables that are specific to the local development environment. Devenv supports this approach as well and it´s what we will use.
+
+Let´s modify the application port. Create a new file called `.env` in the project directory with the following content:
+
+```env
+APP_PORT=8090
+```
+
+then, add the following line to the `devenv.nix` file, to enable the dotenv support:
+
+```nix
+{ pkgs, lib, config, inputs, ... }:
+
+{
+  # ...
+  dotenv.enable = true;
+  # ...
+}
+
+Run `direnv reload` to apply the changes and load the new environment variables. You should now see the updated `APP_PORT` value being used by your application. To confirm this, in your shell, run:
+
+```shell
+echo $APP_PORT
+```
+
+You should see `8090` printed in the terminal.
+
+Now, run the application again with `go run main.go`. You should see the message "Starting server" and the server will be listening on port 8090.
+
+### Using processes to start your application
+
+Devenv provides a way to define processes that can be used to start your application and any dependent services, like databases, message queues, etc.
+
+Devenv uses [process-compose](https://github.com/F1bonacc1/process-compose) under the hood. If you have used docker compose before, it´s very similar, but it´s designed to work with processes instead of containers.
+
+Let´s add your main application as a process. Add the following section to your `devenv.nix` file:
+
+```nix
+{ pkgs, lib, config, inputs, ... }:
+
+{
+  # ...
+  processes = {
+    myapp = {
+      exec = "go run main.go";
+    };
+  };
+  # ...
+}
+```
+
+Now run `direnv reload` to apply the changes and `devenv up` to start processes.
+
+You should see a TUI similar to this:
+
+<Picture src={processCompose} formats={['avif','webp']} alt="Process compose window"/>
+
+Pretty cool right?
+
+If you want to start the process in the background, you can use the `-d` flag:
+
+```shell
+devenv up -d
+```
+
+To stop your processes, you can use the `devenv processes down` command:
+
+### Adding live reload
+
+Before continuing, let´s improving the developer experience by adding live reload to our application. We will use the [air](https://github.com/air-verse/air) package.
+
+First, add the `air` package to your `devenv.nix` file:
+
+```nix
+{ pkgs, lib, config, inputs, ... }:
+
+{
+  # ...
+  packages = [
+    pkgs.git
+    pkgs.golangci-lint
+    pkgs.gotestsum
+    pkgs.air
+  ];
+  # ...
+}
+```
+
+Run `direnv reload` to install the `air` package. Then run `air init` in your project directory to create a configuration file for `air`. This will create a file called `.air.toml` in your project directory.
+
+The default configuration is good enough for our example, so let´s keep it as is.
+
+Finally, modify the `processes` section to use `air` to run your application:
+
+```nix
+{ pkgs, lib, config, inputs, ... }:
+
+{
+  # ...
+  processes = {
+    myapp = {
+      exec = "air -c .air.toml";
+    };
+  };
+  # ...
+}
+```
+
+And run `devenv up` again. You should see the `air` process running in the process compose window, and if you make any changes to the `main.go` file, the application will be automatically reloaded.
+
+### Using tasks to automate common workflows
+
+Devenv has the concepts of tasks which can be used to automate common workflows in your project. Tasks are defined in the `devenv.nix` file and can be run using the `devenv tasks run <task_name>` command.
+
+Let´s add some tasks to run the linting and testing tools we added earlier. Add the following section to your `devenv.nix` file:
+
+```nix
+{ pkgs, lib, config, inputs, ... }:
+
+{
+  # ...
+  tasks = {
+    "myapp:lint".exec = "golangci-lint run ./...";
+    "myapp:test".exec = "gotestsum --format=short-verbose -- -v ./...";
+  };
+}
+```
+
+Now you can run the linting and testing tasks using the following commands:
+
+```shell
+devenv tasks run myapp:lint
+devenv tasks run myapp:test
+```
+
+Using tasks is a simple way to automate common workflows without the need to external tools like Makefiles or shell scripts. You can still use a separate tool if you prefer. I am a fan of using [Task](https://taskfile.dev/) for this and it´s a lot more feature rich.
+
+Just add your favorite task runner to the `packages` section as dependency and run it as you would normally do and you are ready to go.
+
+### Adding a Postgres database using services
+
+Let´s complicate a bit our example application by adding a Postgres database. Devenv provides a way to define [services](https://devenv.sh/services/) that can be used for this. Devenv services provides a simple way to manage the lifecycle of services that your application depends on, like databases, message queues, etc, with minimal configuration.
+
+To add a Postgres database to your project, add the following section to your `devenv.nix` file:
+
+```nix
+{ pkgs, lib, config, inputs, ... }:
+
+{
+  # ...
+  services.postgres = {
+    enable = true;
+    package = pkgs.postgresql_16;
+    port = lib.toInt (config.env.POSTGRES_PORT or "5432");
+    listenAddress = "localhost";
+    initialScript = ''
+      CREATE ROLE "${config.env.POSTGRES_USER}" WITH LOGIN PASSWORD '${config.env.POSTGRES_PASSWORD}' SUPERUSER;
+    '';
+    initialDatabases = [
+      {
+        name = config.env.POSTGRES_DB;
+        user = config.env.POSTGRES_USER;
+      }
+    ];
+  };
+}
+```
+
+This will enable the Postgres service and will do some initial setup like creating a user and a database. The `initialScript` section allows to run any SQL script when the service is started, and the `initialDatabases` section allows to create initial databases and users.
+
+The `${config.env.}` expression allows to refer to envrionment variables in the Devenv environment. To make those variables available, we need to define them in the `.env` file. Create a new `.env` file in your project directory with the following content:
+
+```env
+POSTGRES_PORT=5432
+POSTGRES_USER=app_user
+POSTGRES_PASSWORD=app_password
+POSTGRES_DB=app_db
+```
+
+Run `direnv reload` to apply the changes and then run `devenv up` to start the application services. You should see the Postgres service starting in the process compose window, and it will be available on port 5432.
+
+#### Configuring the application to connect to the database
+
+Now that we have a Postgres database running, let´s modify our application to connect to it. Before changing the application code itself, we need to make sure that the Postgres process is started and ready to accept connections before the main application starts. This is similar to what you would do with Docker Compose, where you would define the dependencies between services.
+
+Devenv allows us to define some options for process compose, which as seen before, is the default process manager used under the hood.
+To do so, modify the `processes` section in your `devenv.nix` file to include the Postgres service as a dependency for your application:
+
+```nix
+{
+  # ...
+  processes = {
+    myapp = {
+      exec = "air -c .air.toml";
+      process-compose = {
+        depends_on.postgres.condition = "process_healthy";
+      };
+    };
+  };
+};
+```
+
+This will make sure that our application will only start after the Postgres service is healthy.
+
+Check [Process](https://f1bonacc1.github.io/process-compose/launcher/) to learn more how to configure process compose and the available options.
+
+Finally let´s modify our application to connect to the Postgres database. We will use the default golang driver for Postgres.
+
+Start by adding the Postgres driver to your `go.mod` file:
+
+```shell
+go get github.com/lib/pq
+```
+
+Then, modify the `main.go` file to connect with the following code:
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"log/slog"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
+
+	"database/sql"
+
+	_ "github.com/lib/pq"
+)
+
+// getDBConnection initializes the database connection
+func getDBConnection() (*sql.DB, error) {
+	connStr := fmt.Sprintf("user=%s password=%s dbname=%s port=%s sslmode=disable",
+		os.Getenv("POSTGRES_USER"),
+		os.Getenv("POSTGRES_PASSWORD"),
+		os.Getenv("POSTGRES_DB"),
+		os.Getenv("POSTGRES_PORT"))
+
+	db, err := sql.Open("postgres", connStr)
+
+	if err != nil {
+		return nil, fmt.Errorf("failed to open database connection: %w", err)
+	}
+
+	return db, nil
+}
+
+func main() {
+
+	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+
+	logger.Info("Starting application...")
+
+	dbConn, err := getDBConnection()
+
+	if err != nil {
+		logger.Error("Failed to connect to database", "error", err)
+		os.Exit(1)
+	}
+	defer dbConn.Close()
+
+	if err := dbConn.Ping(); err != nil {
+		logger.Error("Failed to ping database", "error", err)
+		os.Exit(1)
+	}
+
+	logger.Info("Connected to database successfullyf")
+
+	port := os.Getenv("APP_PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		dbVersion := dbConn.QueryRow("SELECT version()")
+		var version string
+		if err := dbVersion.Scan(&version); err != nil {
+			http.Error(w, "Failed to get database version", http.StatusInternalServerError)
+		}
+
+		_, _ = fmt.Fprintln(w, "Hello, Go!")
+		_, _ = fmt.Fprintf(w, "Connected to database version: %s\n", version)
+	})
+
+	server := &http.Server{
+		Addr:         ":" + port,
+		Handler:      mux,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+	}
+
+	go func() {
+		logger.Info("Starting server", "port", port)
+		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			logger.Error("Server failed to start", "error", err)
+		}
+	}()
+
+	sigChan := make(chan os.Signal, 1)
+	signal.Notify(sigChan, syscall.SIGINT, syscall.SIGTERM)
+
+	<-sigChan
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	logger.Info("Shutting down server...")
+
+	if err := server.Shutdown(ctx); err != nil {
+		logger.Error("Server shutdown failed", "error", err)
+	}
+}
+```
+
+Run `devenv up` again to to start the processes. You should see the Postgres service starting, and then the Go application starting after the Postgres service is healthy.
+
+If everything went well, navigate to `http://localhost:8090` in your browser and you should see the message "Hello, Go!" and the database version printed on the page.
+
+**Note**: I noticed that process-compose would get stuck in "Reconnecting" status. Not sure why, but if you find this issue, run `devenv processes down` to stop all the processes and then manually remove the `.devenv/run/pc.sock` file. This will reset the process-compose state and allow you to start the processes again.
+
+And that´s it! You now have a simple Golang application running with a Postgres database, in a reproducible and isolated development environment using Devenv.
+
+## Devenv vs Docker
+
+You might already be using Docker to achieve similar goals. Should you start using Devenv instead of Docker?
+
+There can definitely be some overlap, but IMO both tools serve a slightly different purpose. Devenv shines in managing the toolchain, language versions and dependencies for your Dev environment, while Docker is focused on running applications with a consistent runtime environment.
+
+So you can use both. You can use Devenv to manage your development toolchain, and Docker to run your applications and services. In the previous example, it would mean instead of using the `processes` feature of Devenv, you could use Docker Compose, like you would normally do.
+
+You can even combine the two, and having `devenv up` spawn a process that runs `docker-compose up`.
+
+There is a big advantage of using Docker for running your services in your local environment, which is service discovery and network isolation. When using processes and running everything directly on your host machine, you may run into issues with port conflicts, or if you need to run multiple instances of the same service, you will have to manage the ports and configurations manually. With Docker, you can easily spin up and tear down containers as needed, without worrying about conflicts with other services running on your machine.
+
+For simple applications this might not be a big issue, but if your are working on a larger application with multiple services, using Docker locally can still provide significant benefits.
+
+I am still trying to find the right balance between both tools in my workflow as well. The rule of thumb, I might follow is: If It´s a single service with few dependencies like a database, Devenv processes is probably enough. If it´s a more complex application with multiple services, I will probably stick with Docker and Docker Compose.
+
+## Conclusion
+
+Having a consistent and reproducible development environment is crucial for any software project, and Devenv is a powerful tool to achieve that, leveraging the power of Nix.
+
+We explored the basics of Devenv with a concrete example. I am by no means an expert and I am still learning it myself, and there are a few more advanced features that weren´t covered in this article, like integration with Git Hooks or OCI images generation, but I hope this article gives you a good starting point to start using Devenv in your projects.
+
+If you want to learn more, I highly recommend checking out the [Devenv documentation](https://devenv.sh/docs/). There is also this [NixCon 2024 workshop](https://github.com/cachix/nixcon-2024-workshop/blob/final/devenv.nix) from Cachix that shows a more complete example of a real world application.

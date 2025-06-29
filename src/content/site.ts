@@ -8,6 +8,7 @@ export default {
     devto: 'https://dev.to/brpaz',
     nostr:
       'https://njump.me/npub19xnm7g4u4mtyh96lxdxkvsxsut5zk35cgh8ph4g92dqva8vtlf9qee35sn',
+    mastodon: 'https://masto.pt/@brpaz',
   },
   support: {
     buyMeACoffee: 'https://www.buymeacoffee.com/Z1Bu6asGV',

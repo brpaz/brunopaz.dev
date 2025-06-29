@@ -1,0 +1,215 @@
+---
+title: My development environment and tools in 2025
+slug: my-development-environment-and-tools-in-2025
+publishDate: 2025-06-21
+excerpt: An overview of the tools and technologies that shape my development environment in 2025.
+tags: ['development', 'tools', '2025']
+published: true
+---
+
+In this post, I will share an overview of the software and tools that I use in my personal development environment in 2025.
+
+Hopefully, you will find some inspiration and discover new tools that might improve your own workflow.
+
+## Hardware
+
+I bought a new laptop in the end of last year, a [Tuxedo InfinityBook Pro Gen9 AMD](https://www.tuxedocomputers.com/en/TUXEDO-InfinityBook-Pro-15-Gen9-AMD.tuxedo).
+
+I was always a man of Asus laptops (My previous laptop was an Asus Zenbook S13 from 2019) but couldn´t find any suitable alternative and decided to give Tuxedo a try, and I am very happy with the purchase. The fact they are made in Europe, support Linux as first class citizen and provided a lot of customization options was a big plus for me.
+
+I choose the 64GB RAM and 2TB SSD options. Might be a bit overkill for the daily use, but I wanted something future proof for a few years and with AI workloads becoming more common, plus VMs and containers, having some space to spare is a good thing.
+
+I also went with the AMD version instead of Intel. I always had Intel laptops, but the with the latest issues with Intel CPUs and the fact that AMD has been catching up in terms of performance, I decided to give it a try.
+
+It´s been rock solid so for, minus a few minor issues with the power managment and hibernation, which don´t really affect my daily use.
+
+## Operating System
+
+I am a long time Linux user, and Fedora in particular. Fedora has been very stable and reliable for me, which IMO is one the most important things for a daily driver.
+
+The software packages are a lot more up to the latest versions than other distributions like Ubuntu. Vanilla GNOME is also getting more polished with each release.
+
+## Window Management
+
+An important part of a good development environment is the window management. I don´t want to think too much about how to arrange my windows, so I like to use a tilling window manager that can take care of that automatically.
+
+I also don´t want to spend too much time configuring it, so I don´t use a full fledged tiling window manager like i3 or Sway. Instead, I use GNOME with the [Pop Shell](https://github.com/pop-os/shell) extension, which provides provides the best of both worlds.
+
+I might replace it with [Tilling Shell](https://github.com/domferr/tilingshell), which is more recent and actively maintained extension but that only recently got Automatic Tilling support. I am still testing it, but for now I am happy with Pop Shell.
+
+## Web Browser
+
+I use [Firefox](https://www.mozilla.org/en-US/firefox/) as my main web browser. I have been using Firefox since the early days, and I find it to be the most privacy-friendly and customizable browser available. Not being based on Chromium is also a plus as helping fighting the Chrome monopoly on the web.
+
+I use a couple of extensions to enhance my browsing experience, highlighting:
+
+- [uBlock Origin](https://ublockorigin.com/) - Allows a safer and faster browsing experience by blocking ads and trackers.
+- [Bitwarden](https://bitwarden.com/) - My password manager of choice, which allows me to securely store and manage my passwords and sensitive information.
+- [Raindrop](https://addons.mozilla.org/en-US/firefox/addon/raindropio) - My go-to bookmark manager, which allows me to save and organize my bookmarks and articles to read later.
+- [Obsidian Web Clipper](https://obsidian.md/clipper) - Allows me to save web pages and articles directly to my Obsidian vault for later reference.
+- [Web Developer](https://addons.mozilla.org/en-US/firefox/addon/web-developer/) - A powerful extension that adds a variety of web development tools to Firefox, making it easier to inspect and debug web pages.
+- [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/) - A must-have for any Vue.js developer, this extension allows me to inspect and debug Vue.js applications directly in the browser.
+
+Of course, as a software engineer, I need to test my applications on other browsers, so I also have [Chromium](https://www.chromium.org) and [Edge](https://www.microsoft.com/en-us/edge) installed for testing purposes. I also use [Brave](https://brave.com/) for some specific use cases.
+
+## Command Launcher
+
+A launcher is something that after you start using it, you can´t live without it. It´s one of my most essential productivity tools. It allows to quickly run applications, open websites, run commands, and more, without having to context switch between applications and it´s always right there, just a key press away.
+
+In Linux, there are a few options available, not as polished as for example Raycast on macOS, but still good enough. I used [Ulauncher](https://ulauncher.io/) in the past and have contributed with a lot of extensions to it, but them I discovered [ScriptKit](https://scriptkit.com/) and I have been using it ever since.
+
+While ScriptKit is more optmized for macOS and Windows, and some features like Application launcher are not available on Linux, it is still a very powerful tool that covers most of my needs. It´s also incredible easy to create cusotm scripts with simple Javascript and a few lines of code.
+
+Some of the things I use ScriptKit for:
+- Searching documentation for my main used programming languages and frameworks.
+- Search and focus on a opened browser tab.
+- Quick search on Package Managers registries like npm, PyPI, Cargo, etc.
+- Search and open my repositories on GitHub.
+- Search and open my notes on Obsidian.
+- Search and open my bookmarks on browser and Raindrop.
+- Code snippets management, allowing me to quickly search and insert code snippets into my code editor.
+- and many more...
+
+## Code Editor
+
+For my main code editor, I use [VSCode](https://code.visualstudio.com/). It is compatible with most programming languages, has a rich ecosystem of extensions, and the recently added AI features and Copilot integration make it a very powerful tool for software development. Recently,
+
+I have been playing with [Zed](https://zed.dev/) as well. Zed is still in early stages, but it has a lot of potential to become my main code editor in the future, when they implement a full featured extension system and improve some core features like test running and debugging that are still lacking compared to VSCode.
+
+When in terminal, when I just need to edit some configuration files and I don´t want to open a separate application, I use [LazyVim](https://lazyvim.org/). It is a Neovim configuration that comes with a lot of plugins and features out of the box, making it very easy to get started.
+
+## Terminal and Shell
+
+As an Software Engineer, I spend a lot of time in the terminal, so it´s critical for me to have a good and productive terminal setup.
+
+I use [Ghostty](https://ghostty.com/) as my terminal emulator. It´s a relatively new terminal emulator, but it´s pretty lightweight and fast.
+
+For the shell, I use [Zsh](https://www.zsh.org/) with [Antidote](https://github.com/mattmc3/antidote) plugin manager. I have been using Zsh for a long time, and I find it to be a lot more powerful and flexible than Bash, mostly because of the plugins and themes available.
+
+I have a few plugins that I use on a daily basis, such as:
+- [zsh-completions](https://github.com/zsh-users/zsh-completions) - Provides additional completions for various commands.
+- [zsh-abbr](https://github.com/olets/zsh-abbr) - Allows me to create abbreviations for commands, which is very useful for long commands that I use frequently.
+- [zsh-i-should-use](https://github.com/MichaelAquilina/zsh-you-should-use) - Simple zsh plugin that reminds you that you should use one of your existing aliases for a command you just typed.
+- [fzf-tab](https://github.com/Aloxaf/fzf-tab) - A Zsh plugin that enhances the tab completion experience by integrating with fzf.
+- [fzf-marks](https://github.com/urbainvaes/fzf-marks) - This plugin can be used to create, delete, and navigate marks in bash and zsh.
+- [zshrc.d](https://github.com/mattmc3/zshrc.d) - A plugin that allows me to organize my Zsh configuration in a modular way, making it easier to manage and maintain.
+
+For prompt, I use [Starship](https://starship.rs/). It´s a cross-shell prompt written in Rust, and it´s very fast and customizable.
+
+[zoxide](https://github.com/ajeetdsouza/zoxide) helps me navigate my filesystem faster by remembering my most frequently used directories.
+
+[Zelijj](https://zellij.dev/) is a modern terminal multiplexer alternative to tmux and screen that is written in Rust and it has a lot of features that I find useful.
+
+[FZF](https://github.com/junegunn/fzf), [fd](https://github.com/sharkdp/fd) and [ripgrep](https://github.com/BurntSushi/ripgrep) are my go-to tools for searching and filtering files and directories to and build custom scripts. They are all very fast and efficient, and they integrate well with each other.
+
+Finally, I am using [Yazi](https://github.com/sxyazi/yazi) as my terminal file explorer.
+
+## Working with Git
+
+Git is an essential part of any modern software development workflow.
+
+I use [GitHub](https://github.com/) as my primary Git hosting service, but I also mirror all my repositories to a self-hosted [Forgejo](https://forgejo.org/) instance for backup purposes.
+
+I always preferred to use the command line for Git operations, and I use [LazyGit](https://github.com/jesseduffield/lazygit) as my terminal UI for Git.
+
+[GitHub CLI](https://cli.github.com/) facilitates working with GitHub from the command line, allowing me to create pull requests, issues, and manage repositories without leaving the terminal.
+
+Finally, [git-extras](https://github.com/tj/git-extras) provides some additional Git commands to help with common tasks, such as undoing changes, generating changelogs, and more.
+
+## Containerization and Virtualization
+
+I use [Docker](https://www.docker.com/) and [Compose](https://docs.docker.com/compose/) for containerization and managing my development environments. Docker allows me to create isolated environments for my applications, making it easier to manage dependencies and configurations.
+
+To help managing my containers I use [Lazydocker](https://github.com/jesseduffield/lazydocker), on the terminal, and [Portainer](https://www.portainer.io/) for a web-based UI.
+
+[ctop](https://github.com/ctop-dev/ctop) allows to monitor my containers and their resource usage at a glance and [dive](https://github.com/wagoodman/dive) helps ensuring my Docker images are optimized and free of unnecessary files.
+
+When I need a full fledged VM, I use [libvirt](https://libvirt.org/) with [virt-manager](https://virt-manager.org/). A VM is useful when I need to test a full OS installation or when or an application and I don´t want to mess with my host system. They can also be useful to play with test DevOps related tools like Kubernetes or distributed systems.
+
+I use Kubernetes for container orchestration in some envrionments like my Home lab, and might use more in the future for deploying personal projects. [K9s](https://k9scli.io/) is my go-to terminal UI for managing Kubernetes clusters, providing a convenient way to interact with and monitor my clusters, directly from the terminal.
+
+I also use [Sterm](https://github.com/stern/stern) for tailing logs from multiple pods at the same time, which can be useful for debugging Kubernetes applications.
+
+For testing Kubernetes applications locally, I use [KinD](https://kind.sigs.k8s.io/) (Kubernetes in Docker). It allows me to create a local Kubernetes cluster using Docker containers and [Flux](https://fluxcd.io/) for GitOps deployments. Flux helps me manage my Kubernetes resources and deployments using Git as the source of truth, making it easier to maintain and deploy applications in a consistent manner.
+
+## Managing Development Environments
+
+One of the most challenging aspects of a development envrionment is managing the different tools, and dependencies required for each project, mostly when different projects might require different versions of the same tool or library.
+
+While Docker and containerization help a lot with this, there are cases where it might be simpler to just run your project directly on your host system, without the overhead of a container. Thinks like CLI tools, libraries, scripts, and simple web applications.
+
+For that, I use [Nix](https://nixos.org/nix/) and [Devenv](https://devenv.sh/). Nix is a powerful package manager that allows me to create reproducible  environments in a declarative way and Devenv sits on top, providing a more user-friendly interface to work with Nix, specifically tailored for development environments.
+
+Another tool that integrated very well with those is [Direnv](https://direnv.net/). Direnv allows me to automatically load and unload environment variables based on the current directory, making it easy to switch between different project environments without having to manually set or unset environment variables. I use direnv to automatically load the Nix environment for each project when I navigate to its directory.
+
+I didn´t stop using containers. I use both together. One of the main advantages of using something like Docker Compose is that you can have a multi container setup, with all the services, acessible from the docker internal network, without having to worry about port conflicts or other issues that might arise when running multiple services on the same host.
+
+So I am using Nix for managing local development dependencies and then docker for running the actual services.
+
+This setup is still something I am experimenting with. I might use Nix only setup for single service projects, and then docker for more complex setups, but I am still figuring out the best approach for my workflow.
+
+## Documentation
+
+When I need to create documentation for my code related projects, I usually use [MkDocs](https://www.mkdocs.org/) with the [Material theme](https://squidfunk.github.io/mkdocs-material/). It is a static site generator that is easy to set up and provides a clean and modern look for documentation websites.
+
+I might also use [VitePress](https://vitepress.dev/). I like them both, it really depends on the project.
+
+I use [OpenAPI](https://www.openapis.org/) specifications to document my APIs, and I recently discovered [this](https://www.neoteroi.dev/mkdocs-plugins/web/oad/) and [this](https://vitepress-openapi.vercel.app/), which allows to integrate OpenAPI documentation into MkDocs and VitePress, respectively. This makes it easy to keep my API documentation up-to-date and accessible alongside my project documentation.
+
+For diagrams and visualizations, [Mermaid](https://mermaid.js.org/) and [Excalidraw](https://excalidraw.com) are my go-to tools.
+
+## Snippets Management
+
+Managing code snippets is a very important part of being a software engineer. I don´t use a dediced snippets manager, but I use [Obsidian](https://obsidian.md/) with a "Code Snippets" folder and a specific template, to storing my code snippets. This makes it easy to search my snippets and link them with other notes I might have. I have developed a script for ScriptKit, which allows me to quickly search and insert code snippets into my code editor, making it easy to reuse code across projects.
+
+For saving terminal commands I use most, [the-way](https://github.com/out-of-cheese-error/) is my currently used tool.  Together with [tldr-pages](https://tldr.sh/) it´s a great way to keep track of useful terminal commands and how to use them.
+
+## Note taking and Personal Knowledge Management
+
+I use [Obsidian](https://obsidian.md/) as my primary note-taking and personal knowledge management tool. Obsidian big advantage is that it stores my notes in plain markdown files, which makes it easy to back up and sync across devices. I use GitHub for that.
+
+It also has a powerful plugin system that allows to extend it´s core functionality.
+
+For qucik and temporary notes, I use [Iotas](https://iotas.dev/). This is more of a scratchpad for quick notes and ideas.
+
+## Task Management
+
+For task management, I use [TickTick](https://ticktick.com/) and [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects), for code related tasks.
+
+## Database Management
+
+I use [DBeaver](https://dbeaver.io/) as my primary database management tool. It supports a wide range of databases and provides a powerful SQL editor, data visualization, and management features.
+
+## API Development and Testing
+
+I have switched a lot between API development tools. I used Postman, Insomnia, but all of them ended up suffering from enshitification, so right now I am on [UseBruno](https://usebruno.com/). I like that the API requests are stored as plain text files, which allows to be stored in version control systems like Git. I am having an eye on [Yaak](https://yaak.app/) which is a new tool from the creators of Insomnia.
+
+## Networking tools
+
+- [Wireshark](https://www.wireshark.org/) for network protocol analysis and troubleshooting.
+- [nmap](https://nmap.org/) for network scanning and security auditing.
+- [Tailscale](https://tailscale.com/) for secure and easy access to my home network and devices from anywhere.
+- [Holesail](https://holesail.io/) allows creating P2P tunnels to expose your local network to the internet securely,no Dynamic DNS required. Useful for testing.
+
+## Secrets Management
+
+- [Bitwarden](https://bitwarden.com/) for password management and secure storage of sensitive information.
+- [Sops](https://github.com/mozilla/sops) for managing secrets, stored in encrypted files, which can be versioned and shared securely.
+
+## Other Tools
+
+- [Dev Toolbox](https://flathub.org/apps/me.iepure.devtoolbox) - A collection of developer tools that I use for various tasks, such as JSON formatting, code beautification, and more.
+- [Text Compare](https://flathub.org/apps/io.github.josephmawa.TextCompare) for comparing text files and finding differences.
+- [Pinta](https://pinta-project.com/) for simple image editing tasks.
+- [Curtail](https://flathub.org/apps/com.github.huluti.Curtail) for optimizing and compressing images.
+- [Obfuscate](https://flathub.org/apps/com.belmoussaoui.Obfuscate) allows me to obfuscate sensitive information in my screenshots and images before sharing them.
+- [mkcert](https://github.com/FiloSottile/mkcert) for creating locally-trusted development certificates.
+- [jq](https://jqlang.org/) for processing and manipulating JSON data in the command line.
+
+## Conclusion
+
+I am very happy with my current setup, but I am always looking for ways to improve my productivity and workflow, so who knows how that will look like in 2026. Stay tuned for a 2026 update!
+
+I hope this overview was useful and that you discovered some new tools you might want to try. Remember that the best tools are the ones that work for you and your workflow. It´s good to take inspiration from others, but always adapt to your needs and preferences.
+
+Thanks you reading.
