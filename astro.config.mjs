@@ -2,7 +2,8 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
-import tailwind from '@astrojs/tailwind';
+
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,9 +19,9 @@ export default defineConfig({
       theme: 'dracula',
     },
   },
-  integrations: [sitemap(), mdx(), tailwind()],
+  integrations: [sitemap(), mdx()],
   vite: {
-    plugins: [],
+    plugins: [tailwindcss()],
   },
   server: {
     port: process.env.PORT ? Number(process.env.PORT) : 4321,
