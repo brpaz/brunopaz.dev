@@ -8,11 +8,9 @@ technologies:
   - "Python"
 coverImage: "cover.png"
 images: []
-sortOrder: 3
+sortOrder: 6
 ---
 
 [Ulauncher](https://ulauncher.io/) is a an Open source application launcher for Linux, that is very customizable and allow to create extensions.
 
 I built this extension, in order to facilitate the opening of VSCode projects.
-
-
