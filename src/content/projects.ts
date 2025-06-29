@@ -14,7 +14,7 @@ export const projectsCollection = defineCollection({
     description: z.string(),
     startDate: z.date().optional(),
     endDate: z.date().optional(),
-    category: z.enum(['application', 'website', 'library', 'tool']),
+    category: z.enum(['application', 'website', 'library', 'tool', 'other']),
     externalUrl: z.string().optional(),
     sourceUrl: z.string().optional(),
     technologies: z.array(z.string()),

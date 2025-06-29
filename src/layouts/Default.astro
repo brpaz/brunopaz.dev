@@ -8,7 +8,6 @@ import Header from '@components/shared/Header.astro';
 import Footer from '@components/shared/Footer.astro';
 import site from '~/content/site';
 
-const monetizationUrl = import.meta.env.PUBLIC_WEB_MONETIZATION_ID || '';
 const sentryEnabled = import.meta.env.PUBLIC_SENTRY_ENABLED || false;
 const sentryKey = import.meta.env.PUBLIC_SENTRY_KEY || '';
 
@@ -40,6 +39,7 @@ if (props.ogImage) {
     <meta property="og:url" content={Astro.request.url} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={ogImageURL} />
+    <meta name="fediverse:creator" content="@brpaz@masto.pt" />
     <meta name="twitter:image" content={ogImageURL} />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:app:country" content="PT" />
@@ -60,6 +60,7 @@ if (props.ogImage) {
       href={new URL(Astro.url.pathname, Astro.site).toString()}
     />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="me" href="https://masto.pt/@brpaz" />
     <link
       rel="alternate"
       type="application/rss+xml"
@@ -67,6 +68,11 @@ if (props.ogImage) {
       href="/blog/rss.xml"
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      type="text/plain"
+      rel="author"
+      href="https://brunopaz.dev/humans.txt"
+    />
     <noscript>
       <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"

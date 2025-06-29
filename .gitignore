@@ -36,3 +36,5 @@ public/img/socials
 
 # Devenv
 .direnv
+
+.history

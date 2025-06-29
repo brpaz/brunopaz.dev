@@ -1,0 +1,109 @@
+---
+title: How I use RSS to read the news
+slug: how-i-use-rss-to-read-the-news
+publishDate: 2025-06-28
+excerpt: In an age dominated by social media and algorithm-driven content, I find solace in the simplicity and reliability of RSS feeds. This article explores how I use RSS to curate my news consumption, ensuring I stay informed without the noise and distractions of modern platforms.
+tags: ['RSS', 'Self-Hosting', 'News']
+published: true
+---
+
+We live in the age of always-on connectivity and information overload. With countless news outlets, blogs, and social media platforms attempting to capture our constant attention, mixed with an ever-growing tide of disinformation and fake news, it can be overwhelming to find reliable and relevant content. Algorithms designed to maximize engagement often prioritize sensationalism over substance, making it difficult to separate the signal from the noise.
+
+FOMO (Fear of Missing Out) kicks in, which leads us to mindlessly scroll through feeds, consuming content that may not even be relevant or beneficial to us.
+
+In this article, I want to share how I stopped relying on social media for news and instead adopted RSS to curate my information consumption.
+
+## What is RSS?
+
+RSS (Really Simple Syndication) is a technology that exists since the early days of the web, which allows users to subscribe to updates from their favorite websites, blogs, and news outlets. It provides a standardized format for delivering content, making it easy to aggregate and read in one place.
+
+It can be seen as a precursor to modern social media, allowing users to follow multiple sources without the noise and distractions of algorithm-driven feeds. RSS feeds deliver content directly to your chosen reader, ensuring you receive updates in real-time without the need to visit each site individually.
+
+## Why Use RSS?
+
+### Control Over Content
+
+With RSS, you have complete control over the sources you follow. You can choose reputable news outlets, independent blogs, and niche publications that align with your interests.
+
+Unlike social media platforms, RSS feeds are not driven by algorithms that prioritize engagement and clicks. Instead, the content is shown in chronological order, allowing you to read articles as they are published, without the noise of trending topics or sponsored content.
+
+### Read At Your Own Pace
+
+Social media platforms incentivize an always-on mentality, where users feel compelled to check their feeds constantly. This can lead to information overload and mindless scrolling, without really absorbing the content.
+
+On the other hand, RSS allows you to read at your own pace. You can choose when and how much content to consume, without the pressure of keeping up with a never-ending stream of updates.
+
+### Enhanced Privacy and Security
+
+RSS works as a pure text-based format, which means you can consume news without being tracked or targeted by ads. You don't have to create accounts or share personal information with social media platforms, enhancing your privacy and security.
+
+### Offline Reading
+
+Many RSS readers offer offline capabilities, allowing you to download articles and read them later without an internet connection. This is especially useful for commutes or travel, where you may not have reliable access to the internet.
+
+### Customizable Experience
+
+RSS readers often come with customization options, allowing you to organize your feeds, create categories, and filter content based on your preferences. This level of personalization ensures that you only see the content that matters to you.
+
+## Choosing the Right RSS Reader
+
+To use RSS effectively, you will need an RSS reader. The RSS reader is the application or service that aggregates and displays the content from your subscribed feeds. There are many options available, ranging from web-based readers to desktop applications and mobile apps. Some popular choices include:
+
+- **[Feedly](https://feedly.com/)**: A web-based RSS reader with a clean interface and powerful organizational features.
+- **[Inoreader](https://www.inoreader.com/)**: Offers advanced filtering and automation options, making it ideal for power users.
+- **[Newsboat](https://newsboat.org/)**: A terminal-based RSS reader for those who prefer a keyboard-driven experience.
+- **[FreshRSS](https://freshrss.org/)**: A self-hosted option that gives you full control over your RSS feeds.
+- **[Capyreader](https://capyreader.com/)**: A modern, open-source RSS reader for Android.
+
+I have used Feedly in the past, but now I am self-hosting my own instance of FreshRSS. If you do not want to self-host, I think I would probably go with [Inoreader](https://www.inoreader.com/), but give them a try and see which one fits your needs best.
+
+## My RSS Setup
+
+As mentioned before, I am self-hosting my own instance of [FreshRSS](https://freshrss.org/), which aggregates the content from the various feeds I subscribe to. FreshRSS is lightweight, open source and has integration with many other clients that I use in different platforms, like [Capyreader](https://capyreader.com/) on my Android device and [Newsflash](https://flathub.org/apps/io.gitlab.news_flash.NewsFlash) on my Linux desktop.
+
+### How do I find new feeds to subscribe to?
+
+Finding new feeds to subscribe is a bit like discovering any new content on the web.
+
+For me it´s an organic process that happen naturally over time. From search engines, popular content aggregators like Reddit or Hacker News, known news outlets that I trust and than I visited manually offten,  links for articles or blogs shared in social media or in newsletters, individual blogs from people known in the industry that I follow, and so on.
+
+I think if your are getting started, a good way to start is to think about websites you know or visit offten, or people or topics that you are already following in other platforms like in social media, and then search for their RSS feeds.
+
+While most websites have an RSS feed, some may not make it easy to find. Look for the RSS icon (usually an orange square with white radio waves) or check the website's footer for a link to their feed. You can also use browser extensions or online tools to help you discover RSS feeds for specific websites. For Firefox, I am using [Copy RSS Button](https://addons.mozilla.org/en-US/firefox/addon/copy-rss-button/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search) extension, which adds a button to copy the RSS feed URL of the current page.
+
+### How do I organize my feeds
+
+I have categorized all my subscriptions into different categories, which helps me to quickly find the content I am interested in at any given time. Some of the categories I have include:
+
+- **News**: General world news from local and international outlets. (Ex: Jornal Notícias, Euronews, BBC News)
+- **Technology**: General technology news from sources like TechCrunch, Ars Technica, Android Police, and others.
+- **Dev** : General Development-related content and Engineering blogs (Ex: Dev.to, The New Stack, GitHub Blog, Netflix Tech Blog, Spotify Engineering blog, and many others).
+- **Dev | Language** Specific content for programming languages / areas I am interested in, such as Python, JavaScript, Rust, and Go. For example, for Go, I follow the official [Go blog](https://go.dev/blog/), [Go Weekly](https://golangweekly.com/), more.
+- **GitHub Releases** - Feeds that allows me to track new releases of my favorite open source projects.
+- **AI** - Feeds that cover the latest news and developments in the field of Artificial Intelligence.
+- **Finance** - Financial news and analysis from sources like Bloomberg, CNBC, and others.
+- **Podcasts** - A neat feature of RSS is that it can be also used to subscribe to podcasts. I have a few feeds that provide updates on new episodes of my favorite podcasts, such as [DevInterruped](https://linearb.io/dev-interrupted/podcasts) or [The Changelog](https://changelog.com/podcast).
+
+and more ...
+
+### Configuring Archival rules
+
+RSS feeds can accumulate a lot of articles over time, especially if you follow many sources or sources with high publication frequency. This can bloat your reader, make it slower and harder to focus on the most relevant content.
+
+One of the neat features of FreshRSS is that it allows you some limits on how many articles to keep in each feed, based on number of articles or age. This helps keeping subscriptions manageable and prevents the reader from becoming cluttered with old articles that I may never read.
+
+This can be configured by category or individually for each feed. For example, the "News" category is expected to have a high number of articles, and also it is more time-sensitive, so I have set it to keep less articles than other categories.
+
+I have also built a [cli](https://github.com/brpaz/freshrss-cleaner) tool that furthers automates the cleaning process of old articles by automatically mark them as read based on their age. For example, for the "News" category, I have set it to mark articles as read after 24 hours, while for the "Dev" category I have set it to 15 days.
+
+## As content creator, ensure your content is discoverable and accessible through RSS feeds
+
+RSS is a very simple protocol to integrate into your website or blog. Most popular content management systems (CMS) like WordPress, Ghost, and others have built-in support for RSS feeds. Popular Static site generators like Jekyll, Hugo, and Eleventy also provide plugins or built-in features that can generate RSS feeds at build time.
+
+There is really no excuse for not having one. And by doing so, you are helping with the decentralization of the web, allowing users to discover and consume your content on their own terms.
+
+### Conclusion
+
+RSS is an old technology, but it remains a powerful tool for curating and consuming content. By leveraging RSS feeds, you can take control of your information consumption, avoid the noise and distractions of social media, and read at your own pace, while still be accessible from a single place. (Your RSS reader).
+
+It´s a viable alternative to social media for news consumption, and I highly recommend giving it a try. Whether you choose to self-host your own RSS reader or use a hosted service, the benefits of RSS are clear: control, privacy, and a more focused reading experience.

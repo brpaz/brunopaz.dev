@@ -19,9 +19,6 @@ export default defineConfig({
     },
   },
   integrations: [sitemap(), mdx(), tailwind()],
-  vite: {
-    plugins: [],
-  },
   server: {
     port: process.env.PORT ? Number(process.env.PORT) : 4321,
   },

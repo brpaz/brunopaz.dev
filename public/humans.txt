@@ -1,4 +1,5 @@
 /* SITE INFORMATION */
 Author: Bruno Paz
-Location:   PT
-Built with: Astro
+Contact: info@brunopaz.dev
+Location: Porto, PT
+Built with: Astro, TailwindCSS
