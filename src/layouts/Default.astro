@@ -1,7 +1,7 @@
 ---
 import '@assets/styles/global.css';
 import '@fontsource-variable/inter';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import LoadingIndicator from 'astro-loading-indicator/component';
 import { fade } from 'astro:transitions';
 import Header from '@components/shared/Header.astro';
@@ -90,7 +90,7 @@ if (props.ogImage) {
         />
       )
     }
-    <ViewTransitions />
+    <ClientRouter />
     <LoadingIndicator color="#60a5fa" />
   </head>
 
