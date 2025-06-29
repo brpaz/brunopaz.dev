@@ -58,6 +58,7 @@ Create a new directory for your project and navigate to it:
 mkdir devenv-go-example
 cd devenv-go-example
 ```
+
 Now, initialize the Devenv project:
 
 ```shell
@@ -183,7 +184,6 @@ Languages section allows you to enable support for specific programming language
 
 You could also install the language manually by adding `pkgs.go` to the `packages` section, but using the `languages` section is more convenient and provides additional features like the installation of language servers and other tools that are commonly used in Go development. You can see what is installed and how everything is configured by looking at Devenv source code [here](https://github.com/cachix/devenv/blob/main/src/modules/languages/go.nix)
 
-
 ### Adding dependencies
 
 To install additional packages in your Devenv environment, you place them in the `package` section.
@@ -205,7 +205,7 @@ Modify the `pkgs` section to include the following packages:
 
 Run `direnv reload` to update your environment. You should now have the `golangci-lint` and `gotestsum` available on your environment. You can confirm this by running `which golangci-lint` and `which gotestsum`, which should point to the Devenv environment.
 
-### Step 3: Initializing Go application.
+### Step 3: Initializing Go application
 
 We have the basics of our environment setup, now it´s time to start building our Go application.
 
@@ -221,57 +221,57 @@ Next, create a new file called `main.go` in the project directory with the follo
 package main
 
 import (
-	"context"
-	"fmt"
-	"log/slog"
-	"net/http"
-	"os"
-	"os/signal"
-	"syscall"
-	"time"
+ "context"
+ "fmt"
+ "log/slog"
+ "net/http"
+ "os"
+ "os/signal"
+ "syscall"
+ "time"
 )
 
 func main() {
 
-	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+ logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 
-	port := os.Getenv("APP_PORT")
-	if port == "" {
-		port = "8080"
-	}
+ port := os.Getenv("APP_PORT")
+ if port == "" {
+  port = "8080"
+ }
 
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Hello, World!")
-	})
+ mux := http.NewServeMux()
+ mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+  fmt.Fprintln(w, "Hello, World!")
+ })
 
-	server := &http.Server{
-		Addr:         ":" + port,
-		Handler:      mux,
-		ReadTimeout:  5 * time.Second,
-		WriteTimeout: 10 * time.Second,
-	}
+ server := &http.Server{
+  Addr:         ":" + port,
+  Handler:      mux,
+  ReadTimeout:  5 * time.Second,
+  WriteTimeout: 10 * time.Second,
+ }
 
-	go func() {
-		logger.Info("Starting server", "port", port)
-		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			logger.Error("Server failed to start", "error", err)
-		}
-	}()
+ go func() {
+  logger.Info("Starting server", "port", port)
+  if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+   logger.Error("Server failed to start", "error", err)
+  }
+ }()
 
-	sigChan := make(chan os.Signal, 1)
-	signal.Notify(sigChan, syscall.SIGINT, syscall.SIGTERM)
+ sigChan := make(chan os.Signal, 1)
+ signal.Notify(sigChan, syscall.SIGINT, syscall.SIGTERM)
 
-	<-sigChan
+ <-sigChan
 
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
+ ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+ defer cancel()
 
-	logger.Info("Shutting down server...")
+ logger.Info("Shutting down server...")
 
-	if err := server.Shutdown(ctx); err != nil {
-		logger.Error("Server shutdown failed", "error", err)
-	}
+ if err := server.Shutdown(ctx); err != nil {
+  logger.Error("Server shutdown failed", "error", err)
+ }
 }
 ```
 
@@ -511,102 +511,102 @@ Then, modify the `main.go` file to connect with the following code:
 package main
 
 import (
-	"context"
-	"fmt"
-	"log/slog"
-	"net/http"
-	"os"
-	"os/signal"
-	"syscall"
-	"time"
+ "context"
+ "fmt"
+ "log/slog"
+ "net/http"
+ "os"
+ "os/signal"
+ "syscall"
+ "time"
 
-	"database/sql"
+ "database/sql"
 
-	_ "github.com/lib/pq"
+ _ "github.com/lib/pq"
 )
 
 // getDBConnection initializes the database connection
 func getDBConnection() (*sql.DB, error) {
-	connStr := fmt.Sprintf("user=%s password=%s dbname=%s port=%s sslmode=disable",
-		os.Getenv("POSTGRES_USER"),
-		os.Getenv("POSTGRES_PASSWORD"),
-		os.Getenv("POSTGRES_DB"),
-		os.Getenv("POSTGRES_PORT"))
+ connStr := fmt.Sprintf("user=%s password=%s dbname=%s port=%s sslmode=disable",
+  os.Getenv("POSTGRES_USER"),
+  os.Getenv("POSTGRES_PASSWORD"),
+  os.Getenv("POSTGRES_DB"),
+  os.Getenv("POSTGRES_PORT"))
 
-	db, err := sql.Open("postgres", connStr)
+ db, err := sql.Open("postgres", connStr)
 
-	if err != nil {
-		return nil, fmt.Errorf("failed to open database connection: %w", err)
-	}
+ if err != nil {
+  return nil, fmt.Errorf("failed to open database connection: %w", err)
+ }
 
-	return db, nil
+ return db, nil
 }
 
 func main() {
 
-	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+ logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
 
-	logger.Info("Starting application...")
+ logger.Info("Starting application...")
 
-	dbConn, err := getDBConnection()
+ dbConn, err := getDBConnection()
 
-	if err != nil {
-		logger.Error("Failed to connect to database", "error", err)
-		os.Exit(1)
-	}
-	defer dbConn.Close()
+ if err != nil {
+  logger.Error("Failed to connect to database", "error", err)
+  os.Exit(1)
+ }
+ defer dbConn.Close()
 
-	if err := dbConn.Ping(); err != nil {
-		logger.Error("Failed to ping database", "error", err)
-		os.Exit(1)
-	}
+ if err := dbConn.Ping(); err != nil {
+  logger.Error("Failed to ping database", "error", err)
+  os.Exit(1)
+ }
 
-	logger.Info("Connected to database successfullyf")
+ logger.Info("Connected to database successfullyf")
 
-	port := os.Getenv("APP_PORT")
-	if port == "" {
-		port = "8080"
-	}
+ port := os.Getenv("APP_PORT")
+ if port == "" {
+  port = "8080"
+ }
 
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		dbVersion := dbConn.QueryRow("SELECT version()")
-		var version string
-		if err := dbVersion.Scan(&version); err != nil {
-			http.Error(w, "Failed to get database version", http.StatusInternalServerError)
-		}
+ mux := http.NewServeMux()
+ mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+  dbVersion := dbConn.QueryRow("SELECT version()")
+  var version string
+  if err := dbVersion.Scan(&version); err != nil {
+   http.Error(w, "Failed to get database version", http.StatusInternalServerError)
+  }
 
-		_, _ = fmt.Fprintln(w, "Hello, Go!")
-		_, _ = fmt.Fprintf(w, "Connected to database version: %s\n", version)
-	})
+  _, _ = fmt.Fprintln(w, "Hello, Go!")
+  _, _ = fmt.Fprintf(w, "Connected to database version: %s\n", version)
+ })
 
-	server := &http.Server{
-		Addr:         ":" + port,
-		Handler:      mux,
-		ReadTimeout:  5 * time.Second,
-		WriteTimeout: 10 * time.Second,
-	}
+ server := &http.Server{
+  Addr:         ":" + port,
+  Handler:      mux,
+  ReadTimeout:  5 * time.Second,
+  WriteTimeout: 10 * time.Second,
+ }
 
-	go func() {
-		logger.Info("Starting server", "port", port)
-		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			logger.Error("Server failed to start", "error", err)
-		}
-	}()
+ go func() {
+  logger.Info("Starting server", "port", port)
+  if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+   logger.Error("Server failed to start", "error", err)
+  }
+ }()
 
-	sigChan := make(chan os.Signal, 1)
-	signal.Notify(sigChan, syscall.SIGINT, syscall.SIGTERM)
+ sigChan := make(chan os.Signal, 1)
+ signal.Notify(sigChan, syscall.SIGINT, syscall.SIGTERM)
 
-	<-sigChan
+ <-sigChan
 
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
+ ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+ defer cancel()
 
-	logger.Info("Shutting down server...")
+ logger.Info("Shutting down server...")
 
-	if err := server.Shutdown(ctx); err != nil {
-		logger.Error("Server shutdown failed", "error", err)
-	}
+ if err := server.Shutdown(ctx); err != nil {
+  logger.Error("Server shutdown failed", "error", err)
+ }
 }
 ```
 
