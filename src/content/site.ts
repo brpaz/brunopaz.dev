@@ -1,7 +1,7 @@
 export default {
-  title: 'Bruno Paz',
+  title: 'Bruno Paz - Software Engineer',
   description:
-    'Personal website of Bruno Paz. A Software Engineer, Tech Lead, and Developer Advocate. Writing about software development, leadership, and productivity.',
+    'Bruno Paz is a Software Engineer / Tech Lead from Porto, Portugal, with more than 10 years of experience in web development with a vast amount of technologies and programming languages like Golang, PHP, Symfony, Java and NodeJS and in different sectors like b2b, e-commerce, travel, payments and healthcare. This is his personal website and blog where he shares his knowledge and experience.',
   social: {
     github: 'https://github.com/brpaz',
     linkedin: 'https://www.linkedin.com/in/brunopaz88',
