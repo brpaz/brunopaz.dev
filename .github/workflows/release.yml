@@ -35,7 +35,7 @@ jobs:
 
   deploy:
     name: Deploy Production
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     environment:
       name: production
       url: https://brunopaz.dev
