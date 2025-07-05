@@ -1,7 +1,6 @@
 ---
 import '@assets/styles/global.css';
-import '@fontsource-variable/inter';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import LoadingIndicator from 'astro-loading-indicator/component';
 import { fade } from 'astro:transitions';
 import Header from '@components/shared/Header.astro';
@@ -35,7 +34,6 @@ if (props.ogImage) {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <!--<meta name="monetization" content={monetizationUrl} />-->
     <meta property="og:url" content={Astro.request.url} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content={ogImageURL} />
@@ -73,13 +71,6 @@ if (props.ogImage) {
       rel="author"
       href="https://brunopaz.dev/humans.txt"
     />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"
-        rel="stylesheet"
-        type="text/css"
-      />
-    </noscript>
     {
       sentryEnabled && (
         <script
@@ -90,7 +81,7 @@ if (props.ogImage) {
         />
       )
     }
-    <ViewTransitions />
+    <ClientRouter />
     <LoadingIndicator color="#60a5fa" />
   </head>
 
@@ -98,7 +89,7 @@ if (props.ogImage) {
     class="h-screen w-full flex flex-col"
     transition:animate={fade({ duration: '0.5s' })}
   >
-    <main class="container">
+    <main class="container flex flex-col flex-1">
       <Header />
       <!-- The page will render it's content here -->
       <slot />
