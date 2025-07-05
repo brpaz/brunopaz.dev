@@ -64,8 +64,8 @@ const posts = page.data.map((data) => {
           <Post post={post} />
 
           <hr
-            class="block w-2/3 bg-primary-300 text-center mx-auto mt-8 mb-8"
-            style="height: 2px;"
+            class="block w-2/3 text-center text-primary-400 mx-auto mt-12 mb-12"
+            style="height: 2px"
           />
         </div>
       ))
@@ -81,8 +81,7 @@ const posts = page.data.map((data) => {
             buttonGroup="pagination"
             activeButton="bg-primary-400 text-white  hover:bg-primary-400 hover:text-white current-page"
             outerDiv="flex items-center justify-center"
-            button="relative flex-nowrap inline-flex items-center px-4 py-2 border text-sm font-medium"
-            disabledButton="disabled:opacity-75"
+            button="relative flex-nowrap inline-flex items-center px-4 py-2 mr-2 text-sm font-medium"
           />
         </div>
       )

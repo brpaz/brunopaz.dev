@@ -6,7 +6,6 @@ import { BlogPostCollection } from '~/content/types';
 import DefaultLayout from '~/layouts/Default.astro';
 import PageTitle from '~/components/shared/PageTitle.astro';
 import FormattedDate from '~/components/blog/FormattedDate.astro';
-import SocialShare from '~/components/blog/SocialShare.astro';
 import TagsList from '~/components/blog/TagsList.astro';
 interface Props {
   post: CollectionEntry<BlogPost>;
@@ -34,7 +33,7 @@ const { Content } = await post.render();
 </style>
 
 <DefaultLayout
-  title=`Bruno Paz ${title}`
+  title=`${title} | Bruno Paz`
   description={excerpt}
   ogImage={ogImage}
 >
@@ -42,7 +41,7 @@ const { Content } = await post.render();
 
   {
     publishDate && (
-      <div class="text-xs text-center mb-4">
+      <div class="text-neutral-600 text-center mb-8">
         <FormattedDate date={publishDate} />
       </div>
     )
@@ -50,7 +49,7 @@ const { Content } = await post.render();
 
   {
     post.data.tags.length > 0 && (
-      <div class="flex mb-4 w-full justify-center">
+      <div class="flex mb-8 w-full justify-center">
         <TagsList tags={post.data.tags} />
       </div>
     )
