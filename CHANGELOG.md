@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## 1.3.0 - 2025-07-06
+
+### What's Changed
+
+#### 🚀 Features
+
+- New blog post: Docker compose watch. @brpaz (#195)
+- feat: update to Tailwind V4 @brpaz (#194)
+
+#### 🧩 Dependency Updates
+
+<details>
+<summary>6 changes</summary>
+- chore(deps): update dependency @typescript-eslint/parser to v8.35.1 @[renovate[bot]](https://github.com/apps/renovate) (#182)
+- chore(deps): update dependency @types/node to v22.16.0 @[renovate[bot]](https://github.com/apps/renovate) (#181)
+- chore(deps): update node.js to v22 @[renovate[bot]](https://github.com/apps/renovate) (#190)
+- chore(deps): update dependency ubuntu to v24 @[renovate[bot]](https://github.com/apps/renovate) (#189)
+- chore(deps): update stefanzweifel/git-auto-commit-action action to v6 @[renovate[bot]](https://github.com/apps/renovate) (#191)
+- chore(deps): update dependency eslint to v9.30.1 @[renovate[bot]](https://github.com/apps/renovate) (#193)
+
+</details>
+**Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.2.0...v1.3.0
+
 ## 1.2.0 - 2025-06-29
 
 ### What's Changed
