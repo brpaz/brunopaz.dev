@@ -147,7 +147,7 @@ docker compose up --watch
 
 You should see an output similar to this, showing that the application is running and the watch mode is enabled:
 
-```
+```plaintext
 [+] Running 3/3
  ✔ app                                           Built                                                                                                             0.0s
  ✔ Network docker-compose-watch-example_default  Created                                                                                                           0.2s
@@ -165,7 +165,7 @@ Open the `server.js` file in your favorite text editor and change the message re
 
 Save the file and you should see the following output in the terminal:
 
-```
+```plaintext
 app-1   | Server is running on http://localhost:3000
         ⦿ Syncing service "app" after 1 changes were detected
         ⦿ service(s) ["app"] restarted
@@ -183,7 +183,7 @@ npm install random
 
 After the installation completes, you should see the following output in the original terminal window, indicating the rebuild action was triggered:
 
-```
+```plaintext
         ⦿ Rebuilding service(s) ["app"] after changes were detected...
 Compose can now delegate builds to bake for better performance.
  To do so, set COMPOSE_BAKE=true.
