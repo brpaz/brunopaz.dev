@@ -1,0 +1,222 @@
+---
+title: How to Use Docker Compose Watch As Livereload Alternative
+slug: how-to-use-docker-compose-watch-as-livereload-alternative
+publishDate: 2025-07-06
+excerpt: Watch is a neat new feature of Docker compose that allows to monitor for file changes and automatically execute actions like sync the modified files to the container or restart the service. This feature can be a great alternative to traditional livereload solutions, and in this article I will show you a practical example of how to use it.
+tags: ['development','docker']
+published: true
+---
+
+Docker Compose recently introduced a new feature called [Docker Compose Watch](https://docs.docker.com/compose/watch/), which allows to automatically execute actions, like syncing files to the container, or rebuild/restart the service, every time a file change is detected in your project directory.
+
+This is particularly useful for development environments where you want to see changes in real-time without having to constantly rebuild or restart your applications manually.
+
+Before the introduction of this feature, specialized tools or scripts were used to achieve similar functionality. Those tools would often require to mount your source code into the container as a volume and have a separate process watching for changes and triggering a rebuild or reload of the application. Example of those tools include [nodemon](https://nodemon.io/) for Node.js applications, or [air](https://github.com/air-verse/air) for Go applications.
+
+This process could sometimes be cumbersome and led to performance issues, especially with larger codebases or when using non-Linux systems, which are known to have slower file system performance when using volumes.
+
+Docker Compose Watch simplifies this process by integrating file watching directly into the Docker Compose workflow. It allows you to specify which files or directories to watch in the compose file, and it automatically rebuilds and restarts the affected services when changes are detected.
+
+No need for volumes or external scripts, just a simple configuration in your existing `docker-compose.yml` file.
+
+In this article, I will show a simple example of how to set up Docker Compose Watch for a Node.js application. The same principles can be applied to other languages and frameworks as well as one of the advantages of using Docker Compose Watch is that it works with any application that can be run inside a Docker container, regardless of the language or framework used.
+
+## Pre-requisites
+
+To follow along, you will need the following:
+
+- Docker and Docker Compose with version 2.22.0 or higher, is required to use the watch feature. You can follow the [official installation guide](https://docs.docker.com/compose/install/) to install Docker Compose on your system.
+- NodeJS and npm installed on your system. You can download and install Node.js from the [official website](https://nodejs.org/).
+
+## Creating an basic Node.js application
+
+Let´s create a simple Node.js application that we will use to demonstrate Docker Compose Watch. We will create an Express server that exposes a single endpoint that returns a "Hello World" message.
+
+Create a new directory for your project and initialize a new Node.js project:
+
+```bash
+mkdir docker-compose-watch-example
+cd docker-compose-watch-example
+npm init -y
+```
+
+Next, install Express as a dependency:
+
+```bash
+npm install express
+```
+
+Now, create a file named `server.js` in the project directory with the following content:
+
+```javascript
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+```
+
+If you run this file with `node server.js`, you should see the message "Server is running on `http://localhost:3000` in your terminal, and if you navigate to that URL in your browser, you should see the message "Hello World!". We have now our example application ready.
+
+Next, we will set up our Docker environment.
+
+## Dockerize our Express application
+
+In the root directory of your project create a file named `Dockerfile` with the following content:
+
+```dockerfile
+FROM node:lts
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+CMD ["node", "server.js"]
+```
+
+Next, create a file named `docker-compose.yml` in the project directory with the following content:
+
+```yaml
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    command: node server.js
+    stop_grace_period: 0s
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./
+          target: /app/
+          ignore:
+            - node_modules/
+            - docker-compose.yml
+            - Dockerfile
+        - action: rebuild
+          path: package.json
+
+```
+
+In this compose file, we define a single service named `app`, which exposes port 3000 and runs the `server.js` file. This structure should be familiar for anyone who has worked with Docker Compose before.
+
+The part that might look a bit different from what you are used to is the `develop` section. This is where we configure Docker Compose Watch.
+
+### Understanding the `watch` section
+
+The `watch` section allow us to specifiy a series of actions to execute when a change is detecting in the files specified in the `path` field.
+
+At the time of writing, the following actions are supported:
+
+- `sync`: Syncs the specified files or directories to the target path inside the container.
+- `rebuild`: Rebuilds the service (Similar to running `docker-compose build` manually).
+- `restart`: Restarts the service (Similar to running `docker-compose restart` manually).
+
+You can also combine multiple actions for the same path, using the `+` operator. For example, you want to to sync the files and then restart the service, you can specify `sync+restart` as the action.
+
+In this example, we are watching the entire project directory (`./`) and syncing it to the `/app/` directory inside the container, which is the directory where our application code resides inside the container as specified in the Dockerfile.
+
+Since we are running an Express server, you will need to restart the server whenever you change the source code. Therefore, we are also specifying the `restart` action.
+
+You could still use a tool like `nodemon` inside the container and only use `sync` action. It would work, and would still have the advantage of not having to mount the source code as a volume, but using Docker compose watch is a simpler solution that does not require additional dependencies.
+
+We can also specify some patterns to ignore files or directories from being watched. In this case, we are ignoring the `node_modules/` directory to avoid unnecessary rebuilds and also because the container will have its own `node_modules` as part of the build process, as well as some files that are not relevant for the application.
+
+We also defined a separate `rebuild` action when the `package.json` file change, which will trigger a rebuild of the service. This is useful if you add or remove dependencies in your project, as it will ensure that the container has the latest dependencies installed.
+
+One thing I want to highlight is the `stop_grace_period: 0s` line. When writing this article, I noticed that the container was taking too much time to restart after a change. After some investigation, I found out that docker compose was waiting for the container to stop gracefully before restarting it, which was causing the delay. Setting `stop_grace_period` to `0s` allows the container to stop immediately, which speeds up the restart process. You can adjust this value based on your needs, but for development purposes, setting it to `0s` should be generally okay.
+
+## Running the application with watch mode
+
+After we have our Dockerfile and docker-compose.yml set up, we can now start our application with Docker Compose in watch mode. To do so, run the following command in your terminal:
+
+```bash
+docker compose up --watch
+```
+
+You should see an output similar to this, showing that the application is running and the watch mode is enabled:
+
+```plaintext
+[+] Running 3/3
+ ✔ app                                           Built                                                                                                             0.0s
+ ✔ Network docker-compose-watch-example_default  Created                                                                                                           0.2s
+ ✔ Container docker-compose-watch-example-app-1  Created                                                                                                           0.1s
+Attaching to app-1
+        ⦿ Watch enabled
+app-1   | Server is running on http://localhost:3000
+```
+
+If you navigate to `http://localhost:3000` in your browser, you should see the message "Hello World!"
+
+## Testing the watch functionality
+
+Open the `server.js` file in your favorite text editor and change the message returned by the server, for example, change it to "Hello Docker Compose Watch!".
+
+Save the file and you should see the following output in the terminal:
+
+```plaintext
+app-1   | Server is running on http://localhost:3000
+        ⦿ Syncing service "app" after 1 changes were detected
+        ⦿ service(s) ["app"] restarted
+```
+
+This indicates that Docker Compose Watch detected the file change, synced the updated file to the container, and restarted the service automatically.
+
+You can now navigate to `http://localhost:3000` in your browser, and you should see the updated message "Hello Docker Compose Watch!".
+
+Let´s test the `rebuild` action as well. Without stopping your compose process, open a new terminal window and run the following command to add a new dependency to your project:
+
+```shell
+npm install random
+```
+
+After the installation completes, you should see the following output in the original terminal window, indicating the rebuild action was triggered:
+
+```plaintext
+        ⦿ Rebuilding service(s) ["app"] after changes were detected...
+Compose can now delegate builds to bake for better performance.
+ To do so, set COMPOSE_BAKE=true.
+        ⦿ service(s) ["app"] successfully built
+app-1 exited with code 137
+app-1 has been recreated
+        ⦿ Syncing service "app" after 2 changes were detected
+app-1   | Server is running on http://localhost:3000
+        ⦿ service(s) ["app"] restarted
+app-1 exited with code 0
+app-1   | Server is running on http://localhost:3000
+```
+
+Now change your `server.js` file again to use our newly installed `random` package, for example:
+
+```javascript
+const express = require('express');
+const random = require('random');
+const app = express();
+const PORT = process.env.PORT || 3000;
+app.get('/', (req, res) => {
+  res.send(`Hello Docker Compose Watch! Random number: ${random.default.int(1, 100)}`);
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+```
+
+Save the file and open your browser. You should see the updated message with a random number.
+
+And that’s it! You have successfully set up Docker Compose Watch to reload your application automatically whenever you make changes to the source code.
+
+## Conclusion
+
+In this article, we explored how to use Docker Compose Watch as a lightweight alternative to traditional livereload solutions. By integrating file watching directly into the Docker Compose workflow, we simplified the development process and improved the overall experience.
