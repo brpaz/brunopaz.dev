@@ -43,7 +43,7 @@ This query joins the `users` and `orders` tables, filtering users by age and ord
 
 Let’s walk through a sample output from `EXPLAIN ANALYZE` for the query above:
 
-```
+```plaintext
 Nested Loop  (cost=0.43..120.85 rows=100 width=48) (actual time=0.025..1.234 rows=50 loops=1)
   ->  Index Scan using idx_users_age on users u  (cost=0.29..8.50 rows=200 width=24) (actual time=0.015..0.200 rows=100 loops=1)
     Index Cond: (age > 30)
@@ -68,7 +68,6 @@ Seeing index scans is a good sign: it means the database is using indexes to avo
 
 The `loops` value shows how many times each operation ran. For example, `loops=1` for the outer scan means it ran once, while `loops=100` for the inner scan means it ran 100 times—once for each row from the outer scan. High loop counts, especially in nested loops, can signal inefficiency if the inner operation is costly or returns many rows.
 
-
 #### Common Operation Types in Execution Plans
 
 Here are some common operations you’ll see in execution plans:
@@ -84,7 +83,6 @@ Here are some common operations you’ll see in execution plans:
 
 Understanding these operations—and how they’re combined—helps you spot bottlenecks and find optimization opportunities.
 
-
 ### Cost Estimates
 
 The `cost` values are estimates of resource usage (CPU, I/O, etc.) for each operation. The first number is the startup cost (to get the first row), and the second is the total cost (to get all rows). These numbers are unitless and only meaningful relative to each other—they help the planner choose the most efficient plan.
@@ -97,16 +95,13 @@ Costs accumulate up the tree, so the root node’s cost is the total estimated c
 
 The `actual time` values show how long each operation really took: the first number is the time to get the first row, the second is the total time for all rows. Times are usually in milliseconds (ms). Look for operations with high actual times—they’re often the best targets for optimization.
 
-
 ### Planning Time and Execution Time
 
 `Planning Time` is how long the database spent figuring out the execution plan. `Execution Time` is the total time to actually run the query. Both are useful for understanding overall performance, especially for complex queries where planning can take a while.
 
-
 ### Rows
 
 The `rows` value is the planner’s estimate of how many rows each operation will process. This helps you understand the scale of data at each step.
-
 
 ## Conclusion
 

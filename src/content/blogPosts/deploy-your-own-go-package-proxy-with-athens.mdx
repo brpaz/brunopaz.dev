@@ -13,10 +13,10 @@ In this article, we will explore how to deploy your own Go package proxy using [
 
 When working with Go modules, you typically fetch dependencies directly from their source repositories. While this works well for most cases, there are several reasons why you might want to use a package proxy:
 
--  **Performance**: A local proxy can cache frequently used packages, reducing download times and improving build speeds.
--  **Reliability**: Proxies can provide a stable source for dependencies, even if the original source is unavailable.
--  **Security**: By controlling the packages that are available, you can reduce the risk of supply chain attacks.
--  **Reduced External Dependency**: Minimize reliance on external services, which can be crucial for environments with strict network policies or limited internet access.
+- **Performance**: A local proxy can cache frequently used packages, reducing download times and improving build speeds.
+- **Reliability**: Proxies can provide a stable source for dependencies, even if the original source is unavailable.
+- **Security**: By controlling the packages that are available, you can reduce the risk of supply chain attacks.
+- **Reduced External Dependency**: Minimize reliance on external services, which can be crucial for environments with strict network policies or limited internet access.
 
 Go has built-in support for module proxies, as [described in the official documentation](https://go.dev/ref/mod#module-proxy), and using a proxy is as simple as setting the `GOPROXY` environment variable.
 
@@ -57,6 +57,7 @@ mkdir athens-demo
 cd athens-demo
 go mod init athens-demo
 ```
+
 Now, create a simple `main.go` file that imports an external package:
 
 ```go
@@ -87,7 +88,7 @@ go run main.go
 
 You should see Go downloading logrus package, following by the output from your program.
 
-If you run ` curl -I http://localhost:3000/catalog` you should see a similar output to this:
+If you run `curl -I http://localhost:3000/catalog` you should see a similar output to this:
 
 ```json
 {
@@ -124,4 +125,3 @@ You should still be able to build and run your project successfully, as Athens w
 ## Conclusion
 
 Using a Go package proxy like Athens can be a great way to improve the reliability of your Go projects and ensure your application can be built any time, independent of external factors like internet connectivity or the availability of third-party repositories. This is especially useful in production and critical environments.
-
