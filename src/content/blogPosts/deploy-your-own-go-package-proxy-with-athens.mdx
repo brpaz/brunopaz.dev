@@ -1,0 +1,127 @@
+---
+title: Deploy your own Go package proxy with Athens
+publishDate: 2025-09-10
+slug: deploy-your-own-go-package-proxy-with-athens
+excerpt: In this article, we will explore how to set up your own Go package proxy using Athens, a robust solution for managing Go module proxies.
+tags: ['Go', 'Athens', 'Package Management']
+published: false
+---
+
+In this article, we will explore how to deploy your own Go package proxy using [Athens](https://github.com/gomods/athens), an open-source Go module datastore and proxy server.
+
+## Why Use a Go Package Proxy?
+
+When working with Go modules, you typically fetch dependencies directly from their source repositories. While this works well for most cases, there are several reasons why you might want to use a package proxy:
+
+-  **Performance**: A local proxy can cache frequently used packages, reducing download times and improving build speeds.
+-  **Reliability**: Proxies can provide a stable source for dependencies, even if the original source is unavailable.
+-  **Security**: By controlling the packages that are available, you can reduce the risk of supply chain attacks.
+-  **Reduced External Dependency**: Minimize reliance on external services, which can be crucial for environments with strict network policies or limited internet access.
+
+Go has built-in support for module proxies, as [described in the official documentation](https://go.dev/ref/mod#module-proxy), and using a proxy is as simple as setting the `GOPROXY` environment variable.
+
+## Installing Athens
+
+[Athens](https://github.com/gomods/athens) is an open source go module proxy implementation that can be self-hosted and supports multiple storage backends, like local filesystem or AWS S3.
+
+The simplest way to get started with Athens is to use the provided Docker image. You can run Athens locally with the following command:
+
+```bash
+docker run -p 3000:3000 gomods/athens:latest
+```
+
+Now if you access `http://localhost:3000` in your browser, you should see the Athens welcome page, which contains instructions how to configure your Go environment to use Athens as a proxy and a few useful api endpoints to explore.
+
+Note that if you stop your container, all cached modules will be lost, since the data is not persisted. If you want to persist the data, you can use a volume to mount a local directory to the container or use a cloud storage backend like AWS S3. For more information, about the available storage backends, check the [Athens documentation](https://docs.gomods.io/configuration/storage/).
+
+## Athens Demo
+
+### Pre-requisites
+
+Before you begin, ensure you have [Docker](https://www.docker.com/get-started) and [Go](https://go.dev/dl/) greater than 1.11, installed on your machine.
+
+If you have modules already cached in your local machine, it won´t be possible to see Athens in action, since Go will use the local cache instead of going through the proxy. In this case, you can clear the Go module cache by running:
+
+```bash
+go clean -modcache
+```
+
+### Create a sample Go project
+
+To test Athens, you can create a simple Go project that uses some external dependencies.
+
+In a new terminal window, execute the following commands. (do not close Athens running container):
+
+```bash
+mkdir athens-demo
+cd athens-demo
+go mod init athens-demo
+```
+Now, create a simple `main.go` file that imports an external package:
+
+```go
+touch main.go
+cat <<EOL > main.go
+package main
+import (
+    "fmt"
+    "github.com/sirupsen/logrus"
+)
+func main() {
+    logrus.Info("Hello, Athens!")
+}
+EOL
+```
+
+Now, set the `GOPROXY` environment variable to point to your local Athens instance:
+
+```bash
+export GOPROXY=http://localhost:3000
+```
+
+following by running our simple application:
+
+```bash
+go run main.go
+```
+
+You should see Go downloading logrus package, following by the output from your program.
+
+If you run ` curl -I http://localhost:3000/catalog` you should see a similar output to this:
+
+```json
+{
+    "modules": [
+        {
+            "module": "github.com/sirupsen/logrus",
+            "version": "v1.9.3"
+        },
+        {
+            "module": "golang.org/x/sys",
+            "version": "v0.36.0"
+        }
+    ]
+}
+```
+
+This indicates that Athens has cached the `logrus` package and its dependency `x/sys`.
+
+You can also check the Athens logs in the terminal where you started the Docker container to see the requests being processed.
+
+### Testing without Internet Access
+
+To simulate a scenario where your Go project cannot access the internet, you can temporarily disable your network connection or use firewall rules to block outbound traffic.
+
+Then, try to run your Go project again:
+
+```bash
+go clean -modcache
+go run main.go
+```
+
+You should still be able to build and run your project successfully, as Athens will serve the cached dependencies.
+
+## Conclusion
+
+Using a Go package proxy like Athens can be a great way to improve the reliability of your Go projects and ensure your application can be built any time, independent of external factors like internet connectivity or the availability of third-party repositories. This is especially useful in production and critical environments.
+
