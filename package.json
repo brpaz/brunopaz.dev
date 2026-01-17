@@ -10,9 +10,9 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=24.0.0"
   },
-  "packageManager": "pnpm@10.12.4",
+  "packageManager": "pnpm@10.28.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -29,7 +29,6 @@
     "test:e2e:report": "playwright show-report",
     "test:lh": "lhci collect",
     "test:lh:report": "lhci open",
-    "prepare": "husky",
     "icons:optimize": "svgo -r --config=svgo.config.js --input=src/assets/icons"
   },
   "devDependencies": {
@@ -40,19 +39,17 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@lhci/cli": "^0.15.1",
-    "@playwright/test": "^1.53.1",
+    "@playwright/test": "1.56.1",
     "@sarissa/pagination": "^1.0.3",
     "@types/markdown-it": "^14.1.2",
-    "@types/node": "^22.15.34",
+    "@types/node": "^25.0.9",
     "@typescript-eslint/parser": "^8.35.0",
-    "astro": "5.13.2",
+    "astro": "^5.16.11",
     "eslint": "^9.30.0",
     "eslint-plugin-astro": "^1.3.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-playwright": "^2.2.0",
-    "husky": "^9.1.7",
     "lighthouse-cli": "^0.1.2",
-    "lint-staged": "^16.1.2",
     "markdown-it": "^14.1.0",
     "markdownlint-cli": "^0.45.0",
     "node-fetch": "^3.3.2",

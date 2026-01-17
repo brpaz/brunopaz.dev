@@ -1,0 +1,102 @@
+---
+title: Using Zed as my main Code Editor
+slug: using-zed-as-my-main-code-editor
+excerpt: "In this article I will talk about my experience using Zed as my main code editor."
+tags: [tooling, development]
+published: true
+publishDate: 2026-01-17
+---
+
+import { Picture } from 'astro:assets';
+import zedUi from '../../assets/images/blog/20260117-zed-editor-ui.png';
+import zedSearch from '../../assets/images/blog/20261701-zed-search.png';
+
+I have been using Visual Studio Code for a few years as my main code editor and I can say I never really had any major problems with it.
+
+In the beginning of last year, I discovered [Zed](https://zed.dev/), a new code editor that started gaining popularity.
+
+Zed was started by Nathan Sobo, which was one of the creators of [Atom](https://en.wikipedia.org/wiki/Atom_(text_editor)). Zed is Open Source, Cross Platform, and it´s built in Rust and GPUI, an UI framework for Rust, created from scratch by the Zed team.
+
+I have been following Zed development since then. I did a quick try at the time, but it was missing a few important features like Debugging and Test support, Git integration, and a few other things, that led me to keep using Visual Studio Code.
+
+But recently, I decided to give Zed another try and I was impressed by how much it has improved since last time I tried it, to the point I have started using it as my daily driver, fully replacing Visual Studio Code.
+
+Zed is still in its early stages and according to their roadmap, the goal is to release the version 1.0 this year. There are still some missing features, but not major blockers for my particular use.
+
+In this article I talk a bit about this experience.
+
+## Installing Zed
+
+Zed is available for all major Operating Systems (Windows, Mac and Linux). The installation process is straightforward and well explained on [their website](https://zed.dev/download).
+
+## What I like about Zed
+
+### Performance and Speed
+
+Zed´s speed is one of it´s key strengths. I knew some people complaining about VS Code being slow, but honestly I never really felt it. Until I tried Zed. Now I just can´t go back. Open a new project is almost instant, even with large projects like [Nixpkgs](https://github.com/NixOS/nixpkgs). The search and navigation is very snappy. It´s a fantasic experience.
+
+Being a native Rust app, with a specifically built UI framework on top, is what allows Zed to be so performant, unlike VS Code, which is a JavaScript app running on Electron. To be fair, VSCode has been pushing the boundaries of what is possible with an Electron app. It´s probably one of the best Electron apps out there, but it´s no match for Zed.
+
+### Minimalistic UI
+
+<Picture src={zedUi} alt="Zed UI" width={1024} height={768} />
+
+Zed has a very minimalistic UI, which is very clean and easy to navigate. It has a few customization options like Theme support, but it's not as customizable as Visual Studio Code.
+
+One of the things that is very different from other code editors is how Zed handles the Search UI. In VSCode, the search panel is displayed in the sidebar, but in Zed is displayed in the center of the screen, taking advantage of the full width and height of the editor.
+
+<Picture src={zedSearch} alt="Zed Search" width={1024} height={768} />
+
+It also allows to directly modify the file contents from the search results (including multi selections ability), and also supports expanding a result to see more of it surrounding context.
+
+It can get a bit of time to get used to, but I think it´s a great implementation. I would probably prefer a Floating/Telescope style search, as you currently you need to remember to close the search panel after you are done, but it´s not a big deal. You can also leverage the tasks feature and a custom keybinding to integrate [Television to add a Telescope-style file finder.](https://github.com/zed-industries/zed/discussions/22581).
+
+### Language Support
+
+Zed has all the features you might expect for a modern code editor, thanks to the implementation of the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/). You might need to install some extensions to get full support for some languages, like Docker or Terraform, but that´s a really simple thing to do and it´s similar to what you already do in other editors.
+
+### AI Integration
+
+Independent of your own opinions the use of AI, it´s clear that is here to stay and Zed provides first class integration with AI agents in a similar way that GitHub Copilot does with VSCode.
+
+They provide their own subscription model [Zed AI](https://zed.dev/ai) which gives you access to some of the best AI models available today, but you can also bring your own, either by leveraging your existing GitHub Copilot account, or via an Agent server extension, which allows Zed to integrate with tools like Claude Code or Open Code. You can even use local Models with [Ollama](https://zed.dev/docs/ai/llm-providers#ollama).
+
+If you are not a fan of AI, Zed allows you to disable all the AI features, with a single configuration setting:
+
+```json
+{
+  "disable_ai": true
+}
+```
+
+## What is still lacking
+
+### Extensions support
+
+Zed supports extensions but it´s very limited compared to VScode. You can add Language Servers, Themes, Snippets, Debug Adapters and a few more, but if you are looking to more advanced features like adding new UI elements or commands, it´s still not possible to do so. It´s in roadmap though, after the 1.0 release, so eventually it will come.
+
+Personally, I have learned to live with it and to leverage external tools for specific tasks. For example, if you need Kubernetes support, you can use [K9s](https://k9scli.io/) from the command line, or [LazyGit](https://github.com/jesseduffield/lazygit) for better Git experience.
+
+You can use [Zed Tasks](https://zed.dev/docs/tasks) and set a keybind, to open a terminal application inside a tab in the editor. This allows to keep everything inside your editor in a more tied experience.
+
+I miss [VersionLens](https://versionlens.net/) a lot, but I learned to leverage commands like `npm outdated` or `npm update` for example, to keep Node dependencies up to date. It´s not as simple as VersionLens, but it gets the job done. You can also build some shell scripts around those commands, to make the process more streamlined.
+
+### Limited Markdown Viewer
+
+Markdown viewer is still a bit basic. It´s missing features like image and link path autocomplete, and there is no native support for previewing Mermaid Diagrams. This is a bit annoying, but it´s something I believe will come with time.
+
+### Lannaguge Limitations
+
+There might be some specific languages limitations. for example for Go, It´s not possible to run tests for a single package directly from the IDE. You can only run individual tests.
+
+---
+
+## Conclusion
+
+Zed has come a long way in the past year, and it's positioning itself as a strong candidate to dethrone VSCode in the future. It's UI is very polished and it´s speed unmatched.
+
+There are some limitations and lack of features expected from an early stage project, but personally I don´t find then to be critical blockers for my daily use. A bit annoying at most.
+
+It´s perfectly usable as a daily driver for the most part. If that´s not the case for you, that´s fine. Keep the eyes open for improvements and for the major 1.0 release and what will come next. I am sure that all the limitations I pointed out will be addressed over time.
+
+Nothing like trying it out yourself and see if it clicks for you. Go to [https://zed.dev/](https://zed.dev) to know more.

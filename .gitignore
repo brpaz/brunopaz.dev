@@ -38,3 +38,13 @@ public/img/socials
 .direnv
 
 .history
+
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml

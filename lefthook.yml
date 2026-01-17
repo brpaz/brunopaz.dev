@@ -1,0 +1,45 @@
+# lefthook.yml
+# Fast and powerful Git hooks manager
+# Docs: https://lefthook.dev
+
+pre-commit:
+  parallel: true
+  commands:
+    # Lint and fix JavaScript/TypeScript/Astro files
+    eslint:
+      glob: '*.{js,ts,astro}'
+      run: pnpm eslint --fix {staged_files}
+      stage_fixed: true
+      skip:
+        - merge
+        - rebase
+
+    # Format code files
+    prettier:
+      glob: '*.{js,ts,astro}'
+      run: pnpm prettier --write {staged_files}
+      stage_fixed: true
+      skip:
+        - merge
+        - rebase
+
+    # Lint markdown files
+    markdownlint:
+      glob: '*.{md,mdx}'
+      run: pnpm markdownlint {staged_files}
+      skip:
+        - merge
+        - rebase
+
+    # Astro type checking
+    astro-check:
+      glob: '*.{astro,ts}'
+      run: pnpm astro check
+      skip:
+        - merge
+        - rebase
+
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm commitlint --edit {1}
