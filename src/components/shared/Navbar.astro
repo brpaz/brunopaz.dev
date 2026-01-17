@@ -110,7 +110,7 @@ const menuItems = [
         <li class="block pb-4">
           <a
             href={item.path}
-            class={currentPage == item.rootPath ? 'active' : ''}
+            class={currentPage.startsWith(item.rootPath) ? 'active' : ''}
           >
             {item.title}
           </a>

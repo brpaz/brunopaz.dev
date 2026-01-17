@@ -4,6 +4,7 @@ import { ProjectCollection } from '~/content/types';
 import { sortProjects } from '~/content/projects';
 import FeaturedProjectCard from '@components/home/FeaturedProjectCard.astro';
 import MoreButton from '@components/home/MoreButton.astro';
+import SectionHeading from '@components/shared/SectionHeading.astro';
 
 const featuredProjects = await getCollection(
   ProjectCollection,
@@ -13,15 +14,15 @@ const projects = sortProjects(featuredProjects).slice(0, 3);
 ---
 
 <section
-  id="tech-stack"
-  class="flex flex-col mx-auto justify-center text-center mb-12"
+  id="featured-projects"
+  class="flex flex-col mx-auto justify-center text-center mb-section"
 >
-  <h2 class="font-bold text-neutral-600 text-4xl mb-4 text-center">
-    Featured Projects
-  </h2>
-  <div class="mb-12">
-    <p class="mb-4">Some projects I have worked on</p>
-
+  <SectionHeading
+    title="Featured Projects"
+    subtitle="Some projects I have worked on"
+    align="center"
+  />
+  <div class="mb-component">
     <div class="flex flex-wrap w-full justify-center mb-4">
       {
         projects.map((project) => (

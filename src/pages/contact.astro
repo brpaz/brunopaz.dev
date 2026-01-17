@@ -7,20 +7,20 @@ import ContactForm from '~/components/ContactForm.astro';
 ---
 
 <DefaultLayout title="Bruno Paz | Contact">
-  <div class="text-center mx-auto mb-8">
+  <div class="text-center mx-auto mb-component">
     <PageTitle title="Contact" />
 
     <Image
       src={IconEmail}
-      width="128"
-      height="128"
+      width="80"
+      height="80"
       alt=""
       aria-hidden="true"
-      class="m4-8 mt-4 mx-auto"
+      class="mb-component mt-element mx-auto"
       loading="eager"
     />
 
-    <p class="mb-16">Feel free to reach me using the form below:</p>
+    <p class="mb-section">Feel free to reach me using the form below:</p>
 
     <ContactForm />
   </div>

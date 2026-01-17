@@ -3,6 +3,8 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import type { Project } from '~/content/types';
 import { ProjectType } from '~/content/projects';
+import BaseCard from '@components/shared/BaseCard.astro';
+
 interface Props {
   project: CollectionEntry<Project>;
 }
@@ -10,18 +12,17 @@ interface Props {
 const { project } = Astro.props;
 
 const coverImage = project.data.coverImage.split('.');
+const variant =
+  project.data.type === ProjectType.Personal ? 'default' : 'primary';
 ---
 
-<a
-  class={`w-full h-full flex items-center project-card flex-col rounded-lg shadow-lg mb-8 p-1 mr-4 ${
-    project.data.type === ProjectType.Personal
-      ? 'bg-neutral-400 hover:bg-neutral-500'
-      : 'bg-blue-400 hover:bg-blue-500'
-  } text-white hover:text-white`}
+<BaseCard
   href={`/work/${project.slug}`}
+  variant={variant}
+  class="overflow-hidden"
 >
   <div
-    class="flex items-center justify-center rounded-t-lg w-full bg-white h-56 mb-2 overflow-hidden"
+    class="flex items-center justify-center w-full bg-white h-56 overflow-hidden"
   >
     <Image
       src={(
@@ -30,21 +31,19 @@ const coverImage = project.data.coverImage.split('.');
         )
       ).default}
       alt={`Image of project: ${project.data.name}`}
-      class="flex object-contain w-full h-full"
+      class="object-cover w-full h-full"
       loading="eager"
       aria-hidden="true"
     />
   </div>
 
-  <div class="px-4 py-2">
-    <div class="flex justify-between">
-      <h3 class="font-bold text-xl mb-4">
-        {project.data.name}
-      </h3>
-    </div>
+  <div class="px-6 py-4">
+    <h3 class="font-bold text-xl mb-3">
+      {project.data.name}
+    </h3>
 
-    <span class="w-full text-ellipsis line-clamp-5">
+    <p class="line-clamp-3 opacity-90">
       {project.data.description}
-    </span>
+    </p>
   </div>
-</a>
+</BaseCard>

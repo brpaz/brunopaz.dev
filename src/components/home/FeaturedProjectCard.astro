@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import type { Project } from '~/content/types';
+import BaseCard from '@components/shared/BaseCard.astro';
 
 interface Props {
   project: CollectionEntry<Project>;
@@ -14,33 +15,30 @@ const coverImageFileName = coverImage[0];
 const coverImageFileExtension = coverImage[1];
 ---
 
-<div class="project-card flex flex-col mb-4 sm:mr-4 h-full rounded-lg shadow-lg bg-primary-400">
-  <a
-    class="block h-full p-1 hover:text-white text-white hover:bg-primary-500 rounded-lg shadow-lg"
-    href={`/work/${project.slug}`}
-  >
-    <div class="flex items-center justify-center bg-white h-56 mb-2 overflow-hidden">
-      <Image
-        src={(
-          await import(
-            `./../../assets/images/projects/${project.slug}/${coverImageFileName}.${coverImageFileExtension}`
-          )
-        ).default}
-        alt={`Image of project: ${project.data.name}`}
-        class="w-full"
-        loading="lazy"
-        aria-hidden="true"
-      />
-    </div>
+<BaseCard
+  href={`/work/${project.slug}`}
+  variant="primary"
+  class="overflow-hidden"
+>
+  <div class="flex items-center justify-center bg-white h-56 overflow-hidden">
+    <Image
+      src={(
+        await import(
+          `./../../assets/images/projects/${project.slug}/${coverImageFileName}.${coverImageFileExtension}`
+        )
+      ).default}
+      alt={`Image of project: ${project.data.name}`}
+      class="object-cover w-full h-full"
+      loading="lazy"
+      aria-hidden="true"
+    />
+  </div>
 
-    <div class="px-4 py-2">
-      <div class="flex justify-between">
-        <h3 class="font-bold text-xl text-white mb-4">
-          {project.data.name}
-        </h3>
-      </div>
+  <div class="px-6 py-4">
+    <h3 class="font-bold text-xl mb-3">
+      {project.data.name}
+    </h3>
 
-      <span>{project.data.description}</span>
-    </div>
-  </a>
-</div>
+    <p class="opacity-90">{project.data.description}</p>
+  </div>
+</BaseCard>

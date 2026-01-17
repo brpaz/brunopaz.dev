@@ -1,4 +1,6 @@
 ---
+import Button from '@components/shared/Button.astro';
+
 const formId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID as string;
 ---
 
@@ -9,137 +11,60 @@ const formId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID as string;
   action={`https://formspree.io/f/${formId}`}
   class="w-full max-w-lg mx-auto"
 >
-  <div class="flex flex-wrap mb-6">
-    <div class="w-full md:w-1/2 justify-between mb-4 md:pr-4">
+  <div class="flex flex-wrap mb-6 gap-4">
+    <div class="w-full md:flex-1">
       <label
         for="name"
-        class="block
-        text-left
-        uppercase
-        tracking-wide
-        text-neutral-700 text-xs
-        font-bold
-        mb-2"
+        class="block text-left font-medium text-neutral-700 text-sm mb-2"
       >
-        Name <span class="text-red-600"> * </span></label
+        Name <span class="text-red-600">*</span></label
       >
       <input
         id="name"
         name="name"
         type="text"
         required
-        class="appearance-none
-            block
-            w-full
-            bg-secondary-200
-            text-neutral-700
-            border
-            rounded
-            py-3
-            px-4
-            mb-3
-            leading-tight
-            focus:outline-none
-            focus:bg-white"
+        class="appearance-none block w-full bg-white text-neutral-900 border border-neutral-300 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
       />
     </div>
-    <div class="w-full md:w-1/2">
+    <div class="w-full md:flex-1">
       <label
         for="email"
-        class="block
-        text-left
-        uppercase
-        tracking-wide
-        text-neutral-700 text-xs
-        font-bold
-        mb-2"
+        class="block text-left font-medium text-neutral-700 text-sm mb-2"
       >
-        Email address <span class="text-red-600"> * </span></label
+        Email address <span class="text-red-600">*</span></label
       >
       <input
         id="email"
         name="email"
         type="email"
         required
-        class="appearance-none
-            block
-            w-full
-            bg-secondary-200
-            text-neutral-700
-            border border-gray-200
-            rounded
-            py-3
-            px-4
-            leading-tight
-            focus:outline-none
-            focus:bg-white
-            focus:border-gray-500"
+        class="appearance-none block w-full bg-white text-neutral-900 border border-neutral-300 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
       />
     </div>
   </div>
-  <div class="flex flex-wrap -mx-3 mb-6">
-    <div class="w-full px-3">
+  <div class="flex flex-wrap mb-6">
+    <div class="w-full">
       <label
         for="message"
-        class="block
-        text-left
-        uppercase
-        tracking-wide
-        text-neutral-700 text-xs
-        font-bold
-        mb-2"
+        class="block text-left font-medium text-neutral-700 text-sm mb-2"
       >
-        Message <span class="text-red-600"> * </span></label
+        Message <span class="text-red-600">*</span></label
       >
       <textarea
         id="message"
         name="message"
         required
-        class="no-resize
-            appearance-none
-            block
-            w-full
-            bg-secondary-200
-            text-neutral-700
-            border border-gray-200
-            rounded
-            py-3
-            px-4
-            mb-3
-            leading-tight
-            focus:outline-none
-            focus:bg-white
-            focus:border-gray-500
-            h-48
-            resize-none"
+        class="no-resize appearance-none block w-full bg-white text-neutral-900 border border-neutral-300 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent h-48 resize-none transition-all duration-200"
       ></textarea>
     </div>
   </div>
   <div class="mb-4">
-    <button
-      type="submit"
-      class="inline-flex
-        items-center
-        px-4
-        py-2
-        border border-transparent
-        text-base
-        leading-6
-        font-medium
-        rounded-md
-        text-white
-        bg-blue-400
-        hover:bg-blue-600
-        transition
-        ease-in-out
-        duration-150"
-    >
-      Send
-    </button>
+    <Button type="submit" variant="primary" size="lg"> Send Message </Button>
     <input type="hidden" name="form-name" value="contact" />
     <p class="hidden">
       <label
-        >Don’t fill this out if you’re human: <input
+        >Don't fill this out if you're human: <input
           type="text"
           name="_gotcha"
           style="display:none"
