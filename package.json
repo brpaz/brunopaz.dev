@@ -39,7 +39,7 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@lhci/cli": "^0.15.1",
-    "@playwright/test": "1.56.1",
+    "@playwright/test": "1.57.0",
     "@sarissa/pagination": "^1.0.3",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^25.0.9",
