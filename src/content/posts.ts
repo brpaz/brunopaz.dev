@@ -18,9 +18,7 @@ export const blogPostsCollection = defineCollection({
 /**
  * Helper function to sort a collection of posts by it´s published date.
  */
-export function sortPosts(
-  posts: CollectionEntry<BlogPost>[],
-): CollectionEntry<BlogPost>[] {
+export function sortPosts(posts: CollectionEntry<BlogPost>[]): CollectionEntry<BlogPost>[] {
   return posts.sort((a, b) => {
     if (a.data.publishDate === undefined) {
       return -1;

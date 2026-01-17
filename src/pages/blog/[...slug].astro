@@ -29,33 +29,41 @@ const { Content } = await post.render();
   .post-content img {
     display: flex;
     margin: 0 auto;
+    border-radius: 0.5rem;
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1);
   }
 </style>
 
-<DefaultLayout
-  title=`${title} | Bruno Paz`
-  description={excerpt}
-  ogImage={ogImage}
->
-  <PageTitle title={title} />
+<DefaultLayout title=`${title} | Bruno Paz` description={excerpt} ogImage={ogImage}>
+  <div class="max-w-4xl mx-auto">
+    <article class="mb-16">
+      <header class="mb-12 text-center">
+        <PageTitle title={title} />
 
-  {
-    publishDate && (
-      <div class="text-neutral-600 text-center mb-8">
-        <FormattedDate date={publishDate} />
+        <div class="flex flex-col items-center gap-4 mt-6">
+          {
+            publishDate && (
+              <div class="text-neutral-600 text-sm font-medium">
+                <FormattedDate date={publishDate} />
+              </div>
+            )
+          }
+
+          {
+            post.data.tags.length > 0 && (
+              <div class="flex justify-center">
+                <TagsList tags={post.data.tags} />
+              </div>
+            )
+          }
+        </div>
+      </header>
+
+      <div class="post-content prose prose-lg prose-neutral max-w-none px-4">
+        <Content />
       </div>
-    )
-  }
-
-  {
-    post.data.tags.length > 0 && (
-      <div class="flex mb-8 w-full justify-center">
-        <TagsList tags={post.data.tags} />
-      </div>
-    )
-  }
-
-  <article class="post-content prose prose-neutral max-w-none mb-16">
-    <Content />
-  </article>
+    </article>
+  </div>
 </DefaultLayout>

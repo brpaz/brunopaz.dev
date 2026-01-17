@@ -5,7 +5,6 @@ import { getCollection } from 'astro:content';
 import DefaultLayout from '~/layouts/Default.astro';
 import PageTitle from '~/components/shared/PageTitle.astro';
 import ProjectCard from '~/components/work/ProjectCard.astro';
-import SectionHeading from '@components/shared/SectionHeading.astro';
 import IconBriefcase from '~/assets/icons/briefcase.svg';
 
 import { ProjectCollection } from '~/content/types';
@@ -23,51 +22,43 @@ const personalProjects = allProjects
 ---
 
 <DefaultLayout>
-  <PageTitle title="Work" />
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <Image
+        src={IconBriefcase}
+        height="80"
+        width="80"
+        class="mb-6 mx-auto opacity-90"
+        alt="Work"
+        loading="eager"
+        title="Work"
+      />
+      <PageTitle title="Work" />
+      <p class="text-lg text-neutral-600 max-w-2xl mx-auto mt-4">
+        A selection of professional and personal projects I have worked on.
+      </p>
+    </div>
 
-  <Image
-    src={IconBriefcase}
-    height="80"
-    width="80"
-    class="mb-component mt-component mx-auto"
-    alt="Work"
-    loading="eager"
-    title="Work"
-  />
+    <section id="professional-projects" class="mb-20">
+      <div class="mb-10">
+        <h2 class="text-3xl font-bold text-neutral-900 text-center mb-3">Professional Projects</h2>
+        <p class="text-center text-neutral-600">Work delivered for companies and clients</p>
+      </div>
 
-  <div class="mb-section mx-auto w-4/5">
-    <p class="mb-element">
-      On this page, you can find some of the most relevant projects I have
-      worked on during my professional career, as well as personal side
-      projects.
-    </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {companyProjects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </section>
+
+    <section id="personal-projects" class="mb-16">
+      <div class="mb-10">
+        <h2 class="text-3xl font-bold text-neutral-900 text-center mb-3">Personal Projects</h2>
+        <p class="text-center text-neutral-600">Side projects and open source contributions</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {personalProjects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </section>
   </div>
-
-  <section id="professional-projects" class="mb-section">
-    <SectionHeading title="Professional Projects" align="center" />
-
-    <div class="flex flex-wrap w-full justify-center">
-      {
-        companyProjects.map((project) => (
-          <div class="project-card flex md:w-1/2 sm:w-full lg:w-1/3 mb-element p-3">
-            <ProjectCard project={project} />
-          </div>
-        ))
-      }
-    </div>
-  </section>
-
-  <section id="personal-projects" class="mb-section">
-    <SectionHeading title="Personal Projects" align="center" />
-
-    <div class="flex flex-wrap w-full justify-center">
-      {
-        personalProjects.map((project) => (
-          <div class="project-card flex md:w-1/2 sm:w-full lg:w-1/3 mb-element p-3">
-            <ProjectCard project={project} />
-          </div>
-        ))
-      }
-    </div>
-  </section>
 </DefaultLayout>

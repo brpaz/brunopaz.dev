@@ -41,53 +41,23 @@ if (props.ogImage) {
     <meta name="twitter:image" content={ogImageURL} />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:app:country" content="PT" />
-    <meta
-      name="twitter:title"
-      property="og:title"
-      itemprop="title name"
-      content={title}
-    />
-    <meta
-      name="twitter:description"
-      property="og:description"
-      itemprop="description"
-      content={description}
-    />
-    <link
-      rel="canonical"
-      href={new URL(Astro.url.pathname, Astro.site).toString()}
-    />
+    <meta name="twitter:title" property="og:title" itemprop="title name" content={title} />
+    <meta name="twitter:description" property="og:description" itemprop="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).toString()} />
     <link rel="me" href={site.social.mastodon} />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title="Bruno Paz Engineering Blog"
-      href="/blog/rss.xml"
-    />
+    <link rel="alternate" type="application/rss+xml" title="Bruno Paz Engineering Blog" href="/blog/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link
-      type="text/plain"
-      rel="author"
-      href="https://brunopaz.dev/humans.txt"
-    />
+    <link type="text/plain" rel="author" href="https://brunopaz.dev/humans.txt" />
     {
       sentryEnabled && (
-        <script
-          is:inline
-          src={`https://js.sentry-cdn.com/${sentryKey}.min.js`}
-          crossorigin="anonymous"
-          defer
-        />
+        <script is:inline src={`https://js.sentry-cdn.com/${sentryKey}.min.js`} crossorigin="anonymous" defer />
       )
     }
     <ClientRouter />
     <LoadingIndicator color="#60a5fa" />
   </head>
 
-  <body
-    class="h-screen w-full flex flex-col"
-    transition:animate={fade({ duration: '0.5s' })}
-  >
+  <body class="h-screen w-full flex flex-col" transition:animate={fade({ duration: '0.5s' })}>
     <main class="container flex flex-col flex-1">
       <Header />
       <!-- The page will render it's content here -->

@@ -13,12 +13,9 @@ const formId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID as string;
 >
   <div class="flex flex-wrap mb-6 gap-4">
     <div class="w-full md:flex-1">
-      <label
-        for="name"
-        class="block text-left font-medium text-neutral-700 text-sm mb-2"
-      >
-        Name <span class="text-red-600">*</span></label
-      >
+      <label for="name" class="block text-left font-medium text-neutral-700 text-sm mb-2">
+        Name <span class="text-red-600">*</span>
+      </label>
       <input
         id="name"
         name="name"
@@ -28,12 +25,9 @@ const formId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID as string;
       />
     </div>
     <div class="w-full md:flex-1">
-      <label
-        for="email"
-        class="block text-left font-medium text-neutral-700 text-sm mb-2"
-      >
-        Email address <span class="text-red-600">*</span></label
-      >
+      <label for="email" class="block text-left font-medium text-neutral-700 text-sm mb-2">
+        Email address <span class="text-red-600">*</span>
+      </label>
       <input
         id="email"
         name="email"
@@ -45,31 +39,23 @@ const formId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID as string;
   </div>
   <div class="flex flex-wrap mb-6">
     <div class="w-full">
-      <label
-        for="message"
-        class="block text-left font-medium text-neutral-700 text-sm mb-2"
-      >
-        Message <span class="text-red-600">*</span></label
-      >
+      <label for="message" class="block text-left font-medium text-neutral-700 text-sm mb-2">
+        Message <span class="text-red-600">*</span>
+      </label>
       <textarea
         id="message"
         name="message"
         required
         class="no-resize appearance-none block w-full bg-white text-neutral-900 border border-neutral-300 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent h-48 resize-none transition-all duration-200"
-      ></textarea>
+      >
+      </textarea>
     </div>
   </div>
   <div class="mb-4">
     <Button type="submit" variant="primary" size="lg"> Send Message </Button>
     <input type="hidden" name="form-name" value="contact" />
     <p class="hidden">
-      <label
-        >Don't fill this out if you're human: <input
-          type="text"
-          name="_gotcha"
-          style="display:none"
-        /></label
-      >
+      <label>Don't fill this out if you're human: <input type="text" name="_gotcha" style="display:none" /></label>
     </p>
   </div>
 </form>

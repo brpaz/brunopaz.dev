@@ -12,26 +12,18 @@ import IconWriting from '~/assets/icons/writing.svg';
 export const PageSize = 5;
 
 // Define the function with the specified types
-export async function getStaticPaths({
-  paginate,
-}: {
-  paginate: PaginateFunction;
-}) {
+export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
   // Retrieve all published posts
   const allPosts = await getCollection(BlogPostCollection, ({ data }) => {
     return data.published === true && data.publishDate;
   });
 
   // For each post, get all the unique tags
-  const uniqueTags = [
-    ...new Set(allPosts.map((post) => post.data.tags).flat()),
-  ];
+  const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
 
   // For each tag, paginate the posts and create paths
   return uniqueTags.flatMap((tag) => {
-    const filteredPosts = allPosts.filter((post) =>
-      post.data.tags.includes(tag),
-    );
+    const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
     return paginate(filteredPosts, {
       params: { tag },
       pageSize: 10,
@@ -45,47 +37,47 @@ const { tag } = Astro.params;
 ---
 
 <DefaultLayout>
-  <PageTitle title=`Posts tagged with ${tag}` />
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <Image
+        src={IconWriting}
+        height="96"
+        width="96"
+        class="mx-auto mb-6 opacity-90"
+        alt="Blog"
+        title="Blog"
+        aria-hidden="true"
+      />
+      <PageTitle title=`Posts tagged with #${tag}` />
+    </div>
 
-  <Image
-    src={IconWriting}
-    height="128"
-    width="128"
-    class="mb-8 mt-8 mx-auto"
-    alt="Blog"
-    title="Blog"
-    aria-hidden="true"
-  />
+    <div class="mt-12 space-y-8">
+      {
+        page.data.map((post, index) => (
+          <div>
+            <Post post={post} />
 
-  <div class="mt-16 pb-8">
-    {
-      page.data.map((post) => (
-        <div>
-          <Post post={post} />
+            {index < page.data.length - 1 && <hr class="block w-2/3 bg-neutral-200 text-center mx-auto mt-8 mb-8" />}
+          </div>
+        ))
+      }
 
-          <hr
-            class="block w-2/3 bg-primary-300 text-center mx-auto mt-8 mb-8"
-            style="height: 2px;"
-          />
-        </div>
-      ))
-    }
-
-    {
-      page.total > 1 && (
-        <div class="mt-4">
-          <Pagination
-            currentPage={page.currentPage}
-            totalPage={page.lastPage}
-            url={`blog/tags/${tag}`}
-            buttonGroup="pagination"
-            activeButton="bg-primary-400 text-white  hover:bg-primary-400 hover:text-white current-page"
-            outerDiv="flex items-center justify-center"
-            button="relative flex-nowrap inline-flex items-center px-4 py-2 border text-sm font-medium"
-            disabledButton="disabled:opacity-75"
-          />
-        </div>
-      )
-    }
+      {
+        page.total > 1 && (
+          <div class="mt-12">
+            <Pagination
+              currentPage={page.currentPage}
+              totalPage={page.lastPage}
+              url={`blog/tags/${tag}`}
+              buttonGroup="pagination"
+              activeButton="bg-primary-500 !text-white hover:bg-primary-600 hover:!text-white current-page !important"
+              outerDiv="flex items-center justify-center gap-2"
+              button="relative flex-nowrap inline-flex items-center px-4 py-2 border border-neutral-300 text-sm font-medium text-neutral-700 bg-white hover:bg-neutral-50 rounded-md transition-colors"
+              disabledButton="disabled:opacity-50 disabled:cursor-not-allowed"
+            />
+          </div>
+        )
+      }
+    </div>
   </div>
 </DefaultLayout>

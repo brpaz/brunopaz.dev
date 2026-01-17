@@ -29,52 +29,65 @@ const { Content } = await project.render();
 <style is:global>
   @reference '../../assets/styles/global.css';
   .project-detail-content h2 {
-    @apply font-bold text-2xl mb-4;
+    @apply font-bold text-3xl mb-6 mt-8;
   }
 
   .project-detail-content h3 {
-    @apply font-bold text-lg mb-4;
+    @apply font-bold text-xl mb-4 mt-6;
   }
 
   .project-detail-content p {
-    @apply mb-4;
+    @apply mb-6 leading-relaxed text-base;
   }
 
   .project-detail-content img {
-    @apply my-4 mx-auto;
+    @apply my-6 mx-auto rounded-lg shadow-md;
   }
 
   .project-detail-content ul {
-    @apply list-disc ml-6 mb-4;
+    @apply list-disc ml-6 mb-6 space-y-3;
   }
 
   .project-detail-content ul li {
-    @apply mb-2;
+    @apply leading-relaxed;
   }
 
   .project-detail-content hr {
-    @apply flex w-1/2 mt-12 mb-12 border-blue-300 mx-auto;
+    @apply my-12 border-neutral-300;
+  }
+
+  .project-detail-content a {
+    @apply text-primary-600 hover:text-primary-700 underline;
   }
 </style>
 <DefaultLayout title={project.data.name} description={project.data.description}>
-  <PageTitle title={project.data.name} />
+  <div class="max-w-4xl mx-auto">
+    <PageTitle title={project.data.name} />
 
-  <ProjectHeader project={project} />
+    <div class="mb-8">
+      <p class="text-lg text-neutral-700 leading-relaxed">{project.data.description}</p>
+    </div>
 
-  <div class="mb-8">
+    <ProjectHeader project={project} />
+
     {
       project.data.images.length > 0 && (
-        <ProjectGallery slug={project.slug} images={project.data.images} />
+        <div class="my-12">
+          <ProjectGallery slug={project.slug} images={project.data.images} />
+        </div>
+      )
+    }
+
+    <div class="project-detail-content prose prose-lg max-w-none mb-12">
+      <Content />
+    </div>
+
+    {
+      project.data.technologies.length > 0 && (
+        <div class="mt-12 pt-8 border-t border-neutral-200">
+          <ProjectTech technologies={project.data.technologies} />
+        </div>
       )
     }
   </div>
-  <div class="project-detail-content leading-8 mb-8">
-    <Content />
-  </div>
-
-  {
-    project.data.technologies.length > 0 && (
-      <ProjectTech technologies={project.data.technologies} />
-    )
-  }
 </DefaultLayout>

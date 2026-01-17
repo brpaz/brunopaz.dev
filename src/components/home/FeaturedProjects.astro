@@ -6,20 +6,14 @@ import FeaturedProjectCard from '@components/home/FeaturedProjectCard.astro';
 import MoreButton from '@components/home/MoreButton.astro';
 import SectionHeading from '@components/shared/SectionHeading.astro';
 
-const featuredProjects = await getCollection(
-  ProjectCollection,
-  ({ data }) => data.isFeatured,
-);
+const featuredProjects = await getCollection(ProjectCollection, ({ data }) => data.isFeatured);
 const projects = sortProjects(featuredProjects).slice(0, 3);
 ---
 
-<section
-  id="featured-projects"
-  class="flex flex-col mx-auto justify-center text-center mb-section"
->
+<section id="featured-projects" class="flex flex-col mx-auto justify-center text-center mb-section">
   <SectionHeading
     title="Featured Projects"
-    subtitle="Some projects I have worked on"
+    subtitle="Selected work showcasing technical solutions and implementations"
     align="center"
   />
   <div class="mb-component">

@@ -20,11 +20,7 @@ interface PostsData {
 }
 
 // Define the function with the specified types
-export async function getStaticPaths({
-  paginate,
-}: {
-  paginate: PaginateFunction;
-}) {
+export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
   const postEntries = await getCollection(BlogPostCollection, ({ data }) => {
     return import.meta.env.PROD ? data.published === true : true;
   });
@@ -45,43 +41,44 @@ const posts = page.data.map((data) => {
 ---
 
 <DefaultLayout>
-  <PageTitle title="My Blog" />
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-16">
+      <Image
+        src={IconWriting}
+        height="96"
+        width="96"
+        class="mx-auto mb-6 opacity-90"
+        alt="Blog"
+        title="Blog"
+        aria-hidden="true"
+      />
+      <PageTitle title="My Blog" />
+      <p class="text-neutral-600 mt-4 text-lg">
+        Thoughts, ideas, and learnings from my journey in software development
+      </p>
+    </div>
 
-  <Image
-    src={IconWriting}
-    height="128"
-    width="128"
-    class="mt-8 mb-16 mx-auto"
-    alt="Blog"
-    title="Blog"
-    aria-hidden="true"
-  />
-
-  <div class="mb-16">
-    {
-      posts.map((post) => (
-        <div>
-          <Post post={post} />
-
-          <hr
-            class="block w-2/3 text-center text-primary-400 mx-auto mt-12 mb-12"
-            style="height: 2px"
-          />
-        </div>
-      ))
-    }
+    <div class="space-y-12 mb-16">
+      {
+        posts.map((post) => (
+          <div class="group">
+            <Post post={post} />
+          </div>
+        ))
+      }
+    </div>
 
     {
       page.total > 1 && (
-        <div class="mt-4">
+        <div class="mt-20 mb-12">
           <Pagination
             currentPage={page.currentPage}
             totalPage={page.lastPage}
             url="blog/page"
-            buttonGroup="pagination"
-            activeButton="bg-primary-400 text-white  hover:bg-primary-400 hover:text-white current-page"
+            buttonGroup="flex items-center justify-center gap-3"
+            activeButton="!bg-primary-500 !text-white hover:!bg-primary-600 border-primary-500 current-page"
             outerDiv="flex items-center justify-center"
-            button="relative flex-nowrap inline-flex items-center px-4 py-2 mr-2 text-sm font-medium"
+            button="relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50 transition-colors duration-200"
           />
         </div>
       )
