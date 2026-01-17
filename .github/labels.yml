@@ -1,24 +1,149 @@
-- name: fix
-  description: Something isn't working
-  color: d73a4a
-- name: documentation
-  description: Improvements or additions to documentation
-  color: 0075ca
-- name: duplicate
-  description: This issue or pull request already exists
-  color: cfd3d7
-- name: security
-  description: Security updates
-  color: a31f34
-- name: feature
-  description: New feature
-  color: 0e8a16
-- name: enhancement
-  description: Enhancement on existing Feature
-  color: 0e8a16
-- name: chore
-  description: Maintenance
-  color: F6EE8F
+# Type labels
 - name: breaking
-  description: Breaking changes
-  color: FF4500
+  color: 'd73a4a'
+  description: 'Changes that break backward compatibility'
+
+- name: feature
+  color: 'a2eeef'
+  description: 'New features'
+
+- name: enhancement
+  color: '84b6eb'
+  description: 'Improvements to existing features'
+
+- name: bug
+  color: 'fc2929'
+  description: 'Bug fixes'
+
+- name: security
+  color: 'ee0701'
+  description: 'Security-related updates'
+
+- name: chore
+  color: 'ffd8b1'
+  description: 'Routine tasks, maintenance, and tooling'
+
+- name: docs
+  color: '0075ca'
+  description: 'Documentation improvements'
+
+- name: dependencies
+  color: '0366d6'
+  description: 'Dependency updates'
+
+- name: test
+  color: '1d76db'
+  description: 'Testing improvements'
+
+- name: performance
+  color: 'f9d0c4'
+  description: 'Performance improvements'
+
+- name: refactor
+  color: 'fbca04'
+  description: 'Code refactoring'
+
+# Priority labels
+- name: 'priority:critical'
+  color: 'b60205'
+  description: 'Critical priority'
+
+- name: 'priority:high'
+  color: 'd93f0b'
+  description: 'High priority'
+
+- name: 'priority:medium'
+  color: 'fbca04'
+  description: 'Medium priority'
+
+- name: 'priority:low'
+  color: 'c5def5'
+  description: 'Low priority'
+
+# Status labels
+- name: 'status:good-first-issue'
+  color: '7057ff'
+  description: 'Good for newcomers'
+
+- name: 'status:help-wanted'
+  color: '008672'
+  description: 'Extra attention is needed'
+
+- name: 'status:wontfix'
+  color: 'ffffff'
+  description: 'This will not be worked on'
+
+- name: 'status:duplicate'
+  color: 'cfd3d7'
+  description: 'This issue or pull request already exists'
+
+- name: 'status:invalid'
+  color: 'e4e669'
+  description: 'This does not seem right'
+
+- name: 'status:question'
+  color: 'd876e3'
+  description: 'Further information is requested'
+
+- name: 'status:needs-triage'
+  color: 'ededed'
+  description: 'Needs investigation'
+
+- name: 'status:blocked'
+  color: '000000'
+  description: 'Blocked by other issues or dependencies'
+
+# Changelog labels
+- name: 'changelog:skip'
+  color: 'cccccc'
+  description: 'Exclude from changelog'
+
+# Area labels
+- name: 'area:ui'
+  color: 'bfdadc'
+  description: 'UI/UX related'
+
+- name: 'area:api'
+  color: 'c2e0c6'
+  description: 'API related'
+
+- name: 'area:build'
+  color: 'f9c8d9'
+  description: 'Build system related'
+
+- name: 'area:ci'
+  color: 'bfd4f2'
+  description: 'CI/CD related'
+
+- name: 'area:docker'
+  color: '0db7ed'
+  description: 'Docker related'
+
+- name: 'area:devenv'
+  color: '2ea44f'
+  description: 'Development environment related'
+
+# Size labels
+- name: 'size:xs'
+  color: 'e7f7e7'
+  description: 'Extra small task (half a day)'
+
+- name: 'size:s'
+  color: 'b7e4b7'
+  description: 'Small task (1-2 days)'
+
+- name: 'size:m'
+  color: '7fc97f'
+  description: 'Medium task (3-5 days)'
+
+- name: 'size:l'
+  color: '4caf50'
+  description: 'Large task (5-10 days)'
+
+- name: 'size:xl'
+  color: '2e7d32'
+  description: 'Extra-large task (10-20 days)'
+
+- name: 'size:xxl'
+  color: '1b5e20'
+  description: 'Huge task (20+ days)'
