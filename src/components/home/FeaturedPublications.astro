@@ -4,6 +4,7 @@ import { BlogPostCollection } from '~/content/types';
 import { sortPosts } from '~/content/posts';
 import BlogPostCard from '~/components/home/BlogPostCard.astro';
 import MoreButton from '@components/home/MoreButton.astro';
+import SectionHeading from '@components/shared/SectionHeading.astro';
 
 const allFeaturedPosts = await getCollection(BlogPostCollection, ({ data }) => {
   return data.published === true && data.publishDate;
@@ -12,15 +13,13 @@ const allFeaturedPosts = await getCollection(BlogPostCollection, ({ data }) => {
 const featuredPosts = sortPosts(allFeaturedPosts).slice(0, 4);
 ---
 
-<section class="flex flex-col mx-auto justify-center text-center mb-12">
-  <h2 class="font-bold text-neutral-600 text-4xl mb-4 text-center">Latest Posts</h2>
-  <div class="mb-12">
-    <p class="mb-4">Some recent posts I wrote on the blog.</p>
-
+<section class="flex flex-col mx-auto justify-center text-center mb-section">
+  <SectionHeading title="Latest Posts" subtitle="Technical articles and insights from my experience" align="center" />
+  <div class="mb-component">
     <div class="flex flex-wrap mb-4">
       {
         featuredPosts.map((post) => (
-          <div class="flex flex-col md:w-1/2 w-full">
+          <div class="flex flex-col md:w-1/2 w-full p-3">
             <BlogPostCard post={post} />
           </div>
         ))

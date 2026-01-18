@@ -9,21 +9,14 @@ interface Props {
 
 const { slug, images } = Astro.props as Props;
 
-export async function getImages(
-  slug: string,
-  imageNames: string[],
-): Promise<string[]> {
+export async function getImages(slug: string, imageNames: string[]): Promise<any[]> {
   return Promise.all(
     imageNames.map(async (image) => {
       const imageParts = image.split('.');
       const imageFileName = imageParts[0];
       const imageFileExtension = imageParts[1];
 
-      return (
-        await import(
-          `./../../assets/images/projects/${slug}/${imageFileName}.${imageFileExtension}`
-        )
-      ).default;
+      return (await import(`../../assets/images/projects/${slug}/${imageFileName}.${imageFileExtension}`)).default;
     }),
   );
 }
@@ -31,18 +24,19 @@ export async function getImages(
 const imageUrls = await getImages(slug, images);
 ---
 
-<section id="image-carousel" class="splide mb-4" aria-label="Project Images">
+<section id="image-carousel" class="splide mb-6 rounded-lg overflow-hidden shadow-lg" aria-label="Project Images">
   <div class="splide__track">
     <ul class="splide__list">
       {
         imageUrls.map((imageUrl, index) => (
           <li class="splide__slide">
             <Image
-              width="1280"
-              height="720"
+              width={1280}
+              height={720}
               src={imageUrl}
-              alt={`Project Image ${index}+1 `}
+              alt={`Project Image ${index + 1}`}
               loading="eager"
+              class="w-full h-auto"
             />
           </li>
         ))
@@ -53,7 +47,7 @@ const imageUrls = await getImages(slug, images);
 
 <section
   id="thumbnail-carousel"
-  class=`splide flex justify-center ${imageUrls.length === 1 ? 'hidden' : ''}`
+  class={`splide flex justify-center ${imageUrls.length === 1 ? 'hidden' : ''}`}
   aria-label="Project Thumbnail Images"
 >
   <div class="splide__track">
@@ -63,9 +57,10 @@ const imageUrls = await getImages(slug, images);
           <li class="splide__slide">
             <Image
               src={imageUrl}
-              width="120"
-              height="80"
-              alt={`Project Image ${index}+1 `}
+              width={120}
+              height={80}
+              alt={`Project Image ${index + 1}`}
+              class="rounded cursor-pointer"
             />
           </li>
         ))
@@ -86,11 +81,35 @@ const imageUrls = await getImages(slug, images);
     max-height: 100%;
     display: flex;
     margin: 0 auto;
-    border: 1px solid var(--color-neutral-200);
   }
 
-  .splide__track--nav > .splide__list > .splide__slide.is-active {
-    border: 1px solid var(--color-primary-400);
+  #thumbnail-carousel .splide__slide {
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+
+  #thumbnail-carousel .splide__slide:hover {
+    border-color: rgb(59 130 246 / 0.5);
+  }
+
+  #thumbnail-carousel .splide__slide.is-active {
+    border-color: rgb(59 130 246);
+  }
+
+  .splide__arrow {
+    background: rgba(255, 255, 255, 0.9);
+    width: 3em;
+    height: 3em;
+  }
+
+  .splide__arrow:hover {
+    background: rgb(255, 255, 255);
+  }
+
+  .splide__arrow svg {
+    fill: rgb(59 130 246);
   }
 </style>
 
@@ -119,7 +138,7 @@ const imageUrls = await getImages(slug, images);
 
     thumbsCarousel = new Splide('#thumbnail-carousel', {
       fixedWidth: 120,
-      fixedHeight: 60,
+      fixedHeight: 80,
       gap: 10,
       rewind: true,
       pagination: false,

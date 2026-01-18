@@ -1,6 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import type { BlogPost } from '~/content/types';
+import BaseCard from '@components/shared/BaseCard.astro';
+import FormattedDate from '@components/blog/FormattedDate.astro';
 
 interface Props {
   post: CollectionEntry<BlogPost>;
@@ -9,27 +11,40 @@ interface Props {
 const { post } = Astro.props;
 ---
 
-<a
+<BaseCard
   href={`/blog/${post.slug}`}
-  class="h-20 flex items-center bg-primary-400 rounded-md px-4 py-4 mb-4 mr-4 text-white font-bold hover:text-white hover:bg-primary-500"
+  variant="primary"
+  class="p-6 flex flex-col gap-4"
 >
-  <div class="flex items-center">
-    <svg
-      aria-hidden="true"
-      focusable="false"
-      height="36"
-      width="36"
-      class="fill-current flex-shrink-0 mr-4"
-      role="img"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M22 7.662l1-1V18h-7v4.745L11.255 18H1V2h16.763l-1 1H2v14h9.668L15 20.331V17h7zm1.657-5.192a.965.965 0 0 1 .03 1.385l-9.325 9.324-4.097 1.755a.371.371 0 0 1-.487-.487l1.755-4.097 9.31-9.309a.98.98 0 0 1 1.385 0zm-10.1 9.965l-1.28-1.28-.961 2.24zm7.243-7.11l-1.414-1.413-6.469 6.47 1.414 1.413zm1.865-2.445l-.804-.838a.42.42 0 0 0-.6-.006l-1.168 1.168 1.414 1.415 1.152-1.152a.42.42 0 0 0 .006-.587z"
-      ></path>
-    </svg>
-    <span class="text-ellipsis text-left line-clamp-2 overflow-hidden">
-      {post.data.title}
-    </span>
+  <div>
+    <div class="flex items-center gap-3 mb-3">
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        height="28"
+        width="28"
+        class="fill-current flex-shrink-0 hidden md:block"
+        role="img"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M22 7.662l1-1V18h-7v4.745L11.255 18H1V2h16.763l-1 1H2v14h9.668L15 20.331V17h7zm1.657-5.192a.965.965 0 0 1 .03 1.385l-9.325 9.324-4.097 1.755a.371.371 0 0 1-.487-.487l1.755-4.097 9.31-9.309a.98.98 0 0 1 1.385 0zm-10.1 9.965l-1.28-1.28-.961 2.24zm7.243-7.11l-1.414-1.413-6.469 6.47 1.414 1.413zm1.865-2.445l-.804-.838a.42.42 0 0 0-.6-.006l-1.168 1.168 1.414 1.415 1.152-1.152a.42.42 0 0 0 .006-.587z"
+        ></path>
+      </svg>
+      <h3 class="font-bold text-xl line-clamp-2">
+        {post.data.title}
+      </h3>
+    </div>
+    
+    {post.data.publishDate && (
+      <div class="text-sm opacity-70 mb-2">
+        <FormattedDate date={post.data.publishDate} />
+      </div>
+    )}
+    
+    <p class="text-sm opacity-80 line-clamp-3">
+      {post.data.excerpt}
+    </p>
   </div>
-</a>
+</BaseCard>

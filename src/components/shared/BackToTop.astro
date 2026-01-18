@@ -1,0 +1,57 @@
+---
+// Back to top button component
+---
+
+<script>
+  function initBackToTop() {
+    const button = document.getElementById('back-to-top');
+    if (!button) return;
+
+    const toggleButton = () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 300) {
+        button.classList.remove('opacity-0', 'pointer-events-none');
+        button.classList.add('opacity-100');
+      } else {
+        button.classList.add('opacity-0', 'pointer-events-none');
+        button.classList.remove('opacity-100');
+      }
+    };
+
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    };
+
+    window.addEventListener('scroll', toggleButton, { passive: true });
+    button.addEventListener('click', scrollToTop);
+
+    toggleButton();
+  }
+
+  window.addEventListener('DOMContentLoaded', initBackToTop);
+  document.addEventListener('astro:after-swap', initBackToTop);
+</script>
+
+<style>
+  @reference "../../assets/styles/global.css";
+
+  #back-to-top {
+    @apply fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full bg-primary-500 text-white shadow-lg;
+    @apply flex items-center justify-center cursor-pointer transition-all duration-300;
+    @apply hover:bg-primary-600 hover:scale-110 active:scale-95;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  #back-to-top svg {
+    @apply w-6 h-6;
+  }
+</style>
+
+<button id="back-to-top" aria-label="Back to top" class="opacity-0 pointer-events-none" title="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+  </svg>
+</button>

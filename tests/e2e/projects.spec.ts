@@ -16,28 +16,24 @@ test.describe('Work Page', () => {
   });
 
   test('Renders projects cards', async ({ page }) => {
-    // Check if there is at least one .project-card element
-    const projectCards = page.locator('.project-card');
+    // Check if there is at least one project card (rendered as an anchor with h3 inside)
+    const projectCards = page.locator('a[href^="/work/"] h3');
     const cardCount = await projectCards.count();
     expect(cardCount).toBeGreaterThan(0);
   });
 
   test('Opens Project details', async ({ page }) => {
-    // Find the first .project-card and get the text of the <h3> inside it
-    const firstProjectCard = page.locator('.project-card').first();
-    const projectName = await firstProjectCard.locator('a h3').textContent();
+    const firstProjectCard = page.locator('a[href^="/work/"]').first();
+    const projectName = await firstProjectCard.locator('h3').textContent();
 
     expect(projectName).toBeDefined();
 
-    // Click on the first project card and wait for the page to navigate
-    await firstProjectCard.locator('a').first().click();
+    await firstProjectCard.click();
 
-    await page.waitForTimeout(200); // Adjust or remove this if your navigation is handled differently
+    await page.waitForLoadState('networkidle');
 
-    // Check if the <h1> on the new page matches the project name
-    const header = page.locator('h1');
+    const header = page.locator('main h1').first();
 
-    // TODO what is the best way to handle this??
     if (!projectName) {
       throw new Error('Project name not found');
     }

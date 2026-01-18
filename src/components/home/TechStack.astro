@@ -1,5 +1,6 @@
 ---
 import LanguageIcon from '../shared/LanguageIcon.astro';
+import SectionHeading from '@components/shared/SectionHeading.astro';
 
 const languages = [
   'Golang',
@@ -42,27 +43,15 @@ const languages = [
     height: 120px;
     display: flex;
     align-items: center;
-    margin-right: 2rem;
+    justify-content: center;
     margin-bottom: 2rem;
     overflow: hidden;
   }
 </style>
-<section
-  id="tech-stack"
-  class="flex flex-col mx-auto justify-center text-center mb-12"
->
-  <h2 class="font-bold text-neutral-600 text-4xl mb-4 text-center">
-    Teck Stack
-  </h2>
-  <div class="mb-8">
-    <p class="mb-4">
-      I have experience with a wide range of technologies, and I strongly
-      believe in the importance of choosing the right tool for the job.
-    </p>
-    <p>Here some of my favorites:</p>
-  </div>
+<section id="tech-stack" class="flex flex-col mx-auto justify-center text-center mb-section">
+  <SectionHeading title="Tech Stack" subtitle="Technologies and tools I have experience with" align="center" />
   <div class="flex flex-col">
-    <div class="flex flex-wrap justify-center">
+    <div class="flex flex-wrap justify-center gap-8">
       {
         languages.map((item) => (
           <div title={item} class="language-logo">

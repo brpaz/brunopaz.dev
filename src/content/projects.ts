@@ -21,16 +21,7 @@ export const projectsCollection = defineCollection({
     coverImage: z.string(),
     images: z.array(z.string()),
     isFeatured: z.boolean().default(false),
-    role: z
-      .array(
-        z.enum([
-          'Developer',
-          'Software Engineer',
-          'Tech Lead',
-          'Engineering Manager',
-        ]),
-      )
-      .optional(),
+    role: z.array(z.enum(['Developer', 'Software Engineer', 'Tech Lead', 'Engineering Manager'])).optional(),
     company: z.string().optional(),
     type: z.enum(['work', 'personal']).default('work'),
     sortOrder: z.number().default(1),
@@ -40,8 +31,6 @@ export const projectsCollection = defineCollection({
 /**
  * Helper function to sort a collection of projects by it´s sortOrder.
  */
-export function sortProjects(
-  projects: CollectionEntry<Project>[],
-): CollectionEntry<Project>[] {
+export function sortProjects(projects: CollectionEntry<Project>[]): CollectionEntry<Project>[] {
   return projects.sort((a, b) => a.data.sortOrder - b.data.sortOrder);
 }

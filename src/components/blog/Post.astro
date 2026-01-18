@@ -14,17 +14,17 @@ const { title, excerpt, publishDate } = post.data;
 const url = `/blog/${post.slug}`;
 ---
 
-<article>
-  <div
-    class="flex flex-col md:flex-row md:justify-between md:items-center mb-2"
-  >
-    <h2 class="text-2xl font-bold flex w-full md:w-4/5 mb-2">
-      <a class="text-primary-400 hover:text-primary-600" href={url}>{title}</a>
+<article class="border-b border-neutral-200 pb-12 last:border-b-0">
+  <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
+    <h2 class="text-3xl font-bold flex-1">
+      <a href={url} class="text-neutral-900 hover:text-primary-500 transition-colors duration-200">
+        {title}
+      </a>
     </h2>
 
     {
       publishDate && (
-        <div class="text-xs md:text-right">
+        <div class="text-sm text-neutral-500 flex-shrink-0 md:pt-1">
           <FormattedDate date={publishDate} />
         </div>
       )
@@ -33,13 +33,28 @@ const url = `/blog/${post.slug}`;
 
   {
     post.data.tags.length > 0 && (
-      <div class="flex mb-4 w-full">
+      <div class="mb-4">
         <Tags tags={post.data.tags} />
       </div>
     )
   }
 
-  <p class="prose prose-neutral text-ellipsis line-clamp-5 max-w-none">
+  <p class="text-neutral-700 text-lg leading-relaxed mb-4">
     {excerpt}
   </p>
+
+  <a
+    href={url}
+    class="inline-flex items-center text-primary-500 font-medium text-sm hover:text-primary-600 transition-colors duration-200 group"
+  >
+    Read more
+    <svg
+      class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+    </svg>
+  </a>
 </article>

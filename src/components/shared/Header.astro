@@ -3,7 +3,43 @@ import Navbar from './Navbar.astro';
 import Logo from './Logo.astro';
 ---
 
-<header class="flex w-full h-16 justify-between items-center mb-16">
+<script>
+  function initStickyHeader() {
+    const header = document.getElementById('site-header');
+
+    const updateHeader = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > 20) {
+        header?.classList.add('header-scrolled');
+      } else {
+        header?.classList.remove('header-scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    updateHeader();
+  }
+
+  window.addEventListener('DOMContentLoaded', initStickyHeader);
+  document.addEventListener('astro:after-swap', initStickyHeader);
+</script>
+
+<style>
+  @reference "../../assets/styles/global.css";
+
+  #site-header {
+    @apply fixed top-0 left-0 right-0 z-50 transition-all duration-300;
+    @apply bg-white;
+  }
+
+  #site-header.header-scrolled {
+    @apply backdrop-blur-md bg-white/80 shadow-sm border-b border-neutral-200;
+  }
+</style>
+
+<header id="site-header" class="flex w-full h-16 justify-between items-center px-4 md:px-6">
   <Logo />
   <Navbar />
 </header>
+<div class="h-16"></div><!-- Spacer for fixed header -->

@@ -1,4 +1,6 @@
 ---
+import Button from '@components/shared/Button.astro';
+
 interface Props {
   url: string;
   label: string;
@@ -7,9 +9,6 @@ interface Props {
 const { url, label } = Astro.props as Props;
 ---
 
-<a
-  href={url}
-  class="inline-block text-white bg-neutral-400 py-2 px-4 rounded-md hover:text-white hover:bg-neutral-500"
->
+<Button href={url} variant="secondary">
   {label}
-</a>
+</Button>

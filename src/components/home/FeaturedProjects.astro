@@ -4,28 +4,23 @@ import { ProjectCollection } from '~/content/types';
 import { sortProjects } from '~/content/projects';
 import FeaturedProjectCard from '@components/home/FeaturedProjectCard.astro';
 import MoreButton from '@components/home/MoreButton.astro';
+import SectionHeading from '@components/shared/SectionHeading.astro';
 
-const featuredProjects = await getCollection(
-  ProjectCollection,
-  ({ data }) => data.isFeatured,
-);
+const featuredProjects = await getCollection(ProjectCollection, ({ data }) => data.isFeatured);
 const projects = sortProjects(featuredProjects).slice(0, 3);
 ---
 
-<section
-  id="tech-stack"
-  class="flex flex-col mx-auto justify-center text-center mb-12"
->
-  <h2 class="font-bold text-neutral-600 text-4xl mb-4 text-center">
-    Featured Projects
-  </h2>
-  <div class="mb-12">
-    <p class="mb-4">Some projects I have worked on</p>
-
+<section id="featured-projects" class="flex flex-col mx-auto justify-center text-center mb-section">
+  <SectionHeading
+    title="Featured Projects"
+    subtitle="Selected work showcasing technical solutions and implementations"
+    align="center"
+  />
+  <div class="mb-component">
     <div class="flex flex-wrap w-full justify-center mb-4">
       {
         projects.map((project) => (
-          <div class="flex flex-col md:w-1/2 sm:w-full lg:w-1/3 text-left">
+          <div class="flex flex-col md:w-1/2 sm:w-full lg:w-1/3 text-left p-3">
             <FeaturedProjectCard project={project} />
           </div>
         ))
