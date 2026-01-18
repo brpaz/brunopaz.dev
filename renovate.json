@@ -2,5 +2,11 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "labels": ["dependencies"],
-  "reviewers": ["brpaz"]
+  "reviewers": ["brpaz"],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^@playwright/"],
+      "enabled": false
+    }
+  ]
 }
