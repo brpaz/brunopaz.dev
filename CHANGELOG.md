@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 1.5.2 - 2026-01-18
+
+### What's Changed
+
+#### 🐛 Bug Fixes
+
+- fix(layout): mobile menu position @brpaz (#230)
+
+**Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.5.1...v1.5.2
+
 ## 1.5.1 - 2026-01-18
 
 ### What's Changed
@@ -41,7 +51,6 @@
 </details>
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.4.0...v1.5.0
 ## 1.4.0 - 2025-09-08
-
 ### What's Changed
 
 #### 🚀 Features
@@ -78,7 +87,6 @@
 ## 1.2.0 - 2025-06-29
 ### What's Changed
 #### 🚀 Features
-
 - feat(astro): replace deprecated View Transitions with ClientRouter @brpaz (#187)
 - feat: add article and update deps @brpaz (#183)
 
