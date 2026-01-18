@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## 1.5.0 - 2026-01-18
+
+### What's Changed
+
+#### 🚀 Features
+
+- refactor(ui): modernize UI with consistent design system @brpaz (#218)
+- Add blog posts 2 @brpaz (#216)
+
+#### 🧩 Dependency Updates
+
+<details>
+<summary>10 changes</summary>
+- chore(deps): update multiple deps @brpaz (#224)
+- chore(deps): update astro monorepo @[renovate[bot]](https://github.com/apps/renovate) (#192)
+- chore(deps): update dependency @typescript-eslint/parser to v8.53.0 @[renovate[bot]](https://github.com/apps/renovate) (#196)
+- chore(deps): update dependency eslint-plugin-playwright to v2.5.0 @[renovate[bot]](https://github.com/apps/renovate) (#203)
+- chore(deps): update fontsource monorepo to v5.2.8 @[renovate[bot]](https://github.com/apps/renovate) (#220)
+- chore(deps): update tailwindcss monorepo to v4.1.18 @[renovate[bot]](https://github.com/apps/renovate) (#210)
+- chore(deps): update dependency eslint to v9.39.2 @[renovate[bot]](https://github.com/apps/renovate) (#201)
+- chore(deps): update dependency @tailwindcss/typography to v0.5.19 @[renovate[bot]](https://github.com/apps/renovate) (#217)
+- chore(deps): update github artifact actions (major) @[renovate[bot]](https://github.com/apps/renovate) (#213)
+- chore(deps): update node.js to v22.19.0 @[renovate[bot]](https://github.com/apps/renovate) (#202)
+
+</details>
+**Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.4.0...v1.5.0
+
 ## 1.4.0 - 2025-09-08
 
 ### What's Changed
@@ -36,7 +63,6 @@
 </details>
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.2.0...v1.3.0
 ## 1.2.0 - 2025-06-29
-
 ### What's Changed
 
 #### 🚀 Features
