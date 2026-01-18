@@ -28,7 +28,7 @@ importers:
         version: 3.1.5(astro@5.16.11(@types/node@25.0.9)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.44.1)(typescript@5.8.3)(yaml@2.8.2))
       astro-loading-indicator:
         specifier: ^0.7.0
-        version: 0.7.0(astro@5.16.11(@types/node@25.0.9)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.44.1)(typescript@5.8.3)(yaml@2.8.2))
+        version: 0.7.1(astro@5.16.11(@types/node@25.0.9)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.44.1)(typescript@5.8.3)(yaml@2.8.2))
       astro-og-canvas:
         specifier: ^0.7.0
         version: 0.7.0(astro@5.16.11(@types/node@25.0.9)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.44.1)(typescript@5.8.3)(yaml@2.8.2))
@@ -1394,8 +1394,8 @@ packages:
     peerDependencies:
       astro: '>= 4.0.0'
 
-  astro-loading-indicator@0.7.0:
-    resolution: {integrity: sha512-oNSUYbHq8Aaol0zcVuBzGz+qrqKsviOvKl1xaaKo3DLkEef7HCzHQAgTgWv4lB1iYFWa5GaieQvlxBO4KjzKZg==}
+  astro-loading-indicator@0.7.1:
+    resolution: {integrity: sha512-SH5igTvcj+rHoy7o7JO7jIuPxxkNarHl2Bu1H41/fAOa1uiYuLoQNkGhV/Xqe4Jc9wnUHidwXNExjPHoL1plNg==}
     peerDependencies:
       astro: ^4.0.0 || ^5.0.0
 
@@ -6148,7 +6148,7 @@ snapshots:
       favilib: 1.0.5
       ultrahtml: 1.6.0
 
-  astro-loading-indicator@0.7.0(astro@5.16.11(@types/node@25.0.9)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.44.1)(typescript@5.8.3)(yaml@2.8.2)):
+  astro-loading-indicator@0.7.1(astro@5.16.11(@types/node@25.0.9)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.44.1)(typescript@5.8.3)(yaml@2.8.2)):
     dependencies:
       astro: 5.16.11(@types/node@25.0.9)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.44.1)(typescript@5.8.3)(yaml@2.8.2)
 
