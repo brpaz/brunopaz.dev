@@ -1,12 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
-  "labels": [
-    "dependencies"
-  ],
-  "reviewers": [
-    "brpaz"
+  "extends": ["config:recommended"],
+  "labels": ["dependencies"],
+  "reviewers": ["brpaz"],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^@playwright/"],
+      "enabled": false
+    }
   ]
 }
