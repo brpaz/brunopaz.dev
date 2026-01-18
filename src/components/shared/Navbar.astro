@@ -1,7 +1,7 @@
 ---
 const currentPage = new URL(Astro.request.url).pathname;
 
-const menuItems = [
+const desktopMenuItems = [
   {
     title: 'About',
     path: '/about',
@@ -22,6 +22,15 @@ const menuItems = [
     path: '/contact',
     rootPath: '/contact',
   },
+];
+
+const mobileMenuItems = [
+  {
+    title: 'Home',
+    path: '/',
+    rootPath: '/',
+  },
+  ...desktopMenuItems,
 ];
 ---
 
@@ -82,23 +91,23 @@ const menuItems = [
     @apply w-full;
   }
 
-  #mobile-drawer a {
-    @apply relative font-medium text-lg text-neutral-700 hover:text-primary-500 transition-colors duration-200 py-4 px-6 block;
+  .mobile-menu-link {
+    @apply relative font-medium text-lg text-neutral-700 transition-all duration-200 py-4 px-6 block cursor-pointer;
   }
 
-  #mobile-drawer a.active {
+  .mobile-menu-link:hover {
+    @apply bg-neutral-50 text-primary-500 cursor-pointer;
+  }
+
+  .mobile-menu-link.active {
     @apply text-primary-500 border-l-4 border-primary-500 bg-primary-50;
-  }
-
-  #mobile-drawer a:hover {
-    @apply bg-neutral-50;
   }
 </style>
 
 <!-- Desktop Navigation -->
 <ul class="main-nav items-center gap-8 hidden md:flex">
   {
-    menuItems.map((item) => (
+    desktopMenuItems.map((item) => (
       <li>
         <a href={item.path} class={currentPage.startsWith(item.rootPath) ? 'active' : ''}>
           {item.title}
@@ -130,12 +139,17 @@ const menuItems = [
 </button>
 
 <!-- Mobile Menu Overlay -->
-<div id="mobile-overlay" class="hidden absolute inset-0 bg-black/50 z-[60] md:hidden" aria-hidden="true"></div>
+<div
+  id="mobile-overlay"
+  class="hidden absolute top-0 left-0 right-0 h-screen bg-black/50 z-60 md:hidden"
+  aria-hidden="true"
+>
+</div>
 
 <!-- Mobile Menu Drawer -->
 <div
   id="mobile-drawer"
-  class="absolute top-0 right-0 h-screen w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-[70] md:hidden flex flex-col"
+  class="fixed top-0 right-0 h-screen w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-[70] md:hidden flex flex-col"
 >
   <div class="flex items-center justify-between p-4 border-b border-neutral-200">
     <span class="text-lg font-semibold text-neutral-900">Menu</span>
@@ -152,13 +166,16 @@ const menuItems = [
   <nav class="flex-1 overflow-y-auto">
     <ul class="py-2">
       {
-        menuItems.map((item) => (
-          <li>
-            <a href={item.path} class={currentPage.startsWith(item.rootPath) ? 'active' : ''}>
-              {item.title}
-            </a>
-          </li>
-        ))
+        mobileMenuItems.map((item) => {
+          const isActive = item.rootPath === '/' ? currentPage === '/' : currentPage.startsWith(item.rootPath);
+          return (
+            <li>
+              <a href={item.path} class={`mobile-menu-link ${isActive ? 'active' : ''}`}>
+                {item.title}
+              </a>
+            </li>
+          );
+        })
       }
     </ul>
   </nav>
