@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Prune Preview Environments
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: pulkitjalan/actions-cloudflare-prune-pages@v1
         with:
