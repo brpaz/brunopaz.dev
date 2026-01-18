@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 1.5.1 - 2026-01-18
+
+### What's Changed
+
+#### 🐛 Bug Fixes
+
+- fix: menu z-index on mobile and broken og urls @brpaz (#225)
+
+#### 🧩 Dependency Updates
+
+- chore(deps): update actions/checkout action to v6 @[renovate[bot]](https://github.com/apps/renovate) (#226)
+- chore(deps): update actions/setup-node action to v6 @[renovate[bot]](https://github.com/apps/renovate) (#227)
+
+**Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.5.0...v1.5.1
+
 ## 1.5.0 - 2026-01-18
 
 ### What's Changed
@@ -23,10 +38,8 @@
 - chore(deps): update dependency @tailwindcss/typography to v0.5.19 @[renovate[bot]](https://github.com/apps/renovate) (#217)
 - chore(deps): update github artifact actions (major) @[renovate[bot]](https://github.com/apps/renovate) (#213)
 - chore(deps): update node.js to v22.19.0 @[renovate[bot]](https://github.com/apps/renovate) (#202)
-
 </details>
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.4.0...v1.5.0
-
 ## 1.4.0 - 2025-09-08
 
 ### What's Changed
@@ -64,7 +77,6 @@
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.2.0...v1.3.0
 ## 1.2.0 - 2025-06-29
 ### What's Changed
-
 #### 🚀 Features
 
 - feat(astro): replace deprecated View Transitions with ClientRouter @brpaz (#187)

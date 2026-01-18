@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { title, publishDate, excerpt } = post.data;
-const ogImage = `/open-graph/${post.slug}`;
+const ogImage = `/open-graph/${post.slug}.png`;
 const { Content } = await post.render();
 ---
 
