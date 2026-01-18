@@ -26,6 +26,36 @@ let ogImageURL = new URL('/img/site-preview.png', Astro.site).toString();
 if (props.ogImage) {
   ogImageURL = new URL(props.ogImage, Astro.site).toString();
 }
+
+const currentPage = new URL(Astro.request.url).pathname;
+
+const menuItems = [
+  {
+    title: 'About',
+    path: '/about',
+    rootPath: '/about',
+  },
+  {
+    title: 'Work',
+    path: '/work',
+    rootPath: '/work',
+  },
+  {
+    title: 'CV',
+    path: '/cv',
+    rootPath: '/cv',
+  },
+  {
+    title: 'Blog',
+    path: '/blog/page/1',
+    rootPath: '/blog',
+  },
+  {
+    title: 'Contact',
+    path: '/contact',
+    rootPath: '/contact',
+  },
+];
 ---
 
 <html lang="en">
@@ -66,5 +96,63 @@ if (props.ogImage) {
     </main>
     <Footer />
     <BackToTop />
+
+    <!-- Mobile Menu Overlay - At body level for proper z-index stacking -->
+    <div
+      id="mobile-overlay"
+      class="hidden fixed inset-0 bg-black/50 z-[9998] md:hidden"
+      aria-hidden="true"
+      transition:persist
+    >
+    </div>
+
+    <!-- Mobile Menu Drawer - At body level for proper z-index stacking -->
+    <div
+      id="mobile-drawer"
+      class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-[9999] md:hidden flex flex-col"
+      transition:persist
+    >
+      <div class="flex items-center justify-between p-4 border-b border-neutral-200">
+        <span class="text-lg font-semibold text-neutral-900">Menu</span>
+        <button
+          id="drawer-close"
+          aria-label="Close navigation menu"
+          class="inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors duration-200"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="flex-1 overflow-y-auto">
+        <ul class="py-2">
+          {
+            menuItems.map((item) => (
+              <li>
+                <a href={item.path} class={currentPage.startsWith(item.rootPath) ? 'active' : ''}>
+                  {item.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <style is:global>
+      @reference "../assets/styles/global.css";
+
+      #mobile-drawer a {
+        @apply relative font-medium text-lg text-neutral-700 hover:text-primary-500 transition-colors duration-200 py-4 px-6 block;
+      }
+
+      #mobile-drawer a.active {
+        @apply text-primary-500 border-l-4 border-primary-500 bg-primary-50;
+      }
+
+      #mobile-drawer a:hover {
+        @apply bg-neutral-50;
+      }
+    </style>
   </body>
 </html>

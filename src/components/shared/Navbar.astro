@@ -81,18 +81,6 @@ const menuItems = [
   .main-nav a.active::after {
     @apply w-full;
   }
-
-  #mobile-drawer a {
-    @apply relative font-medium text-lg text-neutral-700 hover:text-primary-500 transition-colors duration-200 py-4 px-6 block;
-  }
-
-  #mobile-drawer a.active {
-    @apply text-primary-500 border-l-4 border-primary-500 bg-primary-50;
-  }
-
-  #mobile-drawer a:hover {
-    @apply bg-neutral-50;
-  }
 </style>
 
 <!-- Desktop Navigation -->
@@ -128,42 +116,3 @@ const menuItems = [
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
   </svg>
 </button>
-
-<!-- Mobile Overlay -->
-<div
-  id="mobile-overlay"
-  class="hidden fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300"
-  aria-hidden="true"
->
-</div>
-
-<!-- Mobile Drawer -->
-<nav
-  id="mobile-drawer"
-  class="fixed top-0 right-0 h-full w-64 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden overflow-y-auto"
-  aria-label="Mobile navigation"
->
-  <div class="flex items-center justify-between p-4 border-b border-neutral-200">
-    <span class="font-bold text-lg text-neutral-800">Menu</span>
-    <button
-      id="drawer-close"
-      aria-label="Close navigation menu"
-      class="p-2 rounded-md text-neutral-600 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors duration-200"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button>
-  </div>
-  <ul class="pt-2">
-    {
-      menuItems.map((item) => (
-        <li>
-          <a href={item.path} class={currentPage.startsWith(item.rootPath) ? 'active' : ''}>
-            {item.title}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-</nav>
