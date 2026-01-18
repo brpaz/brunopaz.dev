@@ -1,0 +1,55 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`giscus-wrapper ${className}`} id="giscus-container"></div>
+
+<script>
+  function loadGiscus() {
+    const container = document.getElementById('giscus-container');
+    if (!container) return;
+
+    const existingScript = container.querySelector('script[src*="giscus"]');
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    const existingFrame = container.querySelector('.giscus, iframe');
+    if (existingFrame) {
+      existingFrame.remove();
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://giscus.app/client.js';
+    script.setAttribute('data-repo', 'brpaz/brunopaz.dev');
+    script.setAttribute('data-repo-id', 'R_kgDOGgbubQ');
+    script.setAttribute('data-category', 'Blog');
+    script.setAttribute('data-category-id', 'DIC_kwDOGgbubc4C1GtB');
+    script.setAttribute('data-mapping', 'pathname');
+    script.setAttribute('data-strict', '0');
+    script.setAttribute('data-reactions-enabled', '1');
+    script.setAttribute('data-emit-metadata', '0');
+    script.setAttribute('data-input-position', 'top');
+    script.setAttribute('data-theme', 'preferred_color_scheme');
+    script.setAttribute('data-lang', 'en');
+    script.setAttribute('data-loading', 'lazy');
+    script.setAttribute('crossorigin', 'anonymous');
+    script.async = true;
+
+    container.appendChild(script);
+  }
+
+  loadGiscus();
+
+  document.addEventListener('astro:after-swap', loadGiscus);
+</script>
+
+<style>
+  .giscus-wrapper {
+    margin-top: 4rem;
+  }
+</style>

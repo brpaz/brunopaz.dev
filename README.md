@@ -2,15 +2,23 @@
 
 > Source code for my personal website, [brunopaz.dev](https://brunopaz.dev). Powered by [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/brpaz/brunopaz.dev/ci?style=for-the-badge)](https://github.com/brpaz/brunopaz.dev/actions)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fbrunopaz.dev&style=for-the-badge)](https://brunopaz.dev)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/brpaz/brunopaz.dev/ci.yml?style=for-the-badge)](https://github.com/brpaz/brunopaz.dev/actions/workflows/ci.yml)
+[![Deployment Status](https://img.shields.io/github/deployments/brpaz/brunopaz.dev/production?style=for-the-badge)](https://github.com/brpaz/brunopaz.dev/deployments)
+
+## Features
+
+- Homepage with Featured Projects and Publications
+- Portfolio / Projects
+- Blog
+- Contact form
 
 ## 🚀 Getting started
 
-There are multiple ways to run this project on local environment:
+### Pre Requsitites
 
-- Directly on host machine (requires [Node](https://nodejs.org/en) >=20 and [PNPM](https://pnpm.io/))
-- Using [Nix Flakes](https://nixos.wiki/wiki/Flakes)
-- Using [Devcontainers](https://containers.dev/)
+- [Devenv](https://devenv.sh)
+- [Direnv](https://direnv.net)
 
 ### Clone the repo
 
@@ -66,9 +74,32 @@ This website requires the following environment variables to be defined:
 
 ---
 
+## License
+
+This project is licensed under the [Creative Commons Attribution-NoDerivatives 4.0 International License](LICENSE).
+
+[![CC BY-ND 4.0](https://licensebuttons.net/l/by-nd/4.0/88x31.png)](http://creativecommons.org/licenses/by-nd/4.0/)
+
+**You are free to:**
+
+- View and share this code with proper attribution
+
+**You are NOT allowed to:**
+
+- Modify, remix, or build upon this code
+- Create derivative works based on this project
+
+For any other use cases or permissions, please contact me.
+
+---
+
 ## Author
 
 👤 **Bruno Paz**
 
 - Website: [brunopaz.dev](https://brunopaz.dev)
 - Github: [@brpaz](https://github.com/brpaz)
+
+---
+
+Copyright © 2026 Bruno Paz. All rights reserved.
