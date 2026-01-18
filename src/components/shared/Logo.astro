@@ -1,20 +1,39 @@
-<a href="/" aria-current="page" class="flex items-center text-primary-500">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    class="fill-current text-primary-500 w-12 h-12 mr-2"
-    fill="currentColor"
-  >
-    <path
-      d="M13.3252 3.05011L8.66765 20.4323L10.5995 20.9499L15.257 3.56775L13.3252 3.05011Z"
-    ></path>
+<style>
+  @reference "../../assets/styles/global.css";
+
+  .logo-link {
+    @apply flex items-center text-primary-500 transition-transform duration-200 ease-in-out;
+  }
+
+  .logo-link:hover {
+    @apply scale-105;
+  }
+
+  .logo-icon {
+    @apply fill-current text-primary-500 w-12 h-12 mr-2 transition-transform duration-300 ease-in-out;
+  }
+
+  .logo-link:hover .logo-icon {
+    @apply rotate-6;
+  }
+
+  .logo-text {
+    @apply font-bold text-2xl uppercase;
+  }
+</style>
+
+<a href="/" aria-current="page" class="logo-link">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="logo-icon" fill="currentColor">
+    <path d="M13.3252 3.05011L8.66765 20.4323L10.5995 20.9499L15.257 3.56775L13.3252 3.05011Z"></path>
     <path
       d="M7.61222 18.3608L8.97161 16.9124L8.9711 16.8933L3.87681 12.1121L8.66724 7.00798L7.20892 5.63928L1.0498 12.2017L7.61222 18.3608Z"
-    ></path>
+    >
+    </path>
     <path
       d="M16.3883 18.3608L15.0289 16.9124L15.0294 16.8933L20.1237 12.1121L15.3333 7.00798L16.7916 5.63928L22.9507 12.2017L16.3883 18.3608Z"
-    ></path>
+    >
+    </path>
   </svg>
 
-  <span class="font-bold text-2xl uppercase">Bruno Paz</span>
+  <span class="logo-text">Bruno Paz</span>
 </a>

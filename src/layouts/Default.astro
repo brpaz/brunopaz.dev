@@ -5,6 +5,7 @@ import LoadingIndicator from 'astro-loading-indicator/component';
 import { fade } from 'astro:transitions';
 import Header from '@components/shared/Header.astro';
 import Footer from '@components/shared/Footer.astro';
+import BackToTop from '@components/shared/BackToTop.astro';
 import site from '~/content/site';
 
 const sentryEnabled = import.meta.env.PUBLIC_SENTRY_ENABLED || false;
@@ -64,5 +65,6 @@ if (props.ogImage) {
       <slot />
     </main>
     <Footer />
+    <BackToTop />
   </body>
 </html>

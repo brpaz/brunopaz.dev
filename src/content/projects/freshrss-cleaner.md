@@ -11,17 +11,17 @@ images: []
 sortOrder: 2
 ---
 
-## Problem It Solves
+## Purpose
 
-FreshRSS is an excellent self-hosted RSS aggregator, but over time, accumulated articles can slow down performance and consume storage. Manual cleanup is time-consuming and error-prone.
+[FreshRSS](https://freshrss.org/) is an excellent self-hosted RSS aggregator, but over time, accumulated articles can slow down performance and consume storage. Manual cleanup is time-consuming and error-prone.
+
+I built FreshRSS Cleaner to address these issues. It´s a CLI tool that allows to automatically archive articles based on user-defined rules.
 
 ## Features
 
 - **Rule-Based Cleanup**: Define custom rules for article retention based on age, feed, or other criteria
 - **Dry-Run Mode**: Preview what will be deleted before making changes
-- **Safe Operations**: Ensures data integrity during cleanup operations
 - **Flexible Configuration**: YAML-based configuration for easy customization
-- **Performance Focused**: Efficiently handles large article databases
 
 ## Use Cases
 

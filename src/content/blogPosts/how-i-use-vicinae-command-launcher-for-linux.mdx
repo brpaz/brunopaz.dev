@@ -1,0 +1,151 @@
+---
+title: How I Use Vicinae command launcher for Linux
+slug: how-i-use-vicinae-command-launcher-for-linux
+excerpt: In this article, I explore how I use Vicinae, a relatively new high-performance, native launcher for Linux. Built with C++ and QT and compatible with Raycast extensions, Vicinae offers a seamless experience for launching applications, searching the web, and accessing files.
+tags: [linux,vicinae,productivity]
+published: true
+publishDate: 2026-01-18
+---
+
+import { Picture } from 'astro:assets';
+import vicinaeTabs from '../../assets/images/blog/20260117_vicinae_tabs.png';
+import vicianeWindowSwitcher from '../../assets/images/blog/20260117_vicinae_window_switcher.png';
+import vicianeClipboard from '../../assets/images/blog/20260117_vicinae_clipboard.png';
+import vicinaeObsidian from '../../assets/images/blog/20260117_vicinae_obsidian.png';
+import vicinaeApplicationLauncher from '../../assets/images/blog/20260117_vicinae_application_launcher.png';
+import vicinaedocsearch from '../../assets/images/blog/20260117_vicinae_docsearch.png';
+import vicianeGitProjects from '../../assets/images/blog/20260117_vicinae_git_projects.png';
+import vicinaeGitHub from '../../assets/images/blog/20260117_vicinae_github.png';
+import vicinaeDDGSearch from '../../assets/images/blog/20260117_vicinae_ddg_search.png';
+import vicinaeNixpkgsSearch from '../../assets/images/blog/20260117_vicinae_nixpks_search.png';
+
+One of the biggest advantages of using a command launcher is the reduction of context switching. Want to search on the web? Just open the launcher with it´s global hotkey, and type your query and your web browser will open automatically. Want to launch an application? Do a quick calculation? Search for files? Access your code snippets? similar flow. The command launcher becomes your machine control plane.
+
+Over the past few years, I have tried dozens of different command launchers for Linux. From the classic [Rofi](https://github.com/davatorium/rofi) or [Albert](https://albertlauncher.github.io/), to [Ulauncher](https://ulauncher.io/) and [ScriptKit](www.scriptkit.com/).
+
+All of them had their own strengths and weaknesses, but none of them felt "complete" to me, specially after seeing how [Raycast](https://www.raycast.com/) works on macOS.
+
+ScriptKit was the one that came closest, but it's not Linux native and had some missing functionality like the application launcher.
+
+This was until I discovered [Viciane](https://docs.vicinae.com/), and I think I finally found my perfect launcher.
+
+## What is Vicinae?
+
+[Viciane](https://docs.vicinae.com/) is a high-performance, native launcher for Linux, built with C++ and Qt. It ships with built-in modules and lets you build extensions using React and TypeScript, fully server-side, no browser or Electron needed, making it a lightweight and fast.
+
+It´s also has compatibility with many Raycast extensions, which is huge, considering how popular Raycast is and the amount of extensions available.
+
+## Getting Started
+
+To install Vicinae, you can use the following the instructions on [Viciane's website](https://docs.vicinae.com/).
+
+## How I Use Vicinae?
+
+In this section, I will show you some of the things I use Vicinae for.
+
+I set `Super` + `Space` keyboard shortcut to open Vicinae window so it´s always easy to access. I am leveraging a bunch of Raycast extensions to enhance my workflow, as well as some native Vicinae extensions, plus some custom extensions I've built myself.
+
+### Launching Applications
+
+Arguably the primary purpose of a command launcher. Vicinae allows me to quickly launch new applications with a few keystrokes.
+
+<Picture src={vicinaeApplicationLauncher} alt="Viciane Application Launcher" />
+
+### Switch Between Windows
+
+Alt tabbing when you have many windows open is not efficient. Vicinae includes a built-in window switcher command and I associate it with `Super` + `W` shortcut to provide a very efficient flow of switching between open windows.
+
+<Picture src={vicianeWindowSwitcher} alt="Viciane Window Switcher" />
+
+My muscle memory still attempts to use `Alt` + `Tab` a lot. It´s something I am fighting with, but I will get there. As a workaround, I have also overridden the `Alt` + `Tab` shortcut to open Vicinae window switcher, instead of the default behavior.
+
+### Acessing Clipboard
+
+With Vicinae built-in clipboard I don´t need any other Clipboard Manager extension. I bound the clipboard Vicinae command to `Super + C` which makes my clipboard history easily accessible, allowing me to paste any item from my clipboard history directly to the focused window.
+
+<Picture src={vicianeClipboard} alt="Viciane Clipboard Extension" />
+
+### Managing Browser Tabs
+
+I constantly have dozens of browser tabs open. This is not ideal I know, but it´s something I have trouble keeping under control. This makes finding a tab very complicated, which results in me open another tab, which makes the problem even worse!
+
+I have built a [Custom Viciane Extension](https://github.com/brpaz/vicinae-tabctl) that uses [Tabctl](https://github.com/slastra/tabctl), which is a CLI tool that allows to control browser tabs from the terminal and supports multiple browsers from Firefox to Chrome. By integrating TabCtl with Vicinae, I can now list and search all my open browser tabs from Vicinae and quickly toggle the focus to any of them.
+
+It´s a life saver.
+
+<Picture src={vicinaeTabs} alt="Viciane Tabs Extension" />
+
+### Opening code projects
+
+Another great use case of Vicinae is to quickly open my Code Projects, either in my terminal or my IDE. I have created a custom extension that indexes my projects directory and allows me to search and open them directly from Vicinae. It´s not open source yet, but I will release it soon.
+
+<Picture src={vicianeGitProjects} alt="Viciane Git Projects Extension" />
+
+### Access to my Code snippets library and reference material
+
+I use [Obsidian](https://obsidian.md/) to manage my code snippets, cheatsheets, and other reference material. When I am on my IDE or terminal and want to copy some code snippet, or see how something is done, I can type `Super` + "`" to toggle the [Raycast Obsidian Extension](https://www.raycast.com/marcjulian/obsidian) that allows me to search into my Obsidian vault.
+
+This allows me to keep my knowledge base centralized in one application (Obsidian) and access it from everywhere with just a Keyboard shortcut. Viciane supports pasting any text to the frontmost application, so I can paste the code snippet directly into my IDE or terminal, by just pressing `Enter`. Not faster than use built-in IDE snippets functionality, but a lot more portable and flexible.
+
+<Picture src={vicinaeObsidian} alt="Obsidian" />
+
+### Searching on GitHub
+
+I use the [Raycast GitHub Extension](https://www.raycast.com/marcjulian/github), which allows me to open My GitHub repositories, issues and pull requests, directly from Vicinae. GitHub search is not very good, with Vicinae it´s a lot faster to access my repos.
+
+<Picture src={vicinaeGitHub} alt="Viciane GitHub" />
+
+### Searching Documentation
+
+When I am coding and want to access to documentation for a particular language or library that I am using, I can use Vicinae together with the [Raycast Docsearch](https://www.raycast.com/Fatpandac/docsearch) extension to quick search on many popular documentation websites.
+
+I also use some specialized extensions for searching on specific documentation sites like [Search MDN](https://www.raycast.com/krzysztofzuraw/search-mdn) or [TailwindCSS](https://www.raycast.com/vimtor/tailwindcss).
+
+<Picture src={vicinaedocsearch} alt="Viciane Docsearch" />
+
+### Bookmark management
+
+I use [Raindrop](https://www.raindrop.io/) and [Karakeep](https://karakeep.app/) to manage my bookmarks and web clips. With the respective Raycast extensions I can easily access my bookmarks from anywhere.
+
+There is also extensions that allows you to access your browser bookmarks (For example for [Firefox](https://github.com/vicinaehq/extensions/tree/main/extensions/firefox))
+
+### Execute a Web search
+
+I am using some extensions as well a few custom [Shortcuts](https://docs.vicinae.com/shortcuts) for everything that I regularly search on the web. From general purpose search engines like DuckDuckGo or Amazon, to specific developer stuff like searching for packages on NPM, Go Packages or Nixpkgs. All of it is accessible from Vicinae.
+
+<Picture src={vicinaeDDGSearch} alt="Viciane DDG Search" />
+
+<Picture src={vicinaeNixpkgsSearch} alt="Viciane Nixpkgs search" />
+
+### Accessing My Passwords and generate 2FA codes
+
+I use Raycasts extensions for my Password Manager and 2FA code generator. This allows me to quickly login using 2FA codes without having to open my phone or to switch context. The same with my Passwords. Passwords integration is specially useful for managing accesses outside of the Browser, like SSH Keys or command line applications.
+
+### System control tasks
+
+Viciane can be used to do common system control tasks like:
+
+- Toggle Caffeine / Do Not disturb mode
+- Toggle Bluetooth / Wifi
+- Power management
+- Managing SystemD services
+
+Some of those require an extension, available on Vicinae's extension store.
+
+### Various developer tools
+
+Base64 encoding and decoding, URL encoding, lookup HTML symbols, JWT encode and decode, quick access to the entire [It Tools](https://it-tools.tech/), Checking browser features compatibility on [CanIUse](https://caniuse.com/) and much more.
+
+## Building Viciane extensions
+
+One of the most powerful features of Vicinae is its ability to create custom extensions. Despite being built with C++ and QT, Viciane allows you to create extensions, using React and Typescript, using a very similar API than Raycast, which is how Raycast extensions are compatible.
+
+You can find instructions how to create an extension [here](https://docs.vicinae.com/extensions/introduction).
+
+---
+
+## Conclusion
+
+A command launcher is something that after you useone, you simply cannot go back. It's a fantastic productivity booster for me and Vicinae in particular, is one of the most complete launchers for Linux I have found. It´s still relatively new, and the extension ecosystem is still small, but Raycast compatibility compensates that. It´s fast and native and works with many different Desktop envrionments from Gnome to Cosmic or Hyperland.
+
+I recommend you to try it out!
