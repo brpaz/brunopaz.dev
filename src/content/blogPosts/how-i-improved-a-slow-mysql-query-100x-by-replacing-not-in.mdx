@@ -1,0 +1,24 @@
+---
+title: How I Improved a Slow MySQL Query by 100× by Replacing `NOT IN`
+slug: how-i-improved-a-slow-mysql-query-100x-by-replacing-not-in
+excerpt: A production query was scanning ~1M rows and taking ~5s. By rewriting a `NOT IN` status filter into a selective `IN` predicate, execution dropped to ~50ms.
+tags: ['MySQL', 'SQL', 'Performance', 'Query Optimization']
+published: true
+publishDate: 2026-01-21
+---
+
+This week, I was investigating a MySQL query that was taking on average ~5 seconds to execute in production. The time it took to execute was not the only issue. According to `EXPLAIN ANALYZE`, the cost of the query was also very high (~600k). This query was putting some strain on the database server, especially on the CPU.
+
+The query itself was relatively simple: fetch a list of support tickets while excluding those in specific statuses (`solved` and `closed`). There were a couple of joins as well, but nothing special; they were mostly required for sorting, not filtering. The `ORDER BY` used an `IF` expression, which can be a bottleneck in some cases, but given the status filter the final result set should have been relatively small (not more than 5000 rows). Still, the query was scanning more than 1 million rows!
+
+I knew I had the right indexes on the main table, so my first guess was that the joins were being executed before the filter. I tried rewriting the query to use a CTE to “pre-filter” before joining, but the impact was not significant.
+
+After looking at the plan more carefully, I noticed that the most expensive step was the status filter itself, which was not using the index effectively and instead was doing a table scan.
+
+And the reason for that was simple. The `NOT IN` expression. A `NOT IN` expression, often matches most rows (in my case, everything except those two statuses). Because of this, the query planner decided that using the index wasn't worth it and instead choose a plan that reads a huge portion of the table (effectively a scan).
+
+Replacing the `NOT IN` expression with an `IN` and inverting the condition (listing the statuses I actually wanted, instead of the ones I didn't), was enough for MySQL to change the plan and use a range scan, leveraging the index effectively.
+
+This small change resulted in the execution time to drop from ~5s to ~50ms, and the cost from ~600k to ~6k. **A 100× improvement!**
+
+This just shows how useful `EXPLAIN ANALYZE` is to understand query performance and how sometimes all it takes is a small change to achieve a significant improvement.
