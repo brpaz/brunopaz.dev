@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 1.5.3 - 2026-01-25
+
+### What's Changed
+
+- new blog posts @brpaz (#235)
+
+#### 🧩 Dependency Updates
+
+- chore(deps): update dependency @types/node to v25.0.10 @[renovate[bot]](https://github.com/apps/renovate) (#234)
+- chore(deps): update stefanzweifel/git-auto-commit-action action to v7 @[renovate[bot]](https://github.com/apps/renovate) (#229)
+- chore(deps): update dependency @typescript-eslint/parser to v8.53.1 @[renovate[bot]](https://github.com/apps/renovate) (#231)
+- chore(deps): update dependency prettier to v3.8.1 @[renovate[bot]](https://github.com/apps/renovate) (#233)
+- chore(deps): update dependency astro to v5.16.15 @[renovate[bot]](https://github.com/apps/renovate) (#232)
+
+**Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.5.2...v1.5.3
+
 ## 1.5.2 - 2026-01-18
 
 ### What's Changed
@@ -52,7 +68,6 @@
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.4.0...v1.5.0
 ## 1.4.0 - 2025-09-08
 ### What's Changed
-
 #### 🚀 Features
 
 - feat(blog): write new posts @brpaz (#208)
@@ -89,7 +104,6 @@
 #### 🚀 Features
 - feat(astro): replace deprecated View Transitions with ClientRouter @brpaz (#187)
 - feat: add article and update deps @brpaz (#183)
-
 #### 🧩 Dependency Updates
 
 - chore(deps): update node.js to v20.19.3 @[renovate[bot]](https://github.com/apps/renovate) (#185)

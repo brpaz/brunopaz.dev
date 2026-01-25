@@ -6,7 +6,7 @@
     "email": "info@brunopaz.dev",
     "url": "https://brunopaz.dev"
   },
-  "version": "1.5.2",
+  "version": "1.5.3",
   "private": true,
   "type": "module",
   "engines": {
