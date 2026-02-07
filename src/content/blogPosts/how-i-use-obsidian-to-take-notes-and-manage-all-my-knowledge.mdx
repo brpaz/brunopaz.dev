@@ -1,0 +1,624 @@
+---
+title: How I use Obsidian to take notes and manage all my knowledge
+publishDate: 2026-02-05
+slug: how-i-use-obsidian-to-take-notes-and-manage-all-my-knowledge
+excerpt: Obsidian is a powerful tool for taking notes and managing knowledge. It allows me to capture ideas and thoughts in a structured way, making it easy to organize and access them later.
+tags: ["Obsidian", "Knowledge Management","Productivity"]
+published: true
+---
+
+import  { Picture } from 'astro:assets'
+import bookBases from '../../assets/images/blog/obsidian-book-base.png';
+import vicinaeSnippetsLauncher from '../../assets/images/blog/obsidian-code-snippets-vicinae.png';
+
+As a Software Engineer, I frequently come across with information that I want to save for later reference. From code snippets, how-to guides, cheat sheets, or an interesting article or blog post about a topic I am interested in.
+
+Besides pure knowledge reference and archiving, there are also other moments on my day, where I want to capture and take notes and small pieces of information. For example, meeting notes, project ideas and specifications, general research about different topics, and random thoughts that come to my mind.
+
+[Obsidian](https://obsidian.md/) is my all-in-one tool for managing all of this knowledge. It excels at capturing and organizing information in a structured way, from temporary notes to long-term reference material, making it easy to access and reference later.
+
+In this article, I will share with you how I use Obsidian as my digital knowledge management tool.
+
+---
+
+## Why Obsidian?
+
+### Cross Platform and Offline-First
+
+Obsidian works across different platforms (Windows, macOS, Linux, Android, iOS) and entirely offline. This is critical to ensure that my knowledge remains accessible every time, even when I'm not connected to the internet.
+
+### Notes As Markdown Files
+
+Obsidian stores notes as **plain markdown files**, with optional frontmatter metadata and a few Obsidian-specific quirks like Wikilinks to enhance the experience. There is no proprietary format or database that ties your notes to a specific application.
+
+Considering your knowledge is something that is continuously growing and that you want it to always be accessible, this portability is extremely important. Even if one day Obsidian stops being maintained or I just switch to use a different app, and while I might lose some specific Obsidian features, the core of my knowledge will remain intact. Markdown is a universal format that can be viewed with any text editor and can easily be converted to other formats, if needed.
+
+Since Obsidian is just a folder of markdown files in your computer's file system, it also makes incredibly simple to backup. I can store my vault on a Git repository with the added benefit of version control and history tracking. This is a great way to ensure that my knowledge is always backed up and that I can easily revert to previous versions if needed.
+
+### Plugin Ecosystem
+
+Obsidian offers an extensive plugin ecosystem that allows to extend a big part of its functionality. While I try to keep the usage of plugins to a minimum, there are a few that I find extremely useful and that I use regularly, which I will talk about more, later in this post.
+
+---
+
+## How I Use Obsidian
+
+In this section, I will deep dive into how I use Obsidian to manage all my knowledge. This structure have come a long way, with a lot of experimentation and it is by no means static. The beauty of Obsidian is that it´s very flexible about how you organize your content and it´s something that can be changed at any time.
+
+Some of the things I am currently managing with Obsidian include:
+
+- **Daily Journal** where I document my daily activities, thoughts, and reflections.
+- **Code Snippets** that I can quickly reference and apply, when I am coding.
+- **Reference and How-to Guides** about multiple topics, with a strong focus on Software Engineering and STEM related content, but also topics that are relevant for my personal life.
+- **Web Clippings** of interesting articles, videos, and other resources that I find useful, captured using the official [Web Clipper](https://obsidian.md/web-clipper) extension.
+- **Collections** of content to keep track of (Books, Articles, Videos, etc.)
+- **Thoughts and Ideas** - Random thoughts and ideas that occur to me during my daily activities that I want to remember or explore further.
+- **Research and Learning materials** For example to take notes about a course that I am enrolled in or study materials for a new programming language.
+- **Personal Projects management** Gather specs, track progress, and manage tasks.
+- **Life Management Knowledge** - Practical Guides and workflows related to different areas of my personal life, from my beliefs and values, goals and habits tracking, to resources to manage my personal finance, health and more.
+
+### Must have plugins
+
+Considering the extensive plugin ecosystem, it can be easy to enter in the rabbit hole of installing dozens of plugins, even if they are not strictly necessary. **I always try to keep the number of plugins to a minimum**, and only install those that I find essential for my workflow.
+
+When deciding when to use a plugin, I always consider the portability factor, I mentioned earlier. Plugins should be addons that enhance specific Obsidian workflows, but should not keep it the way, of having your content easily accessible outside Obsidian.
+
+My only exception to this rule is Dataview plugin, which adds specific syntax to the markdown files that will only work in Obsidian, but it´s not something that will stop the markdown files to be readable by other markdown editors. Just the parts that use Dataview syntax won´t render properly outside Obsidian. Those are usually not critical anyway, but more as an enhancement to better index and connect different notes together.
+
+It´s still plain text, and something that can be easily converted to other formats, with a simple script.
+
+Next I will share some of my favorite plugins, I use in my vault.
+
+#### Essential Plugins
+
+These plugins are essential for my workflow:
+
+- [Dataview](https://blacksmithgu.github.io/obsidian-dataview/) - Dataview plugin is a powerful tool for querying and visualizing data in Obsidian. It allows me to create complex queries and visualizations using markdown syntax and with an SQL like language. For example, I can create a view that shows all my notes that have a specific tag and embeded that list in a note.
+- [Templater](https://github.com/SilentVoid13/Templater) - Templater plugin allows to manage complex templates for creating new notes. It supports a wide range of features, such as dynamic content, conditional logic, and loops, and even execution of Javascript code for more advanced use cases. It´s an essential plugin to ensure consistency when creating new notes of different categories.
+- [Omnisearch](https://github.com/scambier/obsidian-omnisearch) - Omnisearch plugin helps finding files quickly. It supports fuzzy search on the entire note content as well as OCR and PDF iles indexing. It´s my go-to plugin for searching my vault.
+- [Folder Notes](https://github.com/LostPaul/obsidian-folder-notes) - I am "team folders". By default, Obsidian folders and just folders, meaning that you cannot have them as a note, like you can do for example in Notion. Folder Notes plugin allows to create a note that represents a folder, and will be automatically displayed when I select that folder in the Obsidian file explorer. This makes the folder view works more like a tree structure.
+- [Local Images Plus](https://github.com/Sergei-Korneev/obsidian-local-images-plus) - This plugin allows to automatically save any remote images from my notes into my local Obsidian vault. This is useful especially when saving web pages or articles that contain, in a way that the remain accessible even if the original source is no longer available.
+
+#### Quality of Life Plugins
+
+A list of other plugins that I use to enhance my Obsidian experience. While they are not essential, they can provide additional functionality and improve the overall user experience.
+
+- [Excalidraw](https://github.com/zsviczian/obsidian-excalidraw-plugin) - Excalidraw plugin allows to create and edit diagrams and flowcharts directly within Obsidian.
+- [Self-hosted LiveSync](https://github.com/vrtmrz/obsidian-livesync) - Self-hosted LiveSync allows to sync my vault with a remote server. It leverages robust server solutions such as CouchDB or object storage systems (e.g., MinIO, S3, R2, etc.) to ensure reliable data synchronisation. It allows me to sync my Obsidian vault between multiple devices.
+- [Obsidian Git](https://github.com/Vinzent03/obsidian-git) - Obsidian Git plugin allows to version control my vault using Git. It provides a simple and intuitive interface for committing and pushing changes to a remote repository.
+- [Iconic](https://github.com/gfxholo/iconic) - Iconic allows to add custom icons to notes and folders, making the visual experience a bit better.
+
+### My vault structure
+
+In this section, I will explain how I organize my vault.
+
+Personally, I always been a folder guy. I know there are many purists in the Personal Knowledge Management (PKM) community who prefer flat structure, but my brain works better with clear hierarchies of content that I can easily visualize and navigate. I stil use search and links a lot to find content. A folder structure also has an advantage that I can keep some level of organization in my filesystem, which is useful, if I ever need to access my vault outside of Obsidian. And this is something, I usually do, on my terminal, which I will talk about more later.
+
+There is no right way to organize your vault. Obsidian lets you choose the structure that best suits your needs, whether it's a folder-based, tags-based, or a more flat structure. You can even mix the different concepts in the same vault.
+
+Your vault is Personal. It's ok to take inspiration from different ideas and structures, but in the end, what matters is what it works for you.
+
+At the root level, I have a couple of folders that defines the major sections of my knowledge:
+
+```plaintext
+.
+├── 00 - Inbox
+├── 01 - Brainstorm
+├── 02 - Personal
+├── 03 - Dev
+├── 04 - Projects
+├── 10 - Learn
+├── 11 - Research
+├── 20 - Areas
+├── 30 - Collections
+├── 90 - Meta
+├── 99 - Resources
+├── 200 - Archive
+```
+
+I try to keep the root level folders to a minimum. I prefix each root folder with a number, for better organization and to group related areas together.
+
+If you are familiar with the [Para method](https://fortelabs.com/blog/para/), you might find some similarities, but the meaning of some concepts are not exactly the same. For exemple, what I call "Areas" in my vault are more like "Resources" in Para. The "Personal" folder can have some similarities with "Areas" in Para. Only Projects and Archive can be seen asa direct match to the Para concepts.
+
+As I mentioned before, I definetely took some inspiration about different methodologies but I am not rigid about them, and instead of just blindly following them, I try to adapt them to my needs and what feels right for me.
+
+For example, while my higher level folders can be similar to Para, there are other places in my vault, while I use some [Zettelkasten](https://en.wikipedia.org/wiki/Zettelkasten) concepts like Atomic notes.
+
+Let´s dive deep into the different root folders to explain it´s purpose.
+
+#### The Inbox Folder
+
+This folder is my main entrypoint of new notes on my vault. It's where I capture any new information. I have configured Obsidian to automatically move new notes to this folder when they are created.
+
+On the book [Building a second brain](https://www.buildingasecondbrain.com/) by Tiago Forte, the author explained the CODE Method, which consists of four essential phases: **Capture**, **Organize**, **Distill**, and **Express**. I took some inspiration from this method, when creating my Obsidian workflow.
+
+The Inbox is basically where the **Capture** phase of the CODE Method happens. When I am on this folder, I am focused on capturing new information. Doesn´t need to be well written or formatted and I don´t have to think about where this information should be stored. Just write it down. Organization comes later.
+
+The Inbox should be reviewed regularly (I try to do it at least once a week) and the notes should not be left there for too long, before being processed. Tempoary content that is no longer relevant will be deleted or Archived. Content that I want to permanently save, I will clean up and move to the appropriate location, into other folders. (This is where the **Organize** and **Distill** phases of the CODE method) come into play.
+
+There are cases where I might skip the Inbox all together, if I am certain that I will want to save this information and I already know before hand where it should be stored, but in most cases, I follow this workflow.
+
+Inside the Inbox folder, I also have a "Scratchpad" note, which is place to just jot down some quick notes, during the day.
+
+#### The Brainstorm Folder
+
+The brainstorm folder is where I capture ideas, thoughts, and concepts that come to mind. It's a place to jot down random thoughts that occur to me during the day, brainstorm ideas, and generate new concepts. While this can still be considered a part of the "Capture" phase, usually the contents on this folder are a bit more permanent, especially the Thoughts.
+
+I have two sub folders:
+
+``` plaintext
+.
+├── Ideas
+└── Thoughts
+```
+
+- **Ideas** I store ideas that I want to explore further. These ideas might be related to my personal life, projects I want to work on, my career, or my hobbies. Ideas will be kept around until they are implemented or discarded.
+- **Thoughts**, it´s more about random thoughts about the world around me. Can be some world event, that I want to write my opinion about it, or something more deep, like a philosophical question. Compared to Ideas, Thoughts can be kept permanently on this folder, and with some basic degree of organization. (mostly about tags and links, for later discovery).
+
+#### The Personal Folder
+
+The personal folder is basically the control plane of my life. It contains notes related to the management of my personal life and useful resources that helps me navigating in my life duties.
+
+The subfolders can be a few levels deep. Here are the major ones I have, up to 2 levels deep, that should give a general idea about the purpose of this folder:
+
+``` plaintext
+.
+├── @Contacts
+├── Entertainment
+├── Events
+├── Life Management
+│   ├── Daily Journal
+│   ├── Daily Operations
+│   ├── Decisions Log
+│   ├── Digital Life
+│   ├── Family and Relationships
+│   ├── Goals & Vision
+│   ├── Habits & Routines
+│   ├── Health & Wellness
+│   ├── Hobbies and Interests
+│   ├── Knowledge Sources
+│   ├── Personal Development
+│   ├── Personal Finance
+│   └── Wishlists
+├── Life Resources
+│   ├── Career Development
+│   ├── DIY Guides
+│   ├── Financial Literacy
+│   ├── Food & Cooking
+│   ├── Health and Wellness
+│   ├── Household chores
+│   ├── Insurance
+│   ├── Knowledge Management
+│   ├── Legal & Rights
+│   ├── Parenting
+│   ├── Productivity
+│   ├── Social
+│   ├── Sovereignty
+│   ├── Sustainable Lifestyle
+│   ├── Transportation
+│   └── Travel
+├── Living Space
+│   ├── DIY Activities
+│   ├── Homelab
+│   ├── Home Management
+│   └── Home Planning & Deco
+├── Memories
+├── Software Engineering Practices
+│   ├── Personal Tech Stack
+│   └── Workspace Setup
+└── Worldview
+```
+
+- **Contacts** is where I store a dedicated page about my personal contacts. From Friends, Family, Work colleagues or other people I have some kind of relationship with. This is useful to keep track of important events or significant moments in my life, associated with the person. I also have a space for public figures, but it´s separated from the personal contacts. Those files are frequently linked from other pages, when I have some kind of interaction with that person.
+- **Entertainment**  is where I keep track of my hobbies, and other interests. It also contains guides and references about how to do I consume media and other entertainment activities.
+- **Events**  is where I keep track of events I attend, such as conferences, meetups, or sports events. I can use this folder to for example, write notes about a specific event, like a conference.
+- **Life Management**  contains actionable areas about my daily activities. Example includes my daily journal and decisions log, where I keep track of things that happen during the day and important decisions I make, my active Goals and Habits, digital life management, and various guides about different personal workflows related to multiple areas of my life.
+- **Life Resources** contains reference articles and guides that are related with my daily life about different topics such as health, finance, cooking, transportation, travel and more.
+- **Living Space** is where I keep track of my living space, including my home, my office, and my car. I can use this section to for example, write notes about a specific room or to keep track about my homelab.
+- **Memories** is where I keep track about memories, focused on childhood memories or personal experiences that I want to remember.
+- **Software Engineering Practices** is where I keep track of my software engineering practices, including my software engineering principles and beliefs, my coding style and prefered development process, and my favorite tools and technologies.
+- **Worldview** is where I keep track of my my vision of the world, including my beliefs, values, and principles.
+
+#### The Dev folder
+
+Since I am a Software Engineer, the **Dev** folder is probably the most important folder on this vault, and this is where I store everything I know about Software Engineering related topics, including Code Snippets, guides and how-tos for multiple programming languages, systems design principles and architecture patterns, and general knowledge about different technologies and tools.
+
+I wont go much into detail about this, as it would be quite lenghty. I will just leave here a sneak peak of the subfolder structure, up two two levels deep.
+
+``` plaintext
+.
+├── AI Development
+│   ├── Agent Capabilities
+│   ├── AI Coding Assistants
+│   ├── AI Frameworks
+│   ├── AI Infrastructure
+│   ├── AI Meta-Programming & Workflows
+│   ├── AI Systems Design
+│   ├── AI Tools
+│   ├── MCP Servers
+│   ├── ML Algorithms
+│   ├── ML Libraries
+│   └── Prompt Engineering
+├── CLI Tools Development
+├── Code Snippets
+├── Data & Databases
+│   ├── Databases
+│   ├── Data Engineering
+│   ├── Data Formats and Schemas
+│   └── Structured Data
+├── Desktop Apps Development
+│   ├── Deep Linking
+│   ├── Electron
+│   ├── Gnome Extension Development
+│   ├── GTK
+│   ├── Tauri
+│   └── Wails
+├── Dev Community
+│   ├── Community Building
+│   └── Community Resources
+├── Development Tools
+│   ├── Build Systems
+│   ├── Dependency Management
+│   ├── Local Dev Environment
+│   ├── Parsers
+│   ├── Site Builders
+│   ├── Task Runners
+│   └── Version Control
+├── DevOps and Infrastructure
+│   ├── Artifact Management
+│   ├── CICD
+│   ├── Cloud & Platforms
+│   ├── Containers & Orchestration
+│   ├── Cost Management
+│   ├── Infrastructure as Code
+│   ├── Networking & Traffic Management
+│   ├── Observability
+│   ├── On-Call & Incident Management
+│   ├── Operations
+│   ├── Practices & Culture
+│   ├── Security
+│   └── Storage
+├── Engineering Management
+│   ├── Hiring & Growth
+│   ├── People Management
+│   ├── Roadmap Planning
+│   └── Team Operations
+├── Engineering Practices
+│   ├── Development Methodologies
+│   ├── Development Practices
+│   ├── Software Craft & Philosophy
+│   ├── Team Collaboration
+│   └── Technical Documentation
+├── Engineering Principles
+│   ├── Algorithms and Data structures
+│   ├── Computer Science Fundamentals
+│   ├── Concurrent Programming
+│   ├── Operating Systems
+│   ├── Programming Principles
+│   └── Resources
+├── Frontend Development
+│   ├── Assets & Media
+│   ├── Browser Extensions
+│   ├── Core Technologies
+│   ├── Frontend Frameworks
+│   ├── Frontend Performance
+│   ├── Frontend Testing
+│   ├── Frontend Tooling
+│   ├── SEO
+│   ├── UI Frameworks
+│   └── Web APIs & Platform Features
+├── Mobile Development
+│   └── Android Development
+├── Programming Languages
+│   ├── Bash
+│   ├── Elixir
+│   ├── Golang
+│   ├── Java
+│   ├── JavaScript
+│   ├── Kotlin
+│   ├── Lua
+│   ├── PHP
+│   ├── Python
+│   ├── Ruby
+│   ├── Rust
+│   └── Typescript
+├── Quality & Security
+│   ├── Code Quality
+│   ├── Compliance & Regulations
+│   ├── Security
+│   └── Testing
+├── Systems Design
+│   ├── Analytics
+│   ├── API Design
+│   ├── Application Architecture Patterns
+│   ├── Application Lifecycle Management
+│   ├── Authentication
+│   ├── Background Jobs
+│   ├── Caching
+│   ├── Case Studies
+│   ├── Concurrency and flow control
+│   ├── Configuration Management
+│   ├── Consistency Patterns
+│   ├── Database
+│   ├── Data Synchronization
+│   ├── Distributed Systems
+│   ├── Fundamentals
+│   ├── High Availability and Fault Tolerance
+│   ├── Networking
+│   ├── Real-Time Data
+│   ├── Reference Architectures
+│   ├── Resilience Engineering
+│   ├── Scalability
+│   ├── Web Scraping
+│   └── Workflows Orchestration
+```
+
+You might be wondering what is the difference between this and the **Software Engineering Practices** section, inside the "Personal" folder. The main difference is that on the Personal folder contains my own curated practices and how I do things, while on this section is more about general knowledge and reference material.
+
+#### The Projects Folder
+
+The Projects folder is where I manage the projects I am actively working on. Each project has it´s own folder, which can include project specifications, use cases, documentation, diagrams, and other relevant files. I basically use Obsidian as a basic project management and documentation tool. I usually create the Product requirements, technology overview, and user stories in Obsidian, which can later be converted to GitHub issues for implementation.
+
+This usually goes from `Idea -> Project`, where I first write an rough idea which is then later distlited and turned into a project.
+
+Projects doens´t necessary have to be related to software development. Projects like do an home renovation, building my homelab, or even writing a book, can all be managed here.
+
+#### The Learn Folder
+
+The Learn folder is where I keep notes about things I am learning or want to learn. For example, I can use it to take notes and store reference material on a course I am taking.
+In that example, I would create a subfolder with the course name, and then create a note for each lesson, where I can write down what I learned, what I need to review, and any questions I have or link to relevant resources.
+
+#### The Research Folder
+
+The Research folder is where I keep notes about topics I am researching or want to research. This is kinda similar to "Learn" but more purely research oriented.
+
+For example, considering I am researching AI agents tools. I am searching the web and find information about Claude Code, Goose or OpenCode. I can use the Research folder to organize those findings, and do some analysis and comparisons between them.
+
+The contents of this folder lives as long the research is ongoing. When finished, I will distill the information and see what I want to keep, which would then be moved to the appropriate folder.
+
+Now that I am writing this, I am thinking if the "Research" folder should be moved more closely to the Inbox or Brainstorming folder, considering it is more related to the process of gathering information than to the final product. This just shows how this structure is by no means set in stone and will keep evolving over time.
+
+#### The Areas Folder
+
+The Areas folder is my main Knowledge hub for topics that are not related with Software Engineering. From other STEM fields like Physics, Chemistry, Biology, Business and Entrepreneurship, Sports or other areas of interest or that I want to save some knowledge about.
+
+```plaintext
+.
+├── Business and Entrepreneurship
+│   ├── Business Strategy
+│   ├── Business Templates
+│   ├── Companies
+│   ├── Finance & Funding
+│   ├── Innovation & Trends
+│   ├── Legal & Compliance
+│   ├── Marketing & Sales
+│   ├── Market Research
+│   ├── My Startup
+│   ├── Operations & Management
+│   ├── Product Management
+│   ├── Startup Toolkit
+│   └── UX & Design
+├── Science
+│   ├── Biology
+│   ├── Chemistry
+│   ├── Mathematics & Logic
+│   ├── Physics
+│   ├── Psychology
+├── Society
+│   ├── Culture
+│   ├── Economy & Labor
+│   ├── Education
+│   ├── Generations
+│   ├── Governance & Law
+│   ├── History
+│   ├── Media & Information
+│   ├── Non-Profit Organizations
+│   ├── Portuguese Society
+│   ├── Psychology & Behavior
+│   └── Technology & Society
+├── Sports
+│   ├── Football
+│   ├── Teams
+└── Technology & Computing
+    ├── Applied Technology
+    ├── Artificial Intelligence & Machine Learning
+    ├── Computer Systems
+    ├── Digital Ecosystem
+    ├── Emerging Technologies
+    ├── Gaming
+    ├── Internet & Web
+    ├── Networks & Communications
+    ├── Physical Infrastructure
+    ├── Software
+    ├── Tech Culture & Society
+    └── Tech Guides
+```
+
+#### The Collections Folder
+
+The Collections folder is where I keep track of collections of resources like books, articles, videos, podcasts, places, etc. It allows me to categorize my resources and take specific notes on them. For example, I can have a note for each book I read, or for the podcasts I listen to, and use that to take notes on the content, or to keep track of my progress.
+
+```plaintext
+.
+├── Bookmarks
+├── Brands
+├── Media
+│   ├── Anime
+│   ├── Audiobooks
+│   ├── Books
+│   ├── Games
+│   ├── Manga
+│   ├── Movies
+│   ├── Music
+│   ├── Podcasts
+│   ├── Radio
+│   ├── TV
+│   └── Youtube
+├── Memes
+├── Personalities
+├── Places
+├── Products
+├── Publishers
+├── Quotes
+└── Web Clippings
+```
+
+Notes in this folder are offten linked from Other areas in the vault. For example, I can have a Travel Guide that links to the respective Place in Places collection. Or a Quote linked to the respsective Author in "Personalities" collection. If I have a guide for a specific product, I can link that guide to the "Product" or "Brand" page.
+
+Those relationships are increbiably powerful and allows to easily find connections and related information, between notes.
+
+#### The Meta Folder
+
+The Meta folder is where I store notes about how to use my Vault, how it is organized, workflows I use etc.
+
+#### The Resources Folder
+
+The Resources folder is where I store external resources like Images, Excalidraw Diagrams, Note Tempplates, and other assets that are used in my Vault, but are not part of my knowledge base.
+
+#### The Archive Folder
+
+The Archive folder is where I keep notes that are no longer relevant or useful for my daily activities. This can be notes related to old projects that I have finalized, ideas that are no longer relevant, etc. I might prune this folder periodically to avoid clutter.
+
+## The Power of Backlinks
+
+I use [Backlinks](https://help.obsidian.md/plugins/backlinks) extensively in my vault to form connections between related notes and topics, which helps me navigate through my notes and find related information quickly.
+
+There are multiple ways to link notes in Obsidian. One of my most used patterns is to add a **topics** frontmatter field, which is a list of wikilinks to related notes. For example, I can have a project I am working on, which is used Golang as tech stack, and then in my project file, I can add a backlink to the Golang note:
+
+```markdown
+---
+topics:
+  - [[Golang]]
+---
+
+# My Project
+
+This project uses Golang as the tech stack.
+```
+
+Or when I clip a web article, I can also link it to the respective topics.
+
+```markdown
+---
+type: project
+topics:
+  - [[Web Scraping]]
+---
+
+# My Article
+
+This article is about web scraping.
+```
+
+Or I can have a conference note of a session I attended, which I can link to the respective topics and author.
+
+```markdown
+---
+type: conference-session
+author: [[John Doe]]
+topics:
+  - [[PHP]]
+  - [[Systems Design]]
+---
+
+# Some conference session
+
+Some notes here ...
+
+```
+
+This makes incredible easy to find and navigate through my notes in a bi-directional manner.
+
+---
+
+## Use Frontmatter and Templates for standardization
+
+You might have seen the `type` frontmatter field in the previous examples about backlinks. This is a way I use to categorize different types of notes and it´s a good way to be able to search and create views of all notes of a specific type.
+
+Collections is also a good example. each Collection is also a type.
+
+With this, I can simplify the process of creating databases or views of all notes of a specific type.
+
+If I want to list all my books using dataview plugin, I can use a query like this:
+
+```plaintext
+LIST
+WHERE type = "book"
+```
+
+Some types I use across my vault, include:
+
+- **book**
+- **movie**
+- **tv-show**
+- **podcast**
+- **podcast-episode**
+- **youtube-channel**
+- **youtube-video**
+- **place**
+- **conference**
+- **conference-session**
+- **web-clipping**
+- **web-bookmark**
+- **project**
+- **idea**
+- **thought**
+- **course**
+- **personality**
+- **journal-entry**
+- **code-snippet**
+- **trip**
+- ...
+
+You get the idea.
+
+Usually each type is also associated with a Templater note. For example, for the "Book" type, I have a template that contains the following fields:
+
+- **title**
+- **author**
+- **publisher**
+- **publication-date**
+- **isbn**
+- **pages**
+- **genre**
+- **rating**
+
+Then, to create a book note, I can press `Alt + N` shortcut and select "Book" from the list. Templater plugin will automatically create the note in the right folder with the specified frontmatter fields.
+
+You can even have templater prompt this information to you, when creating a new note, or write some Javascript function that automatically fills in the fields based on the context.
+
+The Author field, is a backlink to a note that represents the author of the Book. If I go to the Author note, I can see all the books I have read by that author. This is another example of the power of Obsidian's backlinks feature. Every note starts getting interconnected and the more I use Obsidian, the more I realize how powerful this feature is.
+
+## Using Bases to visualize information in a database like way
+
+[Obsidian Bases](https://help.obsidian.md/bases) is a relatively new feature of Obsidian that lets you create database-like views of your notes. Using a base you can view, edit, sort, and filter files and their properties. You can also have multiple views of the same base, each with different filters and sorting options.
+
+I use Bases to visualize my Collections in a more visual way. Here is an example how my Books Collection looks like:
+
+<Picture src={bookBases} alt="Book Bases" width="800" height="600" />
+
+Bases can replace some of the use cases of Dataview. I still prefer Dataview, for embeded queries as it feels a bit cumberstone to have to create a new Base or view for every time I want to embed a view with slightly different set of filters. But for full page database like views, Bases is the way to go.
+
+## Accessing my Vault outside Obsidian
+
+I usually have Obsidian always open in a dedicated Workspace, which makes it easy accessible with a simple keyboard shortcut, but sometimes, for example when I am coding, it might be more efficient to avoid context switching all together. On this [blog post](https://brunopaz.dev/blog/how-i-use-vicinae-command-launcher-for-linux/), I wrote about how I use [Vicinae](https://docs.vicinae.com/) as my command launcher. Viciane integrates well with Obsidian by leveraging the [Obsidian Raycast Extension](https://www.raycast.com/marcjulian/obsidian). With it, I can search my vault directly from Viciane launcher.
+
+I also built a dedicated extension focused into searching code snippets. The extension, reads my "Code Snippets" directory, and allow me to search and paste a snippet from my vault, directly into my Code editor. This is a big time saver and allow me to centralize my Snippets management in Obsidian and access them from everywhere. To be even faster, I have binded this extension to `Super + Backtick`` keyboard shortcut. I really love this workflow!
+
+<Picture src={vicinaeSnippetsLauncher} alt="Book Bases" width={800} height={600} />
+
+Since I always have my Terminal application open, I can use it to access my vault. this is another example where Obsidian portability of being only a bunch of Markdown files really shines. I can use built-in terminal tools like grep or find or [NeoVim](https://neovim.io/) and it's fuzzy finder to find notes or even [Glow](https://github.com/charmbracelet/glow) markdown to preview my notes.
+
+I also have [Obsidian.nvim](https://github.com/obsidian-nvim/obsidian.nvim) plugin, that provides specific Obsidian capabilities like following Wikilinks, directly from Neovim.
+
+To simplify the access to my vault, I have created a few shell functions like `oo` which opens my Obsidian vault in Neovim, or `nn` which automatically creates a new note with a timestamped filename in my vault Inbox directly and opens it in Neovim for editing. This is inspired by [this](https://www.youtube.com/watch?v=zIGJ8NTHF4k) youtube video. I recommend you to check it out, if you want to learn more how you can use Obsidian and Neovim together.
+
+The possibilities are endless and this just makes Obsidian so integrated in my workflow.
+
+---
+
+## Conclusion
+
+In this post, I have shown you how I use Obsidian to take notes and manage all my knowledge. Hope this was helpful for you, to see the possibilities of Obsidian for note taking and knowledge management.
+
+Remember, a Personal Knowledge Management System like the name says, it´s **Personal**. It´s good to take inspiration from others ideas and workflows, but you should always adapt them to your own needs and preferences. Our brains are unique and we all have different ways of thinking and learning. So, don't be afraid to experiment and try new things until you find what works best for you.
