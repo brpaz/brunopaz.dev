@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 1.6.0 - 2026-02-07
+
+### What's Changed
+
+#### 🚀 Features
+
+- feat(blog): new posts about delegation and obsidian @brpaz (#244)
+
+#### 🧩 Dependency Updates
+
+- chore(deps): update dependency eslint to v10 @[renovate[bot]](https://github.com/apps/renovate) (#243)
+- chore(deps): update mcr.microsoft.com/devcontainers/javascript-node docker tag to v4 @[renovate[bot]](https://github.com/apps/renovate) (#228)
+- chore(deps): update pnpm to v10.28.2 @[renovate[bot]](https://github.com/apps/renovate) (#198)
+
+**Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.5.3...v1.6.0
+
 ## 1.5.3 - 2026-01-25
 
 ### What's Changed
@@ -69,7 +85,6 @@
 ## 1.4.0 - 2025-09-08
 ### What's Changed
 #### 🚀 Features
-
 - feat(blog): write new posts @brpaz (#208)
 
 #### 🧩 Dependency Updates
@@ -105,7 +120,6 @@
 - feat(astro): replace deprecated View Transitions with ClientRouter @brpaz (#187)
 - feat: add article and update deps @brpaz (#183)
 #### 🧩 Dependency Updates
-
 - chore(deps): update node.js to v20.19.3 @[renovate[bot]](https://github.com/apps/renovate) (#185)
 - fix(deps): update dependency @fontsource-variable/inter to v5.2.6 @[renovate[bot]](https://github.com/apps/renovate) (#177)
 - chore(deps): update dependency prettier to v3.6.2 @[renovate[bot]](https://github.com/apps/renovate) (#184)
