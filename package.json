@@ -73,7 +73,7 @@
     "astro-favicons": "^3.1.6",
     "astro-loading-indicator": "^0.8.0",
     "astro-og-canvas": "^0.10.1",
-    "canvaskit-wasm": "^0.40.0",
+    "canvaskit-wasm": "^0.41.0",
     "slugify": "^1.6.9"
   }
 }
