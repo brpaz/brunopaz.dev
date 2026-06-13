@@ -45,7 +45,7 @@ jobs:
         run: pnpm run build
 
       - name: Upload dist
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: dist
           path: dist
@@ -58,7 +58,7 @@ jobs:
         id: e2e-tests
         run: pnpm run test:e2e
 
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         if: success() || failure()
         with:
           name: playwright-report
@@ -91,7 +91,7 @@ jobs:
         run: pnpm i --frozen-lockfile
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: dist
           path: dist
