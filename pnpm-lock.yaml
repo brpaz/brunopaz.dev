@@ -27,8 +27,8 @@ importers:
         specifier: ^3.1.6
         version: 3.1.6(astro@5.18.2(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.61.1)(typescript@5.9.3)(yaml@2.9.0))
       astro-loading-indicator:
-        specifier: ^0.7.1
-        version: 0.7.1(astro@5.18.2(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.61.1)(typescript@5.9.3)(yaml@2.9.0))
+        specifier: ^0.8.0
+        version: 0.8.0(astro@5.18.2(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.61.1)(typescript@5.9.3)(yaml@2.9.0))
       astro-og-canvas:
         specifier: ^0.10.1
         version: 0.10.1(astro@5.18.2(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.61.1)(typescript@5.9.3)(yaml@2.9.0))
@@ -1609,10 +1609,10 @@ packages:
     peerDependencies:
       astro: '>= 4.0.0'
 
-  astro-loading-indicator@0.7.1:
-    resolution: {integrity: sha512-SH5igTvcj+rHoy7o7JO7jIuPxxkNarHl2Bu1H41/fAOa1uiYuLoQNkGhV/Xqe4Jc9wnUHidwXNExjPHoL1plNg==}
+  astro-loading-indicator@0.8.0:
+    resolution: {integrity: sha512-huqaHbSCe8KLWnogxu9yNDybtVyp9OhJhU9LA5GwzBo8g4CcAQWcwjurleV+OpJAK2qNL2gO/V5ocPltvCC7Dg==}
     peerDependencies:
-      astro: ^4.0.0 || ^5.0.0
+      astro: ^4.0.0 || ^5.0.0 || ^6.0.0
 
   astro-og-canvas@0.10.1:
     resolution: {integrity: sha512-cUjsWIOkDBi9Bfkgta1Cr45m2UnTX/jW+tK406SVcD1idhqIHrGD+M5qtwGcJ6OanHeWSgyHGmzQuzELGAwPKg==}
@@ -6364,7 +6364,7 @@ snapshots:
       favilib: 1.0.5
       ultrahtml: 1.6.0
 
-  astro-loading-indicator@0.7.1(astro@5.18.2(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.61.1)(typescript@5.9.3)(yaml@2.9.0)):
+  astro-loading-indicator@0.8.0(astro@5.18.2(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.61.1)(typescript@5.9.3)(yaml@2.9.0)):
     dependencies:
       astro: 5.18.2(@types/node@25.9.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.61.1)(typescript@5.9.3)(yaml@2.9.0)
 
