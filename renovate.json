@@ -8,5 +8,9 @@
       "matchPackagePatterns": ["^@playwright/"],
       "enabled": false
     }
-  ]
+  ],
+  "prConcurrentLimit": 10,
+  "lockFileMaintenance": {
+    "enabled": true
+  }
 }

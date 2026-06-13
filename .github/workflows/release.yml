@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       contents: write
+    timeout-minutes: 1
     steps:
       - uses: actions/checkout@v6
 
@@ -30,12 +31,13 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           branch: main
-          commit_message: "chore(release): [skip-ci] ${{ github.event.release.tag_name }}"
+          commit_message: 'chore(release): [skip ci] ${{ github.event.release.tag_name }}'
           file_pattern: CHANGELOG.md package.json
 
   deploy:
     name: Deploy Production
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
     environment:
       name: production
       url: https://brunopaz.dev
@@ -51,8 +53,8 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version-file: ".node-version"
-          cache: "pnpm"
+          node-version-file: '.node-version'
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
@@ -63,7 +65,7 @@ jobs:
           SITE_URL: ${{ env.SITE_URL }}
           PUBLIC_SENTRY_KEY: ${{ secrets.PUBLIC_SENTRY_KEY }}
           PUBLIC_WEB_MONETIZATION_ID: ${{ secrets.PUBLIC_WEB_MONETIZATION_ID }}
-          PUBLIC_SENTRY_ENABLED: "true"
+          PUBLIC_SENTRY_ENABLED: 'true'
 
       - name: Update version.txt
         run: |
