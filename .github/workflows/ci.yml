@@ -22,10 +22,11 @@ jobs:
   build:
     name: Build and Test
     runs-on: ubuntu-24.04
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v6
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
         with:
           run_install: false
 
@@ -73,10 +74,11 @@ jobs:
     runs-on: ubuntu-24.04
     if: github.event_name == 'pull_request' && github.actor != 'renovate[bot]'
     needs: build
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v6
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
         with:
           run_install: false
 
