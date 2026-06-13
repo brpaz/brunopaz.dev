@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 1.7.0 - 2026-06-13
+
+### What's Changed
+
+#### 🚀 Features
+
+- feat(ui): add RSS feed link to footer @brpaz (#245)
+
+#### 🧩 Dependency Updates
+
+- feat(blog): new blog post and update deps @brpaz (#266)
+- chore(deps): update dependency markdownlint-cli to ^0.48.0 @[renovate[bot]](https://github.com/apps/renovate) (#255)
+- chore(deps): update deps @brpaz (#254)
+
+**Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.6.0...v1.7.0
+
 ## 1.6.0 - 2026-02-07
 
 ### What's Changed
@@ -86,7 +102,6 @@
 ### What's Changed
 #### 🚀 Features
 - feat(blog): write new posts @brpaz (#208)
-
 #### 🧩 Dependency Updates
 
 - chore(deps): update dependency astro to v5.13.2 [security] @[renovate[bot]](https://github.com/apps/renovate) (#206)
@@ -123,7 +138,6 @@
 - chore(deps): update node.js to v20.19.3 @[renovate[bot]](https://github.com/apps/renovate) (#185)
 - fix(deps): update dependency @fontsource-variable/inter to v5.2.6 @[renovate[bot]](https://github.com/apps/renovate) (#177)
 - chore(deps): update dependency prettier to v3.6.2 @[renovate[bot]](https://github.com/apps/renovate) (#184)
-
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.1.1...v1.2.0
 
 ## 1.0.3 - 2024-09-21
