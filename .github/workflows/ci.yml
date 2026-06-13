@@ -52,6 +52,7 @@ jobs:
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
+        timeout-minutes: 2
 
       - name: Run E2E tests
         id: e2e-tests

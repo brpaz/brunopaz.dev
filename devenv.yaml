@@ -3,10 +3,10 @@ inputs:
   nixpkgs:
     url: github:cachix/devenv-nixpkgs/rolling
 
-   # Currently pinned to: playwright@1.56.1
+    # Currently pinned to: playwright@1.56.1
   # See https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=playwright
   nixpkgs-playwright:
-    url: github:NixOS/nixpkgs/eeb6e13833d0d4d193f5430f0a72487a760842ae
+    url: github:NixOS/nixpkgs/7cc8a6b08a51d3fd23b9c4fd2493e7e888e88507
 # If you're using non-OSS software, you can set allowUnfree to true.
 # allowUnfree: true
 
