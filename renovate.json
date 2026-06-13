@@ -13,5 +13,9 @@
       "matchDatasources": ["npm"],
       "minimumReleaseAge": "3 days"
     }
-  ]
+  ],
+  "prConcurrentLimit": 10,
+  "lockFileMaintenance": {
+    "enabled": true
+  }
 }
