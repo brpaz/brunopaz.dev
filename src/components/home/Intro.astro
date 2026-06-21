@@ -9,12 +9,13 @@ import profileImage from '~/assets/images/profile_pic.jpg';
       <div class="relative mb-8">
         <Image
           src={profileImage}
-          alt="Profile"
+          alt=""
           aria-hidden="true"
           width="200"
           height="200"
           class="u-photo rounded-full border-4 border-white shadow-2xl"
           loading="eager"
+          fetchpriority="high"
         />
       </div>
 
