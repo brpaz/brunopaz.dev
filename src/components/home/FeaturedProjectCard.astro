@@ -16,14 +16,16 @@ const coverImageFileExtension = coverImage[1];
 ---
 
 <BaseCard
-  href={`/work/${project.slug}`}
+  href={`/work/${project.id.replace(/\.mdx?$/, '')}`}
   variant="primary"
   class="overflow-hidden h-full flex flex-col hover:scale-[1.02] transition-transform duration-200"
 >
   <div class="flex items-center justify-center bg-white h-56 overflow-hidden">
     <Image
       src={(
-        await import(`./../../assets/images/projects/${project.slug}/${coverImageFileName}.${coverImageFileExtension}`)
+        await import(
+          `./../../assets/images/projects/${project.id.replace(/\.mdx?$/, '')}/${coverImageFileName}.${coverImageFileExtension}`
+        )
       ).default}
       alt={`Image of project: ${project.data.name}`}
       class="object-contain w-full h-full p-6"

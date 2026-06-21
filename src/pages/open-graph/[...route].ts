@@ -7,7 +7,7 @@ const collectionEntries = await getCollection(BlogPostCollection);
 // Map the array of content collection entries to create an object.
 // Converts [{ id: 'post.md', data: { title: 'Example', description: '' } }]
 // to { 'post.md': { title: 'Example', description: '' } }
-const pages = Object.fromEntries(collectionEntries.map(({ slug, data }) => [slug, data]));
+const pages = Object.fromEntries(collectionEntries.map(({ data }) => [data.permalink, data]));
 
 export const { getStaticPaths, GET } = await OGImageRoute({
   pages: pages,

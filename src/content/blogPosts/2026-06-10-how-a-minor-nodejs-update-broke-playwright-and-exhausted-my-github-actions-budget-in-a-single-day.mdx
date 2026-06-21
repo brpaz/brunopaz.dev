@@ -1,0 +1,59 @@
+---
+title: How a minor NodeJS update broke Playwright and exhausted my GitHub Actions budget in a single day
+permalink: how-a-minor-nodejs-update-broke-playwright-and-exhausted-my-github-actions-budget-in-a-single-day
+publishDate: 2026-06-10
+excerpt: In this article, I will show you how a minor NodeJS update broke Playwright and exhausted my GitHub Actions budget in a single day, and present some ways to mitigate this kind of problem in the future.
+tags: ['development','node','playwright','github-actions']
+published: true
+featured: false
+---
+import { Picture } from 'astro:assets'
+import billingReport from '../../assets/images/blog/nodejs-github-actions-timeout.png'
+
+Last week, I was doing some work that was triggering a few GitHub Actions workflows  when I noticed that all the pipelines were failling. At first I didn´t understood the reason, but by checking the error message it mentioned that I have reached the limit of my GitHub Actions budget for the month! This was never happened before, and I was never even close to reaching that limit, so I was really surprised.
+
+I checked my billing report in GitHub and found out two major repositories that were consuming a lot of minutes, and both of them were NodeJS projects using Playwright for end-to-end testing. I was really confused because I haven´t made any changes to those repositories in the last few weeks, so I couldn´t understand why suddenly they started consuming so much minutes. The only activity in those repos  were the automated dependency update PRs by Renovate.
+
+Checking the billing report for more details I found this:
+
+<Picture src={billingReport} alt="GitHub Actions Pipeline" />
+
+There were some workflows that were running for like 6h and this was the main cause of the high consumption of minutes.
+
+I checked the logs of those workflows and found out that the step that was taking so long was the one that was running the Playwright tests, in particular the step that was downloading the browsers binaries required by Playwright. The step seems to be hanging indefinitely.
+
+I did a lookup on the opened issues in the Playwright GitHub Repository and found out a couple of similar issues to my problem ([1](https://github.com/microsoft/playwright/issues/28189), [2](https://github.com/microsoft/playwright/issues/41133)).
+
+The root cause seems to be a regression on NodeJS v24.16. Reverting to NodeJS v24.15 would solve the problem. In the meanwhile, the Playwright team was also released a new version of Playwright that fixed the problem.
+
+## How could this issue have been prvented?
+
+### Pinning the NodeJS version in the GitHub Actions workflow
+
+My GitHub Actions workflows were using the `setup-node` action to install NodeJS, configured with `node-version: 24`. This means that every time a new minor version of NodeJS was released, the workflow would automatically use it.
+
+It was a minor version update, so I didn´t expect it to break anything. But this is a good reminder that even minor version updates can introduce breaking changes, and it is always a good idea to pin the exact version of dependencies in your workflows to avoid unexpected issues.
+
+### Configuring proper timeouts in the GitHub Actions workflow
+
+Another way to prevent this issue is to configure proper timeouts for your GitHub Actions workflows. By default, GitHub Actions has a maximum timeout of 6 hours, but you can set a custom timeout for each job in your workflow using the `timeout-minutes` option. This way, if a job gets stuck or takes too long, it will be automatically canceled.
+
+You might think that some jobs are too simple to have a need for a timeout, but it is always a good practice to be on the safe side, specially when the time your job is running, affects your billing.
+
+Thankfully, GitHub Actions have strict budgets configured by detault, otherwise this could have been a much bigger problem.
+
+### Tuning Renovate configuration to avoid unnecessary updates
+
+When I checked there were like 10 Renovate PRs opened in each of the affected repositories. Usually I set a limit of concurrent open PRs, but in this particular repos, didn´t have any limit.
+
+It´s possible to configure renovate to limit the number of PRs, either by limiting the number of concurrent open PRs, or by configuring rules to group dependencies together in a single PR, like for example, dev dependencies updates.
+
+While this wouldn´t have prevented the issue by itself, it would have reduced the impact of the problem, as there would be less PRs being opened and less workflows being triggered that were timing out.
+
+## Conclusion
+
+I needed to increase my GitHub Actions budget for the month, in order to keep working on my projects, so will have to pay a few more $ in the end of the month.
+
+This issue was a reminder to be more careful with the dependencies versions management, even for minor versions and for dependencies that are not directly used in my code, like runtime dependencies or tooling.
+
+And to always configure sane timeouts for any workflow.

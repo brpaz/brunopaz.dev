@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import type { BlogPost } from '~/content/types';
 import type { CollectionEntry } from 'astro:content';
 import { BlogPostCollection } from '~/content/types';
@@ -15,15 +15,15 @@ interface Props {
 export async function getStaticPaths() {
   const posts = await getCollection(BlogPostCollection);
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.data.permalink },
     props: { post },
   }));
 }
 
 const { post } = Astro.props;
 const { title, publishDate, excerpt } = post.data;
-const ogImage = `/open-graph/${post.slug}.png`;
-const { Content } = await post.render();
+const ogImage = `/open-graph/${post.data.permalink}.png`;
+const { Content } = await render(post);
 ---
 
 <style is:global>

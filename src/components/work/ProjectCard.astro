@@ -17,7 +17,7 @@ const isPersonal = project.data.type === ProjectType.Personal;
 ---
 
 <BaseCard
-  href={`/work/${project.slug}`}
+  href={`/work/${project.id.replace(/\.mdx?$/, '')}`}
   variant={variant}
   class="overflow-hidden h-full flex flex-col hover:scale-[1.02] transition-transform duration-200"
 >
@@ -26,7 +26,11 @@ const isPersonal = project.data.type === ProjectType.Personal;
       <div class="flex items-center justify-center w-full bg-white h-56 overflow-hidden">
         <Image
           src={
-            (await import(`./../../assets/images/projects/${project.slug}/${coverImage[0]}.${coverImage[1]}`)).default
+            (
+              await import(
+                `./../../assets/images/projects/${project.id.replace(/\.mdx?$/, '')}/${coverImage[0]}.${coverImage[1]}`
+              )
+            ).default
           }
           alt={`Image of project: ${project.data.name}`}
           class="object-contain w-full h-full p-6"

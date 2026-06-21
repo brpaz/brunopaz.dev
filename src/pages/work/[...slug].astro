@@ -1,5 +1,5 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 
 import DefaultLayout from '~/layouts/Default.astro';
 import PageTitle from '~/components/shared/PageTitle.astro';
@@ -17,13 +17,13 @@ interface Props {
 export async function getStaticPaths() {
   const projects = await getCollection(ProjectCollection);
   return projects.map((project) => ({
-    params: { slug: project.slug },
+    params: { slug: project.id.replace(/\.mdx?$/, '') },
     props: { project },
   }));
 }
 
 const { project } = Astro.props;
-const { Content } = await project.render();
+const { Content } = await render(project);
 ---
 
 <style is:global>
@@ -69,7 +69,7 @@ const { Content } = await project.render();
     {
       project.data.images.length > 0 && (
         <div class="my-12">
-          <ProjectGallery slug={project.slug} images={project.data.images} />
+          <ProjectGallery slug={project.id.replace(/\.mdx?$/, '')} images={project.data.images} />
         </div>
       )
     }

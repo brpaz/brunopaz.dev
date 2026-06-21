@@ -11,14 +11,15 @@ fi
 
 # Create a new blog post file with the title as the filename
 title=$(echo "$1" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
-filename="src/content/blogPosts/$title.mdx"
+date=$(date +%Y-%m-%d)
+filename="src/content/blogPosts/${date}-${title}.mdx"
 touch "$filename"
 
 # Add front matter to the blog post file
 echo "---" > "$filename"
 echo "title: $1" >> "$filename"
-echo "publishDate: $(date +%Y-%m-%d)" >> "$filename"
-echo "slug: $title" >> "$filename"
+echo "publishDate: $date" >> "$filename"
+echo "permalink: $title" >> "$filename"
 echo "excerpt: " >> "$filename"
 echo "tags: []" >> "$filename"
 echo "published: false" >> "$filename"

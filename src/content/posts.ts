@@ -1,11 +1,14 @@
 import type { CollectionEntry } from 'astro:content';
 import type { BlogPost } from './types';
-import { z, defineCollection } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 export const blogPostsCollection = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blogPosts' }),
   schema: z.object({
     title: z.string(),
+    permalink: z.string(),
     excerpt: z.string(),
     publishDate: z.date().optional(),
     published: z.boolean().default(false),
