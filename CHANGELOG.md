@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 1.9.0 - 2026-06-21
+
+### What's Changed
+
+#### 🚀 Features
+
+- feat: design improvements. replace projects page with full CV @brpaz (#277)
+- feat(astro): update astro 6 and reorganize blog @brpaz (#275)
+
+#### 🧩 Dependency Updates
+
+- chore(deps): update typescript-eslint monorepo to v8.61.1 - autoclosed @[renovate[bot]](https://github.com/apps/renovate) (#276)
+
+**Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.8.0...v1.9.0
+
 ## 1.8.0 - 2026-06-21
 
 ### What's Changed
@@ -20,10 +35,8 @@
 - fix(deps): update dependency astro-loading-indicator to ^0.8.0 @[renovate[bot]](https://github.com/apps/renovate) (#257)
 - chore(deps): update pnpm/action-setup action to v6 @[renovate[bot]](https://github.com/apps/renovate) (#265)
 - chore(deps): update ghcr.io/devcontainers/features/node docker tag to v2 @[renovate[bot]](https://github.com/apps/renovate) (#263)
-
 </details>
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.7.0...v1.8.0
-
 ## 1.7.0 - 2026-06-13
 
 ### What's Changed
@@ -128,7 +141,6 @@
 - feat(blog): write new posts @brpaz (#208)
 #### 🧩 Dependency Updates
 - chore(deps): update dependency astro to v5.13.2 [security] @[renovate[bot]](https://github.com/apps/renovate) (#206)
-
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.3.0...v1.4.0
 
 ## 1.3.0 - 2025-07-06
@@ -163,7 +175,6 @@
 - chore(deps): update dependency prettier to v3.6.2 @[renovate[bot]](https://github.com/apps/renovate) (#184)
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.1.1...v1.2.0
 ## 1.0.3 - 2024-09-21
-
 ### What's Changed
 
 #### ⚠️ Maintenance
