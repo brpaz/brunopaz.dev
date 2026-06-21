@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 1.8.0 - 2026-06-21
+
+### What's Changed
+
+#### 🚀 Features
+
+- feat(blog): add golang wiring post @brpaz (#274)
+
+#### 🧩 Dependency Updates
+
+<details>
+<summary>8 changes</summary>
+- fix(deps): update dependency astro-og-canvas to ^0.11.0 @[renovate[bot]](https://github.com/apps/renovate) (#258)
+- chore(deps): update commitlint monorepo to v21 @[renovate[bot]](https://github.com/apps/renovate) (#261)
+- fix(deps): update dependency canvaskit-wasm to ^0.41.0 @[renovate[bot]](https://github.com/apps/renovate) (#259)
+- chore(deps): update dependency markdownlint-cli to ^0.48.0 @[renovate[bot]](https://github.com/apps/renovate) (#267)
+- chore(deps): update github artifact actions (major) @[renovate[bot]](https://github.com/apps/renovate) (#264)
+- fix(deps): update dependency astro-loading-indicator to ^0.8.0 @[renovate[bot]](https://github.com/apps/renovate) (#257)
+- chore(deps): update pnpm/action-setup action to v6 @[renovate[bot]](https://github.com/apps/renovate) (#265)
+- chore(deps): update ghcr.io/devcontainers/features/node docker tag to v2 @[renovate[bot]](https://github.com/apps/renovate) (#263)
+
+</details>
+**Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.7.0...v1.8.0
+
 ## 1.7.0 - 2026-06-13
 
 ### What's Changed
@@ -103,7 +127,6 @@
 #### 🚀 Features
 - feat(blog): write new posts @brpaz (#208)
 #### 🧩 Dependency Updates
-
 - chore(deps): update dependency astro to v5.13.2 [security] @[renovate[bot]](https://github.com/apps/renovate) (#206)
 
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.3.0...v1.4.0
@@ -139,7 +162,6 @@
 - fix(deps): update dependency @fontsource-variable/inter to v5.2.6 @[renovate[bot]](https://github.com/apps/renovate) (#177)
 - chore(deps): update dependency prettier to v3.6.2 @[renovate[bot]](https://github.com/apps/renovate) (#184)
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.1.1...v1.2.0
-
 ## 1.0.3 - 2024-09-21
 
 ### What's Changed
