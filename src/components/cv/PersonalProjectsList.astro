@@ -1,5 +1,7 @@
 ---
-import { projects } from '~/content/projects';
+import { getCollection } from 'astro:content';
+
+const projectEntries = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <section class="mb-section">
@@ -16,7 +18,7 @@ import { projects } from '~/content/projects';
   </div>
   <div class="space-y-8">
     {
-      projects.map((project) => (
+      projectEntries.map(({ data: project }) => (
         <div class="border-l-2 border-neutral-200 pl-6">
           <div class="mb-2">
             {project.url ? (

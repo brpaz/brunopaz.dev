@@ -1,5 +1,9 @@
 ---
-import { experience } from '~/content/experience';
+import { getCollection } from 'astro:content';
+
+const experienceEntries = (await getCollection('experiences')).sort((a, b) =>
+  b.data.startDate.localeCompare(a.data.startDate),
+);
 
 function formatDate(dateStr: string): string {
   const [year, month] = dateStr.split('-');
@@ -18,7 +22,7 @@ function markdownBold(text: string): string {
     <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-neutral-200 hidden md:block"></div>
     <div class="space-y-12">
       {
-        experience.map((job) => (
+        experienceEntries.map(({ data: job }) => (
           <div class="md:pl-8 relative">
             <div class="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary-500 hidden md:block" />
             <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
