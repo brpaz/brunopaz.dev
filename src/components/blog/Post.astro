@@ -11,7 +11,7 @@ interface Props {
 const { post } = Astro.props;
 
 const { title, excerpt, publishDate } = post.data;
-const url = `/blog/${post.slug}`;
+const url = `/blog/${post.data.permalink}`;
 ---
 
 <article class="border-b border-neutral-200 pb-12 last:border-b-0">
