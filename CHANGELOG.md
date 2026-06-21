@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 1.10.0 - 2026-06-21
+
+### What's Changed
+
+#### 🚀 Features
+
+- feat: misc improvements @brpaz (#280)
+
+**Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.9.0...v1.10.0
+
 ## 1.9.0 - 2026-06-21
 
 ### What's Changed
@@ -38,7 +48,6 @@
 </details>
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.7.0...v1.8.0
 ## 1.7.0 - 2026-06-13
-
 ### What's Changed
 
 #### 🚀 Features
@@ -142,7 +151,6 @@
 #### 🧩 Dependency Updates
 - chore(deps): update dependency astro to v5.13.2 [security] @[renovate[bot]](https://github.com/apps/renovate) (#206)
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.3.0...v1.4.0
-
 ## 1.3.0 - 2025-07-06
 
 ### What's Changed
@@ -176,7 +184,6 @@
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.1.1...v1.2.0
 ## 1.0.3 - 2024-09-21
 ### What's Changed
-
 #### ⚠️ Maintenance
 
 - feat: update nostr url @brpaz (#120)
