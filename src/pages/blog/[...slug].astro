@@ -53,7 +53,7 @@ const blogPostSchema = {
 </style>
 
 <DefaultLayout title=`${title} — Bruno Paz` description={excerpt} ogImage={ogImage} jsonLd={blogPostSchema}>
-  <div class="max-w-4xl mx-auto">
+  <div class="max-w-4xl mx-auto w-full min-w-0">
     <article class="h-entry mb-16">
       <a class="u-url" href={Astro.url.href} hidden></a>
       <a class="p-author h-card" href="https://brunopaz.dev" rel="author" hidden>Bruno Paz</a>
@@ -68,7 +68,7 @@ const blogPostSchema = {
           Back to Blog
         </a>
         <h1 class="p-name font-bold text-4xl text-center text-neutral-700 mb-component">{title}</h1>
-        <div class="flex items-baseline justify-center gap-3 mt-6">
+        <div class="flex flex-col items-center justify-center gap-3 mt-6">
           {
             publishDate && (
               <span class="text-xs text-neutral-400">

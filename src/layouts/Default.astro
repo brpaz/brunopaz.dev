@@ -61,10 +61,17 @@ if (props.ogImage) {
   </head>
 
   <body class="h-screen w-full flex flex-col" transition:animate={fade({ duration: '0.5s' })}>
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-primary-500 focus:rounded focus:shadow"
+    >
+      Skip to content
+    </a>
     <main class="container flex flex-col flex-1">
       <Header />
-      <!-- The page will render it's content here -->
-      <slot />
+      <div id="main-content" class="flex-1">
+        <slot />
+      </div>
     </main>
     <Footer />
     <BackToTop />

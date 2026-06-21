@@ -23,7 +23,7 @@ const url = `/blog/${post.data.permalink}`;
     </a>
   </h2>
 
-  <div class="flex items-baseline gap-3 mb-3">
+  <div class="flex flex-col sm:flex-row items-start sm:items-baseline gap-3 mb-3">
     {
       publishDate && (
         <span class="text-xs text-neutral-400">
@@ -40,10 +40,12 @@ const url = `/blog/${post.data.permalink}`;
 
   <a
     href={url}
+    aria-label={`Read more about ${title}`}
     class="inline-flex items-center text-primary-500 font-medium text-sm hover:text-primary-600 transition-colors duration-200 group"
   >
     Read more
     <svg
+      aria-hidden="true"
       class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200"
       fill="none"
       stroke="currentColor"
