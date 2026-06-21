@@ -1,0 +1,66 @@
+---
+import { experience } from '~/content/experience';
+
+function formatDate(dateStr: string): string {
+  const [year, month] = dateStr.split('-');
+  const date = new Date(parseInt(year), parseInt(month) - 1);
+  return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+}
+
+function markdownBold(text: string): string {
+  return text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>');
+}
+---
+
+<section class="mb-section">
+  <h2 class="font-bold text-neutral-700 text-3xl mb-12">Work Experience</h2>
+  <div class="relative">
+    <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-neutral-200 hidden md:block"></div>
+    <div class="space-y-12">
+      {
+        experience.map((job) => (
+          <div class="md:pl-8 relative">
+            <div class="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary-500 hidden md:block" />
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+              <div>
+                <h3 class="text-xl font-bold text-neutral-800">{job.position}</h3>
+                {job.url ? (
+                  <a
+                    href={job.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-primary-600 font-medium hover:text-primary-800 transition-colors duration-200"
+                  >
+                    {job.company} ↗
+                  </a>
+                ) : (
+                  <span class="text-primary-600 font-medium">{job.company}</span>
+                )}
+              </div>
+              <span class="text-sm text-neutral-500 whitespace-nowrap shrink-0">
+                {formatDate(job.startDate)} — {job.endDate ? formatDate(job.endDate) : 'Present'}
+              </span>
+            </div>
+            {job.technologies && job.technologies.length > 0 && (
+              <div class="flex flex-wrap gap-2 mb-4">
+                {job.technologies.map((tech) => (
+                  <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-primary-50 text-primary-700 border border-primary-200">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
+            <ul class="space-y-2">
+              {job.highlights.map((highlight) => (
+                <li class="text-neutral-600 text-sm leading-relaxed flex gap-2">
+                  <span class="text-primary-400 shrink-0">▸</span>
+                  <span set:html={markdownBold(highlight)} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

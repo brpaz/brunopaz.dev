@@ -1,148 +1,77 @@
 ---
-import { Image } from 'astro:assets';
 import DefaultLayout from '../layouts/Default.astro';
-import PageTitle from '~/components/shared/PageTitle.astro';
-import IconWave from '~/assets/icons/wave.svg';
+import site from '~/content/site.ts';
 ---
 
-<DefaultLayout title="Bruno Paz | About me">
+<DefaultLayout>
   <div class="max-w-4xl mx-auto">
-    <div class="mb-12 text-center">
-      <Image
-        src={IconWave}
-        height="80"
-        width="80"
-        class="mx-auto mb-6 opacity-90 animate-wave"
-        alt="Hi There!"
-        title="Hi there!"
-        loading="eager"
-      />
-      <PageTitle title="About me" />
-    </div>
+    <h1 class="text-2xl font-bold text-neutral-900 mb-10">About me</h1>
 
-    <div class="prose prose-lg max-w-none">
+    <div class="prose max-w-none">
       <section class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 text-neutral-800">Hey, there!</h2>
-
-        <p class="text-lg leading-relaxed mb-6">
-          My name is Bruno Paz, and I am a Tech Lead / Software Engineer from Porto, Portugal 🇵🇹, with <strong>
-            10+ years of experience
-          </strong> building web applications and <strong>3+ years of experience</strong> leading engineering teams, across
-          diverse sectors including <strong>E-Commerce</strong>, <strong>Travel</strong>, <strong>Payments</strong>, and <strong
-          >
-            Healthcare
-          </strong>.
+        <p class="text-base leading-relaxed mb-4">
+          I'm Bruno, a Software Engineer and Tech Lead from Porto, Portugal 🇵🇹.
+          <p class="text-base leading-relaxed mb-4">
+            I've been building things for the web for over a decade, starting as a PHP developer in a small 5 person
+            startup, growing into backend and distributed systems with Go and eventually into leading teams. These days
+            I split my time between shipping code and helping engineers grow.
+          </p>
+          <p class="text-base leading-relaxed">
+            I work primarily with <strong>Golang</strong> and <strong>TypeScript/Node.js</strong>, though I don't
+            consider myself tied to any particular stack. I pick whatever fits the problem best. My focus is backend
+            engineering, but I'm comfortable across the stack when needed.
+          </p>
         </p>
 
-        <p class="text-lg leading-relaxed mb-6">
-          As a Software Engineer, I specialize in <strong>Backend Development</strong>, currently working primarily with <strong
-          >
-            Golang
-          </strong>, <strong>TypeScript</strong> and <strong>Node.js.</strong>
-          I've also have past experience with <strong>PHP/Symfony</strong> and
-          <strong>Java</strong>, having built production systems with all these technologies.
-        </p>
+        <section class="mb-16">
+          <h2 class="text-2xl font-bold mb-4 text-neutral-800">What Drives Me</h2>
+          <p class="text-base leading-relaxed mb-4">
+            I care about well-crafted systems, clean APIs, good observability, and teams that ship with confidence, but
+            more importantly, systems that solve real problems, for individuals and businesses.
+          </p>
+          <p class="text-base leading-relaxed mb-4">
+            Beyond software, I'm interested in all areas of STEM, from Phycology, to BioTech. I believe the most
+            interesting problems happen at the intersection of disciplines.
+          </p>
+          <p class="text-base leading-relaxed mb-4">
+            A curious mind is a developer's most underrated asset. I try to keep learning something new constantly,
+            inside and outside tech.
+          </p>
+          <p class="text-base leading-relaxed mb-4">
+            I'm a proponent of the open web and decentralization: protocols over platforms, interoperability over
+            lock-in, communities over corporations.
+          </p>
+          <p class="text-base leading-relaxed">
+            I'm skeptical of walled gardens and centralized platforms that trade user freedom for convenience, and I try
+            to support open alternatives wherever I can. I miss the spirit of the early internet days, where curiosity,
+            creativity and openness were at the center stage. I try to do my small part to keep that ideas alive.
+          </p>
+        </section>
 
-        <p class="text-lg leading-relaxed mb-6">
-          As a <strong>Tech Lead</strong>, I focus on bridging technical execution with team growth. I guide
-          architectural decisions, mentor engineers, and establish practices that help teams deliver quality software. I
-          believe in leading by example and build a culture of trust, collaboration and transparency.
-        </p>
-      </section>
-
-      <section class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 text-neutral-800">What Drives Me</h2>
-
-        <p class="text-lg leading-relaxed mb-6">
-          I'm deeply passionate about technology and its potential to solve real-world problems. My interests span
-          multiple areas from <strong>Backend Development</strong>, <strong>Systems Design</strong>,
-          <strong>DevOps & Automation</strong>, and emerging technologies that enable a more decentralized and open web.
-        </p>
-
-        <p class="text-lg leading-relaxed mb-6">
-          As a <strong>lifelong learner</strong>, I'm continuously driven by curiosity, always seeking new challenges
-          and opportunities to expand my knowledge and refine my skills.
-        </p>
-
-        <p class="text-lg leading-relaxed mb-6">
-          I strongly believe in <strong>using technology as a force for good</strong>, building solutions that improve
-          people's lives and contribute to a better world.
-        </p>
-      </section>
-
-      <section class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 text-neutral-800">Beyond the Code</h2>
-
-        <p class="text-lg leading-relaxed mb-6">
-          While technology is a significant part of my life, I believe in maintaining balance. Outside of work, I enjoy <strong
-          >
-            sports
-          </strong>, <strong>watching TV series and anime</strong>, and <strong>
-            spending quality time with friends over dinner
-          </strong>.
-        </p>
-      </section>
-
-      <section class="mb-16">
-        <h2 class="text-3xl font-bold mb-6 text-neutral-800">Open Source & Community</h2>
-
-        <p class="text-lg leading-relaxed mb-6">
-          I'm an active contributor to the open-source community, creating tools and libraries that help developers work
-          more efficiently. You can find my projects on
-          <a
-            href="https://github.com/brpaz"
-            target="_blank"
-            rel="noopener"
-            class="text-primary-600 hover:text-primary-700 underline"
-          >
-            GitHub
-          </a>.
-        </p>
-
-        <p class="text-lg leading-relaxed mb-6">
-          I also share my knowledge and experiences through
-          <a href="/blog/page/1" class="text-primary-600 hover:text-primary-700 underline">my blog</a>, covering
-          multiple tech related topics.
-        </p>
-      </section>
-
-      <section>
-        <h2 class="text-3xl font-bold mb-6 text-neutral-800">Let's Connect</h2>
-
-        <p class="text-lg leading-relaxed mb-6">
-          I'm always interested in connecting with fellow developers, discussing technology, or exploring potential
-          collaboration opportunities. Feel free to reach out through
-          <a href="/contact" class="text-primary-600 hover:text-primary-700 underline">the contact page</a>
-          or connect with me on
-          <a
-            href="https://github.com/brpaz"
-            target="_blank"
-            rel="noopener"
-            class="text-primary-600 hover:text-primary-700 underline"
-          >
-            GitHub
-          </a>.
-        </p>
+        <section>
+          <h2 class="text-2xl font-bold mb-4 text-neutral-800">Outside Work</h2>
+          <p class="text-base leading-relaxed mb-4">
+            I enjoy sports, watching TV series and anime, and spending time with friends over a good meal.
+          </p>
+          <p class="text-base leading-relaxed">
+            I also contribute to open source, mostly small tools and libraries that solve a personal itch, which you can
+            find on
+            <a
+              href={site.social.github}
+              target="_blank"
+              rel="noopener"
+              class="text-primary-600 hover:text-primary-700 underline"
+            >
+              GitHub
+            </a>. When I have something worth sharing, I write about it on <a
+              href="/blog"
+              class="text-primary-600 hover:text-primary-700 underline"
+            >
+              my blog
+            </a>.
+          </p>
+        </section>
       </section>
     </div>
   </div>
 </DefaultLayout>
-
-<style>
-  @keyframes wave {
-    0%,
-    100% {
-      transform: rotate(0deg);
-    }
-    25% {
-      transform: rotate(20deg);
-    }
-    75% {
-      transform: rotate(-20deg);
-    }
-  }
-
-  .animate-wave {
-    animation: wave 2s ease-in-out infinite;
-  }
-</style>

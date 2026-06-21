@@ -4,13 +4,7 @@ import Button from '@components/shared/Button.astro';
 const formId = import.meta.env.PUBLIC_FORMSPREE_FORM_ID as string;
 ---
 
-<form
-  id="contact-form"
-  name="contact"
-  method="POST"
-  action={`https://formspree.io/f/${formId}`}
-  class="w-full max-w-lg mx-auto"
->
+<form id="contact-form" name="contact" method="POST" action={`https://formspree.io/f/${formId}`} class="w-full">
   <div class="flex flex-wrap mb-6 gap-4">
     <div class="w-full md:flex-1">
       <label for="name" class="block text-left font-medium text-neutral-700 text-sm mb-2">

@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import { sortPosts } from '~/content/posts';
+import { BlogPostCollection } from '~/content/types';
+import FormattedDate from '@components/blog/FormattedDate.astro';
+
+const allPosts = await getCollection(BlogPostCollection, ({ data }) => {
+  return import.meta.env.PROD ? data.published === true : true;
+});
+
+const posts = sortPosts(allPosts).slice(0, 3);
+---
+
+<section class="mb-section">
+  <div class="flex items-baseline justify-between mb-8">
+    <h2 class="font-bold text-neutral-900 text-3xl">Recent Posts</h2>
+    <a
+      href="/blog/page/1"
+      class="text-sm font-medium text-primary-600 hover:text-primary-800 transition-colors duration-200"
+    >
+      View all ↗
+    </a>
+  </div>
+  <div class="space-y-4">
+    {
+      posts.map((post) => (
+        <a
+          href={`/blog/${post.data.permalink}`}
+          class="flex items-baseline justify-between gap-4 group py-3 border-b border-neutral-100 last:border-b-0 hover:text-primary-600 transition-colors duration-200"
+        >
+          <span class="text-neutral-800 font-medium group-hover:text-primary-600 transition-colors duration-200">
+            {post.data.title}
+          </span>
+          <span class="text-xs text-neutral-400 whitespace-nowrap shrink-0">
+            {post.data.publishDate && <FormattedDate date={post.data.publishDate} />}
+          </span>
+        </a>
+      ))
+    }
+  </div>
+</section>

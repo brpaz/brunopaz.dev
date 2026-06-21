@@ -30,11 +30,11 @@ import Logo from './Logo.astro';
 
   #site-header {
     @apply fixed top-0 left-0 right-0 z-50 transition-all duration-300;
-    @apply bg-white;
+    @apply bg-white border-b border-neutral-100;
   }
 
   #site-header.header-scrolled {
-    @apply backdrop-blur-md bg-white/80 shadow-sm border-b border-neutral-200;
+    @apply backdrop-blur-md bg-white/80 border-neutral-200 shadow-sm;
   }
 </style>
 

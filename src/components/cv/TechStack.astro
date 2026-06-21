@@ -1,0 +1,45 @@
+---
+import LanguageIcon from '@components/shared/LanguageIcon.astro';
+
+const languages = [
+  'Golang',
+  'PHP',
+  'JavaScript',
+  'TypeScript',
+  'NodeJS',
+  'Symfony',
+  'Postgres',
+  'Redis',
+  'ElasticSearch',
+  'Apache Kafka',
+  'NuxtJS',
+  'Astro',
+  'TailwindCSS',
+  'Linux',
+  'Git',
+  'Docker',
+  'Kubernetes',
+  'Google Cloud',
+  'Ansible',
+  'Terraform',
+  'Grafana',
+  'Prometheus',
+  'FluxCD',
+];
+---
+
+<section class="mb-section">
+  <h2 class="font-bold text-neutral-700 text-3xl mb-12">Tech Stack</h2>
+  <div class="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-9 gap-x-4 gap-y-6">
+    {
+      languages.map((item) => (
+        <div class="flex flex-col items-center gap-2 text-center">
+          <div class="h-10 flex items-center justify-center">
+            <LanguageIcon name={item} width={40} height={40} />
+          </div>
+          <span class="text-xs text-neutral-500 leading-tight">{item}</span>
+        </div>
+      ))
+    }
+  </div>
+</section>
