@@ -9,10 +9,7 @@ test.describe('About Page', () => {
   test('Sets correct metadata', async ({ page }) => {
     await expect(page).toHaveTitle('Bruno Paz | About me');
 
-    // CHECK METADATA
-    const metaDescription = await page.$eval('meta[name="description"]', (el) =>
-      el.getAttribute('content'),
-    );
+    const metaDescription = await page.$eval('meta[name="description"]', (el) => el.getAttribute('content'));
     expect(metaDescription).toBe(site.description);
   });
 
@@ -22,7 +19,7 @@ test.describe('About Page', () => {
     await expect(header).toHaveText('About me');
 
     // Check if the link with href containing '/about' has the class 'active'
-    const navLink = page.locator('.main-nav a[href*="/about"]');
+    const navLink = page.locator('a.nav-link[href*="/about"]');
     await expect(navLink).toHaveClass(/active/);
   });
 });

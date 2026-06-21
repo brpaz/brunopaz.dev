@@ -1,37 +1,16 @@
 ---
+import Logo from './Logo.astro';
+
 const currentPage = new URL(Astro.request.url).pathname;
 
 const desktopMenuItems = [
-  {
-    title: 'About',
-    path: '/about',
-    rootPath: '/about',
-  },
-  {
-    title: 'Work',
-    path: '/work',
-    rootPath: '/work',
-  },
-  {
-    title: 'Blog',
-    path: '/blog/page/1',
-    rootPath: '/blog',
-  },
-  {
-    title: 'Contact',
-    path: '/contact',
-    rootPath: '/contact',
-  },
+  { title: 'About', path: '/about', rootPath: '/about' },
+  { title: 'CV', path: '/cv', rootPath: '/cv' },
+  { title: 'Blog', path: '/blog/page/1', rootPath: '/blog' },
+  { title: 'Contact', path: '/contact', rootPath: '/contact' },
 ];
 
-const mobileMenuItems = [
-  {
-    title: 'Home',
-    path: '/',
-    rootPath: '/',
-  },
-  ...desktopMenuItems,
-];
+const mobileMenuItems = [{ title: 'Home', path: '/', rootPath: '/' }, ...desktopMenuItems];
 ---
 
 <script is:inline>
@@ -39,9 +18,7 @@ const mobileMenuItems = [
     const drawer = document.getElementById('mobile-drawer');
     const overlay = document.getElementById('mobile-overlay');
     const body = document.body;
-
     const isOpen = !drawer.classList.contains('translate-x-full');
-
     if (isOpen) {
       drawer.classList.add('translate-x-full');
       overlay.classList.add('hidden');
@@ -54,13 +31,9 @@ const mobileMenuItems = [
   }
 
   var initMobileMenu = () => {
-    const menuButton = document.getElementById('menu-toggle');
-    const overlay = document.getElementById('mobile-overlay');
-    const closeButton = document.getElementById('drawer-close');
-
-    menuButton?.addEventListener('click', toggleMobileMenu);
-    overlay?.addEventListener('click', toggleMobileMenu);
-    closeButton?.addEventListener('click', toggleMobileMenu);
+    document.getElementById('menu-toggle')?.addEventListener('click', toggleMobileMenu);
+    document.getElementById('mobile-overlay')?.addEventListener('click', toggleMobileMenu);
+    document.getElementById('drawer-close')?.addEventListener('click', toggleMobileMenu);
   };
 
   window.addEventListener('DOMContentLoaded', initMobileMenu);
@@ -70,46 +43,42 @@ const mobileMenuItems = [
 <style>
   @reference "../../assets/styles/global.css";
 
-  .main-nav a {
-    @apply relative font-medium text-base text-neutral-600 hover:text-primary-500 transition-colors duration-200;
+  .nav-link {
+    @apply relative text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors duration-200;
   }
 
-  .main-nav a::after {
-    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-primary-500 transition-all duration-300;
+  .nav-link::after {
     content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-px bg-primary-500 transition-all duration-200;
   }
 
-  .main-nav a:hover::after {
+  .nav-link:hover::after {
     @apply w-full;
   }
 
-  .main-nav a.active {
-    @apply text-primary-500;
+  .nav-link.active {
+    @apply text-neutral-900;
   }
 
-  .main-nav a.active::after {
+  .nav-link.active::after {
     @apply w-full;
   }
 
   .mobile-menu-link {
-    @apply relative font-medium text-lg text-neutral-700 transition-all duration-200 py-4 px-6 block cursor-pointer;
-  }
-
-  .mobile-menu-link:hover {
-    @apply bg-neutral-50 text-primary-500 cursor-pointer;
+    @apply block py-3 px-6 text-base font-medium text-neutral-700 hover:text-primary-500 hover:bg-neutral-50 transition-colors duration-150;
   }
 
   .mobile-menu-link.active {
-    @apply text-primary-500 border-l-4 border-primary-500 bg-primary-50;
+    @apply text-primary-500 border-l-2 border-primary-500 bg-primary-50/60;
   }
 </style>
 
 <!-- Desktop Navigation -->
-<ul class="main-nav items-center gap-8 hidden md:flex">
+<ul class="items-center gap-8 hidden md:flex">
   {
     desktopMenuItems.map((item) => (
       <li>
-        <a href={item.path} class={currentPage.startsWith(item.rootPath) ? 'active' : ''}>
+        <a href={item.path} class={`nav-link ${currentPage.startsWith(item.rootPath) ? 'active' : ''}`}>
           {item.title}
         </a>
       </li>
@@ -120,51 +89,43 @@ const mobileMenuItems = [
 <!-- Mobile Menu Toggle -->
 <button
   id="menu-toggle"
-  aria-expanded="false"
   aria-label="Open navigation menu"
-  class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors duration-200"
-  style="width:48px;height:48px"
+  class="md:hidden p-2 rounded-md text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition-colors duration-200"
 >
-  <span class="sr-only">Open main menu</span>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
+    class="w-5 h-5"
     aria-hidden="true"
-    class="block w-6 h-6"
   >
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
   </svg>
 </button>
 
-<!-- Mobile Menu Overlay -->
-<div
-  id="mobile-overlay"
-  class="hidden absolute top-0 left-0 right-0 h-screen bg-black/50 z-60 md:hidden"
-  aria-hidden="true"
->
-</div>
+<!-- Mobile Overlay -->
+<div id="mobile-overlay" class="hidden fixed inset-0 bg-black/40 z-[60] md:hidden" aria-hidden="true"></div>
 
-<!-- Mobile Menu Drawer -->
+<!-- Mobile Drawer -->
 <div
   id="mobile-drawer"
-  class="fixed top-0 right-0 h-screen w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-[70] md:hidden flex flex-col"
+  class="fixed top-0 right-0 h-full w-64 bg-white shadow-xl transform translate-x-full transition-transform duration-300 z-[70] md:hidden flex flex-col"
 >
-  <div class="flex items-center justify-between p-4 border-b border-neutral-200">
-    <span class="text-lg font-semibold text-neutral-900">Menu</span>
+  <div class="flex items-center justify-between px-6 py-4 border-b border-neutral-100">
+    <Logo />
     <button
       id="drawer-close"
       aria-label="Close navigation menu"
-      class="inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors duration-200"
+      class="p-1.5 rounded-md text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors duration-200"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
   </div>
-  <nav class="flex-1 overflow-y-auto">
-    <ul class="py-2">
+  <nav class="flex-1 overflow-y-auto py-2">
+    <ul>
       {
         mobileMenuItems.map((item) => {
           const isActive = item.rootPath === '/' ? currentPage === '/' : currentPage.startsWith(item.rootPath);

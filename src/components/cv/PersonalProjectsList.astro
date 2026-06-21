@@ -1,0 +1,56 @@
+---
+import { projects } from '~/content/projects';
+---
+
+<section class="mb-section">
+  <div class="flex items-baseline justify-between mb-12">
+    <h2 class="font-bold text-neutral-700 text-3xl">Personal Projects</h2>
+    <a
+      href="https://github.com/brpaz"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-sm font-medium text-primary-600 hover:text-primary-800 transition-colors duration-200"
+    >
+      View all on GitHub ↗
+    </a>
+  </div>
+  <div class="space-y-8">
+    {
+      projects.map((project) => (
+        <div class="border-l-2 border-neutral-200 pl-6">
+          <div class="mb-2">
+            {project.url ? (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-lg font-bold text-neutral-800 hover:text-primary-600 transition-colors duration-200"
+              >
+                {project.name} ↗
+              </a>
+            ) : (
+              <span class="text-lg font-bold text-neutral-800">{project.name}</span>
+            )}
+          </div>
+          {project.technologies && project.technologies.length > 0 && (
+            <div class="flex flex-wrap gap-2 mb-3">
+              {project.technologies.map((tech) => (
+                <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-primary-50 text-primary-700 border border-primary-200">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
+          <ul class="space-y-1">
+            {project.highlights.map((highlight) => (
+              <li class="text-neutral-600 text-sm leading-relaxed flex gap-2">
+                <span class="text-primary-400 shrink-0">▸</span>
+                <span>{highlight}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</section>

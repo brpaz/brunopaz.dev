@@ -1,0 +1,77 @@
+export interface WorkExperience {
+  company: string;
+  position: string;
+  url?: string;
+  startDate: string;
+  endDate?: string;
+  technologies?: string[];
+  highlights: string[];
+}
+
+export const experience: WorkExperience[] = [
+  {
+    company: 'SwordHealth',
+    position: 'Tech Lead / Engineering Manager',
+    url: 'https://www.swordhealth.com',
+    startDate: '2022-07',
+    technologies: ['Golang', 'Node.js', 'VueJS', 'MySQL', 'Redis', 'Google Pub/Sub'],
+    highlights: [
+      '**Team Leadership & Process:** Led a cross-functional team of 5 engineers, defined development process and release coordination, shaped monthly and quarterly roadmaps with Head of Engineering and Product, and mentored team members resulting in 2 promotions to Senior level.',
+      '**SwordDesk Platform:** Built an in-house customer support platform replacing a proprietary system, saving $30k+/year and handling 300k+ tickets/year, including integration with an internal AI agent that automated 60% of ticket triage with a 4.5/5 customer satisfaction rating.',
+      '**User Data & Personalization:** Built a data sync system between Sword and Iterable, enabling the marketing team to run personalized campaigns for 1M+ users without engineering support.',
+      '**Third-Party Integrations:** Managed communication with third-party partners to define technical requirements for integrations with the Sword platform, including SSO systems and the Eligibility process, utilizing standards like SAML and EDI 270/271.',
+      '**Hiring and Recruiting:** Hired 5+ engineers through full-cycle recruiting including resume review, take-home exercises, and technical interview.',
+      '**Hands-on Engineering:** Stayed actively involved in coding alongside leadership by delivering internal tools, automation scripts, and technical improvements outside the core roadmap.',
+    ],
+  },
+  {
+    company: 'JumiaPay - Jumia Group',
+    position: 'Senior Web Engineer → Engineering Manager',
+    url: 'https://www.jumia.com',
+    startDate: '2019-01',
+    endDate: '2022-06',
+    technologies: ['Golang', 'Java', 'Spring Framework', 'Apache Kafka', 'MySQL'],
+    highlights: [
+      '**Team Leadership *(EM)*:** Led 5-engineer team + QA Analyst building the JumiaPay Merchant platform covering sales, refunds, settlements, and withdrawals.',
+      '**Architecture and Technical Vision *(EM)*:** Defined architecture and technical direction for all team-owned services using a microservices approach.',
+      '**Platform Development *(SWE)*:** Built backend for core Merchant modules including account creation, user management, sales, refunds, settlements, withdrawals, and wallet top-ups.',
+      '**Top-Ups Processing *(SWE)*:** Built async wallet top-up pipeline in Golang using Apache Kafka to process CSV batches of wallet credits, handling up to 1M top-ups/day during peak campaigns.',
+      '**Testing and Automation *(SWE)*:** Drove adoption of automated acceptance testing with Cucumber/Gherkin across the platform, improving release quality and reducing manual QA effort.',
+    ],
+  },
+  {
+    company: 'JForce - Jumia Group',
+    position: 'Senior Web Engineer',
+    url: 'https://www.jumia.com',
+    startDate: '2018-06',
+    endDate: '2018-12',
+    technologies: ['Golang', 'PHP', 'Symfony 4', 'MySQL'],
+    highlights: [
+      '**Agent Platform:** Built core services and APIs for JForce (Jumia Agents platform) covering registration, sales, commission calculation, levels, and bonuses using Golang and PHP/Symfony in a microservices architecture.',
+      '**Order Processing System:** Implemented async order import pipeline using Go channels and goroutines to process ~40k daily orders across tens of thousands of Jumia agents and calculate per-agent commissions based on business rules.',
+    ],
+  },
+  {
+    company: 'Jumia Travel & Flights - Jumia Group',
+    position: 'Web Engineer → Senior Web Engineer',
+    url: 'https://www.jumia.com',
+    startDate: '2014-04',
+    endDate: '2018-05',
+    technologies: [
+      'PHP',
+      'Symfony',
+      'Phalcon',
+      'Java',
+      'Play Framework',
+      'ElasticSearch',
+      'ScyllaDB',
+      'MySQL',
+      'Memcached',
+    ],
+    highlights: [
+      '**Platform Development:** Defined architecture and tech stack for Jumia Flights MVP from scratch, and built backend APIs powering both Jumia Travel (hotel listings, search, booking) and Jumia Flights platforms using a microservices architecture with Java, PHP, and Golang.',
+      '**Search Engine Development:** Built hotel search engine (ElasticSearch, 100k+ hotels, weighted ranking) and high-performance flight search (Java Play Framework, Amadeus & Kiwi integration, parallel fetching, WebSockets) with ScyllaDB caching cutting response times from ~30s to seconds.',
+      '**Booking & Payment Processes:** Designed and implemented a state machine for booking and payment workflows to ensure data consistency and enforce business rules.',
+    ],
+  },
+];

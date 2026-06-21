@@ -2,28 +2,24 @@
   @reference "../../assets/styles/global.css";
 
   .logo-link {
-    @apply flex items-center text-primary-500 transition-transform duration-200 ease-in-out;
+    @apply flex items-center gap-2 transition-opacity duration-200;
   }
 
   .logo-link:hover {
-    @apply scale-105;
+    @apply opacity-80;
   }
 
   .logo-icon {
-    @apply fill-current text-primary-500 w-12 h-12 mr-2 transition-transform duration-300 ease-in-out;
-  }
-
-  .logo-link:hover .logo-icon {
-    @apply rotate-6;
+    @apply fill-current text-primary-500 w-8 h-8;
   }
 
   .logo-text {
-    @apply font-bold text-2xl uppercase;
+    @apply font-bold text-xl text-neutral-900;
   }
 </style>
 
-<a href="/" aria-current="page" class="logo-link">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="logo-icon" fill="currentColor">
+<a href="/" aria-label="Bruno Paz — home" class="logo-link">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="logo-icon" fill="currentColor" aria-hidden="true">
     <path d="M13.3252 3.05011L8.66765 20.4323L10.5995 20.9499L15.257 3.56775L13.3252 3.05011Z"></path>
     <path
       d="M7.61222 18.3608L8.97161 16.9124L8.9711 16.8933L3.87681 12.1121L8.66724 7.00798L7.20892 5.63928L1.0498 12.2017L7.61222 18.3608Z"
@@ -34,6 +30,5 @@
     >
     </path>
   </svg>
-
   <span class="logo-text">Bruno Paz</span>
 </a>

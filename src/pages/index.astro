@@ -2,15 +2,23 @@
 import DefaultLayout from '../layouts/Default.astro';
 import Intro from '@components/home/Intro.astro';
 import WhatIDo from '@components/home/WhatIDo.astro';
-import TechStack from '@components/home/TechStack.astro';
-import FeaturedProjects from '@components/home/FeaturedProjects.astro';
-import FeaturedPublications from '@components/home/FeaturedPublications.astro';
+import RecentPosts from '@components/home/RecentPosts.astro';
+import ContactCTA from '@components/home/ContactCTA.astro';
+import site from '~/content/site';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Bruno Paz',
+  url: 'https://brunopaz.dev',
+  jobTitle: 'Tech Lead / Software Engineer',
+  sameAs: [site.social.github, site.social.linkedin, site.social.mastodon, site.social.devto],
+};
 ---
 
-<DefaultLayout>
+<DefaultLayout jsonLd={personSchema}>
   <Intro />
   <WhatIDo />
-  <TechStack />
-  <FeaturedProjects />
-  <FeaturedPublications />
+  <RecentPosts />
+  <ContactCTA />
 </DefaultLayout>

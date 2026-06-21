@@ -1,0 +1,21 @@
+---
+import DefaultLayout from '../layouts/Default.astro';
+import ExperienceTimeline from '@components/cv/ExperienceTimeline.astro';
+import TechStack from '@components/cv/TechStack.astro';
+import PersonalProjectsList from '@components/cv/PersonalProjectsList.astro';
+---
+
+<DefaultLayout title="Bruno Paz | CV">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-2xl font-bold text-neutral-900 mb-4">CV</h1>
+    <div class="text-base text-neutral-600 leading-relaxed mb-10 space-y-3">
+      <p>
+        Hands-on Engineering Leader with 10+ years of software engineering experience in Go, PHP, Java, and Node.js, and
+        5+ years leading engineering teams across different areas like B2B, E-Commerce, Travel, Fintech, and Healthcare.
+      </p>
+    </div>
+    <ExperienceTimeline />
+    <TechStack />
+    <PersonalProjectsList />
+  </div>
+</DefaultLayout>

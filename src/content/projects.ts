@@ -1,38 +1,42 @@
-import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
-import { z } from 'astro/zod';
-import type { CollectionEntry } from 'astro:content';
-import type { Project } from './types';
-
-export enum ProjectType {
-  Work = 'work',
-  Personal = 'personal',
+export interface PersonalProject {
+  name: string;
+  url?: string;
+  technologies?: string[];
+  highlights: string[];
 }
 
-export const projectsCollection = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
-  schema: z.object({
-    name: z.string(),
-    description: z.string(),
-    startDate: z.date().optional(),
-    endDate: z.date().optional(),
-    category: z.enum(['application', 'website', 'library', 'tool', 'other']),
-    externalUrl: z.string().optional(),
-    sourceUrl: z.string().optional(),
-    technologies: z.array(z.string()),
-    coverImage: z.string(),
-    images: z.array(z.string()),
-    isFeatured: z.boolean().default(false),
-    role: z.array(z.enum(['Developer', 'Software Engineer', 'Tech Lead', 'Engineering Manager'])).optional(),
-    company: z.string().optional(),
-    type: z.enum(['work', 'personal']).default('work'),
-    sortOrder: z.number().default(1),
-  }),
-});
-
-/**
- * Helper function to sort a collection of projects by it´s sortOrder.
- */
-export function sortProjects(projects: CollectionEntry<Project>[]): CollectionEntry<Project>[] {
-  return projects.sort((a, b) => a.data.sortOrder - b.data.sortOrder);
-}
+export const projects: PersonalProject[] = [
+  {
+    name: 'Go Healthcheck',
+    url: 'https://github.com/brpaz/go-healthcheck',
+    technologies: ['Golang'],
+    highlights: ['Golang library to simplify healthcheck creation following the RFC Healthcheck specification.'],
+  },
+  {
+    name: 'go-test-html-report',
+    url: 'https://github.com/brpaz/go-test-html-report',
+    technologies: ['Golang'],
+    highlights: ['Golang library for generating HTML reports from go test results.'],
+  },
+  {
+    name: 'lib-go',
+    url: 'https://github.com/brpaz/lib-go',
+    technologies: ['Golang'],
+    highlights: ['A library of reusable utilities and helpers for Go projects.'],
+  },
+  {
+    name: 'GitHub Notifications Cleaner',
+    url: 'https://github.com/brpaz/github-notifications-cleaner',
+    technologies: ['Golang'],
+    highlights: [
+      'Open Source CLI tool in Golang that cleans old unread GitHub notifications according to specified rules.',
+    ],
+  },
+  {
+    name: 'Personal HomeLab',
+    technologies: ['Proxmox', 'Kubernetes', 'Ansible', 'K3s', 'Flux'],
+    highlights: [
+      'Built a personal HomeLab using Proxmox, K3s, and Flux to self-host services like Immich and Nextcloud.',
+    ],
+  },
+];

@@ -14,32 +14,27 @@ const { title, excerpt, publishDate } = post.data;
 const url = `/blog/${post.data.permalink}`;
 ---
 
-<article class="border-b border-neutral-200 pb-12 last:border-b-0">
-  <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
-    <h2 class="text-3xl font-bold flex-1">
-      <a href={url} class="text-neutral-900 hover:text-primary-500 transition-colors duration-200">
-        {title}
-      </a>
-    </h2>
+<article
+  class="h-entry border-b border-neutral-200 pb-6 last:border-b-0 pl-4 border-l-2 border-l-transparent hover:border-l-primary-400 transition-colors duration-200"
+>
+  <h2 class="text-xl font-bold mb-3">
+    <a href={url} class="p-name u-url text-neutral-900 hover:text-primary-500 transition-colors duration-200">
+      {title}
+    </a>
+  </h2>
 
+  <div class="flex items-baseline gap-3 mb-3">
     {
       publishDate && (
-        <div class="text-sm text-neutral-500 flex-shrink-0 md:pt-1">
+        <span class="text-xs text-neutral-400">
           <FormattedDate date={publishDate} />
-        </div>
+        </span>
       )
     }
+    {post.data.tags.length > 0 && <Tags tags={post.data.tags} />}
   </div>
 
-  {
-    post.data.tags.length > 0 && (
-      <div class="mb-4">
-        <Tags tags={post.data.tags} />
-      </div>
-    )
-  }
-
-  <p class="text-neutral-700 text-lg leading-relaxed mb-4">
+  <p class="text-neutral-700 text-base leading-relaxed mb-4">
     {excerpt}
   </p>
 

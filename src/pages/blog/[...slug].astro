@@ -4,7 +4,6 @@ import type { BlogPost } from '~/content/types';
 import type { CollectionEntry } from 'astro:content';
 import { BlogPostCollection } from '~/content/types';
 import DefaultLayout from '~/layouts/Default.astro';
-import PageTitle from '~/components/shared/PageTitle.astro';
 import FormattedDate from '~/components/blog/FormattedDate.astro';
 import TagsList from '~/components/blog/TagsList.astro';
 import GiscusComments from '~/components/blog/GiscusComments.astro';
@@ -24,6 +23,22 @@ const { post } = Astro.props;
 const { title, publishDate, excerpt } = post.data;
 const ogImage = `/open-graph/${post.data.permalink}.png`;
 const { Content } = await render(post);
+
+const blogPostSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description: excerpt,
+  url: new URL(`/blog/${post.data.permalink}`, Astro.site).toString(),
+  datePublished: publishDate?.toISOString(),
+  author: {
+    '@type': 'Person',
+    name: 'Bruno Paz',
+    url: 'https://brunopaz.dev',
+  },
+  image: new URL(ogImage, Astro.site).toString(),
+  keywords: post.data.tags.join(', '),
+};
 ---
 
 <style is:global>
@@ -37,32 +52,35 @@ const { Content } = await render(post);
   }
 </style>
 
-<DefaultLayout title=`${title} | Bruno Paz` description={excerpt} ogImage={ogImage}>
+<DefaultLayout title=`${title} — Bruno Paz` description={excerpt} ogImage={ogImage} jsonLd={blogPostSchema}>
   <div class="max-w-4xl mx-auto">
-    <article class="mb-16">
-      <header class="mb-12 text-center">
-        <PageTitle title={title} />
-
-        <div class="flex flex-col items-center gap-4 mt-6">
+    <article class="h-entry mb-16">
+      <a class="u-url" href={Astro.url.href} hidden></a>
+      <a class="p-author h-card" href="https://brunopaz.dev" rel="author" hidden>Bruno Paz</a>
+      <header class="mb-12 text-center pb-12 border-b border-neutral-200">
+        <a
+          href="/blog/page/1"
+          class="inline-flex items-center gap-1 text-sm text-neutral-500 hover:text-primary-500 transition-colors duration-200 mb-8"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Back to Blog
+        </a>
+        <h1 class="p-name font-bold text-4xl text-center text-neutral-700 mb-component">{title}</h1>
+        <div class="flex items-baseline justify-center gap-3 mt-6">
           {
             publishDate && (
-              <div class="text-neutral-600 text-sm font-medium">
+              <span class="text-xs text-neutral-400">
                 <FormattedDate date={publishDate} />
-              </div>
+              </span>
             )
           }
-
-          {
-            post.data.tags.length > 0 && (
-              <div class="flex justify-center">
-                <TagsList tags={post.data.tags} />
-              </div>
-            )
-          }
+          {post.data.tags.length > 0 && <TagsList tags={post.data.tags} />}
         </div>
       </header>
 
-      <div class="post-content prose prose-lg prose-neutral max-w-none px-4">
+      <div class="e-content post-content prose prose-lg prose-neutral max-w-none">
         <Content />
       </div>
     </article>

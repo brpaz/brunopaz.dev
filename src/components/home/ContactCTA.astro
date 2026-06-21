@@ -1,0 +1,26 @@
+---
+import site from '~/content/site';
+---
+
+<section class="mb-section text-center">
+  <h2 class="font-bold text-neutral-900 text-4xl mb-4">Get in Touch</h2>
+  <p class="text-base text-neutral-600 max-w-xl mx-auto mb-8">
+    Interested in working together or just want to say hi? Feel free to reach out.
+  </p>
+  <div class="flex flex-wrap justify-center gap-4">
+    <a
+      href="/contact"
+      class="inline-flex items-center px-6 py-3 rounded-lg bg-primary-500 text-white font-medium hover:bg-primary-600 transition-colors duration-200"
+    >
+      Contact Me
+    </a>
+    <a
+      href={site.social.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center px-6 py-3 rounded-lg border border-neutral-300 text-neutral-700 font-medium hover:border-primary-400 hover:text-primary-600 transition-colors duration-200"
+    >
+      GitHub ↗
+    </a>
+  </div>
+</section>
