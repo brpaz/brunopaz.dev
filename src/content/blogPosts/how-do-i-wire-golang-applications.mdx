@@ -1,0 +1,370 @@
+---
+title: How do I wire Golang applications
+slug: how-do-i-wire-golang-applications
+publishDate: 2026-06-20
+excerpt: In this post I talk about the general state of Dependency Injection in Golang, and how I am leveraging the Composition Root pattern to wire my applications in a clean and maintainable way.
+tags: ['golang', 'dependency injection', 'design patterns', 'software architecture']
+published: true
+
+---
+
+One of the first things you notice when coming to Go from a language like Java or PHP is the absence of a dependency injection framework. There is no Spring IoC container, no Symfony service container, etc.
+
+Go core philosophy favors simplicity and explicitness, over magic and hidden behavior and Dependency Injection is no exception.
+
+It might be seen as a limitation at first. No one likes writing boilerplate code over and over again, and dependency injection frameworks look convenient at first. But they come with a cost: they hide the dependency graph behind reflection or code generation, making it hard to debug and reason about what is actually happening at runtime.
+
+In this article, I will talk about my experience of working in a few Go projects, that followed different approaches to dependency injection, the pain points I faced, and what have become my preferred way of wiring Go applications.
+
+## The state of DI Frameworks in Go
+
+There are a few attempts to bring dependency injection frameworks to Go. Uber [Fx](https://github.com/uber-go/fx), Google [Wire](https://github.com/google/wire) and Sarulabs [DI](https://github.com/sarulabs/di), are just a few examples.
+
+They work in a fundamentally different way. For example, Fx uses reflection to build the dependency graph at runtime, while Wire uses code generation to build the dependency graph at compile time.
+
+Wire concept is interesting and aligns better with Go philosophy and it could have been a solid middle ground between manual wiring and a full blown DI framework. But it ended up being deprecated by Google, and I am not aware of any big project that is using it in production.
+
+When I saw Fx for the first time, it looked promising. Being developed by Uber, a big company, which have built other great Golang libraries like Zap and the fact that Fx would reuse your existing constructors and would only be responsible for wiring them together, made it look like a good solution.
+
+But my real experience working with Fx in a real project at work was not that good. Errors were hard to debug and had an hard time understanding why some dependency was not wired correctly. The dependency graph was harder to visualize and understand.
+
+It felt added complexity to little benefit. I ended up fightning with the framework a few times, instead of getting work done. Maybe it was not implemented correctly in this particular project, or I didn´t have enough experience with it, but talking with other Engineers who worked in the same project, they also had similar experiences.
+
+## The problems of manual wiring
+
+Manual wiring is very simple to do when your project is small and have only a few dozen of dependencies. But as your project grows, it can become a mess, if you are not careful.
+
+I have worked in a few projects where the wiring was done in a very ad-hoc way, with dependencies being created in different places, within a gigantic `main.go` file or spread across multiple init functions. Dependencies that could have been singletons were being created multiple times, and when a new dependency was added, it needed to be defined in multiple places. Ordering was also a problem and it was common to have to completely switch the order of initialization of dependencies, to ensure any new component had all its dependencies available when it was being initialized. With a complex dependency graph, managing all that became a constant struggle and source of frustration.
+
+Manual wiring is not a silver bullet. To implement it correctly, you need structure, discipline, and a clear understanding of the dependency graph and how different components relate to each other. You need to be able to reason about the order of initialization and ensure that all dependencies are available when needed.
+
+This is where it can become messy, and where I find the Composition Root pattern to be useful.
+
+### The Composition Root Pattern
+
+The Composition Root is a pattern described by Mark Seemann in his book [*Dependency Injection Principles, Practices, and Patterns*](https://www.manning.com/books/dependency-injection-principles-practices-patterns).
+
+The core idea behind Composition Root pattern is simple: **all dependency wiring happens in a single place**, as close to the application entry point as possible. No object creates its own dependencies. They are built once and passed in.
+
+Building on top of this idea, I have come up with a structure that I started applying to my Go applications, with good results.
+
+## Real world example
+
+In this section, I will go into detail about how I took the ideas from the Composition Root pattern and applied it to my Go applications.
+
+### The `app` package and the `Application` struct
+
+The Composition root and all the application initialization logic lives in a single `internal/app` package. The sole responsability of this package is to wire the application together and expose methods to manage the lifecycle of the application. It should not contain any business logic or application code.
+
+This package can reference any other package in the project, but not the other way around. You can use `depguard` and Golangci-lint to enforce it.
+
+On the `internal/app/app.go` file, I define an `Application` struct, which is the Compisition root and the owner of all long-lived dependencies of the application:
+
+```go
+type Application struct {
+    config  *config.AppConfig
+    logger  *slog.Logger
+    db      *sql.DB
+    // ... other shared infrastructure dependencies
+    // ... and a list of modules
+    modules []Module
+}
+```
+
+The `config` struct holds all the configuration values required by the application. It is usually populated from environment variables at startup, before anything else runs.
+
+This struct is passed as an argument to the `New` constructor of the `Application`, which ensures the configuration is acessible in all the components that need it.
+
+The `New` function looks like this:
+
+```go
+func New(cfg *Config) (*Application, error) {
+    a := &Application{
+        config: cfg,
+        modules: []Module{
+            NewBlogModule(),
+            NewUsersModule(),
+        },
+    }
+
+    if err := a.init(); err != nil {
+        return nil, err
+    }
+
+    return a, nil
+}
+```
+
+More details on the modules slice later. For now let´s focus on the initializers.
+
+### Initializers
+
+The `init` method orchestrates startup. It is responsible for calling all the initialization methods for the different components (database, logging, etc) in the correct order. Infrastructure related components like the logger or database, are initialized first.
+
+Specific application modules are initialized last, as they often depend on the infrastructure components being available. The order of initialization is important and should be carefully considered.
+
+```go
+func (a *Application) init() error {
+    if err := a.initLogger(); err != nil {
+        return fmt.Errorf("init logger: %w", err)
+    }
+
+    if err := a.initDB(); err != nil {
+        return fmt.Errorf("init database: %w", err)
+    }
+
+    if err := a.initModules(); err != nil {
+        return fmt.Errorf("init modules: %w", err)
+    }
+
+    return nil
+}
+```
+
+This makes the bootstraping process explicit and easy to understand.
+
+Each `init*` method is responsible for initializing a single component and writes its result back onto the application struct, making the dependency available to everything that initializes after it. Here is an example of an init function to initialize the a connection:
+
+```go
+func (a *Application) initDB() error {
+    db, err := sql.Open("postgres", a.config.DatabaseDSN)
+    if err != nil {
+        return err
+    }
+    a.db = db
+    return nil
+}
+```
+
+In the case of application grows, those init functions can be splitted into multiple files, like `logger.go`, `database.go` and `modules.go` for example, while still being part of the `Application` struct.
+
+### The Module interface
+
+The Application struct could grow a lot as the application grows, and it is important to keep it manageable. To achieve that, I split the application into modules.
+
+Each module is responsible for wiring up a specific part of the application, like a feature or a domain.
+
+A module is any type that satisfies the `Module` interface:
+
+```go
+type Module interface {
+    Init(*Application) error
+    RegisterRoutes(*http.ServeMux) error
+    Close() error
+}
+```
+
+- `Init` receives the `Application` and builds the module's own dependency graph from it. This allows access for the module to any shared infrastructure dependency like database.
+- `RegisterRoutes` mounts the module's HTTP handlers onto the router.
+- `Close` releases any module-level resources on shutdown.
+
+Each module file is self-contained: it knows what it needs from `Application`, wires it internally, and never leaks those details outward.
+
+Using an interface, make it straighforward to add new modules and configuring their respecitve initilization process without having to change the `Application` struct or the global `init` method.
+
+The only thing that needs to be changed is the `New` constructor, to register the new module with the application. The `initModules` function already invokes all the Init functions for all the registered modules, so no changes are needed there.
+
+```go
+func (a *Application) initModules() error {
+    for _, module := range a.modules {
+        if err := module.Init(a); err != nil {
+            return fmt.Errorf("failed to init module: %w", err)
+        }
+    }
+    return nil
+}
+```
+
+### A simple module example
+
+Here is what a `BlogModule` could look like:
+
+```go
+type BlogModule struct {
+    repo *BlogRepository
+    svc  *BlogService
+}
+
+func NewBlogModule() *BlogModule {
+    return &BlogModule{}
+}
+
+func (m *BlogModule) Init(a *Application) error {
+    m.repo = NewBlogRepository(a.db)
+    m.svc = NewBlogService(m.repo)
+    return nil
+}
+
+func (m *BlogModule) RegisterRoutes(mux *http.ServeMux) error {
+    mux.HandleFunc("GET /posts", handler.List(m.svc))
+    mux.HandleFunc("POST /posts", handler.Create(m.svc))
+    mux.HandleFunc("DELETE /posts/{id}", handler.Delete(m.svc))
+    return nil
+}
+
+func (m *BlogModule) Close() error { return nil }
+```
+
+The module pulls `a.db` from `Application` and uses it to construct the service. In `RegisterRoutes`, each handler is created as a simple function that returns an `http.HandlerFunc` and receives the service as an argument. Handlers should be thin so there is no need to have a full struct for them. Keep it lightweight and simple.
+
+Nothing outside the module knows about `BlogRepository` or `BlogService`. A module is just an Interface, from the point of view of the application.
+
+### Starting the application
+
+The application provides a `Run` method that can be used to start the application. In a typical web app or API, it is responsible for building the router, and starting the HTTP server. It also set up signal handling and graceful shutdown.
+
+Route registration is intentionally separate from module init. We also don´t necessarly need to add the `http.Server` to the main application struct, as the http server lifecyle is very self contained and there isn´t any other component that will depend on it. The server lifecyle can be managed entirely within the `Run` method.
+
+```go
+func (a *Application) Run(ctx context.Context) error {
+    mux := http.NewServeMux()
+
+    for _, mod := range a.modules {
+        if err := mod.RegisterRoutes(mux); err != nil {
+            return fmt.Errorf("route registration: %w", err)
+        }
+    }
+
+    srv := &http.Server{Addr: a.config.Addr, Handler: mux}
+
+    go srv.ListenAndServe()
+
+    <-ctx.Done()
+    return a.shutdown(srv)
+}
+```
+
+If your application has other entrypoints, for example Job Runners, the `Run` method can be extended to start those as well, in separate Go Routines, or you can manage those resources separately, by creating a separate `RunX` method for each entrypoint. This heavily depends how do you want to manage the lifecycle of your application and its components, and how related they are to each other.
+
+#### A Cron Job example
+
+Here is an example of how I handle cron jobs in one of my personal projects. I define a `CronJob` interface and a function type that satisfies it, so that any function can be used as a cron job:
+
+```go
+type CronJob interface {
+    Run(ctx context.Context) error
+}
+
+// CronJobFunc lets a plain function satisfy CronJob.
+type CronJobFunc func(ctx context.Context) error
+
+func (f CronJobFunc) Run(ctx context.Context) error { return f(ctx) }
+```
+
+The `Application` struct holds a registry of named jobs and exposes a method to register them in the application:
+
+```go
+type Application struct {
+    // ...
+    cronJobs map[string]CronJob
+}
+
+func (a *Application) RegisterCron(name string, job CronJob) {
+    a.cronJobs[name] = job
+}
+```
+
+Individual Modules register their own jobs during `Init`, right alongside the service wiring:
+
+```go
+func (m *UsersModule) Init(a *Application) error {
+    // ... wire repo, services, etc.
+
+    a.RegisterCron("delete-old-users", CronJobFunc(func(ctx context.Context) error {
+      // ... do some work here
+      return nil
+    }))
+
+    return nil
+}
+```
+
+The `Application` exposes a `RunCron` method that dispatches to the named job:
+
+```go
+func (a *Application) RunCron(ctx context.Context, name string) error {
+    job, ok := a.cronJobs[name]
+    if !ok {
+        return fmt.Errorf("unknown cron job %q", name)
+    }
+
+    a.logger.Info(ctx, "cron: starting", slog.String("job", name))
+
+    start := time.Now()
+    err := job.Run(ctx)
+
+    a.logger.Info(ctx, "cron: done",
+        slog.String("job", name),
+        slog.Duration("duration", time.Since(start)),
+    )
+
+    return err
+}
+```
+
+### Lifecycle management
+
+Because `Application` owns every resource, graceful shutdown is straightforward:
+
+```go
+func (a *Application) shutdown(srv *http.Server) error {
+    ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+    defer cancel()
+
+    if err := srv.Shutdown(ctx); err != nil {
+        return err
+    }
+
+    if err := a.db.Close(); err != nil {
+        return err
+    }
+
+    for _, mod := range a.modules {
+        if err := mod.Close(); err != nil {
+            return err
+        }
+    }
+
+    return nil
+}
+```
+
+### What `main.go` looks like
+
+With the composition root in place, `main.go` becomes trivial:
+
+```go
+func main() {
+  // Load configuration from environment variables
+  cfg, err := config.Load()
+  if err != nil {
+      log.Fatal(err)
+  }
+
+// Instantiate the application with the configuration
+  app, err := app.New(cfg)
+  if err != nil {
+      log.Fatal(err)
+  }
+
+  // Starts the application
+  if err := app.Run(context.Background()); err != nil {
+      log.Fatal(err)
+  }
+}
+```
+
+To summarize what this achieves:
+
+- `main.go` does almost nothing except load config and call `app.New()`
+- The `Application` struct owns every long-lived dependency
+- Constructors receive what they need from `Application`; nothing creates its own dependencies.
+- Modules encapsulate their own wiring and route registration, keeping the main application struct clean.
+
+## Conclusion
+
+After working in many different projects and technologies and ways to do things over the years, I learned to appreciate the simplicity of Go philosophy in general. And manual wiring is no exception. It´s simple and explicit. Your IDE navigation just works, and you can easily see how everything is initialized and the relationship between different components. It a really clean and poweful approach, when done right.
+
+It can still be tedious and become a mess, if you are not careful. The thing is, it´s code that you write, so any principles and patterns that lead to more maintainable code still apply. Composition Root is just one example.
+
+I am really happy with this structure but it is by no means static. I will keep iterating as I learn more and implement it in more projects.
