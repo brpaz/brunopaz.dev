@@ -15,6 +15,7 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  jsonLd?: Record<string, unknown>;
 }
 
 const props = Astro.props as Props;
@@ -49,6 +50,7 @@ if (props.ogImage) {
     <link rel="alternate" type="application/rss+xml" title="Bruno Paz Engineering Blog" href="/blog/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link type="text/plain" rel="author" href="https://brunopaz.dev/humans.txt" />
+    {props.jsonLd && <script type="application/ld+json" set:html={JSON.stringify(props.jsonLd)} />}
     {
       sentryEnabled && (
         <script is:inline src={`https://js.sentry-cdn.com/${sentryKey}.min.js`} crossorigin="anonymous" defer />

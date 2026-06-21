@@ -9,9 +9,7 @@ test.describe('Contact Page', () => {
   test('Meta tags', async ({ page }) => {
     await expect(page).toHaveTitle('Bruno Paz | Contact');
 
-    const metaDescription = await page.$eval('meta[name="description"]', (el) =>
-      el.getAttribute('content'),
-    );
+    const metaDescription = await page.$eval('meta[name="description"]', (el) => el.getAttribute('content'));
     expect(metaDescription).toBe(site.description);
   });
 
@@ -21,7 +19,7 @@ test.describe('Contact Page', () => {
     await expect(header).toHaveText('Contact');
 
     // Check if the link with href containing '/contact' has the class 'active'
-    const navLink = page.locator('.main-nav a[href*="/contact"]');
+    const navLink = page.locator('a.nav-link[href*="/contact"]');
     await expect(navLink).toHaveClass(/active/);
   });
 });
