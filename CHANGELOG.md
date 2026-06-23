@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## 1.10.1 - 2026-06-21
+
+### What's Changed
+
+#### 🐛 Bug Fixes
+
+- fix: design of tags page @brpaz (#282)
+
+#### 🧩 Dependency Updates
+
+- chore(deps): update dependency markdownlint-cli to ^0.49.0 @[renovate[bot]](https://github.com/apps/renovate) (#278)
+- chore(deps): update pnpm to v11.8.0 @[renovate[bot]](https://github.com/apps/renovate) (#273)
+- chore(deps): update dependency typescript to v6 @[renovate[bot]](https://github.com/apps/renovate) (#262)
+- chore(deps): update actions/checkout action to v7 @[renovate[bot]](https://github.com/apps/renovate) (#279)
+
+**Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.10.0...v1.10.1
+
 ## 1.10.0 - 2026-06-21
 
 ### What's Changed
@@ -49,7 +66,6 @@
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.7.0...v1.8.0
 ## 1.7.0 - 2026-06-13
 ### What's Changed
-
 #### 🚀 Features
 
 - feat(ui): add RSS feed link to footer @brpaz (#245)
@@ -152,7 +168,6 @@
 - chore(deps): update dependency astro to v5.13.2 [security] @[renovate[bot]](https://github.com/apps/renovate) (#206)
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.3.0...v1.4.0
 ## 1.3.0 - 2025-07-06
-
 ### What's Changed
 
 #### 🚀 Features
@@ -185,7 +200,6 @@
 ## 1.0.3 - 2024-09-21
 ### What's Changed
 #### ⚠️ Maintenance
-
 - feat: update nostr url @brpaz (#120)
 
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.0.2...v1.0.3
