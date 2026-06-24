@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 1.10.2 - 2026-06-24
+
+### What's Changed
+
+#### 🧩 Dependency Updates
+
+- chore(deps): lock file maintenance @[renovate[bot]](https://github.com/apps/renovate) (#270)
+- chore(deps): update dependency js-yaml to v5 @[renovate[bot]](https://github.com/apps/renovate) (#283)
+
+**Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.10.1...v1.10.2
+
 ## 1.10.1 - 2026-06-21
 
 ### What's Changed
@@ -67,7 +78,6 @@
 ## 1.7.0 - 2026-06-13
 ### What's Changed
 #### 🚀 Features
-
 - feat(ui): add RSS feed link to footer @brpaz (#245)
 
 #### 🧩 Dependency Updates
@@ -169,7 +179,6 @@
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.3.0...v1.4.0
 ## 1.3.0 - 2025-07-06
 ### What's Changed
-
 #### 🚀 Features
 
 - New blog post: Docker compose watch. @brpaz (#195)
@@ -201,7 +210,6 @@
 ### What's Changed
 #### ⚠️ Maintenance
 - feat: update nostr url @brpaz (#120)
-
 **Full Changelog**: https://github.com/brpaz/brunopaz.dev/compare/1.0.2...v1.0.3
 
 ## 1.0.2 - 2024-09-21
