@@ -4,6 +4,8 @@
   "labels": ["dependencies"],
   "reviewers": ["brpaz"],
   "prConcurrentLimit": 10,
+  "platformAutomerge": false,
+  "schedule": ["before 9am on Monday"],
   "packageRules": [
     {
       "matchPackagePatterns": ["^@playwright/"],
@@ -12,10 +14,41 @@
     {
       "matchDatasources": ["npm"],
       "minimumReleaseAge": "3 days"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    },
+    {
+      "matchPackageNames": ["pnpm"],
+      "groupName": "pnpm",
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    },
+    {
+      "matchUpdateTypes": ["patch", "minor"],
+      "matchCurrentVersion": "!/^0/",
+      "groupName": "All non-major deps",
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
     }
   ],
-  "prConcurrentLimit": 10,
   "lockFileMaintenance": {
     "enabled": true
+  },
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "schedule": ["at any time"]
   }
 }
