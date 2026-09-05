@@ -6,8 +6,6 @@ import DefaultLayout from '~/layouts/Default.astro';
 import Post from '~/components/blog/Post.astro';
 import { Pagination } from '@sarissa/pagination';
 
-export const PageSize = 5;
-
 // Define the function with the specified types
 export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
   // Retrieve all published posts

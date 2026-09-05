@@ -14,5 +14,6 @@ export default {
     paypal: 'https://www.paypal.com/donate/?business=K9MWJGBF86EEQ&no_recurring=0&currency_code=EUR',
     githubSponsor: 'https://github.com/sponsors/brpaz',
     bitcoin: 'bc1qwwgut8gu0c58k33sj8c9kl6l58uhq3j7alfq3k',
+    lightningAddress: 'brunopaz@getalby.com',
   },
 };
