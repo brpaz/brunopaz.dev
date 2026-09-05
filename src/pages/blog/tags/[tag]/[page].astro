@@ -6,7 +6,7 @@ import DefaultLayout from '~/layouts/Default.astro';
 import Post from '~/components/blog/Post.astro';
 import { Pagination } from '@sarissa/pagination';
 
-export const PageSize = 5;
+const pageSize = 10;
 
 // Define the function with the specified types
 export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
@@ -23,7 +23,7 @@ export async function getStaticPaths({ paginate }: { paginate: PaginateFunction 
     const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
     return paginate(filteredPosts, {
       params: { tag },
-      pageSize: 10,
+      pageSize,
     });
   });
 }
