@@ -3,3 +3,5 @@ allowBuilds:
   sharp: true
 minimumReleaseAge: 4320
 ignoreScripts: true
+minimumReleaseAgeExclude:
+  - astro@7.3.1

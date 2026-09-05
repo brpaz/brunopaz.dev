@@ -1,7 +1,7 @@
 export default {
   title: 'Bruno Paz',
   description:
-    'Software Engineer & Tech Lead from Porto, Portugal. 10+ years in backend engineering, Go, TypeScript, and distributed systems. Personal site and blog.',
+    'Software Engineer & Tech Lead from Porto, Portugal. 10+ years in backend engineering, Go, TypeScript, and distributed systems. Open Web Advocate. Personal site and blog.',
   social: {
     github: 'https://github.com/brpaz',
     linkedin: 'https://www.linkedin.com/in/brunopaz88',

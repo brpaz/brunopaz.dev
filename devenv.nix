@@ -23,20 +23,22 @@ in
 
   languages.javascript = {
     enable = true;
-    package = pkgs.nodejs_24;
-    corepack = {
-      enable = true;
-    };
+    package = pkgs.nodejs_26;
   };
 
   # https://devenv.sh/packages/
+  # pkgs.corepack (standalone, not languages.javascript.corepack) since
+  # nodejs_26 no longer bundles a corepack binary for that module to wrap.
+  # It shims pnpm/yarn per the "packageManager" field in package.json, so
+  # that field stays the single source of truth for the pnpm version.
   packages = with pkgs; [
     git
     lefthook
+    corepack
   ];
 
   scripts.check-playwright.exec = ''
-    playwrightNpmVersion="$(npm show @playwright/test version)"
+    playwrightNpmVersion="$(node -p "require('./package.json').devDependencies['@playwright/test']" | tr -d '^~')"
     echo "❄️ Playwright nix version: ${pkgs-playwright.playwright.version}"
     echo "📦 Playwright npm version: $playwrightNpmVersion"
 
@@ -64,6 +66,6 @@ in
 
   # https://devenv.sh/tests/
   enterTest = ''
-    npm test
+    pnpm test
   '';
 }

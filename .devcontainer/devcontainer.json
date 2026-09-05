@@ -3,19 +3,24 @@
 {
   "name": "Node.js",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:4-22-bookworm",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:5-26-bookworm",
   "features": {
     "ghcr.io/devcontainers/features/node:2": {
       "nodeGypDependencies": true,
-      "version": "lts",
+      "version": "26",
       "pnpmVersion": "latest",
       "nvmVersion": "latest"
     },
     "ghcr.io/schlich/devcontainer-features/cypress:1": {}
   },
 
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
+  "forwardPorts": [4321],
+  "portsAttributes": {
+    "4321": {
+      "label": "Astro Dev Server",
+      "onAutoForward": "openPreview"
+    }
+  },
 
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "pnpm install --frozen-lockfile",

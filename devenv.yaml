@@ -6,7 +6,7 @@ inputs:
     # Currently pinned to: playwright@1.56.1
   # See https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=playwright
   nixpkgs-playwright:
-    url: github:NixOS/nixpkgs/7cc8a6b08a51d3fd23b9c4fd2493e7e888e88507
+    url: github:NixOS/nixpkgs/f2676046a1cba86d6f86a64f5b6d427b2f4dec96
 # If you're using non-OSS software, you can set allowUnfree to true.
 # allowUnfree: true
 
