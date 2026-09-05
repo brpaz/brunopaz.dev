@@ -9,8 +9,6 @@ import { sortPosts } from '~/content/posts';
 import { BlogPostCollection } from '~/content/types';
 import { Pagination } from '@sarissa/pagination';
 
-const pageSize = 5;
-
 interface PostsData {
   params: { slug: string };
   props: { post: CollectionEntry<BlogPost> };
@@ -27,7 +25,7 @@ export async function getStaticPaths({ paginate }: { paginate: PaginateFunction 
     props: { post },
   }));
 
-  return paginate(posts, { pageSize: pageSize });
+  return paginate(posts, { pageSize: 5 });
 }
 
 const { page }: { page: Page<PostsData> } = Astro.props;
