@@ -1,56 +1,36 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
-    ":automergeMinor"
-  ],
-  "labels": [
-    "dependencies"
-  ],
-  "reviewers": [
-    "brpaz"
-  ],
+  "extends": ["config:recommended", ":automergeMinor"],
+  "labels": ["dependencies"],
+  "reviewers": ["brpaz"],
   "prConcurrentLimit": 10,
   "platformAutomerge": false,
-  "schedule": [
-    "before 9am on Monday"
-  ],
+  "schedule": ["before 9am on Monday"],
   "packageRules": [
     {
       "enabled": false,
-      "matchPackageNames": [
-        "/^@playwright//"
-      ]
+      "matchPackageNames": ["/^@playwright//"]
     },
     {
-      "matchDatasources": [
-        "npm"
-      ],
+      "matchDatasources": ["npm"],
       "minimumReleaseAge": "3 days"
     },
     {
-      "matchManagers": [
-        "github-actions"
-      ],
+      "matchManagers": ["github-actions"],
       "groupName": "GitHub Actions",
       "automerge": true,
       "automergeType": "pr",
       "automergeStrategy": "squash"
     },
     {
-      "matchPackageNames": [
-        "pnpm"
-      ],
+      "matchPackageNames": ["pnpm"],
       "groupName": "pnpm",
       "automerge": true,
       "automergeType": "pr",
       "automergeStrategy": "squash"
     },
     {
-      "matchUpdateTypes": [
-        "patch",
-        "minor"
-      ],
+      "matchUpdateTypes": ["patch", "minor"],
       "matchCurrentVersion": "!/^0/",
       "groupName": "All non-major deps",
       "automerge": true,
@@ -58,9 +38,7 @@
       "automergeStrategy": "squash"
     },
     {
-      "matchDepTypes": [
-        "devDependencies"
-      ],
+      "matchDepTypes": ["devDependencies"],
       "automerge": true,
       "automergeType": "pr",
       "automergeStrategy": "squash"
@@ -70,12 +48,8 @@
     "enabled": true
   },
   "vulnerabilityAlerts": {
-    "labels": [
-      "security"
-    ],
-    "schedule": [
-      "at any time"
-    ]
+    "labels": ["security"],
+    "schedule": ["at any time"]
   },
   "minimumReleaseAge": "3 days"
 }
