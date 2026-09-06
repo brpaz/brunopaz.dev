@@ -1,12 +1,25 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", ":automergeMinor"],
+  "extends": [
+    "config:best-practices",
+    ":automergeMinor",
+    ":prConcurrentLimit10",
+    "workarounds:typesNodeVersioning"
+  ],
   "labels": ["dependencies"],
   "reviewers": ["brpaz"],
-  "prConcurrentLimit": 10,
-  "platformAutomerge": false,
-  "schedule": ["before 9am on Monday"],
+  "minimumReleaseAge": "3 days",
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"]
+  },
+  "osvVulnerabilityAlerts": true,
   "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "github actions"
+    },
     {
       "enabled": false,
       "matchPackageNames": ["/^@playwright//"]
@@ -16,23 +29,8 @@
       "minimumReleaseAge": "3 days"
     },
     {
-      "matchManagers": ["github-actions"],
-      "groupName": "GitHub Actions",
-      "automerge": true,
-      "automergeType": "pr",
-      "automergeStrategy": "squash"
-    },
-    {
       "matchPackageNames": ["pnpm"],
       "groupName": "pnpm",
-      "automerge": true,
-      "automergeType": "pr",
-      "automergeStrategy": "squash"
-    },
-    {
-      "matchUpdateTypes": ["patch", "minor"],
-      "matchCurrentVersion": "!/^0/",
-      "groupName": "All non-major deps",
       "automerge": true,
       "automergeType": "pr",
       "automergeStrategy": "squash"
@@ -43,13 +41,5 @@
       "automergeType": "pr",
       "automergeStrategy": "squash"
     }
-  ],
-  "lockFileMaintenance": {
-    "enabled": true
-  },
-  "vulnerabilityAlerts": {
-    "labels": ["security"],
-    "schedule": ["at any time"]
-  },
-  "minimumReleaseAge": "3 days"
+  ]
 }
