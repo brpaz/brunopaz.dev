@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Prune Preview Environments
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
-      - uses: pulkitjalan/actions-cloudflare-prune-pages@v1
+      - uses: pulkitjalan/actions-cloudflare-prune-pages@ff5b8726dacf29ce69a17766af25106650fd11eb # v1
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
