@@ -45,7 +45,7 @@
     "@types/js-yaml": "4.0.9",
     "@types/markdown-it": "14.2.0",
     "@types/node": "26.5.0",
-    "@typescript-eslint/parser": "8.69.0",
+    "@typescript-eslint/parser": "8.70.0",
     "astro": "7.3.2",
     "eslint": "10.10.0",
     "eslint-plugin-astro": "3.1.0",
