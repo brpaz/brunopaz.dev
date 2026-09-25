@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
-    "@astrojs/mdx": "8.0.1",
+    "@astrojs/mdx": "8.0.2",
     "@astrojs/rss": "4.0.19",
     "@astrojs/sitemap": "3.7.4",
     "@commitlint/cli": "21.2.3",
@@ -46,7 +46,7 @@
     "@types/markdown-it": "14.2.0",
     "@types/node": "26.6.2",
     "@typescript-eslint/parser": "8.70.1",
-    "astro": "7.3.3",
+    "astro": "7.3.4",
     "eslint": "10.10.0",
     "eslint-plugin-astro": "3.2.1",
     "eslint-plugin-jsx-a11y": "6.10.2",
