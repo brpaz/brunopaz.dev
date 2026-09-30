@@ -44,7 +44,7 @@
     "@sarissa/pagination": "1.0.3",
     "@types/js-yaml": "4.0.9",
     "@types/markdown-it": "14.2.0",
-    "@types/node": "26.6.2",
+    "@types/node": "26.6.3",
     "@typescript-eslint/parser": "8.70.1",
     "astro": "7.3.4",
     "eslint": "10.11.0",
