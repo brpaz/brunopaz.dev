@@ -186,7 +186,7 @@ importers:
         version: 4.3.3(vite@8.2.2(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.0))
       astro-favicons:
         specifier: ^3.1.6
-        version: 3.1.6(astro@7.3.5(@types/node@26.6.3)(jiti@2.7.0)(yaml@2.9.0))
+        version: 3.1.8(astro@7.3.5(@types/node@26.6.3)(jiti@2.7.0)(yaml@2.9.0))
       astro-loading-indicator:
         specifier: ^0.9.0
         version: 0.9.0(astro@7.3.5(@types/node@26.6.3)(jiti@2.7.0)(yaml@2.9.0))
@@ -1932,8 +1932,8 @@ packages:
     resolution: {integrity: sha512-lS5qlx401Q1ZUhQ44XQnM4uT2qI6hA0H+vstrd841xGVxunFOs0ut3DWJGYHK1l7mxRxQdDi1j53pfE7/AyGlA==}
     engines: {node: ^22.22.3 || ^24.16.0 || >=26.3.0}
 
-  astro-favicons@3.1.6:
-    resolution: {integrity: sha512-9YfNWaBEFz1nCHy4P1l4wfPRvuLe4qHuHovIcqD5HYfZeW82wyVG1+CZUVGhcjwbRCVkGRJ3G+CKTyX9BcoI5w==}
+  astro-favicons@3.1.8:
+    resolution: {integrity: sha512-1d4ARIb7ZcHUoFAH7HabR9vnWOvU2wLJYb1mUBWXsH3ZeNSn0vrlC4iULWQu6Xkyi1AmwE7F6O3fAQ5B52IThA==}
     peerDependencies:
       astro: '>= 4.0.0'
 
@@ -5389,7 +5389,7 @@ snapshots:
     dependencies:
       '@emnapi/core': 1.11.1
       '@emnapi/runtime': 1.11.1
-      '@napi-rs/wasm-runtime': 1.2.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
+      '@napi-rs/wasm-runtime': 1.2.4(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
     optional: true
 
   '@bruits/satteri-win32-arm64-msvc@0.10.5':
@@ -6004,17 +6004,17 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@napi-rs/wasm-runtime@1.2.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)':
-    dependencies:
-      '@emnapi/core': 1.11.1
-      '@emnapi/runtime': 1.11.1
-      '@tybys/wasm-util': 0.10.3
-    optional: true
-
   '@napi-rs/wasm-runtime@1.2.3(@emnapi/core@1.11.3)(@emnapi/runtime@1.11.3)':
     dependencies:
       '@emnapi/core': 1.11.3
       '@emnapi/runtime': 1.11.3
+      '@tybys/wasm-util': 0.10.3
+    optional: true
+
+  '@napi-rs/wasm-runtime@1.2.4(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)':
+    dependencies:
+      '@emnapi/core': 1.11.1
+      '@emnapi/runtime': 1.11.1
       '@tybys/wasm-util': 0.10.3
     optional: true
 
@@ -6660,7 +6660,7 @@ snapshots:
       - '@emnapi/runtime'
       - supports-color
 
-  astro-favicons@3.1.6(astro@7.3.5(@types/node@26.6.3)(jiti@2.7.0)(yaml@2.9.0)):
+  astro-favicons@3.1.8(astro@7.3.5(@types/node@26.6.3)(jiti@2.7.0)(yaml@2.9.0)):
     dependencies:
       astro: 7.3.5(@types/node@26.6.3)(jiti@2.7.0)(yaml@2.9.0)
       favilib: 1.0.5
