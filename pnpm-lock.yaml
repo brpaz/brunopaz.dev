@@ -194,8 +194,8 @@ importers:
         specifier: ^0.42.0
         version: 0.42.0
       satori:
-        specifier: ^0.35.0
-        version: 0.35.1
+        specifier: ^0.36.0
+        version: 0.36.0
       slugify:
         specifier: ^1.6.9
         version: 1.6.9
@@ -4253,8 +4253,8 @@ packages:
     resolution: {integrity: sha512-Nf4eMGE2O5vnJG7KPCRyksWS9gVKSYoUWtPeMXRRxwZSPVQhSGtL602xVYS65LvMkHmkvKa7xpauF0+/5pPwrg==}
     hasBin: true
 
-  satori@0.35.1:
-    resolution: {integrity: sha512-y2GHiXg2o+WNdH2kcjC30kW6tzSLRLOG+gJ7YGkZM8fC7Atj7C+otpGRH7H/c0GLRGWUKivd5dv50vqg6m1aQA==}
+  satori@0.36.0:
+    resolution: {integrity: sha512-DA39AMW6BDBle9FEJJK5gsqBKrmKY/9rT4mfK/jg1Yd9HAE24vFrRlrsG4H+ySo2tSYhX43WwVTv5nZz3trqKQ==}
     engines: {node: '>=16'}
 
   satteri@0.10.5:
@@ -9337,7 +9337,7 @@ snapshots:
     dependencies:
       suf-log: 2.5.3
 
-  satori@0.35.1:
+  satori@0.36.0:
     dependencies:
       '@shuding/opentype.js': 1.4.0-beta.0
       css-background-parser: 0.1.0
