@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: brpaz/draftsman@27db4881575c7a1d7e8016d27c8554c9043e655c # v0.2.3
+      - uses: brpaz/draftsman@c3261902eee44ae9474603d8578c13fafb5c2c66 # v0.3.0
         with:
           command: draft
           backend: github
