@@ -38,17 +38,17 @@
     },
     "nixpkgs-playwright": {
       "locked": {
-        "lastModified": 1783079170,
-        "narHash": "sha256-Iwqi/HUUut0bmViXcTIlD00Ae7uUk1LzNUD/Xfkz8nI=",
+        "lastModified": 1793341285,
+        "narHash": "sha256-Y1CiZ4SoBUjLQyQM/pY+rS2dXD3CHLPstF0lmOc73D4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f2676046a1cba86d6f86a64f5b6d427b2f4dec96",
+        "rev": "1c89083e451e891152365b799595cf7790a43325",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f2676046a1cba86d6f86a64f5b6d427b2f4dec96",
+        "rev": "1c89083e451e891152365b799595cf7790a43325",
         "type": "github"
       }
     },

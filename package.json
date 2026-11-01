@@ -40,7 +40,7 @@
     "@commitlint/cli": "21.2.4",
     "@commitlint/config-conventional": "21.2.4",
     "@lhci/cli": "0.15.1",
-    "@playwright/test": "1.61.1",
+    "@playwright/test": "1.64.1",
     "@sarissa/pagination": "1.0.3",
     "@types/js-yaml": "4.0.9",
     "@types/markdown-it": "14.2.0",
