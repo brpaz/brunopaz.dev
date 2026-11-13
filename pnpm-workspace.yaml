@@ -4,6 +4,7 @@ allowBuilds:
 minimumReleaseAge: 4320
 ignoreScripts: true
 minimumReleaseAgeExclude:
-  - astro@7.3.1
+  # Renovate security update: astro@7.4.7
+  - astro@7.3.1 || 7.4.7
   # Renovate security update: markdown-it@15.0.3
   - markdown-it@15.0.3

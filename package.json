@@ -46,7 +46,7 @@
     "@types/markdown-it": "14.2.0",
     "@types/node": "26.6.5",
     "@typescript-eslint/parser": "8.71.2",
-    "astro": "7.3.5",
+    "astro": "7.4.7",
     "eslint": "10.13.0",
     "eslint-plugin-astro": "3.2.1",
     "eslint-plugin-jsx-a11y": "6.10.2",
